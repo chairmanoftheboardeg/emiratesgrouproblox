@@ -1,470 +1,56 @@
-<!doctype html>
-<html lang="en" data-theme="light">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Emirates Group Roblox (EGR)</title>
-  <meta name="description" content="A premier virtual aviation organisation built on realism, operational integrity, and technology under Vision 2026." />
-
-  <!-- Favicon (as requested) -->
-  <link rel="icon" href="/images/logo.png" />
-  <link rel="apple-touch-icon" href="/images/logo.png" />
-
-  <link rel="stylesheet" href="assets/css/base.css" />
-
-  <!-- Page-only styles (loader + hero background rotator) -->
-  <style>
-    /* Loading Screen */
-    .loader-overlay{
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: var(--bg);
-      display: grid;
-      place-items: center;
-      transition: opacity 320ms ease, visibility 320ms ease;
-      opacity: 1;
-      visibility: visible;
-    }
-    .loader-card{
-      width: min(520px, calc(100% - 32px));
-      padding: 22px;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      box-shadow: var(--shadow);
-      text-align: center;
-    }
-    .loader-logo{
-      width: 74px;
-      height: 74px;
-      border-radius: 18px;
-      display: inline-block;
-      margin-bottom: 12px;
-    }
-    .loader-title{
-      margin: 0;
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: 0.01em;
-    }
-    .loader-sub{
-      margin: 8px 0 0 0;
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 13px;
-    }
-    .loader-bar{
-      margin: 16px auto 0 auto;
-      height: 10px;
-      width: min(320px, 100%);
-      border-radius: 999px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--surface-2);
-    }
-    .loader-bar > i{
-      display: block;
-      height: 100%;
-      width: 45%;
-      border-radius: 999px;
-      background: var(--primary);
-      animation: loaderSlide 900ms ease-in-out infinite;
-    }
-    @keyframes loaderSlide{
-      0%   { transform: translateX(-120%); }
-      50%  { transform: translateX(80%); }
-      100% { transform: translateX(220%); }
-    }
-    .loader-overlay[data-done="true"]{
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    /* Hero (rotating background) */
-    .hero{
-      position: relative;
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-    }
-    .hero-bg{
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      filter: saturate(1.05);
-      transform: scale(1.02);
-    }
-    .hero-bg.layer-a{ opacity: 1; transition: opacity 700ms ease; }
-    .hero-bg.layer-b{ opacity: 0; transition: opacity 700ms ease; }
-
-    /* Dark overlay for text readability */
-    .hero-overlay{
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        90deg,
-        rgba(0,0,0,0.62) 0%,
-        rgba(0,0,0,0.45) 48%,
-        rgba(0,0,0,0.28) 100%
-      );
-      pointer-events: none;
-    }
-
-    .hero-inner{
-      position: relative;
-      padding: 74px 0;
-      color: #fff;
-    }
-    @media (max-width: 720px){
-      .hero-inner{ padding: 54px 0; }
-    }
-    .hero .badge{ border-color: rgba(255,255,255,0.22); background: rgba(255,255,255,0.10); color: rgba(255,255,255,0.92); }
-    .hero .p{ color: rgba(255,255,255,0.82); }
-    .hero .btn-secondary{
-      border-color: rgba(255,255,255,0.24);
-      background: rgba(255,255,255,0.10);
-      color: #fff;
-    }
-    .hero .btn-secondary:hover{
-      background: rgba(255,255,255,0.16);
-    }
-
-    .hero-metrics{
-      margin-top: 26px;
-    }
-    .hero-metrics .card{
-      background: rgba(255,255,255,0.10);
-      border-color: rgba(255,255,255,0.18);
-      box-shadow: none;
-      backdrop-filter: blur(8px);
-      color: #fff;
-    }
-    .hero-metrics .p{ color: rgba(255,255,255,0.78); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emirates Group Roblox | Vision 2026</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-
 <body>
-  <!-- Loading Screen -->
-  <div class="loader-overlay" id="loader">
-    <div class="loader-card">
-      <img class="loader-logo" src="/images/logo.png" alt="EGR Logo" />
-      <p class="loader-title">Emirates Group Roblox</p>
-      <p class="loader-sub">Preparing your experience…</p>
-      <div class="loader-bar" aria-hidden="true"><i></i></div>
-    </div>
-  </div>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="/">
-        <img src="/images/logo.png" alt="EGR Logo" />
-        <div class="title">
-          <strong>Emirates Group Roblox</strong>
-          <span>Vision 2026 Operating Model</span>
+    <nav>
+        <div class="logo">EGR GROUP</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="https://careers.emiratesgrouproblox.link">Careers</a>
+            <a href="#" id="nav-login" onclick="loginWithDiscord()">Member Login</a>
+            <a href="dashboard.html" id="nav-dashboard" class="hidden">My Dashboard</a>
         </div>
-      </a>
+    </nav>
 
-      <nav class="nav">
-        <a href="/">Home</a>
-
-        <div class="dropdown" data-dropdown data-open="false">
-          <button class="nav-btn btn" style="padding:10px 12px;border:1px solid transparent;background:transparent;">
-            About Us
-          </button>
-          <div class="dropdown-panel">
-            <a href="/about/divisions.html">Our Divisions <span>Operating model across specialised units</span></a>
-            <a href="/about/history.html">Our History <span>From initiative to multi-divisional group</span></a>
-            <a href="/about/governance.html">Our Governance <span>Board, C-Suite, and controls</span></a>
-            <a href="/about/story.html">Our Story <span>How EGR was built</span></a>
-            <a href="/about/vision.html">Our Vision <span>Vision 2026 strategy</span></a>
-            <a href="/about/leadership.html">Our Leadership <span>Executive leadership structure</span></a>
-            <a href="/about/fleet.html">Our Fleet <span>PTFS and ROAV fleet line-up</span></a>
-            <a href="/about/mission.html">Mission <span>What we exist to deliver</span></a>
-            <a href="/about/innovations.html">Our Innovations <span>Technology and realism systems</span></a>
-            <a href="https://discord.com/invite/REPLACE_ME" target="_blank" rel="noopener">Fly Dubai (Discord) <span>Redirect to Fly Dubai Roblox</span></a>
-          </div>
+    <header class="hero">
+        <h1>Vision 2026: Defining Virtual Aviation</h1>
+        <p>A sophisticated ecosystem where luxury, technology, and professionalism converge.</p>
+        <div class="cta-group">
+            <a href="about.html" class="btn-primary">Our Divisions</a>
+            <button onclick="loginWithDiscord()" class="btn-primary" style="margin-left: 10px;">Join the Ecosystem</button>
         </div>
+    </header>
 
-        <a href="https://flights.emiratesgrouproblox.link" target="_blank" rel="noopener">Flights</a>
-        <a href="https://careers.emiratesgrouproblox.link" target="_blank" rel="noopener">Careers</a>
+    <section class="container">
+        <h2>Who We Are</h2>
+        <p>The Emirates Group Roblox (EGR) is a pioneering virtual aviation organization...</p>
+        </section>
 
-        <div class="dropdown" data-dropdown data-open="false">
-          <button class="nav-btn btn" style="padding:10px 12px;border:1px solid transparent;background:transparent;">
-            Contact Us
-          </button>
-          <div class="dropdown-panel">
-            <a href="/contact/faq.html">FAQ <span>Common questions and answers</span></a>
-            <a href="/contact/agent.html">Chat with our Agent <span>Auto-response support</span></a>
-            <a href="/contact/safety-report.html">Safety &amp; Report <span>Report a user within the organisation</span></a>
-            <a href="/contact/index.html">Contact Form <span>Submit a formal enquiry</span></a>
-          </div>
-        </div>
-
-        <div class="dropdown" data-dropdown data-open="false">
-          <button class="nav-btn btn" style="padding:10px 12px;border:1px solid transparent;background:transparent;">
-            More
-          </button>
-          <div class="dropdown-panel">
-            <a href="/more/media-center.html">Media Center <span>Brand assets and media</span></a>
-            <a href="/more/newsroom.html">Newsroom <span>Announcements and updates</span></a>
-            <a href="https://egrau.emiratesgrouproblox.link" target="_blank" rel="noopener">Aviation University <span>EGRAU portal</span></a>
-            <a href="https://alliance.emiratesgrouproblox.link" target="_blank" rel="noopener">Alliance <span>Alliance management</span></a>
-          </div>
-        </div>
-
-        <div class="dropdown" data-dropdown data-open="false">
-          <button class="nav-btn btn" style="padding:10px 12px;border:1px solid transparent;background:transparent;">
-            Social
-          </button>
-          <div class="dropdown-panel">
-            <a href="https://discord.com/invite/REPLACE_ME" target="_blank" rel="noopener">Discord <span>Community and operations</span></a>
-            <a href="https://instagram.com/REPLACE_ME" target="_blank" rel="noopener">Instagram <span>Media and highlights</span></a>
-            <a href="https://x.com/REPLACE_ME" target="_blank" rel="noopener">X (Twitter) <span>Updates and notices</span></a>
-            <a href="https://linkedin.com/company/REPLACE_ME" target="_blank" rel="noopener">LinkedIn <span>Corporate presence</span></a>
-            <a href="https://trello.com/b/REPLACE_ME" target="_blank" rel="noopener">Trello <span>Public tracking (if used)</span></a>
-            <a href="https://youtube.com/@REPLACE_ME" target="_blank" rel="noopener">YouTube <span>Video content</span></a>
-          </div>
-        </div>
-      </nav>
-
-      <div class="nav-right">
-        <button class="btn btn-secondary" data-theme-toggle type="button">Toggle theme</button>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <!-- HERO with rotating background -->
-    <section class="hero">
-      <div class="hero-bg layer-a" id="heroBgA"></div>
-      <div class="hero-bg layer-b" id="heroBgB"></div>
-      <div class="hero-overlay"></div>
-
-      <div class="container hero-inner">
-        <div class="badge">Premier Virtual Aviation Organisation</div>
-        <h1 class="h1" style="margin-top:14px;">Emirates Group Roblox</h1>
-        <p class="p" style="max-width: 74ch;">
-          A premium virtual aviation ecosystem built on realism, operational integrity, and technology—delivered under Vision 2026.
-        </p>
-
-        <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap;">
-          <a class="btn btn-primary" href="/about/divisions.html">Explore Our Divisions</a>
-          <a class="btn btn-secondary" href="https://flights.emiratesgrouproblox.link" target="_blank" rel="noopener">View Flights</a>
-        </div>
-
-        <div class="grid grid-4 hero-metrics">
-          <div class="card" style="padding:16px;">
-            <strong>Operational Integrity</strong>
-            <div class="p">Standardised processes across divisions and roles.</div>
-          </div>
-          <div class="card" style="padding:16px;">
-            <strong>Realism at Scale</strong>
-            <div class="p">High-fidelity operations, training, and governance.</div>
-          </div>
-          <div class="card" style="padding:16px;">
-            <strong>Technology & Innovation</strong>
-            <div class="p">Systems-first approach for reliability and speed.</div>
-          </div>
-          <div class="card" style="padding:16px;">
-            <strong>Safety & Compliance</strong>
-            <div class="p">Rules, hierarchy, and protocols enforced professionally.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Divisions preview -->
-    <section class="section" style="background: var(--surface-2);">
-      <div class="container">
-        <h2 class="h2">Divisions</h2>
-        <p class="p" style="max-width: 72ch;">
-          Vision 2026 is delivered through specialised divisions operating under a unified corporate framework.
-        </p>
-
-        <div class="grid grid-3" style="margin-top:18px;">
-          <div class="card" style="padding:16px;">
-            <strong>Emirates Airlines Roblox (EK)</strong>
-            <div class="p">Premium passenger operations and service standards.</div>
-          </div>
-          <div class="card" style="padding:16px;">
-            <strong>Fly Dubai Roblox (FZ)</strong>
-            <div class="p">Regional network operations and community integration.</div>
-          </div>
-          <div class="card" style="padding:16px;">
-            <strong>Emirates SkyCargo Roblox</strong>
-            <div class="p">Cargo operations and logistics realism.</div>
-          </div>
-          <div class="card" style="padding:16px;">
-            <strong>Airport Services (dnata)</strong>
-            <div class="p">Ground handling, customer service, and airport flow.</div>
-          </div>
-          <div class="card" style="padding:16px;">
-            <strong>Hub Operations (EGHO)</strong>
-            <div class="p">Coordination, timing, and operational sequencing.</div>
-          </div>
-          <div class="card" style="padding:16px;">
-            <strong>Aviation University (EGRAU)</strong>
-            <div class="p">Flight school, cabin/ground school, training pipelines.</div>
-          </div>
-        </div>
-
-        <div style="margin-top:18px;">
-          <a class="btn btn-primary" href="/about/divisions.html">View all divisions</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Governance + Compliance band -->
-    <section class="section">
-      <div class="container">
-        <div class="grid grid-3">
-          <div class="card" style="padding:18px;">
-            <strong>Governance</strong>
-            <p class="p">Led by the Board of Directors and Executive Board (C-Suite) to ensure consistent standards.</p>
-            <div style="margin-top:12px;">
-              <a class="btn btn-secondary" href="/about/governance.html">Learn governance</a>
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Emirates Group Roblox. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#" onclick="openLegalPDF()">Legal Framework</a>
+                <a href="#">Privacy Policy</a>
             </div>
-          </div>
-
-          <div class="card" style="padding:18px;">
-            <strong>Legal, Safety & Compliance</strong>
-            <p class="p">All members must follow rules, hierarchy, and operational protocols. Ignorance is not a defence.</p>
-            <div style="margin-top:12px;">
-              <a class="btn btn-secondary" href="/legal/EGR_Legal_Safety_Compliance_Framework_2026.pdf" target="_blank" rel="noopener">
-                Open framework (PDF)
-              </a>
-            </div>
-          </div>
-
-          <div class="card" style="padding:18px;">
-            <strong>Disclaimer</strong>
-            <p class="p">
-              Emirates Group Roblox is an independent virtual organisation on Roblox and is not affiliated with Emirates Airline or dnata.
-            </p>
-            <div style="margin-top:12px;">
-              <a class="btn btn-secondary" href="/policies/terms-of-service.html">Read terms</a>
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
-  </main>
+    </footer>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <img src="/images/logo.png" alt="EGR Logo" style="width:34px;height:34px;border-radius:10px;" />
-            <div>
-              <h4 style="margin:0;">Emirates Group Roblox</h4>
-              <div style="color:var(--muted); font-weight:600; font-size:12px;">Owned &amp; Operated by The Tyler Nicholas Group</div>
-            </div>
-          </div>
-          <p class="p" style="margin-top:10px;">
-            A structured virtual aviation organisation delivering realism, professionalism, and technology under Vision 2026.
-          </p>
-        </div>
-
-        <div class="footer-col">
-          <h4>Quick links</h4>
-          <a href="/about/index.html">About Us</a>
-          <a href="/contact/index.html">Contact</a>
-          <a href="/more/newsroom.html">Newsroom</a>
-          <a href="/more/media-center.html">Media Center</a>
-        </div>
-
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <a href="/legal/EGR_Legal_Safety_Compliance_Framework_2026.pdf" target="_blank" rel="noopener">Legal Safety &amp; Compliance (PDF)</a>
-          <a href="/policies/terms-of-service.html">Terms of Service</a>
-          <a href="/policies/privacy-policy.html">Privacy Policy</a>
-          <a href="/policies/sitemap.html">Site Map</a>
-        </div>
-
-        <div class="footer-col">
-          <h4>Portals</h4>
-          <a href="https://staff.emiratesgrouproblox.link" target="_blank" rel="noopener">Staff Login</a>
-          <a href="/admin/index.html">Admin Login</a>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        © 2026 Emirates Group Roblox (EGR). All Rights Reserved. Emirates Group Roblox is not affiliated with Emirates Airline or dnata. All trademarks belong to their respective owners.
-      </div>
-    </div>
-  </footer>
-
-  <script src="assets/js/app.js"></script>
-
-  <!-- Page-only script: loader + rotating hero background -->
-  <script>
-    (function () {
-      // 1) Loading screen: ensure it shows briefly and then fades out
-      const loader = document.getElementById("loader");
-      const minShowMs = 650;
-      const start = Date.now();
-
-      function finishLoader() {
-        const elapsed = Date.now() - start;
-        const remaining = Math.max(0, minShowMs - elapsed);
-        setTimeout(() => {
-          loader.setAttribute("data-done", "true");
-        }, remaining);
-      }
-
-      window.addEventListener("load", finishLoader);
-
-      // 2) Rotating hero background with crossfade
-      const images = [
-        "/images/A350 New Pics.png",
-        "/images/Emirates Roav Boeing 777 Cabin Economy.png",
-        "/images/occ office.png",
-        "/images/bg1.png",
-        "/images/bg2.png",
-        "/images/bg3.png"
-      ];
-
-      const a = document.getElementById("heroBgA");
-      const b = document.getElementById("heroBgB");
-
-      // Preload (best-effort)
-      images.forEach(src => { const i = new Image(); i.src = src; });
-
-      let index = 0;
-      let showingA = true;
-
-      function setBg(el, src) {
-        el.style.backgroundImage = `url("${src}")`;
-      }
-
-      // Initial
-      setBg(a, images[0]);
-      setBg(b, images[1] || images[0]);
-
-      const intervalMs = 6000;
-
-      setInterval(() => {
-        index = (index + 1) % images.length;
-        const nextSrc = images[index];
-
-        if (showingA) {
-          setBg(b, nextSrc);
-          b.style.opacity = "1";
-          a.style.opacity = "0";
-        } else {
-          setBg(a, nextSrc);
-          a.style.opacity = "1";
-          b.style.opacity = "0";
-        }
-
-        showingA = !showingA;
-      }, intervalMs);
-    })();
-  </script>
+    <script src="config.js"></script>
+    <script>
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            checkSession();
+        });
+    </script>
 </body>
 </html>
