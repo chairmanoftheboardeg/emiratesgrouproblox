@@ -4,53 +4,461 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emirates Group Roblox | Vision 2026</title>
-    <link rel="stylesheet" href="style.css">
     
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-black: #0d0d0d;
+            --primary-white: #ffffff;
+            --accent-gold: #d4af37;
+            --accent-gold-hover: #b5952f;
+            --gray-light: #f4f4f4;
+            --gray-dark: #333333;
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --transition: 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-main);
+            background-color: var(--primary-white);
+            color: var(--primary-black);
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        /* --- LOADING SCREEN --- */
+        #loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--primary-black);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: var(--accent-gold);
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loader-spinner {
+            border: 4px solid rgba(212, 175, 55, 0.3);
+            border-top: 4px solid var(--accent-gold);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        .loader-text { letter-spacing: 2px; font-weight: 300; font-size: 0.9rem; color: white;}
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
+        .logo span { color: var(--accent-gold); }
+
+        .nav-links { display: flex; align-items: center; gap: 2rem; }
+        .nav-links a { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .nav-links a:hover { color: var(--accent-gold); }
+
+        .btn-login {
+            border: 1px solid var(--primary-black);
+            padding: 8px 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .btn-login:hover { background: var(--primary-black); color: white; }
+
+        /* --- HERO SECTION WITH SLIDER --- */
+        header.hero {
+            height: 85vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            transition: transform 5s ease, opacity 1s ease;
+            filter: brightness(0.5);
+        }
+
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; font-weight: 700; letter-spacing: -1px; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 2rem; font-weight: 300; }
+        
+        .hero-btns { display: flex; gap: 15px; }
+        .btn-hero {
+            padding: 12px 30px;
+            background: var(--accent-gold);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .btn-hero:hover { background: var(--accent-gold-hover); }
+        .btn-outline { background: transparent; border: 2px solid white; }
+        .btn-outline:hover { background: white; color: black; }
+
+        /* --- QUICK ACTIONS BAR --- */
+        .quick-actions {
+            background: var(--primary-black);
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 2rem 5%;
+            flex-wrap: wrap;
+        }
+        .action-item { text-align: center; cursor: pointer; transition: var(--transition); }
+        .action-item:hover { color: var(--accent-gold); transform: translateY(-3px); }
+        .action-item i { font-size: 1.5rem; margin-bottom: 10px; display: block; }
+        .action-item span { font-size: 0.85rem; text-transform: uppercase; font-weight: 600; }
+
+        /* --- SECTIONS GENERAL --- */
+        section { padding: 5rem 10%; }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-title h2 { font-size: 2.2rem; text-transform: uppercase; margin-bottom: 10px; }
+        .section-title .line { width: 60px; height: 3px; background: var(--accent-gold); margin: 0 auto; }
+
+        /* --- ABOUT SNIPPET --- */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-text h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .about-text p { color: var(--gray-dark); margin-bottom: 1.5rem; line-height: 1.7; }
+        .read-more { color: var(--accent-gold); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; }
+
+        /* --- DIVISIONS (CARDS) --- */
+        .divisions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .div-card {
+            background: white;
+            border: 1px solid #eee;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .div-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(-5px); border-bottom: 3px solid var(--accent-gold); }
+        .div-card h3 { margin: 1rem 0; font-size: 1.2rem; }
+        .div-card p { font-size: 0.9rem; color: #666; margin-bottom: 1.5rem; }
+        .div-logo { width: 60px; height: 60px; background: #eee; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; } /* Placeholder for Logo */
+
+        /* --- STAFF ADVERTISEMENT --- */
+        .staff-ad {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1520437358207-323b43b50729?q=80&w=2070&auto=format&fit=crop'); /* Placeholder Office Image */
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+        .staff-ad h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .staff-ad p { max-width: 700px; margin: 0 auto 2rem auto; font-size: 1.1rem; opacity: 0.9; }
+
+        /* --- DISCORD STATUS --- */
+        .discord-section { background: #f8f9fa; text-align: center; }
+        .discord-box {
+            background: #5865F2; /* Discord Color */
+            color: white;
+            display: inline-block;
+            padding: 2rem 4rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.3);
+        }
+        .discord-box h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .discord-count { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+        .btn-discord { background: white; color: #5865F2; padding: 10px 25px; border-radius: 4px; font-weight: 700; }
+
+        /* --- FOOTER --- */
+        footer { background: var(--primary-black); color: white; padding: 4rem 5% 1rem 5%; font-size: 0.9rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
+        .footer-col h4 { color: var(--accent-gold); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #aaa; }
+        .footer-col ul li a:hover { color: white; padding-left: 5px; }
+        
+        .footer-bottom { border-top: 1px solid #333; padding-top: 1.5rem; display: flex; justify-content: space-between; flex-wrap: wrap; color: #666; font-size: 0.8rem; }
+        .footer-legal a { margin-left: 20px; color: #666; }
+        
+        /* --- UTILITY --- */
+        .hidden { display: none !important; }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simplified for now, would need a hamburger menu */
+            .hero h1 { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
+    <div id="loader">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">INITIALIZING VISION 2026</div>
+    </div>
+
     <nav>
-        <div class="logo">EGR GROUP</div>
+        <div class="logo">EGR <span>GROUP</span></div>
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="about.html">About Us</a>
+            <a href="#about-snippet">About</a>
+            <a href="#divisions-preview">Divisions</a>
             <a href="https://careers.emiratesgrouproblox.link">Careers</a>
-            <a href="#" id="nav-login" onclick="loginWithDiscord()">Member Login</a>
-            <a href="dashboard.html" id="nav-dashboard" class="hidden">My Dashboard</a>
+            <a href="contact.html">Contact</a>
+            
+            <a href="#" id="nav-login" class="btn-login" onclick="loginWithDiscord()">Login</a>
+            <a href="dashboard.html" id="nav-dashboard" class="hidden btn-login">Dashboard</a>
         </div>
     </nav>
 
     <header class="hero">
-        <h1>Vision 2026: Defining Virtual Aviation</h1>
-        <p>A sophisticated ecosystem where luxury, technology, and professionalism converge.</p>
-        <div class="cta-group">
-            <a href="about.html" class="btn-primary">Our Divisions</a>
-            <button onclick="loginWithDiscord()" class="btn-primary" style="margin-left: 10px;">Join the Ecosystem</button>
+        <div class="hero-bg" id="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop');"></div>
+        
+        <div style="z-index: 2;">
+            <h1>VISION 2026</h1>
+            <p>A sophisticated ecosystem where luxury, technology, and professionalism converge.</p>
+            <div class="hero-btns">
+                <a href="#divisions-preview" class="btn-hero">Explore Divisions</a>
+                <a href="https://careers.emiratesgrouproblox.link" class="btn-hero btn-outline">Join Us</a>
+            </div>
         </div>
     </header>
 
-    <section class="container">
-        <h2>Who We Are</h2>
-        <p>The Emirates Group Roblox (EGR) is a pioneering virtual aviation organization...</p>
-        </section>
+    <section class="quick-actions">
+        <div class="action-item" onclick="window.location.href='https://flights.emiratesgrouproblox.link'">
+            <i class="fa-solid fa-plane-departure"></i>
+            <span>Book a Flight</span>
+        </div>
+        <div class="action-item">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Flight Status</span>
+        </div>
+        <div class="action-item">
+            <i class="fa-solid fa-briefcase"></i>
+            <span>Careers</span>
+        </div>
+        <div class="action-item">
+            <i class="fa-solid fa-headset"></i>
+            <span>Support</span>
+        </div>
+    </section>
+
+    <section id="about-snippet">
+        <div class="section-title">
+            <h2>Who We Are</h2>
+            <div class="line"></div>
+        </div>
+        <div class="about-grid">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1559297434-fae8a1916a79?q=80&w=2070&auto=format&fit=crop" style="width: 100%; border-radius: 4px;" alt="Aviation">
+            </div>
+            <div class="about-text">
+                <h3>Defining the Standard for Virtual Aviation</h3>
+                <p>The Emirates Group Roblox (EGR) is a pioneering virtual aviation organization dedicated to delivering an unparalleled travel experience. We do not simply operate flights; we curate a sophisticated ecosystem where luxury, technology, and professionalism converge.</p>
+                <p>Founded by <strong>@Tyler Nicholas</strong> and Co-Founded by <strong>@Kareem Malhas</strong>, we operate under the strategic framework of Vision 2026.</p>
+                <a href="about.html" class="read-more">Read Full History & Governance <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="divisions-preview" style="background: #fafafa;">
+        <div class="section-title">
+            <h2>Our Divisions</h2>
+            <div class="line"></div>
+        </div>
+        <div class="divisions-grid">
+            <div class="div-card">
+                <div class="div-logo"><i class="fa-brands fa-emirates fa-2x"></i></div> <h3>Emirates Airlines</h3>
+                <p>The core of our operations, delivering luxury flights across the virtual skies.</p>
+                <a href="#" class="read-more">View Fleet</a>
+            </div>
+            <div class="div-card">
+                <div class="div-logo"><i class="fa-solid fa-plane-up fa-2x"></i></div>
+                <h3>Fly Dubai</h3>
+                <p>Regional connectivity with high standards of efficiency and service.</p>
+                <a href="#" class="read-more">Visit Page</a>
+            </div>
+            <div class="div-card">
+                <div class="div-logo"><i class="fa-solid fa-boxes-packing fa-2x"></i></div>
+                <h3>SkyCargo</h3>
+                <p>Global logistics and cargo solutions ensuring seamless transport.</p>
+                <a href="#" class="read-more">Details</a>
+            </div>
+            <div class="div-card">
+                <div class="div-logo"><i class="fa-solid fa-graduation-cap fa-2x"></i></div>
+                <h3>Aviation University</h3>
+                <p>Training the next generation of pilots and cabin crew.</p>
+                <a href="#" class="read-more">Enroll Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="staff-ad">
+        <h2>Advance Your Career</h2>
+        <p>Join a team of professionals. From pilots to ground crew, engineers to executives. We offer a structured career path within the Vision 2026 framework.</p>
+        <a href="https://careers.emiratesgrouproblox.link" class="btn-hero">View Open Positions</a>
+    </section>
+
+    <section class="discord-section">
+        <div class="discord-box">
+            <h3>Community Online</h3>
+            <div class="discord-count">1,240</div> <p>Pilots, Crew, and Passengers active right now.</p>
+            <br>
+            <a href="https://discord.gg/yourinvite" class="btn-discord">Join Discord Server</a>
+        </div>
+    </section>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2026 Emirates Group Roblox. All Rights Reserved.</p>
-            <div class="footer-links">
-                <a href="#" onclick="openLegalPDF()">Legal Framework</a>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>About EGR</h4>
+                <ul>
+                    <li><a href="about.html">Our History</a></li>
+                    <li><a href="about.html">Vision 2026</a></li>
+                    <li><a href="about.html">Leadership</a></li>
+                    <li><a href="about.html">Innovation</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Divisions</h4>
+                <ul>
+                    <li><a href="#">Emirates Airlines</a></li>
+                    <li><a href="#">Fly Dubai</a></li>
+                    <li><a href="#">SkyCargo</a></li>
+                    <li><a href="#">Aviation University</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Help Center</a></li>
+                    <li><a href="contact.html">Safety & Reporting</a></li>
+                    <li><a href="#">Check Ticket Status</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">Discord</a></li>
+                    <li><a href="#">Twitter (X)</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>&copy; 2026 Emirates Group Roblox. Owned by The Tyler Nicholas Group. Not affiliated with real-world Emirates.</div>
+            <div class="footer-legal">
+                <a href="#" onclick="alert('Opening PDF...')">Legal Framework</a>
+                <a href="#">Terms of Service</a>
                 <a href="#">Privacy Policy</a>
+                <a href="admin.html">Admin Login</a>
             </div>
         </div>
     </footer>
 
-    <script src="config.js"></script>
     <script>
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            checkSession();
+        // 1. SUPABASE CONFIGURATION (REPLACE THESE WITH YOUR KEYS!)
+        const SUPABASE_URL = 'YOUR_SUPABASE_PROJECT_URL_HERE'; 
+        const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE';
+        
+        // Initialize Supabase
+        const { createClient } = supabase;
+        const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // 2. LOADING SCREEN LOGIC
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 1000); // Shows loader for 1 second minimum
         });
+
+        // 3. IMAGE SLIDER LOGIC
+        const images = [
+            'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop', // Plane
+            'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?q=80&w=2070&auto=format&fit=crop', // Airport
+            'https://images.unsplash.com/photo-1542296332-2e44a99cfef9?q=80&w=2070&auto=format&fit=crop'  // Sky
+        ];
+        let currentImg = 0;
+        
+        function rotateImage() {
+            currentImg = (currentImg + 1) % images.length;
+            const heroBg = document.getElementById('hero-bg');
+            heroBg.style.opacity = '0'; // Fade out
+            
+            setTimeout(() => {
+                heroBg.style.backgroundImage = `url('${images[currentImg]}')`;
+                heroBg.style.opacity = '1'; // Fade in
+            }, 1000);
+        }
+        setInterval(rotateImage, 5000); // Change every 5 seconds
+
+        // 4. AUTHENTICATION LOGIC
+        async function checkSession() {
+            const { data: { session } } = await sb.auth.getSession();
+            const loginBtn = document.getElementById('nav-login');
+            const dashboardBtn = document.getElementById('nav-dashboard');
+
+            if (session) {
+                if(loginBtn) loginBtn.classList.add('hidden');
+                if(dashboardBtn) dashboardBtn.classList.remove('hidden');
+            } else {
+                if(loginBtn) loginBtn.classList.remove('hidden');
+                if(dashboardBtn) dashboardBtn.classList.add('hidden');
+            }
+        }
+
+        async function loginWithDiscord() {
+            const { data, error } = await sb.auth.signInWithOAuth({
+                provider: 'discord',
+                options: {
+                    redirectTo: window.location.origin + '/dashboard.html'
+                }
+            });
+            if (error) console.error('Login Error:', error);
+        }
+
+        // Run checks on load
+        checkSession();
+
     </script>
 </body>
 </html>
