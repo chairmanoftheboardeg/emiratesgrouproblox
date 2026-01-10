@@ -1,0 +1,94 @@
+:root{
+  --bg:#0b0d12;
+  --card:#101522;
+  --line:#1d2638;
+  --text:#e9eefc;
+  --muted:#9aa7c7;
+  --btn:#18213a;
+  --btn2:#253055;
+  --danger:#7a1f2b;
+  --ok:#1f7a4f;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: linear-gradient(180deg, #070912, #0b0d12);
+  color:var(--text);
+}
+.wrap{max-width:1100px;margin:24px auto;padding:0 16px}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 16px;border:1px solid var(--line);background:rgba(16,21,34,.7);
+  border-radius:16px;backdrop-filter: blur(8px);
+}
+.brand{display:flex;gap:12px;align-items:center}
+.brand img{width:42px;height:42px;border-radius:10px;background:#fff}
+.t1{font-weight:700}
+.t2{font-size:12px;color:var(--muted)}
+.right{display:flex;gap:10px;align-items:center}
+
+.card{
+  margin-top:16px;
+  border:1px solid var(--line);
+  background:rgba(16,21,34,.75);
+  border-radius:16px;
+  padding:18px;
+}
+h1{margin:0 0 8px 0;font-size:22px}
+label{display:block;font-size:12px;color:var(--muted);margin:10px 0 6px}
+input, select, textarea{
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:#0c1020;
+  color:var(--text);
+  outline:none;
+}
+textarea{min-height:120px;resize:vertical}
+
+.row{display:flex;gap:10px;align-items:center}
+.space{justify-content:space-between}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.muted{color:var(--muted);font-size:13px}
+.status{margin-top:10px}
+
+.btn{
+  padding:10px 12px;border-radius:12px;border:1px solid var(--line);
+  background:var(--btn);color:var(--text);cursor:pointer;
+}
+.btn:hover{background:var(--btn2)}
+.btn.primary{background:#1b2f7a;border-color:#2b3f8d}
+.btn.primary:hover{background:#24409e}
+.btn.ghost{background:transparent}
+.btn.danger{background:var(--danger);border-color:#9d2d3d}
+.hidden{display:none !important}
+
+.tableWrap{margin-top:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+table{width:100%;border-collapse:collapse}
+th, td{padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;color:var(--muted);text-align:left;background:#0c1020}
+td{font-size:13px}
+td .mini{font-size:12px;color:var(--muted)}
+.actions{display:flex;gap:8px}
+.search{max-width:420px}
+
+.chk{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:13px}
+.chk input{width:auto}
+
+.modal{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);
+  display:flex;align-items:center;justify-content:center;padding:18px;
+}
+.modalCard{
+  width:min(920px, 100%);
+  border:1px solid var(--line);
+  background:#0c1020;
+  border-radius:16px;
+  padding:16px;
+}
+.modalTitle{font-weight:700;font-size:18px}
+.formArea{margin-top:8px}
+.mt{margin-top:12px}
