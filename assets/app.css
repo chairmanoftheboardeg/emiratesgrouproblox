@@ -565,3 +565,82 @@ hr.sep{
 .loading{
   animation: loaderAutoHide 1ms linear 6s forwards;
 }
+
+/* Announcement banner (Home) */
+.announce{
+  background: linear-gradient(90deg, rgba(215,25,32,0.12), rgba(11,26,43,0.0) 42%, rgba(215,25,32,0.10));
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.announce::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+  transform: translateX(-120%);
+  animation: announceShine 6.5s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes announceShine{
+  0%{ transform: translateX(-120%); }
+  45%{ transform: translateX(120%); }
+  100%{ transform: translateX(120%); }
+}
+.announce .announce-inner{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+  padding: 14px 0;
+  animation: announceEnter .55s ease both;
+}
+@keyframes announceEnter{
+  from{ opacity:0; transform: translateY(-10px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+.announce .tag{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: rgba(215,25,32,0.16);
+  border: 1px solid rgba(215,25,32,0.28);
+  color: var(--text);
+  white-space: nowrap;
+}
+.announce .text{
+  display:flex;
+  flex-direction:column;
+  gap: 2px;
+}
+.announce .text strong{
+  font-size: 14px;
+  letter-spacing: .01em;
+}
+.announce .text span{
+  font-size: 13px;
+  color: var(--muted);
+}
+.announce .link{
+  margin-left: auto;
+  font-weight: 750;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.55);
+  color: var(--text);
+  text-decoration:none;
+}
+html.theme-dark .announce .link{
+  background: rgba(255,255,255,0.06);
+}
+.announce .link:hover{ text-decoration:none; filter: brightness(1.02); }
+@media (max-width: 720px){
+  .announce .announce-inner{ align-items:flex-start; }
+  .announce .link{ margin-left: 0; }
+}

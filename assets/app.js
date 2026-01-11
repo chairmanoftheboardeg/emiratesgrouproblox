@@ -3,6 +3,9 @@
   const $ = (sel, root=document) => root.querySelector(sel);
   const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
+  const SITE_VERSION = "1.4";
+  const SITE_UPDATED = "11 Jan 2026";
+
   // ---------------------------------------------------------------------------
   // Theme
   // ---------------------------------------------------------------------------
@@ -59,6 +62,18 @@
     updateDubaiFooter();
     initAccordions();
     initDropdowns();
+    updateBuildInfo();
+  }
+
+
+  // ---------------------------------------------------------------------------
+  // Footer: build info (version + last updated)
+  // ---------------------------------------------------------------------------
+  function updateBuildInfo(){
+    const v = document.getElementById("siteVersion");
+    const u = document.getElementById("siteUpdated");
+    if(v) v.textContent = SITE_VERSION;
+    if(u) u.textContent = SITE_UPDATED;
   }
 
   // ---------------------------------------------------------------------------
