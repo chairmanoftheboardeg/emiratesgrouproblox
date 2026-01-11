@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>EGR Admin — CMS</title>
+  <link rel="icon" href="/images/logo.png"/>
+  <link rel="stylesheet" href="/admin/admin.css"/>
+</head>
+<body>
+  <div class="shell">
+    <aside class="side">
+      <div class="brand">
+        <img src="/images/logo.png" alt="EGR"/>
+        <div>
+          <div class="t1">EGR Admin</div>
+          <div class="t2">CMS Management • Scope A</div>
+        </div>
+      </div>
+
+      <div class="sideBlock">
+        <div class="label">Session</div>
+        <div class="who" id="whoami">Not signed in</div>
+        <div class="muted" id="roleHint" style="margin-top:6px">Admin role is enforced by RLS.</div>
+        <div style="height:10px"></div>
+        <div class="btnRow">
+          <button class="btn" id="btnTheme">Toggle theme</button>
+          <button class="btn hidden" id="btnSignOut">Sign out</button>
+        </div>
+      </div>
+
+      <div class="sideBlock" id="loginPanel">
+        <div class="label">Sign in</div>
+        <div class="grid2">
+          <div class="field">
+            <label>Email</label>
+            <input id="email" type="email" placeholder="admin@..." autocomplete="username"/>
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input id="password" type="password" placeholder="••••••••" autocomplete="current-password"/>
+          </div>
+        </div>
+        <div style="height:10px"></div>
+        <div class="btnRow">
+          <button class="btn primary" id="btnLogin">Sign in</button>
+        </div>
+        <div class="status" id="loginMsg"></div>
+      </div>
+
+      <div class="sideBlock" id="navPanel" style="display:none">
+        <div class="label">Quick links</div>
+        <div class="btnRow">
+          <a class="btn" href="/" target="_blank" rel="noopener">Open website</a>
+          <a class="btn" href="/divisions/" target="_blank" rel="noopener">Divisions</a>
+          <a class="btn" href="/news/" target="_blank" rel="noopener">Newsroom</a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h1>Content Dashboard</h1>
+          <div class="sub">Create, edit, publish, and maintain CMS content.</div>
+        </div>
+        <div class="row" style="min-width:min(520px, 100%)">
+          <select id="tableSelect" style="flex:1"></select>
+          <button class="btn" id="btnRefresh">Refresh</button>
+          <button class="btn primary" id="btnNew">New</button>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="row">
+          <input id="search" placeholder="Search..." style="flex:1"/>
+          <label class="chk"><input id="onlyPublished" type="checkbox"/> Only published</label>
+        </div>
+        <div class="status" id="status">Not loaded.</div>
+      </div>
+
+      <div class="tableWrap">
+        <table>
+          <thead id="thead"></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Edit record">
+    <div class="modalCard">
+      <div class="row" style="justify-content:space-between">
+        <div>
+          <div class="modalTitle" id="modalTitle">Edit</div>
+          <div class="status" id="modalSub">Table</div>
+        </div>
+        <div class="btnRow">
+          <button class="btn" id="btnClose">Close</button>
+        </div>
+      </div>
+
+      <div id="formArea" class="grid2" style="margin-top:10px"></div>
+
+      <div class="row" style="justify-content:space-between; margin-top:14px">
+        <div class="btnRow">
+          <button class="btn danger hidden" id="btnDelete">Delete</button>
+          <div class="status" id="modalMsg"></div>
+        </div>
+        <div class="btnRow">
+          <button class="btn primary" id="btnSave">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Supabase JS v2 -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/supabase.js"></script>
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

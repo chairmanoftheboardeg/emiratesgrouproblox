@@ -1,0 +1,79 @@
+    <!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8"/>
+      <meta name="viewport" content="width=device-width,initial-scale=1"/>
+      <title>EGR — Our History</title>
+      <link rel="icon" href="/images/logo.png"/>
+      <link rel="stylesheet" href="/assets/css/main.css"/>
+
+    </head>
+    <body>
+      <div id="pageLoader" class="pageLoader hide" aria-hidden="true">
+        <div class="loaderCard">
+          <img src="/images/logo.png" alt="EGR"/>
+          <div>
+            <div class="t">Emirates Group Roblox</div>
+            <div class="s">Loading…</div>
+          </div>
+          <div class="spinner" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div id="siteNav"></div>
+
+      <section class="section">
+  <div class="container">
+    <div class="sectionTitle">
+      <h2>Our History</h2>
+      <span class="muted">Timeline (December 2023 → Present)</span>
+    </div>
+
+    <div id="timelineList" class="list"></div>
+    <div id="timelineMsg" class="muted" style="margin-top:10px"></div>
+  </div>
+</section>
+
+
+      <div id="siteFooter"></div>
+
+      <script src="/assets/js/config.js"></script>
+      <script src="/assets/js/layout.js"></script>
+      <script src="/assets/js/ui.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/supabase.js"></script>
+<script src="/assets/js/cms.js"></script>
+<script>
+  (async ()=>{
+    EGR_UI.showLoader(false);
+    try{
+      const list = document.getElementById("timelineList");
+      const msg = document.getElementById("timelineMsg");
+      if(!window.sb) throw new Error("Supabase not configured. Update /assets/js/config.js");
+      const data = await EGR_CMS.timeline();
+      list.innerHTML = data.map(m => `
+        <div class="card rowCard fadeUp">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px">
+            <h3 style="margin:0">${escapeHtml(m.title || '')}</h3>
+            <span class="badge">${escapeHtml(m.milestone_date || '')}</span>
+          </div>
+          <p>${escapeHtml(m.description || '')}</p>
+        </div>
+      `).join("");
+      msg.textContent = data.length ? "" : "No milestones found yet. Add them in /admin/.";
+    }catch(e){
+      document.getElementById("timelineMsg").textContent = e.message || String(e);
+    }finally{
+      EGR_UI.hideLoader();
+      document.querySelectorAll(".fadeUp").forEach(el=>el.classList.add("in"));
+    }
+  })();
+  function escapeHtml(s){
+    return String(s ?? "")
+      .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+  }
+</script>
+
+    </body>
+    </html>

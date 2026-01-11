@@ -1,0 +1,99 @@
+    <!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8"/>
+      <meta name="viewport" content="width=device-width,initial-scale=1"/>
+      <title>EGR — Our Divisions</title>
+      <link rel="icon" href="/images/logo.png"/>
+      <link rel="stylesheet" href="/assets/css/main.css"/>
+
+    </head>
+    <body>
+      <div id="pageLoader" class="pageLoader hide" aria-hidden="true">
+        <div class="loaderCard">
+          <img src="/images/logo.png" alt="EGR"/>
+          <div>
+            <div class="t">Emirates Group Roblox</div>
+            <div class="s">Loading…</div>
+          </div>
+          <div class="spinner" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div id="siteNav"></div>
+
+      <section class="section">
+  <div class="container">
+    <div class="sectionTitle">
+      <h2>Our Divisions</h2>
+      <span class="muted">Admin-managed</span>
+    </div>
+
+    <div id="divisionsGrid" class="grid3"></div>
+    <div id="divisionsMsg" class="muted" style="margin-top:10px"></div>
+  </div>
+</section>
+
+
+      <div id="siteFooter"></div>
+
+      <script src="/assets/js/config.js"></script>
+      <script src="/assets/js/layout.js"></script>
+      <script src="/assets/js/ui.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/supabase.js"></script>
+<script src="/assets/js/cms.js"></script>
+<script>
+  (async ()=>{
+    EGR_UI.showLoader(false);
+    try{
+      const grid = document.getElementById("divisionsGrid");
+      const msg = document.getElementById("divisionsMsg");
+      if(!window.sb) throw new Error("Supabase not configured. Update /assets/js/config.js");
+      const data = await EGR_CMS.divisions();
+      grid.innerHTML = data.map(d => `
+        <div class="card fadeUp" style="padding:14px">
+          <div style="display:flex; gap:12px; align-items:center">
+            <img src="${escapeAttr(d.logo_url || '/images/logo.png')}" alt="${escapeAttr(d.title || 'Division')}"
+                 style="width:48px; height:48px; border-radius:14px; background:#fff; object-fit:cover"/>
+            <div style="min-width:0">
+              <div style="font-weight:900; font-size:16px">${escapeHtml(d.title || '')}</div>
+              <div class="muted" style="font-size:12px">${escapeHtml(d.short_description || '')}</div>
+            </div>
+          </div>
+
+          <div class="muted" style="margin-top:10px; font-size:13px">
+            ${escapeHtml(d.long_description || d.hover_description || '')}
+          </div>
+
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:12px">
+            ${linkBtn(d.link1_label, d.link1_url)}
+            ${linkBtn(d.link2_label, d.link2_url)}
+            ${linkBtn(d.link3_label, d.link3_url)}
+          </div>
+        </div>
+      `).join("");
+
+      msg.textContent = data.length ? "" : "No divisions found yet. Add them in /admin/.";
+    }catch(e){
+      document.getElementById("divisionsMsg").textContent = e.message || String(e);
+    }finally{
+      EGR_UI.hideLoader();
+      document.querySelectorAll(".fadeUp").forEach(el=>el.classList.add("in"));
+    }
+  })();
+
+  function linkBtn(label, url){
+    if(!label || !url) return "";
+    return `<a class="btn" href="${escapeAttr(url)}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`;
+  }
+  function escapeHtml(s){
+    return String(s ?? "")
+      .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+  }
+  function escapeAttr(s){ return escapeHtml(s); }
+</script>
+
+    </body>
+    </html>

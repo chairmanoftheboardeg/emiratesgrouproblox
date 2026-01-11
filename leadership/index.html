@@ -1,0 +1,99 @@
+    <!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8"/>
+      <meta name="viewport" content="width=device-width,initial-scale=1"/>
+      <title>EGR — Our Leadership</title>
+      <link rel="icon" href="/images/logo.png"/>
+      <link rel="stylesheet" href="/assets/css/main.css"/>
+
+    </head>
+    <body>
+      <div id="pageLoader" class="pageLoader hide" aria-hidden="true">
+        <div class="loaderCard">
+          <img src="/images/logo.png" alt="EGR"/>
+          <div>
+            <div class="t">Emirates Group Roblox</div>
+            <div class="s">Loading…</div>
+          </div>
+          <div class="spinner" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div id="siteNav"></div>
+
+      <section class="section">
+  <div class="container">
+    <div class="sectionTitle">
+      <h2>Our Leadership</h2>
+      <span class="muted">Board of Directors • Executive Board (C‑Suite)</span>
+    </div>
+
+    <div id="leadersBoard" class="grid3"></div>
+    <div style="height:14px"></div>
+    <div id="leadersExec" class="grid3"></div>
+    <div id="leadersMsg" class="muted" style="margin-top:10px"></div>
+  </div>
+</section>
+
+
+      <div id="siteFooter"></div>
+
+      <script src="/assets/js/config.js"></script>
+      <script src="/assets/js/layout.js"></script>
+      <script src="/assets/js/ui.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/supabase.js"></script>
+<script src="/assets/js/cms.js"></script>
+<script>
+  (async ()=>{
+    EGR_UI.showLoader(false);
+    try{
+      if(!window.sb) throw new Error("Supabase not configured. Update /assets/js/config.js");
+      const data = await EGR_CMS.leadership();
+
+      const board = data.filter(x => x.rank_group === "Board of Directors");
+      const exec = data.filter(x => x.rank_group === "Executive Board (C-Suite)");
+
+      const render = (x) => `
+        <div class="card fadeUp" style="padding:14px">
+          <div style="display:flex; gap:12px; align-items:center">
+            <img src="${escapeAttr(x.profile_photo_url || '/images/logo.png')}" alt="${escapeAttr(x.full_name || '')}"
+              style="width:54px; height:54px; border-radius:16px; background:#fff; object-fit:cover"/>
+            <div style="min-width:0">
+              <div style="font-weight:900">${escapeHtml(x.full_name || '')}</div>
+              <div class="muted" style="font-size:12px">${escapeHtml(x.position || '')}</div>
+            </div>
+          </div>
+          <div style="margin-top:10px" class="muted">
+            ${escapeHtml(x.first_person_blurb || "")}
+          </div>
+          <div style="margin-top:10px">
+            <span class="badge">${escapeHtml(x.department || "Leadership")}</span>
+          </div>
+        </div>
+      `;
+
+      document.getElementById("leadersBoard").innerHTML = board.map(render).join("");
+      document.getElementById("leadersExec").innerHTML = exec.map(render).join("");
+
+      document.getElementById("leadersMsg").textContent =
+        data.length ? "" : "No leadership records found yet. Add them in /admin/.";
+
+    }catch(e){
+      document.getElementById("leadersMsg").textContent = e.message || String(e);
+    }finally{
+      EGR_UI.hideLoader();
+      document.querySelectorAll(".fadeUp").forEach(el=>el.classList.add("in"));
+    }
+  })();
+  function escapeHtml(s){
+    return String(s ?? "")
+      .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+  }
+  function escapeAttr(s){ return escapeHtml(s); }
+</script>
+
+    </body>
+    </html>

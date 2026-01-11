@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>EGR — Redirect</title>
+  <link rel="icon" href="/images/logo.png"/>
+  <link rel="stylesheet" href="/assets/css/main.css"/>
+
+</head>
+<body>
+  <div id="pageLoader" class="pageLoader hide" aria-hidden="true">
+    <div class="loaderCard">
+      <img src="/images/logo.png" alt="EGR"/>
+      <div>
+        <div class="t">Emirates Group Roblox</div>
+        <div class="s">Loading…</div>
+      </div>
+      <div class="spinner" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <div id="siteNav"></div>
+
+  <main class="section"><div class="container"><div class="card" style="padding:16px">Redirecting to Safety & Report (Discord)…<div style="height:12px"></div><a class="btn primary" id="goLink" href="#">Continue</a></div></div></main>
+
+  <div id="siteFooter"></div>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/ui.js"></script>
+  <script>
+  const cfg = window.EGR_CONFIG || {};
+  const target = cfg.reportUrl || cfg.discordInviteUrl;
+  const a = document.getElementById("goLink");
+  if(target && target !== "#") {
+    a.href = target;
+    setTimeout(()=>location.replace(target), 200);
+  } else {
+    a.href = "/";
+  }
+</script>
+</body>
+</html>
