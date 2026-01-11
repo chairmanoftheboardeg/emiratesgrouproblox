@@ -644,3 +644,7 @@ html.theme-dark .announce .link{
   .announce .announce-inner{ align-items:flex-start; }
   .announce .link{ margin-left: 0; }
 }
+
+/* Failsafe: never allow pages to appear blank if reveal JS breaks */
+.reveal { opacity: 1 !important; transform: none !important; }
+
