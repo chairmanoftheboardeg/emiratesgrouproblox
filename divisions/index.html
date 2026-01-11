@@ -6,16 +6,14 @@
   <title>EGR — Our Divisions</title>
   <meta name="description" content="Explore the divisions of Emirates Group Roblox (EGR) operating under Vision 2026."/>
 
-  <link rel="icon" href="/images/logo.png"/>
-  <link rel="apple-touch-icon" href="/images/logo.png"/>
+  <link rel="icon" href="/images/logo.png?v=1"/>
+  <link rel="apple-touch-icon" href="/images/logo.png?v=1"/>
 
-  <link rel="stylesheet" href="/assets/css/main.css"/>
-
+  <link rel="stylesheet" href="/assets/css/main.css?v=20260111-1"/>
   <style>
-    /* Page-only polish (does not override your site theme) */
     .divisionCard { padding: 14px; }
     .divisionHeader { display:flex; gap:12px; align-items:center; }
-    .divisionLogo {
+    .divisionLogo{
       width:48px; height:48px; border-radius:14px;
       background:#fff; object-fit:cover; flex:0 0 auto;
       border: 1px solid rgba(255,255,255,.10);
@@ -24,17 +22,13 @@
     .divisionShort { font-size: 12px; }
     .divisionLong { margin-top: 10px; font-size: 13px; }
     .divisionLinks { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
-
-    /* If your CSS uses fadeUp/in classes, this makes it safe */
-    .fadeUp { opacity: 1; transform: none; }
   </style>
 </head>
 
 <body>
-  <!-- Loader (kept compatible with your existing UI scripts) -->
   <div id="pageLoader" class="pageLoader hide" aria-hidden="true">
     <div class="loaderCard">
-      <img src="/images/logo.png" alt="EGR"/>
+      <img src="/images/logo.png?v=1" alt="EGR"/>
       <div>
         <div class="t">Emirates Group Roblox</div>
         <div class="s">Loading…</div>
@@ -43,7 +37,7 @@
     </div>
   </div>
 
-  <!-- Nav injected by your layout.js -->
+  <!-- If your site injects nav/footer using layout.js -->
   <div id="siteNav"></div>
 
   <section class="section">
@@ -53,19 +47,21 @@
         <span class="muted">Vision 2026 operating model</span>
       </div>
 
-      <p class="muted" style="max-width: 75ch; margin-top: 10px;">
+      <p class="muted" style="max-width:75ch; margin-top:10px;">
         Emirates Group Roblox (EGR) is structured across specialised divisions designed to deliver realism, operational
         integrity, and a consistent member experience. Each division supports a defined mandate, standards, and leadership
         accountability within the group framework.
       </p>
 
-      <!-- Grid -->
       <div class="grid3" style="margin-top:16px;">
 
-        <!-- Emirates Airlines Roblox (EK) -->
-        <div class="card fadeUp divisionCard">
+        <!-- EK -->
+        <div class="card divisionCard">
           <div class="divisionHeader">
-            <img class="divisionLogo" src="/images/eklogo.png" alt="Emirates Airlines Roblox (EK) logo"/>
+            <img class="divisionLogo"
+                 src="/images/eklogo.png?v=1"
+                 alt="Emirates Airlines Roblox (EK) logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
             <div style="min-width:0">
               <div class="divisionName">Emirates Airlines Roblox (EK)</div>
               <div class="muted divisionShort">Flagship passenger operations and service standards.</div>
@@ -76,14 +72,17 @@
             the organisation’s core passenger network. Focused on realism, consistency, and disciplined execution.
           </div>
           <div class="divisionLinks">
-            <a class="btn" href="https://emiratesgrouproblox.link/no-acesss" target="_blank" rel="noopener">Website</a>
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
-        <!-- FlyDubai Roblox (FZ) -->
-        <div class="card fadeUp divisionCard">
+        <!-- FZ -->
+        <div class="card divisionCard">
           <div class="divisionHeader">
-            <img class="divisionLogo" src="/images/fzlogo.png" alt="FlyDubai Roblox (FZ) logo"/>
+            <img class="divisionLogo"
+                 src="/images/fzlogo.png?v=1"
+                 alt="FlyDubai Roblox (FZ) logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
             <div style="min-width:0">
               <div class="divisionName">FlyDubai Roblox (FZ)</div>
               <div class="muted divisionShort">Regional operations and short-haul execution.</div>
@@ -94,15 +93,17 @@
             flexibility. This division redirects to the official FlyDubai Discord.
           </div>
           <div class="divisionLinks">
-            <!-- You can replace this later -->
             <a class="btn" href="https://discord.gg/dZaJqdTyGd" target="_blank" rel="noopener">Discord</a>
           </div>
         </div>
 
-        <!-- Emirates SkyCargo Roblox -->
-        <div class="card fadeUp divisionCard">
+        <!-- SkyCargo -->
+        <div class="card divisionCard">
           <div class="divisionHeader">
-            <img class="divisionLogo" src="/images/ekclogo.png" alt="Emirates SkyCargo Roblox logo"/>
+            <img class="divisionLogo"
+                 src="/images/ekclogo.png?v=1"
+                 alt="Emirates SkyCargo Roblox logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
             <div style="min-width:0">
               <div class="divisionName">Emirates SkyCargo Roblox</div>
               <div class="muted divisionShort">Cargo operations and logistics realism.</div>
@@ -113,14 +114,17 @@
             Focused on process discipline and accuracy.
           </div>
           <div class="divisionLinks">
-            <a class="btn" href="https://emiratesgrouproblox.link/no-acesss" target="_blank" rel="noopener">Website</a>
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
-        <!-- Airport Services (dnata) -->
-        <div class="card fadeUp divisionCard">
+        <!-- dnata -->
+        <div class="card divisionCard">
           <div class="divisionHeader">
-            <img class="divisionLogo" src="/images/dnatalogo.png" alt="Airport Services logo"/>
+            <img class="divisionLogo"
+                 src="/images/dnatalogo.png?v=1"
+                 alt="Airport Services logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
             <div style="min-width:0">
               <div class="divisionName">Emirates Group Roblox Airport Services (dnata)</div>
               <div class="muted divisionShort">Ground handling, turnaround, and service flow.</div>
@@ -131,14 +135,17 @@
             ground-to-air execution and member experience.
           </div>
           <div class="divisionLinks">
-            <a class="btn" href="https://emiratesgrouproblox.link/no-acesss" target="_blank" rel="noopener">Website</a>
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
-        <!-- Hub Operations (EGHO) -->
-        <div class="card fadeUp divisionCard">
+        <!-- EGHO -->
+        <div class="card divisionCard">
           <div class="divisionHeader">
-            <img class="divisionLogo" src="/images/eghologo.png" alt="Hub Operations logo"/>
+            <img class="divisionLogo"
+                 src="/images/eghologo.png?v=1"
+                 alt="Hub Operations logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
             <div style="min-width:0">
               <div class="divisionName">Emirates Group Roblox Hub Operations (EGHO)</div>
               <div class="muted divisionShort">Hub coordination, flow control, and performance.</div>
@@ -149,14 +156,17 @@
             during high-volume periods.
           </div>
           <div class="divisionLinks">
-            <a class="btn" href="https://emiratesgrouproblox.link/no-acesss" target="_blank" rel="noopener">Website</a>
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
-        <!-- EGR Holidays -->
-        <div class="card fadeUp divisionCard">
+        <!-- Holidays -->
+        <div class="card divisionCard">
           <div class="divisionHeader">
-            <img class="divisionLogo" src="/images/rhlogo.png" alt="EGR Holidays logo"/>
+            <img class="divisionLogo"
+                 src="/images/rhlogo.png?v=1"
+                 alt="EGR Holidays logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
             <div style="min-width:0">
               <div class="divisionName">Emirates Group Roblox Holidays</div>
               <div class="muted divisionShort">Travel packages and curated experiences.</div>
@@ -167,14 +177,17 @@
             passenger journey and engagement.
           </div>
           <div class="divisionLinks">
-            <a class="btn" href="https://emiratesgrouproblox.link/no-acesss" target="_blank" rel="noopener">Website</a>
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
-        <!-- Official Store -->
-        <div class="card fadeUp divisionCard">
+        <!-- Store -->
+        <div class="card divisionCard">
           <div class="divisionHeader">
-            <img class="divisionLogo" src="/images/oslogo.png" alt="Official Store logo"/>
+            <img class="divisionLogo"
+                 src="/images/oslogo.png?v=1"
+                 alt="Official Store logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
             <div style="min-width:0">
               <div class="divisionName">Emirates Group Roblox Official Store</div>
               <div class="muted divisionShort">Merchandise and brand materials.</div>
@@ -185,14 +198,17 @@
             sustainability initiatives.
           </div>
           <div class="divisionLinks">
-            <a class="btn" href="https://emiratesgrouproblox.link/no-acesss" target="_blank" rel="noopener">Website</a>
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
-        <!-- Marhaba Services -->
-        <div class="card fadeUp divisionCard">
+        <!-- Marhaba -->
+        <div class="card divisionCard">
           <div class="divisionHeader">
-            <img class="divisionLogo" src="/images/egrinlogo.png" alt="Marhaba Services logo"/>
+            <img class="divisionLogo"
+                 src="/images/egrinlogo.png?v=1"
+                 alt="Marhaba Services logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
             <div style="min-width:0">
               <div class="divisionName">Emirates Group Roblox Marhaba Services</div>
               <div class="muted divisionShort">Premium assistance and stakeholder experience.</div>
@@ -203,14 +219,17 @@
             aligned with EGR’s corporate tone and operational discipline.
           </div>
           <div class="divisionLinks">
-            <a class="btn" href="https://emiratesgrouproblox.link/no-acesss" target="_blank" rel="noopener">Website</a>
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
-        <!-- Aviation University -->
-        <div class="card fadeUp divisionCard">
+        <!-- University -->
+        <div class="card divisionCard">
           <div class="divisionHeader">
-            <img class="divisionLogo" src="/images/aulogo.png" alt="Aviation University logo"/>
+            <img class="divisionLogo"
+                 src="/images/aulogo.png?v=1"
+                 alt="Aviation University logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
             <div style="min-width:0">
               <div class="divisionName">Emirates Group Roblox Aviation University (EGRAU)</div>
               <div class="muted divisionShort">Training, standards, and certification pathways.</div>
@@ -221,14 +240,17 @@
             Built to raise professionalism and consistency across staff roles.
           </div>
           <div class="divisionLinks">
-            <a class="btn" href="https://emiratesgrouproblox.link/no-acesss" target="_blank" rel="noopener">Website</a>
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
         <!-- Investors -->
-        <div class="card fadeUp divisionCard">
+        <div class="card divisionCard">
           <div class="divisionHeader">
-            <img class="divisionLogo" src="/images/egrinlogo.png" alt="Investors logo"/>
+            <img class="divisionLogo"
+                 src="/images/egrinlogo.png?v=1"
+                 alt="Investors logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
             <div style="min-width:0">
               <div class="divisionName">Emirates Group Roblox Investors</div>
               <div class="muted divisionShort">Stakeholder coordination and strategic support.</div>
@@ -239,14 +261,17 @@
             long-term sustainability and expansion objectives.
           </div>
           <div class="divisionLinks">
-            <a class="btn" href="https://emiratesgrouproblox.link/no-acesss" target="_blank" rel="noopener">Website</a>
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
-        <!-- Alliance Management -->
-        <div class="card fadeUp divisionCard">
+        <!-- Alliance -->
+        <div class="card divisionCard">
           <div class="divisionHeader">
-            <img class="divisionLogo" src="/images/amlogo.png" alt="Alliance Management logo"/>
+            <img class="divisionLogo"
+                 src="/images/amlogo.png?v=1"
+                 alt="Alliance Management logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
             <div style="min-width:0">
               <div class="divisionName">Emirates Group Roblox Alliance</div>
               <div class="muted divisionShort">Partnerships, coordination, and standards alignment.</div>
@@ -262,11 +287,14 @@
         </div>
 
         <!-- Safety & Security -->
-        <div class="card fadeUp divisionCard">
+        <div class="card divisionCard">
           <div class="divisionHeader">
-            <img class="divisionLogo" src="/images/sslogo.png" alt="Safety & Security logo"/>
+            <img class="divisionLogo"
+                 src="/images/sslogo.png?v=1"
+                 alt="Safety & Security logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
             <div style="min-width:0">
-              <div class="divisionName">Emirates Group Roblox Safety & Security</div>
+              <div class="divisionName">Emirates Group Roblox Safety &amp; Security</div>
               <div class="muted divisionShort">Compliance, safety culture, and enforcement.</div>
             </div>
           </div>
@@ -275,19 +303,23 @@
             secure environment through clear rules and consistent enforcement.
           </div>
           <div class="divisionLinks">
-            <a class="btn" href="https://emiratesgrouproblox.link/no-access" target="_blank" rel="noopener">Website</a>
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
-      </div>
-
-      <div class="muted" style="margin-top:14px;">
-        Logos and links can be updated by editing this page directly. Replace <strong>/images/placeholder-division.png</strong> with your real assets.
       </div>
     </div>
   </section>
 
   <div id="siteFooter"></div>
 
+  <!-- IMPORTANT: add your layout scripts back so nav/footer appear -->
+  <script src="/assets/js/layout.js?v=1"></script>
+  <script src="/assets/js/ui.js?v=1"></script>
+  <script>
+    // Never let loader block the page
+    const loader = document.getElementById("pageLoader");
+    if (loader) loader.classList.add("hide");
+  </script>
 </body>
 </html>
