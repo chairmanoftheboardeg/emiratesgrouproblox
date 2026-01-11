@@ -1,287 +1,152 @@
-    <!doctype html>
-    <html lang="en">
-    <head>
-      <meta charset="utf-8"/>
-      <meta name="viewport" content="width=device-width,initial-scale=1"/>
-      <title>Emirates Group Roblox (EGR) — Home</title>
-      <link rel="icon" href="/images/logo.png"/>
-      <link rel="stylesheet" href="/assets/css/main.css"/>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emirates Group Roblox (EGR) — Home</title>
+  <meta name="description" content="Emirates Group Roblox (EGR) — Vision 2026">
+  <link rel="icon" href="/images/logo.png">
+  <link rel="apple-touch-icon" href="/images/logo.png">
+  <link rel="stylesheet" href="/assets/app.css">
+  <script src="/assets/config.js" defer></script>
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <div id="navHost"></div>
 
-    </head>
-    <body>
-      <div id="pageLoader" class="pageLoader hide" aria-hidden="true">
-        <div class="loaderCard">
-          <img src="/images/logo.png" alt="EGR"/>
-          <div>
-            <div class="t">Emirates Group Roblox</div>
-            <div class="s">Loading…</div>
+  <div id="loading" class="loading" aria-label="Loading">
+  <div class="box">
+    <img src="/images/logo.png" alt="EGR Logo">
+    <div class="text">
+      <strong>Emirates Group Roblox</strong>
+      <span>Loading corporate site experience</span>
+    </div>
+  </div>
+</div>
+
+<header id="hero" class="hero" role="banner" aria-label="Homepage hero">
+  <div class="overlay" aria-hidden="true"></div>
+  <div class="container content">
+    <p class="eyebrow">Vision 2026</p>
+    <h1 class="headline">Luxury, technology, and operational integrity.</h1>
+    <p class="sub">
+      Emirates Group Roblox is a structured virtual aviation organisation delivering a high-fidelity experience across multiple divisions, from Flight Operations to Aviation University, with professionalism at its core.
+    </p>
+    <div class="actions">
+      <a class="btn primary" href="/about/">Explore the Group</a>
+      <a class="btn secondary" href="/about/divisions/">View Divisions</a>
+      <a class="btn secondary" href="/fleet/">View Fleet</a>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="grid two">
+      <div class="reveal">
+        <p class="eyebrow">Overview</p>
+        <h2>Emirates Group Roblox (EGR)</h2>
+        <p class="lead">
+          We do not simply operate flights. We curate a sophisticated ecosystem where realism, training, and corporate-grade coordination converge. Under Vision 2026, our cross-division operating model is built for consistency, standards, and scalability.
+        </p>
+        <p class="muted">
+          Our governance framework aligns leadership, operations, safety culture, and innovation under a unified corporate structure led by the Board of Directors and the Executive Board (C‑Suite).
+        </p>
+        <a class="btn tertiary" href="/about/governance/">Read governance structure</a>
+      </div>
+
+      <div class="reveal">
+        <div class="card">
+          <h3>Quick Access</h3>
+          <p class="muted">
+            Direct pathways to the most-used resources, designed for speed and clarity.
+          </p>
+          <div class="grid two" style="margin-top:14px;">
+            <a class="btn primary" href="/redirects/flights/">Flights</a>
+            <a class="btn secondary" href="/redirects/careers/">Careers</a>
+            <a class="btn secondary" href="/faq/">FAQ</a>
+            <a class="btn secondary" href="/redirects/contact/">Contact Us</a>
           </div>
-          <div class="spinner" aria-hidden="true"></div>
-        </div>
-      </div>
-
-      <div id="siteNav"></div>
-
-      <section class="hero">
-  <div class="container">
-    <div class="heroInner">
-      <div class="fadeUp">
-        <div class="pill">Vision 2026 • Corporate-Grade Virtual Aviation</div>
-        <h1 class="heroTitle">Luxury. Realism. Operational Integrity.</h1>
-        <p class="heroLead">
-          Emirates Group Roblox (EGR) is a structured virtual aviation organisation delivering a high-fidelity ecosystem
-          across specialised divisions—from Flight Operations to our Aviation University.
-        </p>
-
-        <div class="heroActions">
-          <a class="btn primary" href="/about/">About EGR</a>
-          <a class="btn" href="/divisions/">Our Divisions</a>
-          <a class="btn" href="/fleet/">Our Fleet</a>
-          <a class="btn" href="/redirects/flights/">Flights</a>
-          <a class="btn" href="/redirects/careers/">Careers</a>
         </div>
 
-        <div style="margin-top:16px" class="muted">
-          Legal, Safety & Compliance: <a href="/legal/framework/">read the framework</a>.
+        <div class="card" style="margin-top:18px;">
+          <h3>Professional Standards</h3>
+          <p class="muted">
+            A clear safety culture and a structured hierarchy are essential to a secure and professional environment. All members are expected to comply with established protocols and role standards.
+          </p>
+          <a class="btn secondary" href="#" id="frameworkCta" onclick="this.href=(window.CONFIG?CONFIG.links.frameworkPdf:'#');" target="_blank" rel="noopener">Open Framework PDF</a>
         </div>
-      </div>
-
-      <div class="heroPanel fadeUp" id="heroRotator" aria-label="Rotating header imagery">
-        <img id="heroImg" src="/images/bg1.png" alt="EGR Header" style="width:100%; height:100%; object-fit:cover; opacity:.95"/>
-        <div class="overlay"></div>
-        <div class="caption">
-          <div class="h" id="heroCapH">Operational Excellence</div>
-          <div class="p" id="heroCapP">A corporate experience built for realism and performance.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="sectionTitle">
-      <h2>Quick Access</h2>
-      <a class="muted" href="/sitemap/">Site map</a>
-    </div>
-
-    <div class="grid3">
-      <a class="tile fadeUp" href="/redirects/contact/">
-        <h3>Contact Us</h3>
-        <p>Reach the team via the official Discord contact channel.</p>
-        <div class="mini">Discord-based support</div>
-      </a>
-      <a class="tile fadeUp" href="/faq/">
-        <h3>FAQ</h3>
-        <p>Clear answers about EGR, divisions, staffing, and how we operate.</p>
-        <div class="mini">Admin-managed content</div>
-      </a>
-      <a class="tile fadeUp" href="/legal/framework/">
-        <h3>Legal, Safety & Compliance</h3>
-        <p>Rules, hierarchy, and operational protocols. Required reading.</p>
-        <div class="mini">Official framework PDF</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="sectionTitle">
-      <h2>About Us</h2>
-      <a class="btn" href="/about/">See more</a>
-    </div>
-
-    <div class="grid2">
-      <div class="card fadeUp" style="padding:16px">
-        <h3 style="margin:0 0 8px">What EGR is</h3>
-        <p class="muted" style="margin:0">
-          We do not simply operate flights; we curate a sophisticated ecosystem where luxury, technology,
-          and professionalism converge—under a corporate governance model and Vision 2026 strategy.
-        </p>
-      </div>
-      <div class="card fadeUp" style="padding:16px">
-        <h3 style="margin:0 0 8px">Mission</h3>
-        <p class="muted" style="margin:0">
-          To define the standard for virtual aviation through a rigorous cross-company operating model and
-          disciplined operational integrity.
-        </p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section alt">
   <div class="container">
-    <div class="sectionTitle">
-      <h2>Divisions (Preview)</h2>
-      <a class="btn" href="/divisions/">See all divisions</a>
-    </div>
-
-    <div id="divisionsPreview" class="grid3"></div>
-    <div id="divisionsPreviewMsg" class="muted" style="margin-top:10px"></div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="sectionTitle">
-      <h2>Join EGR Staff</h2>
-      <a class="btn primary" href="/redirects/careers/">View Careers</a>
-    </div>
-
-    <div class="card fadeUp" style="padding:16px">
-      <div class="kpiRow">
-        <div class="kpi">
-          <div class="v">Realism</div>
-          <div class="l">High-fidelity ops model</div>
-        </div>
-        <div class="kpi">
-          <div class="v">Structure</div>
-          <div class="l">Clear hierarchy & governance</div>
-        </div>
-        <div class="kpi">
-          <div class="v">Innovation</div>
-          <div class="l">Systems under development</div>
-        </div>
-        <div class="kpi">
-          <div class="v">Growth</div>
-          <div class="l">Alliances & subsidiaries</div>
-        </div>
-      </div>
-
-      <p class="muted" style="margin:14px 0 0">
-        EGR staff roles provide a structured environment to build leadership, operational discipline, and teamwork
-        in a corporate-grade virtual aviation organisation.
+    <div class="reveal">
+      <p class="eyebrow">Divisions</p>
+      <h2>A multi-divisional operating model</h2>
+      <p class="lead">
+        Our ecosystem spans airline operations, cargo, ground services, hub operations, training, alliances, and safety. Each division is structured with defined responsibilities and an operational mandate.
       </p>
     </div>
+
+    <div class="grid four" style="margin-top:22px;">
+      <div class="card reveal"><h3>Airline Operations</h3><p class="muted">Emirates Airlines Roblox and FlyDubai Roblox operations with defined procedures and standards.</p></div>
+      <div class="card reveal"><h3>Ground &amp; Hub</h3><p class="muted">Airport services and hub operations focused on coordination and reliability.</p></div>
+      <div class="card reveal"><h3>Training</h3><p class="muted">Aviation University programmes for flight school and cabin and ground training.</p></div>
+      <div class="card reveal"><h3>Safety &amp; Security</h3><p class="muted">A compliance-led framework ensuring professionalism and operational integrity.</p></div>
+    </div>
+
+    <div style="margin-top:18px;" class="reveal">
+      <a class="btn primary" href="/about/divisions/">See all divisions</a>
+    </div>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <div class="sectionTitle">
-      <h2>Who is Online</h2>
-      <span class="muted">Discord widget</span>
-    </div>
+    <div class="grid two">
+      <div class="reveal">
+        <p class="eyebrow">Recruitment</p>
+        <h2>Why joining EGR staff is worth it</h2>
+        <p class="lead">
+          Staff roles offer structured responsibility, real operational coordination, and leadership development. You gain discipline, experience within a corporate model, and progression through clearly defined standards.
+        </p>
+        <p class="muted">
+          We prioritise professionalism over volume. We value consistency, accountability, and the ability to execute under standards.
+        </p>
+        <a class="btn primary" href="/redirects/careers/">View recruitment</a>
+      </div>
 
-    <div class="card fadeUp" style="padding:12px; overflow:hidden">
-      <div id="discordWidgetWrap">
-        <div class="muted" style="padding:10px">
-          Loading Discord widget…
+      <div class="reveal">
+        <div class="card">
+          <h3>Discord Presence</h3>
+          <p class="muted">
+            This section is designed to show live presence information from our main Discord server. If live data is unavailable, the site remains fully functional.
+          </p>
+          <div class="grid two" style="margin-top:14px;">
+            <div class="card" style="padding:14px;">
+              <p class="eyebrow" style="margin-bottom:6px;">Members</p>
+              <p style="margin:0;font-weight:800;font-size:22px;">—</p>
+              <p class="muted" style="margin:6px 0 0;">Total</p>
+            </div>
+            <div class="card" style="padding:14px;">
+              <p class="eyebrow" style="margin-bottom:6px;">Online</p>
+              <p style="margin:0;font-weight:800;font-size:22px;">—</p>
+              <p class="muted" style="margin:6px 0 0;">Now</p>
+            </div>
+          </div>
+          <div style="margin-top:14px;">
+            <a class="btn secondary" href="#" id="aDiscord2" onclick="this.href=(window.CONFIG?CONFIG.links.discord:'#');" target="_blank" rel="noopener">Open Discord</a>
+          </div>
         </div>
       </div>
     </div>
-
-    <div id="discordMsg" class="muted" style="margin-top:10px"></div>
   </div>
 </section>
 
 
-      <div id="siteFooter"></div>
-
-      <script src="/assets/js/config.js"></script>
-      <script src="/assets/js/layout.js"></script>
-      <script src="/assets/js/ui.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/assets/js/supabase.js"></script>
-<script src="/assets/js/cms.js"></script>
-<script>
-  // Strong loader for Home
-  EGR_UI.showLoader(true);
-  window.addEventListener("load", () => setTimeout(()=>EGR_UI.hideLoader(), 380));
-
-  // Rotating hero images
-  const slides = [
-    { src:"A350 New Pics.png", h:"Next‑Gen Fleet", p:"High-fidelity virtual aviation, built to scale." },
-    { src:"Emirates Roav Boeing 777 Cabin Economy.png", h:"Cabin Experience", p:"Premium brand experience with operational discipline." },
-    { src:"occ office.png", h:"Operations Control Center", p:"A structured hub for flight and ground operations." },
-    { src:"/images/bg1.png", h:"Operational Excellence", p:"Corporate-grade systems and governance." },
-    { src:"/images/bg2.png", h:"Innovation", p:"Modern platforms under Vision 2026." },
-    { src:"/images/bg3.png", h:"Professionalism", p:"Realistic procedures, consistent standards." }
-  ];
-  const imgEl = document.getElementById("heroImg");
-  const capH = document.getElementById("heroCapH");
-  const capP = document.getElementById("heroCapP");
-  let idx = 0;
-  setInterval(() => {
-    idx = (idx + 1) % slides.length;
-    const s = slides[idx];
-    imgEl.style.opacity = "0.6";
-    setTimeout(() => {
-      imgEl.src = s.src;
-      capH.textContent = s.h;
-      capP.textContent = s.p;
-      imgEl.style.opacity = "0.95";
-    }, 200);
-  }, 5500);
-
-  // Divisions preview (CMS)
-  (async () => {
-    const box = document.getElementById("divisionsPreview");
-    const msg = document.getElementById("divisionsPreviewMsg");
-    try{
-      if(!window.sb) throw new Error("Supabase not configured. Update /assets/js/config.js");
-      const divisions = await EGR_CMS.divisions();
-      const top = divisions.slice(0, 6);
-      box.innerHTML = top.map(d => `
-        <a class="tile fadeUp" href="/divisions/">
-          <h3>${escapeHtml(d.title || "Division")}</h3>
-          <p>${escapeHtml(d.short_description || "")}</p>
-          <div class="mini">${escapeHtml(d.hover_description || "View details")}</div>
-        </a>
-      `).join("");
-      msg.textContent = divisions.length ? "" : "No divisions found yet. Add them in /admin/.";
-    }catch(e){
-      msg.textContent = e.message || String(e);
-      box.innerHTML = "";
-    }
-    // animate newly injected nodes
-    document.querySelectorAll(".fadeUp").forEach(el => el.classList.add("in"));
-  })();
-
-  // Discord widget embed
-  (function(){
-    const cfg = window.EGR_CONFIG || {};
-    const wrap = document.getElementById("discordWidgetWrap");
-    const msg = document.getElementById("discordMsg");
-    if(!cfg.discordGuildId || cfg.discordGuildId === "YOUR_DISCORD_GUILD_ID"){
-      msg.textContent = "Set EGR_CONFIG.discordGuildId in /assets/js/config.js to display the Discord widget.";
-      wrap.innerHTML = `<div class="muted" style="padding:10px">Discord widget not configured.</div>`;
-      return;
-    }
-    const theme = document.body.classList.contains("theme-dark") ? "dark" : "light";
-    wrap.innerHTML = `
-      <iframe
-        title="Discord Widget"
-        src="https://discord.com/widget?id=${encodeURIComponent(cfg.discordGuildId)}&theme=${theme}"
-        width="100%"
-        height="420"
-        allowtransparency="true"
-        frameborder="0"
-        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-        style="border:0; border-radius:16px; overflow:hidden"
-      ></iframe>
-    `;
-    msg.textContent = "If the widget does not load, enable Server Widget in Discord server settings.";
-    // Re-render widget when theme changes
-    document.getElementById("themeBtn")?.addEventListener("click", ()=>{
-      const t = document.body.classList.contains("theme-dark") ? "dark" : "light";
-      const iframe = wrap.querySelector("iframe");
-      if(iframe) iframe.src = `https://discord.com/widget?id=${encodeURIComponent(cfg.discordGuildId)}&theme=${t}`;
-    });
-  })();
-
-  function escapeHtml(s){
-    return String(s ?? "")
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;")
-      .replaceAll("'","&#039;");
-  }
-</script>
-
-    </body>
-    </html>
+  <div id="footerHost"></div>
+</body>
+</html>
