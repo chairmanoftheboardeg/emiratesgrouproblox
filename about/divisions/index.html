@@ -1,177 +1,325 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Our Divisions — EGR</title>
-  <meta name="description" content="Emirates Group Roblox (EGR) — Vision 2026">
-  <link rel="icon" type="image/png" href="/images/logo.png?v=20260111">
-  <link rel="shortcut icon" href="/images/logo.png?v=20260111">
-  <link rel="apple-touch-icon" href="/images/logo.png?v=20260111">
-<link rel="stylesheet" href="/assets/app.css">
-<script src="/assets/app.js" defer></script>
-</head>
-<body>
-  <div id="navHost"></div>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>EGR — Our Divisions</title>
+  <meta name="description" content="Explore the divisions of Emirates Group Roblox (EGR) operating under Vision 2026."/>
 
-  <main>
+  <link rel="icon" href="/images/logo.png?v=1"/>
+  <link rel="apple-touch-icon" href="/images/logo.png?v=1"/>
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=20260111-1"/>
+  <style>
+    .divisionCard { padding: 14px; }
+    .divisionHeader { display:flex; gap:12px; align-items:center; }
+    .divisionLogo{
+      width:48px; height:48px; border-radius:14px;
+      background:#fff; object-fit:cover; flex:0 0 auto;
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .divisionName { font-weight: 900; font-size: 16px; }
+    .divisionShort { font-size: 12px; }
+    .divisionLong { margin-top: 10px; font-size: 13px; }
+    .divisionLinks { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+  </style>
+</head>
+
+<body>
+  <div id="pageLoader" class="pageLoader hide" aria-hidden="true">
+    <div class="loaderCard">
+      <img src="/images/logo.png?v=1" alt="EGR"/>
+      <div>
+        <div class="t">Emirates Group Roblox</div>
+        <div class="s">Loading…</div>
+      </div>
+      <div class="spinner" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <!-- If your site injects nav/footer using layout.js -->
+  <div id="siteNav"></div>
+
   <section class="section">
     <div class="container">
-      <div class="reveal">
-        <p class="eyebrow">About Us</p>
-        <h1>Our Divisions</h1>
-        <p class="lead">
-          EGR operates through specialised divisions with defined responsibilities, operational mandates, and clear coordination lines. Each division is designed to support a consistent, high-fidelity experience.
-        </p>
+      <div class="sectionTitle">
+        <h2>Our Divisions</h2>
+        <span class="muted">Vision 2026 operating model</span>
       </div>
 
-      <div class="grid three" style="margin-top:22px;">
-        <div class="card reveal">
-          <div class="card-media"><img src="/assets/img/placeholder.svg" alt="Image placeholder"></div>
+      <p class="muted" style="max-width:75ch; margin-top:10px;">
+        Emirates Group Roblox (EGR) is structured across specialised divisions designed to deliver realism, operational
+        integrity, and a consistent member experience. Each division supports a defined mandate, standards, and leadership
+        accountability within the group framework.
+      </p>
 
-          <h3>Emirates Airlines Roblox (EK)</h3>
-          <p class="muted">Flagship airline operations delivering the premium standard across flight execution and service.</p>
-          <hr class="sep">
-          <p class="muted">Focus areas include flight standards, service culture, and operational consistency across events.</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
-            <a class="btn secondary" href="#">Division Overview</a>
-            <a class="btn secondary" href="#">Discord</a>
-            <a class="btn secondary" href="#">Operations</a>
+      <div class="grid3" style="margin-top:16px;">
+
+        <!-- EK -->
+        <div class="card divisionCard">
+          <div class="divisionHeader">
+            <img class="divisionLogo"
+                 src="/images/eklogo.png?v=1"
+                 alt="Emirates Airlines Roblox (EK) logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
+            <div style="min-width:0">
+              <div class="divisionName">Emirates Airlines Roblox (EK)</div>
+              <div class="muted divisionShort">Flagship passenger operations and service standards.</div>
+            </div>
+          </div>
+          <div class="muted divisionLong">
+            Manages flagship flight operations, service delivery, route standards, and member-facing experiences across
+            the organisation’s core passenger network. Focused on realism, consistency, and disciplined execution.
+          </div>
+          <div class="divisionLinks">
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
-        <div class="card reveal">
-          <div class="card-media"><img src="/assets/img/placeholder.svg" alt="Image placeholder"></div>
-
-          <h3>FlyDubai Roblox (FZ)</h3>
-          <p class="muted">A connected subsidiary operation designed for complementary routes and operational variety.</p>
-          <hr class="sep">
-          <p class="muted">This division redirects to its dedicated Discord presence as configured in your links.</p>
-          <a class="btn primary" href="/redirects/flydubai/">Open FlyDubai</a>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-media"><img src="/assets/img/placeholder.svg" alt="Image placeholder"></div>
-
-          <h3>Emirates SkyCargo Roblox</h3>
-          <p class="muted">Cargo operations aligned to a structured logistics and scheduling model.</p>
-          <hr class="sep">
-          <p class="muted">Supports realism through cargo workflows, capacity planning, and operational discipline.</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
-            <a class="btn secondary" href="#">Division Overview</a>
-            <a class="btn secondary" href="#">Discord</a>
+        <!-- FZ -->
+        <div class="card divisionCard">
+          <div class="divisionHeader">
+            <img class="divisionLogo"
+                 src="/images/fzlogo.png?v=1"
+                 alt="FlyDubai Roblox (FZ) logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
+            <div style="min-width:0">
+              <div class="divisionName">FlyDubai Roblox (FZ)</div>
+              <div class="muted divisionShort">Regional operations and short-haul execution.</div>
+            </div>
+          </div>
+          <div class="muted divisionLong">
+            Delivers regional and short-haul operations under EGR standards, supporting growth, frequency, and operational
+            flexibility. This division redirects to the official FlyDubai Discord.
+          </div>
+          <div class="divisionLinks">
+            <a class="btn" href="https://discord.gg/dZaJqdTyGd" target="_blank" rel="noopener">Discord</a>
           </div>
         </div>
 
-        <div class="card reveal">
-          <div class="card-media"><img src="/assets/img/placeholder.svg" alt="Image placeholder"></div>
-
-          <h3>Airport Services (dnata)</h3>
-          <p class="muted">Ground services and airport workflows supporting reliable flight operations.</p>
-          <hr class="sep">
-          <p class="muted">Responsibilities include check-in, gate coordination, ramp support, and customer guidance.</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
-            <a class="btn secondary" href="#">Division Overview</a>
-            <a class="btn secondary" href="#">Discord</a>
+        <!-- SkyCargo -->
+        <div class="card divisionCard">
+          <div class="divisionHeader">
+            <img class="divisionLogo"
+                 src="/images/ekclogo.png?v=1"
+                 alt="Emirates SkyCargo Roblox logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
+            <div style="min-width:0">
+              <div class="divisionName">Emirates SkyCargo Roblox</div>
+              <div class="muted divisionShort">Cargo operations and logistics realism.</div>
+            </div>
+          </div>
+          <div class="muted divisionLong">
+            Coordinates cargo schedules, cargo handling standards, and logistics realism across hubs and operational areas.
+            Focused on process discipline and accuracy.
+          </div>
+          <div class="divisionLinks">
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
-        <div class="card reveal">
-          <div class="card-media"><img src="/assets/img/placeholder.svg" alt="Image placeholder"></div>
-
-          <h3>Hub Operations (EGHO)</h3>
-          <p class="muted">A centralised coordination function across scheduling, standards, and operational readiness.</p>
-          <hr class="sep">
-          <p class="muted">Maintains consistency across events and cross-division alignment.</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
-            <a class="btn secondary" href="#">Division Overview</a>
-            <a class="btn secondary" href="#">Operations</a>
+        <!-- dnata -->
+        <div class="card divisionCard">
+          <div class="divisionHeader">
+            <img class="divisionLogo"
+                 src="/images/dnatalogo.png?v=1"
+                 alt="Airport Services logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
+            <div style="min-width:0">
+              <div class="divisionName">Emirates Group Roblox Airport Services (dnata)</div>
+              <div class="muted divisionShort">Ground handling, turnaround, and service flow.</div>
+            </div>
+          </div>
+          <div class="muted divisionLong">
+            Responsible for check-in, boarding, ramp coordination, and turnaround standards to ensure consistent
+            ground-to-air execution and member experience.
+          </div>
+          <div class="divisionLinks">
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
-        <div class="card reveal">
-          <div class="card-media"><img src="/assets/img/placeholder.svg" alt="Image placeholder"></div>
-
-          <h3>Emirates Group Roblox Holidays</h3>
-          <p class="muted">Travel and experience offering designed around structured journeys and curated presentation.</p>
-          <hr class="sep">
-          <p class="muted">Supports events and content that expand the ecosystem beyond flights.</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
-            <a class="btn secondary" href="#">Overview</a>
+        <!-- EGHO -->
+        <div class="card divisionCard">
+          <div class="divisionHeader">
+            <img class="divisionLogo"
+                 src="/images/eghologo.png?v=1"
+                 alt="Hub Operations logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
+            <div style="min-width:0">
+              <div class="divisionName">Emirates Group Roblox Hub Operations (EGHO)</div>
+              <div class="muted divisionShort">Hub coordination, flow control, and performance.</div>
+            </div>
+          </div>
+          <div class="muted divisionLong">
+            Coordinates hub performance, traffic flow, and cross-division alignment to maintain operational continuity
+            during high-volume periods.
+          </div>
+          <div class="divisionLinks">
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
-        <div class="card reveal">
-          <div class="card-media"><img src="/assets/img/placeholder.svg" alt="Image placeholder"></div>
-
-          <h3>Official Store</h3>
-          <p class="muted">A structured commerce presence aligned with brand, community identity, and sustainability.</p>
-          <hr class="sep">
-          <p class="muted">Store links can be configured as external destinations when ready.</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
-            <a class="btn secondary" href="#">Store</a>
+        <!-- Holidays -->
+        <div class="card divisionCard">
+          <div class="divisionHeader">
+            <img class="divisionLogo"
+                 src="/images/rhlogo.png?v=1"
+                 alt="EGR Holidays logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
+            <div style="min-width:0">
+              <div class="divisionName">Emirates Group Roblox Holidays</div>
+              <div class="muted divisionShort">Travel packages and curated experiences.</div>
+            </div>
+          </div>
+          <div class="muted divisionLong">
+            Provides curated travel concepts, themed itineraries, and community experiences supporting the broader
+            passenger journey and engagement.
+          </div>
+          <div class="divisionLinks">
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
-        <div class="card reveal">
-          <div class="card-media"><img src="/assets/img/placeholder.svg" alt="Image placeholder"></div>
-
-          <h3>Marhaba Services (Investors)</h3>
-          <p class="muted">Investor-facing services and structured support experiences within the ecosystem.</p>
-          <hr class="sep">
-          <p class="muted">Designed for premium engagement and partnerships aligned with organisational standards.</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
-            <a class="btn secondary" href="#">Overview</a>
+        <!-- Store -->
+        <div class="card divisionCard">
+          <div class="divisionHeader">
+            <img class="divisionLogo"
+                 src="/images/oslogo.png?v=1"
+                 alt="Official Store logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
+            <div style="min-width:0">
+              <div class="divisionName">Emirates Group Roblox Official Store</div>
+              <div class="muted divisionShort">Merchandise and brand materials.</div>
+            </div>
+          </div>
+          <div class="muted divisionLong">
+            Manages official merchandise, brand materials, and promotional items supporting community identity and
+            sustainability initiatives.
+          </div>
+          <div class="divisionLinks">
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
-        <div class="card reveal">
-          <div class="card-media"><img src="/assets/img/placeholder.svg" alt="Image placeholder"></div>
-
-          <h3>Aviation University (EGRAU)</h3>
-          <p class="muted">A formal training and development division supporting capability, standardisation, and progression.</p>
-          <hr class="sep">
-          <p class="muted">Includes Flight School and Cabin and Ground School programmes.</p>
-          <a class="btn primary" href="/redirects/university/">Open EGRAU</a>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-media"><img src="/assets/img/placeholder.svg" alt="Image placeholder"></div>
-
-          <h3>Investors</h3>
-          <p class="muted">Investment structures and support pathways aligned with sustainability and governance oversight.</p>
-          <hr class="sep">
-          <p class="muted">Investor details can be presented as formal announcements through the Newsroom.</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
-            <a class="btn secondary" href="#">Overview</a>
+        <!-- Marhaba -->
+        <div class="card divisionCard">
+          <div class="divisionHeader">
+            <img class="divisionLogo"
+                 src="/images/egrinlogo.png?v=1"
+                 alt="Marhaba Services logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
+            <div style="min-width:0">
+              <div class="divisionName">Emirates Group Roblox Marhaba Services</div>
+              <div class="muted divisionShort">Premium assistance and stakeholder experience.</div>
+            </div>
+          </div>
+          <div class="muted divisionLong">
+            Premium assistance concept supporting VIP journeys and stakeholder experience. Maintains service standards
+            aligned with EGR’s corporate tone and operational discipline.
+          </div>
+          <div class="divisionLinks">
+            <a class="btn" href="/no-access/">Website</a>
           </div>
         </div>
 
-        <div class="card reveal">
-          <div class="card-media"><img src="/assets/img/placeholder.svg" alt="Image placeholder"></div>
-
-          <h3>Alliance Management</h3>
-          <p class="muted">Strategic alliance structures and partner integration for long-term growth.</p>
-          <hr class="sep">
-          <p class="muted">Alliance information redirects to a dedicated destination as configured.</p>
-          <a class="btn primary" href="/redirects/alliance/">Open Alliances</a>
+        <!-- University -->
+        <div class="card divisionCard">
+          <div class="divisionHeader">
+            <img class="divisionLogo"
+                 src="/images/aulogo.png?v=1"
+                 alt="Aviation University logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
+            <div style="min-width:0">
+              <div class="divisionName">Emirates Group Roblox Aviation University (EGRAU)</div>
+              <div class="muted divisionShort">Training, standards, and certification pathways.</div>
+            </div>
+          </div>
+          <div class="muted divisionLong">
+            Delivers structured learning and internal training pathways, including Flight School and Cabin/Ground School.
+            Built to raise professionalism and consistency across staff roles.
+          </div>
+          <div class="divisionLinks">
+            <a class="btn" href="/no-access/">Website</a>
+          </div>
         </div>
 
-        <div class="card reveal">
-          <div class="card-media"><img src="/assets/img/placeholder.svg" alt="Image placeholder"></div>
-
-          <h3>Safety &amp; Security</h3>
-          <p class="muted">Compliance-led oversight supporting a secure and professional environment.</p>
-          <hr class="sep">
-          <p class="muted">Enforces standards through clear rules, reporting pathways, and operational protocols.</p>
-          <a class="btn secondary" href="/redirects/report/">Report an issue</a>
+        <!-- Investors -->
+        <div class="card divisionCard">
+          <div class="divisionHeader">
+            <img class="divisionLogo"
+                 src="/images/egrinlogo.png?v=1"
+                 alt="Investors logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
+            <div style="min-width:0">
+              <div class="divisionName">Emirates Group Roblox Investors</div>
+              <div class="muted divisionShort">Stakeholder coordination and strategic support.</div>
+            </div>
+          </div>
+          <div class="muted divisionLong">
+            Defines stakeholder engagement, sponsor coordination, and strategic support initiatives aligned with EGR’s
+            long-term sustainability and expansion objectives.
+          </div>
+          <div class="divisionLinks">
+            <a class="btn" href="/no-access/">Website</a>
+          </div>
         </div>
+
+        <!-- Alliance -->
+        <div class="card divisionCard">
+          <div class="divisionHeader">
+            <img class="divisionLogo"
+                 src="/images/amlogo.png?v=1"
+                 alt="Alliance Management logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
+            <div style="min-width:0">
+              <div class="divisionName">Emirates Group Roblox Alliance</div>
+              <div class="muted divisionShort">Partnerships, coordination, and standards alignment.</div>
+            </div>
+          </div>
+          <div class="muted divisionLong">
+            Manages partnerships, cooperation frameworks, and cross-organisation coordination to maintain consistent
+            standards and a structured operating model.
+          </div>
+          <div class="divisionLinks">
+            <a class="btn" href="/partners/">View Partners & Affiliates</a>
+          </div>
+        </div>
+
+        <!-- Safety & Security -->
+        <div class="card divisionCard">
+          <div class="divisionHeader">
+            <img class="divisionLogo"
+                 src="/images/sslogo.png?v=1"
+                 alt="Safety & Security logo"
+                 onerror="this.onerror=null;this.src='/images/logo.png?v=1';"/>
+            <div style="min-width:0">
+              <div class="divisionName">Emirates Group Roblox Safety &amp; Security</div>
+              <div class="muted divisionShort">Compliance, safety culture, and enforcement.</div>
+            </div>
+          </div>
+          <div class="muted divisionLong">
+            Maintains safety culture, operational compliance standards, and structured reporting pathways. Supports a
+            secure environment through clear rules and consistent enforcement.
+          </div>
+          <div class="divisionLinks">
+            <a class="btn" href="/no-access/">Website</a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
-</main>
 
+  <div id="siteFooter"></div>
 
-  <div id="footerHost"></div>
+  <!-- IMPORTANT: add your layout scripts back so nav/footer appear -->
+  <script src="/assets/js/layout.js?v=1"></script>
+  <script src="/assets/js/ui.js?v=1"></script>
+  <script>
+    // Never let loader block the page
+    const loader = document.getElementById("pageLoader");
+    if (loader) loader.classList.add("hide");
+  </script>
 </body>
 </html>
