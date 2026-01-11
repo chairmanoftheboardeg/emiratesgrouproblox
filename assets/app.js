@@ -52,6 +52,7 @@
     startReveal();
     updateDubaiFooter();
     initAccordions();
+    initDropdowns();
   }
 
   function wireDynamicLinks(){
@@ -124,10 +125,17 @@
     const loading = document.getElementById("loading");
     if(!loading) return;
 
-    // Always show on home; hide after full load
-    window.addEventListener("load", () => {
-      setTimeout(() => loading.classList.add("hidden"), 250);
-    }, { once:true });
+    const hide = () => {
+      if(loading.classList.contains("hidden")) return;
+      loading.classList.add("hidden");
+    };
+
+    // Preferred: hide after full window load
+    window.addEventListener("load", () => setTimeout(hide, 200), { once:true });
+
+    // Fallbacks: ensure the site never gets stuck on the overlay
+    document.addEventListener("DOMContentLoaded", () => setTimeout(hide, 900), { once:true });
+    setTimeout(hide, 3500);
   }
 
   // Reveal on scroll
@@ -155,6 +163,41 @@
       btn.addEventListener("click", () => {
         item.classList.toggle("open");
       });
+    });
+  }
+
+  // Navbar dropdowns (desktop)
+  function initDropdowns(){
+    const dropdowns = $$(".dropdown");
+    if(!dropdowns.length) return;
+
+    function closeAll(){
+      dropdowns.forEach(dd => {
+        dd.classList.remove("open");
+        const btn = dd.querySelector(".dropbtn");
+        if(btn) btn.setAttribute("aria-expanded", "false");
+      });
+    }
+
+    dropdowns.forEach(dd => {
+      const btn = dd.querySelector(".dropbtn");
+      if(!btn) return;
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = dd.classList.toggle("open");
+        btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        dropdowns.forEach(other => {
+          if(other === dd) return;
+          other.classList.remove("open");
+          const b = other.querySelector(".dropbtn");
+          if(b) b.setAttribute("aria-expanded", "false");
+        });
+      });
+    });
+
+    document.addEventListener("click", closeAll);
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape") closeAll();
     });
   }
 

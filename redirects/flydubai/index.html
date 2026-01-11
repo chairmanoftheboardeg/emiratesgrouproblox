@@ -3,34 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Redirect — Flydubai</title>
-  <meta name="description" content="Redirecting">
-  <link rel="icon" href="/images/logo.png">
-  <link rel="apple-touch-icon" href="/images/logo.png">
-  <link rel="stylesheet" href="/assets/app.css">
-  <script src="/assets/config.js" defer></script>
-  <script src="/assets/app.js" defer></script>
+  <title>Redirect — FlyDubai</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="/images/logo.png?v=20260111">
+  <link rel="shortcut icon" href="/images/logo.png?v=20260111">
+  <link rel="apple-touch-icon" href="/images/logo.png?v=20260111">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=20260111">
+  <script src="/assets/config.js"></script>
+  <script>
+    (function(){
+      var key = "flydubai";
+      var L = (window.CONFIG && CONFIG.links) ? CONFIG.links : {};
+      var candidates = [key];
+      if(key === "contact") candidates.push("contactChannel");
+      if(key === "report") candidates.push("reportChannel");
+      if(key === "flydubai") candidates.push("flydubaiDiscord");
+      var url = null;
+      for(var i=0; i<candidates.length; i++){
+        var k = candidates[i];
+        if(L[k]){ url = L[k]; break; }
+      }
+      if(!url) url = L.discord || "/";
+      window.location.replace(url);
+    })();
+  </script>
 </head>
-<body>
-  <div id="navHost"></div>
-
-  <main>
-  <section class="section">
-    <div class="container">
-      <div class="card">
-        <h1 style="margin:0 0 10px;">Redirecting</h1>
-        <p class="muted" style="margin:0 0 16px;">If you are not redirected automatically, use the button below.</p>
-        <a id="redirectBtn" class="btn primary" data-target="flydubaiDiscord" href="#" rel="noopener">Continue</a>
-      </div>
-    </div>
-  </section>
-</main>
-<script>
-  window.addEventListener('DOMContentLoaded', function(){
-    try { window.runRedirect('flydubaiDiscord'); } catch(e) {}
-  });
-</script>
-
-  <div id="footerHost"></div>
-</body>
+<body></body>
 </html>
