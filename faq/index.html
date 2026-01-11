@@ -1,76 +1,69 @@
-    <!doctype html>
-    <html lang="en">
-    <head>
-      <meta charset="utf-8"/>
-      <meta name="viewport" content="width=device-width,initial-scale=1"/>
-      <title>EGR — FAQ</title>
-      <link rel="icon" href="/images/logo.png"/>
-      <link rel="stylesheet" href="/assets/css/main.css"/>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQ — EGR</title>
+  <meta name="description" content="Emirates Group Roblox (EGR) — Vision 2026">
+  <link rel="icon" href="/images/logo.png">
+  <link rel="apple-touch-icon" href="/images/logo.png">
+  <link rel="stylesheet" href="/assets/app.css">
+  <script src="/assets/config.js" defer></script>
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <div id="navHost"></div>
 
-    </head>
-    <body>
-      <div id="pageLoader" class="pageLoader hide" aria-hidden="true">
-        <div class="loaderCard">
-          <img src="/images/logo.png" alt="EGR"/>
-          <div>
-            <div class="t">Emirates Group Roblox</div>
-            <div class="s">Loading…</div>
+  <main>
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <p class="eyebrow">FAQ</p>
+        <h1>Answers to common questions</h1>
+        <p class="lead">
+          This FAQ is designed for clarity. If you need direct assistance, use the Contact Us redirect to reach the official Discord channel.
+        </p>
+      </div>
+
+      <div class="reveal" style="margin-top:22px;">
+        <div class="accordion" role="region" aria-label="Frequently asked questions">
+          <div class="acc-item open">
+            <button class="acc-btn" type="button">How do I join EGR? <span class="muted">+</span></button>
+            <div class="acc-panel">
+              Join our Discord community using the official link. From there, you can access public information and participate in events as announced.
+            </div>
           </div>
-          <div class="spinner" aria-hidden="true"></div>
+          <div class="acc-item">
+            <button class="acc-btn" type="button">Where can I find flight schedules? <span class="muted">+</span></button>
+            <div class="acc-panel">
+              Use the Flights redirect. Scheduling and updates are maintained in the destination system you configure.
+            </div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn" type="button">How do staff applications work? <span class="muted">+</span></button>
+            <div class="acc-panel">
+              Use the Careers redirect to access recruitment and application instructions. Recruitment follows standards and role expectations.
+            </div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn" type="button">How do I report an issue? <span class="muted">+</span></button>
+            <div class="acc-panel">
+              Use the Safety &amp; Report redirect to reach the official reporting channel. Provide clear details and evidence where applicable.
+            </div>
+          </div>
         </div>
       </div>
 
-      <div id="siteNav"></div>
-
-      <section class="section">
-  <div class="container">
-    <div class="sectionTitle">
-      <h2>FAQ</h2>
-      <span class="muted">Admin-managed</span>
+      <div class="reveal" style="margin-top:22px; display:flex; gap:12px; flex-wrap:wrap;">
+        <a class="btn primary" href="/redirects/contact/">Contact Us</a>
+        <a class="btn secondary" href="/redirects/flights/">Flights</a>
+        <a class="btn secondary" href="/redirects/careers/">Careers</a>
+      </div>
     </div>
-
-    <div id="faqList" class="list"></div>
-    <div id="faqMsg" class="muted" style="margin-top:10px"></div>
-  </div>
-</section>
+  </section>
+</main>
 
 
-      <div id="siteFooter"></div>
-
-      <script src="/assets/js/config.js"></script>
-      <script src="/assets/js/layout.js"></script>
-      <script src="/assets/js/ui.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/assets/js/supabase.js"></script>
-<script src="/assets/js/cms.js"></script>
-<script>
-  (async ()=>{
-    EGR_UI.showLoader(false);
-    try{
-      if(!window.sb) throw new Error("Supabase not configured. Update /assets/js/config.js");
-      const data = await EGR_CMS.faq();
-      const list = document.getElementById("faqList");
-      list.innerHTML = data.map(x => `
-        <details class="card rowCard fadeUp">
-          <summary style="cursor:pointer; font-weight:900">${escapeHtml(x.question || "")}</summary>
-          <div class="muted" style="margin-top:8px">${escapeHtml(x.answer || "")}</div>
-          ${x.category ? `<div style="margin-top:10px"><span class="badge">${escapeHtml(x.category)}</span></div>` : ""}
-        </details>
-      `).join("");
-      document.getElementById("faqMsg").textContent = data.length ? "" : "No FAQ items found yet. Add them in /admin/.";
-    }catch(e){
-      document.getElementById("faqMsg").textContent = e.message || String(e);
-    }finally{
-      EGR_UI.hideLoader();
-      document.querySelectorAll(".fadeUp").forEach(el=>el.classList.add("in"));
-    }
-  })();
-  function escapeHtml(s){
-    return String(s ?? "")
-      .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;").replaceAll("'","&#039;");
-  }
-</script>
-
-    </body>
-    </html>
+  <div id="footerHost"></div>
+</body>
+</html>

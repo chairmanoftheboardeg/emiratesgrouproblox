@@ -1,78 +1,56 @@
-    <!doctype html>
-    <html lang="en">
-    <head>
-      <meta charset="utf-8"/>
-      <meta name="viewport" content="width=device-width,initial-scale=1"/>
-      <title>EGR — Our Innovations</title>
-      <link rel="icon" href="/images/logo.png"/>
-      <link rel="stylesheet" href="/assets/css/main.css"/>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Innovations — EGR</title>
+  <meta name="description" content="Emirates Group Roblox (EGR) — Vision 2026">
+  <link rel="icon" href="/images/logo.png">
+  <link rel="apple-touch-icon" href="/images/logo.png">
+  <link rel="stylesheet" href="/assets/app.css">
+  <script src="/assets/config.js" defer></script>
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <div id="navHost"></div>
 
-    </head>
-    <body>
-      <div id="pageLoader" class="pageLoader hide" aria-hidden="true">
-        <div class="loaderCard">
-          <img src="/images/logo.png" alt="EGR"/>
-          <div>
-            <div class="t">Emirates Group Roblox</div>
-            <div class="s">Loading…</div>
-          </div>
-          <div class="spinner" aria-hidden="true"></div>
+  <main>
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <p class="eyebrow">Our Innovations</p>
+        <h1>Systems under development</h1>
+        <p class="lead">
+          Innovation exists to improve clarity, coordination, and quality. Projects listed here are designed to support operational consistency and a premium member experience.
+        </p>
+      </div>
+
+      <div class="grid three" style="margin-top:22px;">
+        <div class="card reveal">
+          <h3>Operational Information Systems</h3>
+          <p class="muted">Centralised visibility for flights, schedules, and operational readiness.</p>
+          <p class="muted"><strong>Status:</strong> In Development</p>
+        </div>
+        <div class="card reveal">
+          <h3>Training Standardisation</h3>
+          <p class="muted">Structured training paths, checkpoints, and progression standards.</p>
+          <p class="muted"><strong>Status:</strong> In Development</p>
+        </div>
+        <div class="card reveal">
+          <h3>Governance Documentation</h3>
+          <p class="muted">Clear public-facing governance summaries supported by formal policy documents.</p>
+          <p class="muted"><strong>Status:</strong> Live</p>
         </div>
       </div>
 
-      <div id="siteNav"></div>
-
-      <section class="section">
-  <div class="container">
-    <div class="sectionTitle">
-      <h2>Our Innovations</h2>
-      <span class="muted">Projects & systems under development</span>
+      <div class="reveal" style="margin-top:22px;">
+        <a class="btn primary" href="/redirects/careers/">Join the team</a>
+      </div>
     </div>
-
-    <div id="innovGrid" class="grid3"></div>
-    <div id="innovMsg" class="muted" style="margin-top:10px"></div>
-  </div>
-</section>
+  </section>
+</main>
 
 
-      <div id="siteFooter"></div>
-
-      <script src="/assets/js/config.js"></script>
-      <script src="/assets/js/layout.js"></script>
-      <script src="/assets/js/ui.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/assets/js/supabase.js"></script>
-<script src="/assets/js/cms.js"></script>
-<script>
-  (async ()=>{
-    EGR_UI.showLoader(false);
-    try{
-      if(!window.sb) throw new Error("Supabase not configured. Update /assets/js/config.js");
-      const data = await EGR_CMS.innovations();
-      document.getElementById("innovGrid").innerHTML = data.map(x => `
-        <div class="card fadeUp" style="padding:14px">
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px">
-            <div style="font-weight:900">${escapeHtml(x.title || "")}</div>
-            <span class="badge">${escapeHtml(x.status || "In Development")}</span>
-          </div>
-          <div class="muted" style="margin-top:8px">${escapeHtml(x.summary || "")}</div>
-          <div class="muted" style="margin-top:8px; font-size:13px">${escapeHtml(x.details || "")}</div>
-        </div>
-      `).join("");
-      document.getElementById("innovMsg").textContent = data.length ? "" : "No innovations found yet. Add them in /admin/.";
-    }catch(e){
-      document.getElementById("innovMsg").textContent = e.message || String(e);
-    }finally{
-      EGR_UI.hideLoader();
-      document.querySelectorAll(".fadeUp").forEach(el=>el.classList.add("in"));
-    }
-  })();
-  function escapeHtml(s){
-    return String(s ?? "")
-      .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;").replaceAll("'","&#039;");
-  }
-</script>
-
-    </body>
-    </html>
+  <div id="footerHost"></div>
+</body>
+</html>

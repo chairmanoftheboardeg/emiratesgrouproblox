@@ -1,108 +1,50 @@
-    <!doctype html>
-    <html lang="en">
-    <head>
-      <meta charset="utf-8"/>
-      <meta name="viewport" content="width=device-width,initial-scale=1"/>
-      <title>EGR — Newsroom</title>
-      <link rel="icon" href="/images/logo.png"/>
-      <link rel="stylesheet" href="/assets/css/main.css"/>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Newsroom — EGR</title>
+  <meta name="description" content="Emirates Group Roblox (EGR) — Vision 2026">
+  <link rel="icon" href="/images/logo.png">
+  <link rel="apple-touch-icon" href="/images/logo.png">
+  <link rel="stylesheet" href="/assets/app.css">
+  <script src="/assets/config.js" defer></script>
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <div id="navHost"></div>
 
-    </head>
-    <body>
-      <div id="pageLoader" class="pageLoader hide" aria-hidden="true">
-        <div class="loaderCard">
-          <img src="/images/logo.png" alt="EGR"/>
-          <div>
-            <div class="t">Emirates Group Roblox</div>
-            <div class="s">Loading…</div>
-          </div>
-          <div class="spinner" aria-hidden="true"></div>
-        </div>
+  <main>
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <p class="eyebrow">Newsroom</p>
+        <h1>Updates and announcements</h1>
+        <p class="lead">
+          The Newsroom is used for formal announcements and structured updates. Articles are published as static pages for speed and reliability.
+        </p>
       </div>
 
-      <div id="siteNav"></div>
-
-      <section class="section">
-  <div class="container">
-    <div class="sectionTitle">
-      <h2>Newsroom</h2>
-      <span class="muted">Admin-managed</span>
-    </div>
-
-    <div id="newsList" class="list"></div>
-    <div id="newsMsg" class="muted" style="margin-top:10px"></div>
-
-    <div id="newsDetail" class="card" style="padding:16px; margin-top:14px; display:none"></div>
-  </div>
-</section>
-
-
-      <div id="siteFooter"></div>
-
-      <script src="/assets/js/config.js"></script>
-      <script src="/assets/js/layout.js"></script>
-      <script src="/assets/js/ui.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/assets/js/supabase.js"></script>
-<script src="/assets/js/cms.js"></script>
-<script>
-  (async ()=>{
-    EGR_UI.showLoader(false);
-    try{
-      if(!window.sb) throw new Error("Supabase not configured. Update /assets/js/config.js");
-      const data = await EGR_CMS.news();
-      const list = document.getElementById("newsList");
-      const msg = document.getElementById("newsMsg");
-      const detail = document.getElementById("newsDetail");
-
-      const url = new URL(location.href);
-      const slug = url.searchParams.get("slug");
-
-      list.innerHTML = data.map(x => `
-        <a class="card rowCard fadeUp" href="/news/?slug=${encodeURIComponent(x.slug)}">
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px">
-            <h3 style="margin:0">${escapeHtml(x.title || "")}</h3>
-            <span class="badge">${escapeHtml(x.published_date || "")}</span>
-          </div>
-          <p>${escapeHtml(x.summary || "")}</p>
+      <div class="grid two" style="margin-top:22px;">
+        <a class="card reveal" href="/news/2026-01-01-vision-2026-update/">
+          <p class="eyebrow">01 Jan 2026</p>
+          <h3>Vision 2026: Operational standards update</h3>
+          <p class="muted">A structured overview of standards reinforcement across divisions and readiness initiatives.</p>
         </a>
-      `).join("");
 
-      msg.textContent = data.length ? "" : "No news posts found yet. Add them in /admin/.";
+        <div class="card reveal">
+          <p class="eyebrow">Publishing</p>
+          <h3>How to add news posts</h3>
+          <p class="muted">
+            Create a new folder under <span class="kbd">/news/</span> and place an <span class="kbd">index.html</span> file inside. Link it from this page for a clean, corporate archive.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
-      if(slug){
-        const post = data.find(x => x.slug === slug);
-        if(post){
-          detail.style.display = "block";
-          detail.innerHTML = `
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px">
-              <h3 style="margin:0">${escapeHtml(post.title || "")}</h3>
-              <span class="badge">${escapeHtml(post.published_date || "")}</span>
-            </div>
-            ${post.cover_image_url ? `
-              <div style="margin-top:12px; border-radius:18px; overflow:hidden; border:1px solid var(--line)">
-                <img src="${escapeAttr(post.cover_image_url)}" alt="" style="width:100%; height:240px; object-fit:cover"/>
-              </div>` : ""}
-            <div class="muted" style="margin-top:12px; white-space:pre-wrap">${escapeHtml(post.body || post.summary || "")}</div>
-            <div style="margin-top:14px"><a class="btn" href="/news/">Back to list</a></div>
-          `;
-        }
-      }
 
-    }catch(e){
-      document.getElementById("newsMsg").textContent = e.message || String(e);
-    }finally{
-      EGR_UI.hideLoader();
-      document.querySelectorAll(".fadeUp").forEach(el=>el.classList.add("in"));
-    }
-  })();
-  function escapeHtml(s){
-    return String(s ?? "")
-      .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;").replaceAll("'","&#039;");
-  }
-  function escapeAttr(s){ return escapeHtml(s); }
-</script>
-
-    </body>
-    </html>
+  <div id="footerHost"></div>
+</body>
+</html>

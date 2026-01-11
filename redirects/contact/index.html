@@ -1,44 +1,36 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>EGR — Redirect</title>
-  <link rel="icon" href="/images/logo.png"/>
-  <link rel="stylesheet" href="/assets/css/main.css"/>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Redirect — Contact</title>
+  <meta name="description" content="Redirecting">
+  <link rel="icon" href="/images/logo.png">
+  <link rel="apple-touch-icon" href="/images/logo.png">
+  <link rel="stylesheet" href="/assets/app.css">
+  <script src="/assets/config.js" defer></script>
+  <script src="/assets/app.js" defer></script>
 </head>
 <body>
-  <div id="pageLoader" class="pageLoader hide" aria-hidden="true">
-    <div class="loaderCard">
-      <img src="/images/logo.png" alt="EGR"/>
-      <div>
-        <div class="t">Emirates Group Roblox</div>
-        <div class="s">Loading…</div>
+  <div id="navHost"></div>
+
+  <main>
+  <section class="section">
+    <div class="container">
+      <div class="card">
+        <h1 style="margin:0 0 10px;">Redirecting</h1>
+        <p class="muted" style="margin:0 0 16px;">If you are not redirected automatically, use the button below.</p>
+        <a id="redirectBtn" class="btn primary" data-target="contactChannel" href="#" rel="noopener">Continue</a>
       </div>
-      <div class="spinner" aria-hidden="true"></div>
     </div>
-  </div>
-
-  <div id="siteNav"></div>
-
-  <main class="section"><div class="container"><div class="card" style="padding:16px">Redirecting to Contact Us (Discord)…<div style="height:12px"></div><a class="btn primary" id="goLink" href="#">Continue</a></div></div></main>
-
-  <div id="siteFooter"></div>
-
-  <script src="/assets/js/config.js"></script>
-  <script src="/assets/js/layout.js"></script>
-  <script src="/assets/js/ui.js"></script>
-  <script>
-  const cfg = window.EGR_CONFIG || {};
-  const target = cfg.contactUsUrl || cfg.discordInviteUrl;
-  const a = document.getElementById("goLink");
-  if(target && target !== "#") {
-    a.href = target;
-    setTimeout(()=>location.replace(target), 200);
-  } else {
-    a.href = "/";
-  }
+  </section>
+</main>
+<script>
+  window.addEventListener('DOMContentLoaded', function(){
+    try { window.runRedirect('contactChannel'); } catch(e) {}
+  });
 </script>
+
+  <div id="footerHost"></div>
 </body>
 </html>
