@@ -29,11 +29,11 @@ window.CONFIG = {
   // Home hero header rotation (ensure these files exist in /images/)
   home: {
     heroImages: [
-      "/images/bg1.png",
-      "/images/bg2.png",
-      "/images/bg3.png",
-      "/images/bg4.png",
-      "/images/bg5.png",
+      "/images/A350 New Pics.png",
+      "/images/EGR Headquarters Pic.png",
+      "/images/Emirates Roav Boeing 777 Cabin Economy.png",
+      "/images/b737 3.png",
+      "/images/occ office.png",
       "/images/bg6.png"
     ],
     heroRotationMs: 6500
