@@ -34,7 +34,7 @@ window.CONFIG = {
       "/images/Emirates Roav Boeing 777 Cabin Economy.png",
       "/images/b737 3.png",
       "/images/occ office.png",
-      "/images/bg6.png"
+      "/images/A350 New Pics2.png"
     ],
     heroRotationMs: 6500
   },
