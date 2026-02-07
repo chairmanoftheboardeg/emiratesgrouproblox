@@ -3,8 +3,8 @@
   const $ = (sel, root=document) => root.querySelector(sel);
   const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
-  const SITE_VERSION = "1.4";
-  const SITE_UPDATED = "11 Jan 2026";
+  const SITE_VERSION = "1.5";
+  const SITE_UPDATED = "7 Feb 2026";
 
   // ---------------------------------------------------------------------------
   // Theme
