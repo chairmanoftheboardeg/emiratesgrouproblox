@@ -1,0 +1,245 @@
+/* Variables for TNG/EGR Corporate Palette */
+:root {
+    --navy-blue: #00205B;
+    --gold-accent: #D4AF37;
+    --charcoal: #222222;
+    --light-bg: #F8F9FA;
+    --white: #FFFFFF;
+    --text-main: #333333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light-bg);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* Dynamic Announcement Bar */
+.announcement-bar {
+    background-color: var(--gold-accent);
+    color: var(--white);
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.announcement-bar.hidden {
+    display: none;
+}
+
+/* Sticky Navigation */
+.navbar {
+    background-color: var(--navy-blue);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+}
+
+.brand a {
+    color: var(--white);
+    text-decoration: none;
+    line-height: 1.1;
+}
+
+.brand h1 {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+.brand .subtext {
+    font-size: 0.75rem;
+    color: var(--gold-accent);
+    text-transform: uppercase;
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--gold-accent);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.help-link {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.help-link:hover {
+    color: var(--white);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--gold-accent);
+    color: var(--navy-blue);
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #bfa030;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+    padding: 8px 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: var(--white);
+    color: var(--navy-blue);
+}
+
+/* Hero Section */
+.hero {
+    background-color: var(--navy-blue); /* Can be replaced with a background-image URL */
+    color: var(--white);
+    padding: 100px 20px;
+    text-align: center;
+    border-bottom: 5px solid var(--gold-accent);
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Chairman Welcome */
+.chairman-welcome {
+    padding: 80px 20px;
+    background-color: var(--white);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.chairman-welcome h3 {
+    color: var(--navy-blue);
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.lead-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.signature {
+    font-weight: bold;
+    color: var(--navy-blue);
+}
+
+/* Footer */
+.corporate-footer {
+    background-color: var(--charcoal);
+    color: #ccc;
+    padding: 60px 20px 20px 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+}
+
+.footer-col h2, .footer-col h4 {
+    color: var(--white);
+    margin-bottom: 20px;
+}
+
+.footer-col a {
+    display: block;
+    color: #ccc;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.footer-col a:hover {
+    color: var(--gold-accent);
+}
+
+.brand-col strong {
+    display: block;
+    margin-top: 15px;
+    color: var(--gold-accent);
+    font-size: 0.85rem;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-top: 1px solid #444;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+}
+
+.legal-links a {
+    color: #ccc;
+    text-decoration: none;
+    margin-left: 15px;
+}
