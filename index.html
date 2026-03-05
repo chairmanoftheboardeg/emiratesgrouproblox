@@ -1,172 +1,139 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Emirates Group Roblox (EGR) — Home</title>
-  <meta name="description" content="Emirates Group Roblox (EGR) — Vision 2026">
-  <link rel="icon" type="image/png" href="/images/logo.png?v=20260111">
-  <link rel="shortcut icon" href="/images/logo.png?v=20260111">
-  <link rel="apple-touch-icon" href="/images/logo.png?v=20260111">
-<link rel="stylesheet" href="/assets/app.css">
-<script src="/assets/app.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emirates Group Roblox | A Tyler Nicholas Group Subsidiary</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-  <div id="navHost"></div>
 
-  <div id="announce" class="announce" role="status" aria-label="Announcement">
-    <div class="container">
-      <div class="announce-inner">
-        <span class="tag">Announcement</span>
-        <div class="text">
-          <strong>Vision 2026</strong>
-          <span>We are hiring head over to our careers page to apply!</span>
-        </div>
-        <a class="link" href="/news/">View Newsroom</a>
-      </div>
-    </div>
-  </div>
-
-
-  <div id="loading" class="loading" aria-label="Loading">
-  <div class="box">
-    <img src="/images/logo.png" alt="EGR Logo">
-    <div class="text">
-      <strong>Emirates Group Roblox</strong>
-      <span>Loading corporate site experience</span>
-    </div>
-  </div>
-</div>
-
-<header id="hero" class="hero" role="banner" aria-label="Homepage hero">
-  <div class="overlay" aria-hidden="true"></div>
-  <div class="container content">
-    <p class="eyebrow">Vision 2026</p>
-    <h1 class="headline">Luxury, technology, and operational integrity.</h1>
-    <p class="sub">
-      Emirates Group Roblox is a structured virtual aviation organisation delivering a high-fidelity experience across multiple divisions, from Flight Operations to Aviation University, with professionalism at its core.
-    </p>
-    <div class="actions">
-      <a class="btn primary" href="/about/">Explore the Group</a>
-      <a class="btn secondary" href="/about/divisions/">View Divisions</a>
-      <a class="btn secondary" href="/fleet/">View Fleet</a>
-    </div>
-  </div>
-</header>
-
-<section class="section">
-  <div class="container">
-    <div class="grid two">
-      <div class="reveal">
-        <p class="eyebrow">Overview</p>
-        <h2>Emirates Group Roblox (EGR)</h2>
-        <p class="lead">
-          We do not simply operate flights. We curate a sophisticated ecosystem where realism, training, and corporate-grade coordination converge. Under Vision 2026, our cross-division operating model is built for consistency, standards, and scalability.
-        </p>
-        <p class="muted">
-          Our governance framework aligns leadership, operations, safety culture, and innovation under a unified corporate structure led by the Board of Directors and the Executive Board (C‑Suite).
-        </p>
-        <a class="btn tertiary" href="/about/governance/">Read governance structure</a>
-      </div>
-
-      <div class="reveal">
-        <div class="card">
-          <h3>Quick Access</h3>
-          <p class="muted">
-            Direct pathways to the most-used resources, designed for speed and clarity.
-          </p>
-          <div class="grid two" style="margin-top:14px;">
-            <a class="btn primary" href="/redirects/flights/">Flights</a>
-            <a class="btn secondary" href="/redirects/careers/">Careers</a>
-            <a class="btn secondary" href="/faq/">FAQ</a>
-            <a class="btn secondary" href="/redirects/contact/">Contact Us</a>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:18px;">
-          <h3>Professional Standards</h3>
-          <p class="muted">
-            A clear safety culture and a structured hierarchy are essential to a secure and professional environment. All members are expected to comply with established protocols and role standards.
-          </p>
-          <a class="btn secondary" href="/docs/egr-legal-safety-compliance-framework.pdf" target="_blank" rel="noopener">Open Framework PDF</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section alt">
-  <div class="container">
-    <div class="reveal">
-      <p class="eyebrow">Divisions</p>
-      <h2>A multi-divisional operating model</h2>
-      <p class="lead">
-        Our ecosystem spans airline operations, cargo, ground services, hub operations, training, alliances, and safety. Each division is structured with defined responsibilities and an operational mandate.
-      </p>
+    <div id="announcement-bar" class="announcement-bar hidden">
+        <p id="announcement-text">Loading latest updates...</p>
     </div>
 
-    <div class="grid four" style="margin-top:22px;">
-      <div class="card reveal"><h3>Airline Operations</h3><p class="muted">Emirates Airlines Roblox and FlyDubai Roblox operations with defined procedures and standards.</p></div>
-      <div class="card reveal"><h3>Ground &amp; Hub</h3><p class="muted">Airport services and hub operations focused on coordination and reliability.</p></div>
-      <div class="card reveal"><h3>Training</h3><p class="muted">Aviation University programmes for flight school and cabin and ground training.</p></div>
-      <div class="card reveal"><h3>Safety &amp; Security</h3><p class="muted">A compliance-led framework ensuring professionalism and operational integrity.</p></div>
-    </div>
-
-    <div style="margin-top:18px;" class="reveal">
-      <a class="btn primary" href="/about/divisions/">See all divisions</a>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="grid two">
-      <div class="reveal">
-        <p class="eyebrow">Recruitment</p>
-        <h2>Why joining EGR staff is worth it</h2>
-        <p class="lead">
-          Staff roles offer structured responsibility, real operational coordination, and leadership development. You gain discipline, experience within a corporate model, and progression through clearly defined standards.
-        </p>
-        <p class="muted">
-          We prioritise professionalism over volume. We value consistency, accountability, and the ability to execute under standards.
-        </p>
-        <a class="btn primary" href="https://careers.emiratesgrouproblox.link">View recruitment</a>
-      </div>
-
-      <div class="reveal">
-        <div class="card">
-          <h3>Discord Presence</h3>
-          <p class="muted">
-            This section is designed to show live presence information from our main Discord server. If live data is unavailable, the site remains fully functional.
-          </p>
-          <div class="grid two" style="margin-top:14px;">
-            <div class="card" style="padding:14px;">
-              <p class="eyebrow" style="margin-bottom:6px;">Members</p>
-              <p style="margin:0;font-weight:800;font-size:22px;">—</p>
-              <p class="muted" style="margin:6px 0 0;">Total</p>
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <a href="/">
+                    <h1>EGR</h1>
+                    <span class="subtext">Tyler Nicholas Group</span>
+                </a>
             </div>
-            <div class="card" style="padding:14px;">
-              <p class="eyebrow" style="margin-bottom:6px;">Online</p>
-              <p style="margin:0;font-weight:800;font-size:22px;">—</p>
-              <p class="muted" style="margin:6px 0 0;">Now</p>
+            <nav class="nav-links">
+                <a href="/about/">About Us</a>
+                <a href="/operations/">Operations</a>
+                <a href="/careers/">Careers</a>
+                <a href="/media/">Media</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="/help/" class="help-link">Help Center</a>
+                <a href="https://staff.emiratesgrouproblox.link" class="btn-primary">Staff Portal</a>
             </div>
-          </div>
-          <div style="margin-top:14px;">
-            <a class="btn secondary" href="https://discord.gg/dZaJqdTyGd" target="_blank" rel="noopener">Join our Discord</a>
-          </div>
-<div style="margin-top:16px;display:flex;justify-content:center;">
-  <iframe src="https://discord.com/widget?id=1189224375019388999&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-  <a href="https://top.gg/discord/servers/720539254147014656">
-  <img src="https://top.gg/api/v1/widgets/large/720539254147014656">
-</a>
-</div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </header>
 
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Pioneering the Future of Virtual Aviation</h2>
+            <p>Experience unparalleled realism and professionalism under our Vision 2026 framework.</p>
+            <div class="hero-buttons">
+                <a href="/careers/" class="btn-primary">Explore Careers</a>
+                <a href="/about/" class="btn-secondary">Discover Our Story</a>
+            </div>
+        </div>
+    </section>
 
-  <div id="footerHost"></div>
+    <section class="chairman-welcome">
+        <div class="container text-center">
+            <h3>Welcome to Emirates Group Roblox</h3>
+            <p class="lead-text">"As we push the boundaries of what is possible in virtual aviation, I want to personally welcome you to our hub. Whether you are flying with Emirates Airlines, operating with Fly Dubai, or managing our ground hubs, you are part of a standard-setting community. Welcome to the future of flight."</p>
+            <p class="signature">- Tyler Nicholas, Chairman of The Board</p>
+        </div>
+    </section>
+
+    <footer class="corporate-footer">
+        <div class="footer-grid">
+            <div class="footer-col brand-col">
+                <h2>EGR</h2>
+                <p>Pioneering the future of virtual aviation. Delivering excellence across the skies.</p>
+                <strong>A Tyler Nicholas Group Subsidiary</strong>
+            </div>
+            <div class="footer-col">
+                <h4>Our Network</h4>
+                <a href="/operations/emirates/">Emirates Airlines</a>
+                <a href="/operations/flydubai/">Fly Dubai Roblox</a>
+                <a href="/about/training/">EGR Training Academy</a>
+                <a href="/operations/ground/">Ground & Hub</a>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="/careers/">Careers Portal</a>
+                <a href="/media/newsroom/">Newsroom & Press</a>
+                <a href="/help/safety/">Safety & Reporting</a>
+                <a href="/help/">Help Center & FAQ</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <a href="#">Discord Server</a>
+                <a href="#">Roblox Group Hub</a>
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Tyler Nicholas Group. All Rights Reserved. Not affiliated with the real-world Emirates Group.</p>
+            <div class="legal-links">
+                <a href="/legal/tos/">Terms of Service</a>
+                <a href="/legal/privacy/">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Maintenance Bypass Logic
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // If developer accesses via /?dev_access=tng2026, set a cookie to remember them
+        if (urlParams.get('dev_access') === 'tng2026') {
+            document.cookie = "bypass_maintenance=true; path=/; max-age=86400"; // Good for 24 hours
+        }
+
+        // Check if cookie exists. If not, redirect to maintenance page
+        if (document.cookie.indexOf('bypass_maintenance=true') === -1) {
+            // Uncomment the line below when you are ready to lock out the public!
+            // window.location.href = '/maintenance/'; 
+        }
+
+        // 2. Initialize Supabase
+        const supabaseUrl = 'https://zboyabxzhptnxnmofvcz.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        // 3. Fetch Active Announcement
+        async function fetchAnnouncement() {
+            const { data, error } = await supabase
+                .from('announcements')
+                .select('message, link_url')
+                .eq('is_active', true)
+                .limit(1)
+                .single();
+
+            if (data) {
+                const bar = document.getElementById('announcement-bar');
+                const text = document.getElementById('announcement-text');
+                
+                bar.classList.remove('hidden');
+                if (data.link_url) {
+                    text.innerHTML = `<a href="${data.link_url}" style="color: white; text-decoration: underline;">${data.message}</a>`;
+                } else {
+                    text.innerText = data.message;
+                }
+            }
+        }
+
+        // Run the fetch on load
+        fetchAnnouncement();
+    </script>
 </body>
 </html>
