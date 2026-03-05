@@ -22,7 +22,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Loading Screen */
+/* Loading Screen (Pure CSS Version) */
 #loading-screen {
     position: fixed;
     top: 0;
@@ -34,7 +34,17 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: opacity 0.5s ease-in-out;
+    /* This animation waits 2.5 seconds, fades out for 0.5s, and stays hidden */
+    animation: forceHideLoader 0.5s ease-in-out 2.5s forwards;
+    pointer-events: none; /* Ensures you can click the site even if it glitches */
+}
+
+@keyframes forceHideLoader {
+    to {
+        opacity: 0;
+        visibility: hidden;
+        z-index: -9999;
+    }
 }
 
 .pulse-logo {
