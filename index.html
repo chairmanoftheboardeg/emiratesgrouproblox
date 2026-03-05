@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emirates Group Roblox | A Tyler Nicholas Group Subsidiary</title>
+    <title>Emirates Group Roblox | Homepage</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/39zdb6XJ/LOGO-EMIRATES-ROBLOX.png">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
+
+    <div id="loading-screen">
+        <img src="https://i.ibb.co/39zdb6XJ/LOGO-EMIRATES-ROBLOX.png" alt="Loading EGR..." class="pulse-logo">
+    </div>
 
     <div id="announcement-bar" class="announcement-bar hidden">
         <p id="announcement-text">Loading latest updates...</p>
@@ -17,24 +23,29 @@
         <div class="nav-container">
             <div class="brand">
                 <a href="/">
-                    <h1>EGR</h1>
-                    <span class="subtext">Tyler Nicholas Group</span>
+                    <img src="https://i.ibb.co/39zdb6XJ/LOGO-EMIRATES-ROBLOX.png" alt="EGR Logo" class="nav-logo">
                 </a>
             </div>
-            <nav class="nav-links">
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav class="nav-links" id="nav-links">
                 <a href="/about/">About Us</a>
                 <a href="/operations/">Operations</a>
                 <a href="/careers/">Careers</a>
                 <a href="/media/">Media</a>
+                <a href="/help/" class="mobile-only">Help Center</a>
+                <a href="https://staff.emiratesgrouproblox.link" class="btn-primary mobile-only">Staff Portal</a>
             </nav>
-            <div class="nav-actions">
+            <div class="nav-actions desktop-only">
                 <a href="/help/" class="help-link">Help Center</a>
                 <a href="https://staff.emiratesgrouproblox.link" class="btn-primary">Staff Portal</a>
             </div>
         </div>
     </header>
 
-    <section class="hero">
+    <section class="hero" id="dynamic-hero">
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <h2>Pioneering the Future of Virtual Aviation</h2>
             <p>Experience unparalleled realism and professionalism under our Vision 2026 framework.</p>
@@ -56,17 +67,18 @@
     <footer class="corporate-footer">
         <div class="footer-grid">
             <div class="footer-col brand-col">
-                <h2>EGR</h2>
-                <p>Pioneering the future of virtual aviation. Delivering excellence across the skies.</p>
+                <img src="https://i.ibb.co/39zdb6XJ/LOGO-EMIRATES-ROBLOX.png" alt="EGR Logo" class="footer-logo">
+                <p>Pioneering the future of virtual aviation.</p>
                 <strong>A Tyler Nicholas Group Subsidiary</strong>
             </div>
+            
             <div class="footer-col">
-                <h4>Our Network</h4>
-                <a href="/operations/emirates/">Emirates Airlines</a>
-                <a href="/operations/flydubai/">Fly Dubai Roblox</a>
-                <a href="/about/training/">EGR Training Academy</a>
-                <a href="/operations/ground/">Ground & Hub</a>
+                <h4>Operational Status</h4>
+                <p><i class="fas fa-clock"></i> <strong>HQ Hours:</strong> 6:00 AM - 7:00 PM (Daily)</p>
+                <p><i class="fas fa-plane"></i> <strong>Operations:</strong> 24/7 Active</p>
+                <p><i class="fas fa-globe"></i> <strong>Dubai Time:</strong> <span id="dubai-clock">Loading...</span></p>
             </div>
+
             <div class="footer-col">
                 <h4>Quick Links</h4>
                 <a href="/careers/">Careers Portal</a>
@@ -74,16 +86,25 @@
                 <a href="/help/safety/">Safety & Reporting</a>
                 <a href="/help/">Help Center & FAQ</a>
             </div>
-            <div class="footer-col">
-                <h4>Connect</h4>
-                <a href="#">Discord Server</a>
-                <a href="#">Roblox Group Hub</a>
-                <a href="#">YouTube</a>
+
+            <div class="footer-col text-center">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="https://discord.gg/nDAZ3p475V" target="_blank"><i class="fab fa-discord"></i></a>
+                    <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank"><i class="fa-solid fa-gamepad"></i></a>
+                    <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank"><i class="fab fa-trello"></i></a>
+                    <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank"><i class="fab fa-tiktok"></i></a>
+                </div>
             </div>
         </div>
+        
         <div class="footer-bottom">
             <p>&copy; 2026 Tyler Nicholas Group. All Rights Reserved. Not affiliated with the real-world Emirates Group.</p>
             <div class="legal-links">
+                <span class="last-updated">Last Updated: <span id="last-update-date"></span></span>
                 <a href="/legal/tos/">Terms of Service</a>
                 <a href="/legal/privacy/">Privacy Policy</a>
             </div>
@@ -91,38 +112,70 @@
     </footer>
 
     <script>
-        // 1. Maintenance Bypass Logic
-        const urlParams = new URLSearchParams(window.location.search);
+        // 1. Loading Screen Logic
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loading-screen');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 500);
+            }, 800); // Slight delay so they see the cool animation
+        });
+
+        // 2. Dynamic Hero Background Slider
+        const heroImages = [
+            "url('https://i.ibb.co/S7DBmmZG/A350-New-Pics-2.png')",
+            "url('https://i.ibb.co/YBdMHYSJ/A350-New-Pics.png')",
+            "url('https://i.ibb.co/YYT47Ys/EGR-Headquarters-Pic.png')",
+            "url('https://i.ibb.co/LX1x6sym/A380-800-PIC-1.jpg')",
+            "url('https://i.ibb.co/FLN5KjCR/Boeing-777-PIC-1.png')",
+            "url('https://i.ibb.co/5WFHHqSk/Emirates-Roblox-Crew-Uniform-Pack-removebg-preview.png')"
+        ];
         
-        // If developer accesses via /?dev_access=tng2026, set a cookie to remember them
-        if (urlParams.get('dev_access') === 'tng2026') {
-            document.cookie = "bypass_maintenance=true; path=/; max-age=86400"; // Good for 24 hours
-        }
+        let currentImageIndex = 0;
+        const heroSection = document.getElementById('dynamic-hero');
+        
+        // Set initial background
+        heroSection.style.backgroundImage = heroImages[0];
 
-        // Check if cookie exists. If not, redirect to maintenance page
-        if (document.cookie.indexOf('bypass_maintenance=true') === -1) {
-            // Uncomment the line below when you are ready to lock out the public!
-            // window.location.href = '/maintenance/'; 
-        }
+        setInterval(() => {
+            currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+            heroSection.style.backgroundImage = heroImages[currentImageIndex];
+        }, 5000); // Changes every 5 seconds
 
-        // 2. Initialize Supabase
+        // 3. Live Dubai Clock
+        function updateDubaiTime() {
+            const clockElement = document.getElementById('dubai-clock');
+            const dubaiTime = new Date().toLocaleTimeString('en-US', {
+                timeZone: 'Asia/Dubai',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            clockElement.innerText = dubaiTime;
+        }
+        setInterval(updateDubaiTime, 1000);
+        updateDubaiTime(); // Run once immediately
+
+        // 4. Last Updated Date
+        document.getElementById('last-update-date').innerText = new Date(document.lastModified).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+        // 5. Mobile Menu Toggle
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // 6. Supabase Connection (Same as before)
         const supabaseUrl = 'https://zboyabxzhptnxnmofvcz.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys';
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        // 3. Fetch Active Announcement
         async function fetchAnnouncement() {
-            const { data, error } = await supabase
-                .from('announcements')
-                .select('message, link_url')
-                .eq('is_active', true)
-                .limit(1)
-                .single();
-
+            const { data, error } = await supabase.from('announcements').select('message, link_url').eq('is_active', true).limit(1).single();
             if (data) {
                 const bar = document.getElementById('announcement-bar');
                 const text = document.getElementById('announcement-text');
-                
                 bar.classList.remove('hidden');
                 if (data.link_url) {
                     text.innerHTML = `<a href="${data.link_url}" style="color: white; text-decoration: underline;">${data.message}</a>`;
@@ -131,9 +184,7 @@
                 }
             }
         }
-
-        // Run the fetch on load
         fetchAnnouncement();
     </script>
 </body>
-</html> 
+</html>
