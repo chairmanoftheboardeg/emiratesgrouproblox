@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Emirates Group Roblox</title>
+  <title>Emirates Group Roblox | Premier Virtual Aviation</title>
+  
+  <link rel="icon" href="YOUR_EGR_LOGO_LINK_HERE.png" id="favicon" />
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -11,22 +13,31 @@
   
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 </head>
-<body class="flex flex-col min-h-screen relative fade-in">
+<body class="flex flex-col min-h-screen relative fade-in bg-gray-50">
 
-  <div id="egr-loader" class="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center">
-    <i class="fa-solid fa-plane-departure text-5xl text-[#D71A21] mb-6 loader-plane"></i>
-    <h2 class="text-[#111827] text-2xl font-bold tracking-[0.3em] uppercase">Emirates Group Roblox</h2>
-    <p class="text-gray-400 text-xs font-bold tracking-widest mt-2 uppercase">Initializing Radar Systems...</p>
+  <div id="egr-loader" class="fixed inset-0 z-[9999] bg-[#111827] flex flex-col items-center justify-center transition-opacity duration-1000">
+    <div class="relative w-24 h-24 mb-6 flex items-center justify-center">
+      <i class="fa-solid fa-plane-up text-4xl text-[#D71A21] absolute animate-pulse"></i>
+      <svg class="animate-spin w-full h-full text-gray-800" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"></circle>
+        <path class="opacity-100" fill="#D71A21" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+    </div>
+    <h2 class="text-white text-2xl font-serif font-bold tracking-[0.2em] uppercase drop-shadow-lg text-center px-4">Emirates Group</h2>
+    <p class="text-[#D71A21] text-xs font-bold tracking-[0.3em] mt-3 uppercase text-center">Establishing Radar Uplink...</p>
   </div>
 
-  <div id="egr-announcement" class="bg-[#111827] text-white text-center py-2 text-xs md:text-sm font-bold tracking-widest uppercase hidden z-50 relative border-b border-gray-800"></div>
+  <div id="egr-announcement" class="bg-[#111827] text-white text-center py-2 text-xs md:text-sm font-bold tracking-widest uppercase hidden z-40 relative border-b border-gray-800"></div>
 
-  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-40 border-b-4 border-[#D71A21]">
+  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-50 border-b-4 border-[#D71A21]">
     
     <a href="/" class="flex items-center group">
       <img src="YOUR_EGR_LOGO_LINK_HERE.png" alt="Emirates Group Roblox Logo" class="h-10 md:h-12 object-contain group-hover:opacity-80 transition-opacity">
-      <span class="ml-3 font-bold text-xl tracking-wider uppercase leading-none text-[#111827] block md:hidden">EGR</span>
     </a>
+
+    <button id="mobile-menu-btn" class="lg:hidden text-gray-800 text-2xl focus:outline-none">
+      <i class="fa-solid fa-bars"></i>
+    </button>
 
     <div class="hidden lg:flex space-x-6 text-sm font-bold items-center text-gray-700">
       <a href="/" class="text-[#D71A21] hover:text-red-800 transition-colors">Home</a>
@@ -74,15 +85,61 @@
     </div>
   </nav>
 
-  <header class="relative bg-[#111827] text-white py-40 px-6 overflow-hidden">
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#111827] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col lg:hidden">
+    <div class="p-6 flex justify-between items-center border-b border-gray-800 bg-white">
+      <img src="YOUR_EGR_LOGO_LINK_HERE.png" alt="Logo" class="h-10 object-contain">
+      <button id="mobile-menu-close" class="text-gray-800 text-3xl focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <div class="p-6 overflow-y-auto space-y-8 text-white flex-grow">
+      <a href="/" class="block text-xl font-bold hover:text-[#D71A21]">Home</a>
+      
+      <div>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">About Us</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
+          <a href="/about/vision/" class="block hover:text-white">Vision, Mission & Story</a>
+          <a href="/about/people/" class="block hover:text-white">Our People</a>
+          <a href="/about/governance/" class="block hover:text-white">Our Governance</a>
+          <a href="/about/subsidiaries/" class="block hover:text-white">Our Subsidiaries</a>
+          <a href="/about/partners/" class="block hover:text-white">Partners & Affiliates</a>
+          <a href="/about/timeline/" class="block hover:text-white">Timeline</a>
+          <a href="/about/innovation/" class="block text-[#D71A21]">Our Innovation</a>
+        </div>
+      </div>
+
+      <a href="/flights/" class="block text-xl font-bold hover:text-[#D71A21]">Flights</a>
+
+      <div>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Media</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
+          <a href="/media/newsroom/" class="block hover:text-white">Newsroom</a>
+          <a href="/media/gallery/" class="block hover:text-white">Media Gallery</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Help Center</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block hover:text-white"><i class="fa-brands fa-discord mr-2"></i> Contact Us</a>
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block text-[#D71A21]"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Report an Issue</a>
+        </div>
+      </div>
+
+      <a href="https://careers.emiratesgrouproblox.link" target="_blank" class="block bg-[#D71A21] text-white text-center py-4 rounded font-bold uppercase tracking-widest mt-6">
+        Careers Portal <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
+      </a>
+    </div>
+  </div>
+
+  <header class="relative bg-[#111827] text-white py-32 md:py-40 px-6 overflow-hidden">
     <img src="https://i.ibb.co/pjK8YGTN/A350-New-Pics.png" alt="EGR A350" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay">
     
     <div class="relative z-10 max-w-5xl mx-auto text-center mt-10">
       <span class="text-white bg-[#D71A21] px-4 py-1 font-bold tracking-[0.3em] uppercase text-xs mb-6 inline-block rounded shadow">Welcome Aboard</span>
       <h1 class="text-4xl md:text-7xl font-serif font-bold mb-6 leading-tight text-white drop-shadow-2xl uppercase tracking-tighter">Setting the Standard <br>in <span class="text-[#D71A21]">Virtual Aviation.</span></h1>
-      <p class="text-gray-200 md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-medium">Emirates Group Roblox combines architectural precision, advanced fleet technology, and unmatched professionalism to deliver the ultimate flight experience on the platform.</p>
+      <p class="text-gray-200 md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-medium px-4">Emirates Group Roblox combines architectural precision, advanced fleet technology, and unmatched professionalism to deliver the ultimate flight experience on the platform.</p>
       
-      <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <div class="flex flex-col sm:flex-row justify-center gap-4 px-4">
         <a href="/flights/" class="bg-[#D71A21] hover:bg-red-800 text-white font-bold py-4 px-10 rounded transition-colors shadow-xl uppercase tracking-wider text-sm border border-[#D71A21]">
           View Flight Board
         </a>
@@ -93,78 +150,78 @@
     </div>
   </header>
 
-  <section class="bg-white border-b border-gray-200 py-16 px-6">
-    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+  <section class="bg-white border-b border-gray-200 py-12 md:py-16 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 text-center">
       <div>
-        <h4 class="text-5xl md:text-6xl font-bold text-[#111827] mb-2 tracking-tighter">12+</h4>
-        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Virtual Subsidiaries</p>
+        <h4 class="text-4xl md:text-6xl font-bold text-[#111827] mb-2 tracking-tighter">12+</h4>
+        <p class="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest font-bold">Virtual Subsidiaries</p>
       </div>
       <div>
-        <h4 class="text-5xl md:text-6xl font-bold text-[#D71A21] mb-2 tracking-tighter">1000+</h4>
-        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Network Members</p>
+        <h4 class="text-4xl md:text-6xl font-bold text-[#D71A21] mb-2 tracking-tighter">1000+</h4>
+        <p class="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest font-bold">Network Members</p>
       </div>
       <div>
-        <h4 class="text-5xl md:text-6xl font-bold text-[#111827] mb-2 tracking-tighter">24/7</h4>
-        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Global Operations</p>
+        <h4 class="text-4xl md:text-6xl font-bold text-[#111827] mb-2 tracking-tighter">24/7</h4>
+        <p class="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest font-bold">Global Operations</p>
       </div>
       <div>
-        <h4 class="text-5xl md:text-6xl font-bold text-[#D71A21] mb-2 tracking-tighter">50+</h4>
-        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Dedicated Staff</p>
+        <h4 class="text-4xl md:text-6xl font-bold text-[#D71A21] mb-2 tracking-tighter">50+</h4>
+        <p class="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest font-bold">Dedicated Staff</p>
       </div>
     </div>
   </section>
 
-  <section class="py-20 px-6 md:px-12 bg-gray-50">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-      <div>
+  <section class="py-16 md:py-20 px-6 md:px-12 bg-gray-50">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+      <div class="order-2 md:order-1">
         <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-xs mb-3 block">Corporate Identity</span>
         <h2 class="text-3xl md:text-5xl font-bold text-[#111827] mb-6 uppercase tracking-tight">Defining Virtual Aviation</h2>
-        <p class="text-gray-600 leading-relaxed mb-6">
+        <p class="text-gray-600 leading-relaxed mb-6 text-sm md:text-base">
           Emirates Group Roblox is not just a virtual airline; it is a meticulously structured digital corporation. We operate with strict adherence to real-world aviation principles adapted for the Roblox engine. From our advanced ground services to our highly trained flight deck, every division is optimized for excellence.
         </p>
-        <p class="text-gray-600 leading-relaxed mb-8">
+        <p class="text-gray-600 leading-relaxed mb-8 text-sm md:text-base">
           As a premier subsidiary of the Tyler Nicholas Group, we possess the resources and strategic backing to continually innovate, expanding our routes, upgrading our fleet, and elevating the passenger experience across our entire network of affiliates.
         </p>
         <a href="/about/vision/" class="text-[#D71A21] font-bold hover:text-red-800 uppercase tracking-wider text-sm flex items-center">
           Read Our Full Story <i class="fa-solid fa-arrow-right ml-2"></i>
         </a>
       </div>
-      <div class="relative">
-        <div class="absolute inset-0 bg-[#D71A21] transform translate-x-4 translate-y-4 rounded shadow-lg"></div>
-        <img src="https://i.ibb.co/49gwZ9r/EGR-Headquarters-Pic.png" alt="EGR Headquarters" class="relative rounded shadow-xl object-cover h-[400px] w-full border border-gray-200">
+      <div class="relative order-1 md:order-2">
+        <div class="absolute inset-0 bg-[#D71A21] transform translate-x-3 translate-y-3 md:translate-x-4 md:translate-y-4 rounded shadow-lg"></div>
+        <img src="https://i.ibb.co/49gwZ9r/EGR-Headquarters-Pic.png" alt="EGR Headquarters" class="relative rounded shadow-xl object-cover h-[300px] md:h-[400px] w-full border border-gray-200">
       </div>
     </div>
   </section>
 
-  <section class="bg-gray-100 py-24 px-6 md:px-12 border-y border-gray-200">
+  <section class="bg-gray-100 py-16 md:py-24 px-6 md:px-12 border-y border-gray-200">
     <div class="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden flex flex-col md:flex-row">
       
-      <div class="md:w-2/5 bg-white relative flex items-center justify-center p-10 border-b md:border-b-0 md:border-r border-gray-100">
+      <div class="md:w-2/5 bg-white relative flex items-center justify-center p-8 md:p-10 border-b md:border-b-0 md:border-r border-gray-100">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-gray-50 opacity-50"></div>
-        <img src="https://tr.rbxcdn.com/30DAY-Avatar-6AE5E4CBB0ABEED01B53A9B8CC8DE407-Png/720/720/Avatar/Webp/noFilter" alt="Tyler Nicholas" class="relative z-10 w-72 h-72 object-contain drop-shadow-xl hover:scale-105 transition-transform duration-500">
+        <img src="https://tr.rbxcdn.com/30DAY-Avatar-6AE5E4CBB0ABEED01B53A9B8CC8DE407-Png/720/720/Avatar/Webp/noFilter" alt="Tyler Nicholas" class="relative z-10 w-48 h-48 md:w-72 md:h-72 object-contain drop-shadow-xl hover:scale-105 transition-transform duration-500">
       </div>
       
-      <div class="md:w-3/5 p-12 md:p-20 flex flex-col justify-center relative bg-white">
-        <i class="fa-solid fa-quote-left absolute top-12 left-12 text-6xl text-gray-100"></i>
-        <p class="text-lg md:text-xl text-gray-800 italic leading-relaxed mb-10 relative z-10 font-serif">
+      <div class="md:w-3/5 p-8 md:p-16 lg:p-20 flex flex-col justify-center relative bg-white">
+        <i class="fa-solid fa-quote-left absolute top-6 left-6 md:top-12 md:left-12 text-4xl md:text-6xl text-gray-100"></i>
+        <p class="text-base md:text-lg lg:text-xl text-gray-800 italic leading-relaxed mb-8 md:mb-10 relative z-10 font-serif">
           "When we laid the foundation for Emirates Group Roblox, we didn't just want to create a virtual airline—we set out to engineer an elite digital community where passion meets precision. Every flight we operate and every subsidiary we launch is driven by a singular, unwavering commitment: to push the absolute boundaries of what is possible on this platform. We don't just simulate aviation; we elevate it."
         </p>
         <div class="border-l-4 border-[#D71A21] pl-4">
-          <h4 class="font-bold text-[#111827] text-xl uppercase tracking-widest">Tyler Nicholas</h4>
-          <p class="text-gray-500 text-xs font-bold uppercase tracking-widest mt-1">Owner & Founder</p>
+          <h4 class="font-bold text-[#111827] text-lg md:text-xl uppercase tracking-widest">Tyler Nicholas</h4>
+          <p class="text-gray-500 text-[10px] md:text-xs font-bold uppercase tracking-widest mt-1">Owner & Founder</p>
         </div>
       </div>
     </div>
   </section>
 
-  <main class="flex-grow py-20 px-6 md:px-12 bg-gray-50 border-b border-gray-200">
+  <main class="flex-grow py-16 md:py-20 px-6 md:px-12 bg-gray-50 border-b border-gray-200">
     <div class="max-w-6xl mx-auto">
-      <div class="flex flex-col md:flex-row justify-between items-end mb-8 border-b border-gray-300 pb-4">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-gray-300 pb-4 gap-4">
         <div>
-          <h2 class="text-3xl font-bold text-gray-900 uppercase tracking-tight">Live Flight Radar</h2>
-          <p class="text-gray-600 mt-1">Real-time telemetry from the Emirates Group Roblox operations center.</p>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 uppercase tracking-tight">Live Flight Radar</h2>
+          <p class="text-sm md:text-base text-gray-600 mt-1">Real-time telemetry from the Emirates Group Roblox operations center.</p>
         </div>
-        <a href="/flights/" class="bg-[#111827] text-white px-6 py-2 rounded font-bold hover:bg-gray-800 transition-colors text-sm uppercase tracking-widest mt-4 md:mt-0 shadow-md">
+        <a href="/flights/" class="bg-[#111827] text-white px-6 py-3 rounded font-bold hover:bg-gray-800 transition-colors text-xs md:text-sm uppercase tracking-widest shadow-md w-full md:w-auto text-center">
           View Full Radar
         </a>
       </div>
@@ -174,11 +231,11 @@
           <table class="w-full text-left text-sm whitespace-nowrap text-gray-800">
             <thead class="bg-gray-100 border-b border-gray-200 text-[#111827] uppercase tracking-widest text-[10px]">
               <tr>
-                <th class="p-5 font-bold">Flight</th>
-                <th class="p-5 font-bold">Route</th>
-                <th class="p-5 font-bold">Aircraft</th>
-                <th class="p-5 font-bold">Departure Time</th>
-                <th class="p-5 font-bold text-right">Status</th>
+                <th class="p-4 md:p-5 font-bold">Flight</th>
+                <th class="p-4 md:p-5 font-bold">Route</th>
+                <th class="p-4 md:p-5 font-bold">Aircraft</th>
+                <th class="p-4 md:p-5 font-bold">Departure Time</th>
+                <th class="p-4 md:p-5 font-bold text-right">Status</th>
               </tr>
             </thead>
             <tbody id="live-flight-board" class="divide-y divide-gray-100">
@@ -190,23 +247,23 @@
     </div>
   </main>
 
-  <section class="py-20 px-6 md:px-12 bg-white">
+  <section class="py-16 md:py-20 px-6 md:px-12 bg-white">
     <div class="max-w-6xl mx-auto">
-      <div class="flex justify-between items-end mb-10">
-        <h2 class="text-3xl font-bold text-gray-900 uppercase tracking-tight">Corporate Newsroom</h2>
-        <a href="/media/newsroom/" class="text-[#D71A21] font-bold hover:underline text-sm uppercase tracking-widest">All Press Releases <i class="fa-solid fa-arrow-right ml-1"></i></a>
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-10 gap-4">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 uppercase tracking-tight">Corporate Newsroom</h2>
+        <a href="/media/newsroom/" class="text-[#D71A21] font-bold hover:underline text-xs md:text-sm uppercase tracking-widest">All Press Releases <i class="fa-solid fa-arrow-right ml-1"></i></a>
       </div>
       
-      <div id="news-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div id="news-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         <div class="col-span-full text-center text-gray-400 py-10"><i class="fa-solid fa-circle-notch fa-spin text-2xl mb-2"></i><br>Fetching latest intelligence...</div>
       </div>
     </div>
   </section>
 
-  <footer class="bg-[#111827] text-white py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+  <footer class="bg-[#111827] text-white py-12 md:py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
       <div class="md:col-span-2">
-        <h3 class="font-bold text-2xl mb-3 uppercase tracking-widest">Emirates Group Roblox</h3>
+        <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest">Emirates Group Roblox</h3>
         <p class="text-sm text-gray-400 max-w-md mb-6 leading-relaxed">The premier virtual aviation organization on the Roblox platform. A proud subsidiary of the Tyler Nicholas Group, committed to structural perfection and digital realism.</p>
         
         <div class="flex flex-wrap gap-4 text-xl text-gray-400">
@@ -239,22 +296,36 @@
         </ul>
       </div>
     </div>
-    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-10 md:mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 text-center md:text-left gap-2">
       <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
-      <p class="mt-2 md:mt-0">Powered by Tyler Nicholas Group Network</p>
+      <p>Powered by Tyler Nicholas Group Network</p>
     </div>
   </footer>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // 1. Remove Loader smoothly
+      
+      // Mobile Menu Logic
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileClose = document.getElementById('mobile-menu-close');
+      const mobileMenu = document.getElementById('mobile-menu-overlay');
+
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('translate-x-full');
+      });
+
+      mobileClose.addEventListener('click', () => {
+        mobileMenu.classList.add('translate-x-full');
+      });
+
+      // Loader smoothly
       setTimeout(() => {
         const loader = document.getElementById('egr-loader');
         loader.style.opacity = '0';
-        setTimeout(() => { loader.style.display = 'none'; }, 800);
+        setTimeout(() => { loader.style.display = 'none'; }, 1000);
       }, 1500);
 
-      // 2. Setup Supabase
+      // Setup Supabase
       const checkSupabase = setInterval(async () => {
         if (window.supabase) {
           clearInterval(checkSupabase); 
@@ -263,7 +334,7 @@
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
           );
 
-          // 3. Fetch Live Flights (Limit 5)
+          // Fetch Live Flights
           try {
             const { data: flights, error } = await supabase
               .from('egr_flights')
@@ -289,11 +360,11 @@
 
                 html += `
                   <tr class="hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-0 group cursor-default">
-                    <td class="p-5 font-bold text-[#111827] group-hover:text-[#D71A21] transition-colors"><i class="fa-solid fa-plane mr-2 text-gray-400 group-hover:text-[#D71A21]"></i> ${flight.flight_number}</td>
-                    <td class="p-5"><span class="font-bold text-gray-700">${flight.departure_airport}</span> <i class="fa-solid fa-arrow-right-long text-gray-400 mx-2"></i> <span class="font-bold text-gray-700">${flight.arrival_airport}</span></td>
-                    <td class="p-5 text-gray-500">${flight.aircraft_type || 'TBD'}</td>
-                    <td class="p-5 font-semibold text-gray-800">${timeString} <span class="text-gray-400 font-normal ml-2">${dateString}</span></td>
-                    <td class="p-5 text-right uppercase tracking-widest text-[10px] ${statusColor}">${dot} ${flight.status}</td>
+                    <td class="p-4 md:p-5 font-bold text-[#111827] group-hover:text-[#D71A21] transition-colors"><i class="fa-solid fa-plane mr-2 text-gray-400 group-hover:text-[#D71A21]"></i> ${flight.flight_number}</td>
+                    <td class="p-4 md:p-5"><span class="font-bold text-gray-700">${flight.departure_airport}</span> <i class="fa-solid fa-arrow-right-long text-gray-400 mx-1 md:mx-2"></i> <span class="font-bold text-gray-700">${flight.arrival_airport}</span></td>
+                    <td class="p-4 md:p-5 text-gray-500">${flight.aircraft_type || 'TBD'}</td>
+                    <td class="p-4 md:p-5 font-semibold text-gray-800">${timeString} <span class="text-gray-400 font-normal ml-2 hidden sm:inline">${dateString}</span></td>
+                    <td class="p-4 md:p-5 text-right uppercase tracking-widest text-[10px] ${statusColor}">${dot} ${flight.status}</td>
                   </tr>
                 `;
               });
@@ -303,7 +374,7 @@
              document.getElementById('live-flight-board').innerHTML = `<tr><td colspan="5" class="p-8 text-center text-red-500 font-bold">Radar connection failed.</td></tr>`;
           }
 
-          // 4. Fetch Latest News (Limit 3)
+          // Fetch Latest News
           try {
             const { data: news, error } = await supabase
               .from('egr_news')
