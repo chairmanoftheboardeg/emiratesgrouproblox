@@ -1,49 +1,289 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Our Vision — EGR</title>
-  <meta name="description" content="Emirates Group Roblox (EGR) — Vision 2026">
-  <link rel="icon" type="image/png" href="/images/logo.png?v=20260111">
-  <link rel="shortcut icon" href="/images/logo.png?v=20260111">
-  <link rel="apple-touch-icon" href="/images/logo.png?v=20260111">
-<link rel="stylesheet" href="/assets/app.css">
-<script src="/assets/app.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vision & Mission | Emirates Group Roblox</title>
+  
+  <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" id="favicon" />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../../style.css"> 
+
+  <style>
+    @keyframes loadBar { 0% { width: 0%; } 100% { width: 100%; } }
+    .animate-load-bar { animation: loadBar 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+  </style>
 </head>
-<body>
-  <div id="navHost"></div>
+<body class="flex flex-col min-h-screen relative fade-in bg-white">
 
-  <main>
-  <section class="section">
-    <div class="container">
-      <div class="reveal">
-        <p class="eyebrow">Vision 2026</p>
-        <h1>Where EGR is going</h1>
-        <p class="lead">
-          Vision 2026 defines our commitment to an ecosystem where professionalism meets immersive technology. We deliver a high-fidelity experience through structured divisions, consistent standards, and a disciplined operating model.
-        </p>
-      </div>
+  <div id="egr-loader" class="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center transition-opacity duration-700">
+    <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox" class="h-20 md:h-28 object-contain mb-8 opacity-90 animate-pulse">
+    <div class="w-48 h-[2px] bg-gray-200 overflow-hidden">
+      <div class="h-full bg-[#D71A21] animate-load-bar"></div>
+    </div>
+  </div>
 
-      <div class="grid three" style="margin-top:22px;">
-        <div class="card reveal"><h3>Operational Integrity</h3><p class="muted">Standards-first execution that keeps quality consistent and measurable.</p></div>
-        <div class="card reveal"><h3>Training &amp; Progression</h3><p class="muted">A structured path through Aviation University for skill and readiness.</p></div>
-        <div class="card reveal"><h3>Innovation</h3><p class="muted">Systems that improve communication, clarity, and cross-division coordination.</p></div>
-      </div>
+  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-50 border-b-4 border-[#D71A21]">
+    <a href="/" class="flex items-center group">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox Logo" class="h-10 md:h-12 object-contain group-hover:opacity-80 transition-opacity">
+    </a>
 
-      <div class="reveal" style="margin-top:22px;">
-        <div class="card">
-          <h3>Roadmap structure</h3>
-          <p class="muted">
-            Our roadmap is designed around stability and scalability. We standardise operations first, expand capabilities second, and then integrate advanced systems that protect quality across growth.
-          </p>
+    <button id="mobile-menu-btn" class="lg:hidden text-gray-800 text-2xl focus:outline-none">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="hidden lg:flex space-x-6 text-sm font-bold items-center text-gray-700">
+      <a href="/" class="hover:text-[#D71A21] transition-colors">Home</a>
+      
+      <div class="relative group py-2">
+        <button class="text-[#D71A21] transition-colors flex items-center">
+          About Us <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/about/vision/" class="block px-5 py-3 hover:bg-gray-50 border-b text-[#D71A21]">Vision, Mission & Story</a>
+          <a href="/about/people/" class="block px-5 py-3 hover:bg-gray-50 border-b">Our People</a>
+          <a href="/about/governance/" class="block px-5 py-3 hover:bg-gray-50 border-b">Our Governance</a>
+          <a href="/about/subsidiaries/" class="block px-5 py-3 hover:bg-gray-50 border-b">Our Subsidiaries</a>
+          <a href="/about/partners/" class="block px-5 py-3 hover:bg-gray-50 border-b">Partners & Affiliates</a>
+          <a href="/about/timeline/" class="block px-5 py-3 hover:bg-gray-50 border-b">Timeline</a>
+          <a href="/about/innovation/" class="block px-5 py-3 hover:bg-gray-50">Our Innovation</a>
         </div>
       </div>
+
+      <a href="/flights/" class="hover:text-[#D71A21] transition-colors">Flights</a>
+      
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Media <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/media/newsroom/" class="block px-5 py-3 hover:bg-gray-50 border-b">Newsroom</a>
+          <a href="/media/gallery/" class="block px-5 py-3 hover:bg-gray-50">Media Gallery</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Help Center <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block px-5 py-3 hover:bg-gray-50 border-b"><i class="fa-brands fa-discord mr-2"></i> Contact Us</a>
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block px-5 py-3 hover:bg-gray-50 text-[#D71A21]"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Report an Issue</a>
+        </div>
+      </div>
+
+      <a href="https://careers.emiratesgrouproblox.link" target="_blank" class="bg-[#D71A21] hover:bg-red-800 text-white px-5 py-2 rounded transition-colors shadow-md flex items-center uppercase tracking-widest text-xs">
+        Careers <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-[10px]"></i>
+      </a>
     </div>
-  </section>
-</main>
+  </nav>
 
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#111827] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col lg:hidden">
+    <div class="p-6 flex justify-between items-center border-b border-gray-800 bg-white">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Logo" class="h-10 object-contain">
+      <button id="mobile-menu-close" class="text-gray-800 text-3xl focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <div class="p-6 overflow-y-auto space-y-8 text-white flex-grow">
+      <a href="/" class="block text-xl font-bold hover:text-[#D71A21]">Home</a>
+      
+      <div>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">About Us</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
+          <a href="/about/vision/" class="block text-[#D71A21]">Vision, Mission & Story</a>
+          <a href="/about/people/" class="block hover:text-white">Our People</a>
+          <a href="/about/governance/" class="block hover:text-white">Our Governance</a>
+          <a href="/about/subsidiaries/" class="block hover:text-white">Our Subsidiaries</a>
+          <a href="/about/partners/" class="block hover:text-white">Partners & Affiliates</a>
+          <a href="/about/timeline/" class="block hover:text-white">Timeline</a>
+          <a href="/about/innovation/" class="block hover:text-white">Our Innovation</a>
+        </div>
+      </div>
 
-  <div id="footerHost"></div>
+      <a href="/flights/" class="block text-xl font-bold hover:text-[#D71A21]">Flights</a>
+
+      <div>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Media</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
+          <a href="/media/newsroom/" class="block hover:text-white">Newsroom</a>
+          <a href="/media/gallery/" class="block hover:text-white">Media Gallery</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Help Center</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block hover:text-white"><i class="fa-brands fa-discord mr-2"></i> Contact Us</a>
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block text-[#D71A21]"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Report an Issue</a>
+        </div>
+      </div>
+
+      <a href="https://careers.emiratesgrouproblox.link" target="_blank" class="block bg-[#D71A21] text-white text-center py-4 rounded font-bold uppercase tracking-widest mt-6">
+        Careers Portal <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
+      </a>
+    </div>
+  </div>
+
+  <header class="bg-[#111827] text-white py-24 md:py-32 px-6 relative overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-luminosity" style="background-image: url('https://images.unsplash.com/photo-1540339832862-4745ea31a301?q=80&w=2070&auto=format&fit=crop');"></div>
+    <div class="max-w-5xl mx-auto relative z-10 text-center">
+      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Corporate Identity</span>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 uppercase tracking-tight">Vision, Mission & Story</h1>
+      <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed">Discover the foundation, ambition, and core philosophy driving the most prestigious virtual airline network on the platform.</p>
+    </div>
+  </header>
+
+  <main class="flex-grow py-20 md:py-28 px-6 md:px-12 bg-white">
+    <div class="max-w-6xl mx-auto">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-28">
+        <div>
+          <h2 class="text-3xl md:text-5xl font-bold text-[#111827] mb-8 uppercase tracking-tighter border-l-4 border-[#D71A21] pl-4">Our Story</h2>
+          <div class="space-y-6 text-gray-600 leading-relaxed">
+            <p>
+              Emirates Group Roblox was not established simply to simulate flight; it was engineered to revolutionize the structural integrity of virtual aviation. Founded under the strategic umbrella of the Tyler Nicholas Group, our organization emerged from a singular, uncompromising ambition: to bridge the gap between high-fidelity aviation simulation and elite community engagement.
+            </p>
+            <p>
+              In the early days of Roblox aviation, the platform was fragmented. Communities lacked professional oversight, fleets were unoptimized, and the passenger experience was an afterthought. We saw an opportunity to disrupt the status quo. By implementing real-world corporate hierarchies, rigorous staff training programs, and meticulous architectural design, EGR was born.
+            </p>
+            <p>
+              Today, we are more than an airline. We are a digital ecosystem comprising multiple subsidiaries, handling complex logistical virtual operations, and connecting thousands of members globally.
+            </p>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute inset-0 bg-[#111827] transform -translate-x-4 translate-y-4 rounded shadow-2xl"></div>
+          <img src="https://i.ibb.co/pjK8YGTN/A350-New-Pics.png" alt="EGR In Flight" class="relative rounded shadow-lg object-cover h-[500px] w-full">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-28">
+        
+        <div class="bg-[#111827] text-white p-10 md:p-14 rounded-xl shadow-2xl relative overflow-hidden group">
+          <i class="fa-solid fa-bullseye absolute -right-10 -bottom-10 text-[12rem] text-white opacity-5 group-hover:scale-110 transition-transform duration-700"></i>
+          <div class="relative z-10">
+            <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-xs mb-2 block">Our Objective</span>
+            <h3 class="text-3xl font-serif font-bold mb-6">The Mission</h3>
+            <p class="text-gray-300 leading-relaxed text-lg border-l-2 border-gray-600 pl-4 italic">
+              "To engineer an unparalleled virtual aviation experience through meticulous architectural design, advanced flight technology, and world-class passenger service, setting the definitive standard for roleplay professionalism."
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 border border-gray-200 p-10 md:p-14 rounded-xl shadow-lg relative overflow-hidden group">
+          <i class="fa-solid fa-eye absolute -right-10 -bottom-10 text-[12rem] text-[#111827] opacity-5 group-hover:scale-110 transition-transform duration-700"></i>
+          <div class="relative z-10">
+            <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-xs mb-2 block">Our Future</span>
+            <h3 class="text-3xl font-serif font-bold text-[#111827] mb-6">The Vision</h3>
+            <p class="text-gray-700 leading-relaxed text-lg border-l-2 border-[#D71A21] pl-4 italic">
+              "To remain the undisputed leader in Roblox aviation ecosystems, continuously expanding our global route network, incubating new subsidiary ventures, and pushing the boundaries of what a virtual corporation can achieve."
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-[#111827] mb-4 uppercase tracking-tighter">Our Core Values</h2>
+        <p class="text-gray-500 max-w-2xl mx-auto">The fundamental principles that dictate how we operate, recruit, and fly.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <div class="bg-white border-t-4 border-[#D71A21] p-8 rounded shadow-sm hover:shadow-lg transition-shadow">
+          <i class="fa-solid fa-gem text-3xl text-[#111827] mb-4"></i>
+          <h4 class="text-xl font-bold text-[#111827] mb-3">Uncompromising Luxury</h4>
+          <p class="text-sm text-gray-600 leading-relaxed">From our First Class cabins to our Discord infrastructure, we ensure a premium experience at every single touchpoint.</p>
+        </div>
+
+        <div class="bg-white border-t-4 border-[#111827] p-8 rounded shadow-sm hover:shadow-lg transition-shadow">
+          <i class="fa-solid fa-crosshairs text-3xl text-[#D71A21] mb-4"></i>
+          <h4 class="text-xl font-bold text-[#111827] mb-3">Absolute Precision</h4>
+          <p class="text-sm text-gray-600 leading-relaxed">Aviation leaves no room for error. Our Flight Operations and Ground Services teams are trained to execute protocols flawlessly.</p>
+        </div>
+
+        <div class="bg-white border-t-4 border-[#D71A21] p-8 rounded shadow-sm hover:shadow-lg transition-shadow">
+          <i class="fa-solid fa-microchip text-3xl text-[#111827] mb-4"></i>
+          <h4 class="text-xl font-bold text-[#111827] mb-3">Relentless Innovation</h4>
+          <p class="text-sm text-gray-600 leading-relaxed">We constantly upgrade our fleet tech, scripting mechanisms, and visual assets to remain at the bleeding edge of the platform.</p>
+        </div>
+
+        <div class="bg-white border-t-4 border-[#111827] p-8 rounded shadow-sm hover:shadow-lg transition-shadow">
+          <i class="fa-solid fa-globe text-3xl text-[#D71A21] mb-4"></i>
+          <h4 class="text-xl font-bold text-[#111827] mb-3">Global Community</h4>
+          <p class="text-sm text-gray-600 leading-relaxed">Though our standards are strict, our doors are open. We foster an inclusive, merit-based environment for aviators worldwide.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-[#111827] text-white py-12 md:py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
+      <div class="md:col-span-2">
+        <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest">Emirates Group Roblox</h3>
+        <p class="text-sm text-gray-400 max-w-md mb-6 leading-relaxed">The premier virtual aviation organization on the Roblox platform. A proud subsidiary of the Tyler Nicholas Group, committed to structural perfection and digital realism.</p>
+        
+        <div class="flex flex-wrap gap-4 text-xl text-gray-400">
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="hover:text-[#5865F2] transition-colors"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white transition-colors"><i class="fa-solid fa-cube"></i></a>
+          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] transition-colors"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] transition-colors"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] transition-colors"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] transition-colors"><i class="fa-brands fa-trello"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Corporate Links</h4>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li><a href="/about/vision/" class="hover:text-[#D71A21] transition-colors text-[#D71A21]">Our Vision</a></li>
+          <li><a href="/flights/" class="hover:text-[#D71A21] transition-colors">Flight Radar</a></li>
+          <li><a href="/media/newsroom/" class="hover:text-[#D71A21] transition-colors">Newsroom</a></li>
+          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors">Careers Portal</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Legal & Support</h4>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-[#D71A21] transition-colors">Tyler Nicholas Group</a></li>
+          <li><a href="https://discord.gg/nDAZ3p475V" target="_blank" class="hover:text-[#D71A21] transition-colors">Contact Support</a></li>
+          <li><span class="italic text-xs mt-4 block">Disclaimer: EGR is a virtual organization and is not affiliated with the real-world Emirates airline.</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-10 md:mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 text-center md:text-left gap-2">
+      <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
+      <p>Powered by Tyler Nicholas Group Network</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Mobile Menu Logic
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileClose = document.getElementById('mobile-menu-close');
+      const mobileMenu = document.getElementById('mobile-menu-overlay');
+
+      if(mobileBtn && mobileClose && mobileMenu) {
+        mobileBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+        mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+      }
+
+      // Loader logic
+      setTimeout(() => {
+        const loader = document.getElementById('egr-loader');
+        if(loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 700);
+        }
+      }, 1000); // 1s wait for the bar animation
+    });
+  </script>
 </body>
 </html>
