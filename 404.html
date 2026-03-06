@@ -1,41 +1,238 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>No Access — EGR</title>
-  <meta name="description" content="Emirates Group Roblox (EGR) — Vision 2026">
-  <link rel="icon" type="image/png" href="/images/logo.png?v=20260111">
-  <link rel="shortcut icon" href="/images/logo.png?v=20260111">
-  <link rel="apple-touch-icon" href="/images/logo.png?v=20260111">
-<link rel="stylesheet" href="/assets/app.css">
-<script src="/assets/app.js" defer></script>
-</head>
-<body>
-  <div id="navHost"></div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Destination Not Found | Emirates Group Roblox</title>
+  
+  <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" id="favicon" />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/style.css"> 
 
-  <main>
-  <section class="section">
-    <div class="container">
-      <div class="reveal">
-        <p class="eyebrow">No Access</p>
-        <h1>You do not have access to this page</h1>
-        <p class="lead">
-          The page you attempted to reach may be unavailable or restricted. Use the options below to continue.
-        </p>
+  <style>
+    @keyframes loadBar { 0% { width: 0%; } 100% { width: 100%; } }
+    .animate-load-bar { animation: loadBar 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+    
+    /* Radar Ping Animation */
+    @keyframes radarPing {
+      0% { transform: scale(0.5); opacity: 0.8; }
+      100% { transform: scale(2.5); opacity: 0; }
+    }
+    .animate-radar { animation: radarPing 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen relative fade-in bg-gray-50">
+
+  <div id="egr-loader" class="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center transition-opacity duration-700">
+    <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox" class="h-20 md:h-28 object-contain mb-8 opacity-90 animate-pulse">
+    <div class="w-48 h-[2px] bg-gray-200 overflow-hidden">
+      <div class="h-full bg-[#D71A21] animate-load-bar"></div>
+    </div>
+  </div>
+
+  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-50 border-b-4 border-[#D71A21]">
+    <a href="/" class="flex items-center group">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox Logo" class="h-10 md:h-12 object-contain group-hover:opacity-80 transition-opacity">
+    </a>
+
+    <button id="mobile-menu-btn" class="lg:hidden text-gray-800 text-2xl focus:outline-none">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="hidden lg:flex space-x-6 text-sm font-bold items-center text-gray-700">
+      <a href="/" class="hover:text-[#D71A21] transition-colors">Home</a>
+      
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          About Us <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/about/vision/" class="block px-5 py-3 hover:bg-gray-50 border-b">Vision, Mission & Story</a>
+          <a href="/about/people/" class="block px-5 py-3 hover:bg-gray-50 border-b">Our People</a>
+          <a href="/about/governance/" class="block px-5 py-3 hover:bg-gray-50 border-b">Our Governance</a>
+          <a href="/about/subsidiaries/" class="block px-5 py-3 hover:bg-gray-50 border-b">Our Subsidiaries</a>
+          <a href="/about/partners/" class="block px-5 py-3 hover:bg-gray-50 border-b">Partners & Affiliates</a>
+          <a href="/about/timeline/" class="block px-5 py-3 hover:bg-gray-50 border-b">Timeline</a>
+          <a href="/about/innovation/" class="block px-5 py-3 hover:bg-gray-50">Our Innovation</a>
+        </div>
       </div>
 
-      <div class="reveal" style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
-        <a class="btn primary" href="/">Return Home</a>
-        <a class="btn secondary" href="/faq/">Open FAQ</a>
-        <a class="btn secondary" href="/redirects/contact/">Contact Us</a>
-        <a class="btn secondary" href="https://discord.com/channels/1189224375019388999/1454752184683200615" target="_blank" rel="noopener">HR Contact</a>
+      <a href="/flights/" class="hover:text-[#D71A21] transition-colors">Flights</a>
+      
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Media <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/media/newsroom/" class="block px-5 py-3 hover:bg-gray-50 border-b">Newsroom</a>
+          <a href="/media/gallery/" class="block px-5 py-3 hover:bg-gray-50">Media Gallery</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Help Center <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block px-5 py-3 hover:bg-gray-50 border-b"><i class="fa-brands fa-discord mr-2"></i> Contact Us</a>
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block px-5 py-3 hover:bg-gray-50 text-[#D71A21]"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Report an Issue</a>
+        </div>
+      </div>
+
+      <a href="https://careers.emiratesgrouproblox.link" target="_blank" class="bg-[#D71A21] hover:bg-red-800 text-white px-5 py-2 rounded transition-colors shadow-md flex items-center uppercase tracking-widest text-xs">
+        Careers <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-[10px]"></i>
+      </a>
+    </div>
+  </nav>
+
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#111827] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col lg:hidden">
+    <div class="p-6 flex justify-between items-center border-b border-gray-800 bg-white">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Logo" class="h-10 object-contain">
+      <button id="mobile-menu-close" class="text-gray-800 text-3xl focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <div class="p-6 overflow-y-auto space-y-8 text-white flex-grow">
+      <a href="/" class="block text-xl font-bold hover:text-[#D71A21]">Home</a>
+      
+      <div>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">About Us</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
+          <a href="/about/vision/" class="block hover:text-white">Vision, Mission & Story</a>
+          <a href="/about/people/" class="block hover:text-white">Our People</a>
+          <a href="/about/governance/" class="block hover:text-white">Our Governance</a>
+          <a href="/about/subsidiaries/" class="block hover:text-white">Our Subsidiaries</a>
+          <a href="/about/partners/" class="block hover:text-white">Partners & Affiliates</a>
+          <a href="/about/timeline/" class="block hover:text-white">Timeline</a>
+          <a href="/about/innovation/" class="block hover:text-white">Our Innovation</a>
+        </div>
+      </div>
+
+      <a href="/flights/" class="block text-xl font-bold hover:text-[#D71A21]">Flights</a>
+
+      <div>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Media</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
+          <a href="/media/newsroom/" class="block hover:text-white">Newsroom</a>
+          <a href="/media/gallery/" class="block hover:text-white">Media Gallery</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Help Center</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block hover:text-white"><i class="fa-brands fa-discord mr-2"></i> Contact Us</a>
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block text-[#D71A21]"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Report an Issue</a>
+        </div>
+      </div>
+
+      <a href="https://careers.emiratesgrouproblox.link" target="_blank" class="block bg-[#D71A21] text-white text-center py-4 rounded font-bold uppercase tracking-widest mt-6">
+        Careers Portal <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
+      </a>
+    </div>
+  </div>
+
+  <main class="flex-grow flex items-center justify-center py-20 px-6 bg-[#111827] relative overflow-hidden text-center text-white">
+    
+    <div class="absolute inset-0 opacity-5">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+      </svg>
+    </div>
+
+    <div class="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
+      
+      <div class="relative w-32 h-32 mb-10 flex items-center justify-center">
+        <div class="absolute inset-0 border-2 border-[#D71A21] rounded-full animate-radar"></div>
+        <div class="absolute inset-0 border-2 border-[#D71A21] rounded-full animate-radar" style="animation-delay: 1s;"></div>
+        <i class="fa-solid fa-satellite-dish text-5xl text-[#D71A21]"></i>
+      </div>
+
+      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Error 404</span>
+      <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6 uppercase tracking-tight">Radar Contact Lost</h1>
+      <p class="text-gray-400 md:text-lg leading-relaxed mb-10">
+        The destination you are attempting to reach has been diverted, is currently under construction, or does not exist within the Emirates Group Roblox network.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/" class="bg-[#D71A21] hover:bg-red-800 text-white font-bold py-4 px-8 rounded shadow-lg transition-colors uppercase tracking-widest text-sm flex items-center justify-center">
+          <i class="fa-solid fa-house mr-2"></i> Return to Hub
+        </a>
+        <button onclick="window.history.back()" class="bg-transparent border border-gray-600 hover:border-white text-gray-300 hover:text-white font-bold py-4 px-8 rounded shadow-sm transition-colors uppercase tracking-widest text-sm flex items-center justify-center">
+          <i class="fa-solid fa-arrow-left mr-2"></i> Previous Heading
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-[#111827] text-white py-12 md:py-16 px-6 md:px-12 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
+      <div class="md:col-span-2">
+        <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest">Emirates Group Roblox</h3>
+        <p class="text-sm text-gray-400 max-w-md mb-6 leading-relaxed">The premier virtual aviation organization on the Roblox platform. A proud subsidiary of the Tyler Nicholas Group, committed to structural perfection and digital realism.</p>
+        
+        <div class="flex flex-wrap gap-4 text-xl text-gray-400">
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="hover:text-[#5865F2] transition-colors"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white transition-colors"><i class="fa-solid fa-cube"></i></a>
+          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] transition-colors"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] transition-colors"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] transition-colors"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] transition-colors"><i class="fa-brands fa-trello"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Corporate Links</h4>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li><a href="/about/vision/" class="hover:text-[#D71A21] transition-colors">Our Vision</a></li>
+          <li><a href="/flights/" class="hover:text-[#D71A21] transition-colors">Flight Radar</a></li>
+          <li><a href="/media/newsroom/" class="hover:text-[#D71A21] transition-colors">Newsroom</a></li>
+          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors">Careers Portal</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Legal & Support</h4>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-[#D71A21] transition-colors">Tyler Nicholas Group</a></li>
+          <li><a href="https://discord.gg/nDAZ3p475V" target="_blank" class="hover:text-[#D71A21] transition-colors">Contact Support</a></li>
+          <li><span class="italic text-xs mt-4 block">Disclaimer: EGR is a virtual organization and is not affiliated with the real-world Emirates airline.</span></li>
+        </ul>
       </div>
     </div>
-  </section>
-</main>
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-10 md:mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 text-center md:text-left gap-2">
+      <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
+      <p>Powered by Tyler Nicholas Group Network</p>
+    </div>
+  </footer>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileClose = document.getElementById('mobile-menu-close');
+      const mobileMenu = document.getElementById('mobile-menu-overlay');
 
-  <div id="footerHost"></div>
+      if(mobileBtn && mobileClose && mobileMenu) {
+        mobileBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+        mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+      }
+
+      setTimeout(() => {
+        const loader = document.getElementById('egr-loader');
+        if(loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 700);
+        }
+      }, 1000); 
+    });
+  </script>
 </body>
 </html>
