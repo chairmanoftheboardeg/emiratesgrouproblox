@@ -9,7 +9,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-  <!-- FIX: Use the UMD build so window.supabase is available -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
 
   <style>
@@ -72,6 +71,11 @@
         <button onclick="switchTab('news')" id="tab-news" class="admin-tab w-full text-left px-4 py-3 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-regular fa-newspaper w-6 text-center"></i> Newsroom</button>
         <button onclick="switchTab('media')" id="tab-media" class="admin-tab w-full text-left px-4 py-3 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-images w-6 text-center"></i> Media Gallery</button>
         <button onclick="switchTab('innovations')" id="tab-innovations" class="admin-tab w-full text-left px-4 py-3 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-microchip w-6 text-center"></i> Innovations</button>
+        
+        <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold px-4 pt-4 pb-1">Recruitment</p>
+        <button onclick="switchTab('jobs')" id="tab-jobs" class="admin-tab w-full text-left px-4 py-3 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-briefcase w-6 text-center"></i> Job Postings</button>
+        <button onclick="switchTab('applications')" id="tab-applications" class="admin-tab w-full text-left px-4 py-3 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-file-signature w-6 text-center"></i> Applications</button>
+
         <hr class="border-gray-800 my-4">
         <a href="../" target="_blank" class="block w-full text-left px-4 py-3 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-up-right-from-square w-6 text-center"></i> View Live Site</a>
       </nav>
@@ -149,8 +153,7 @@
               <i class="fa-solid fa-upload mr-2"></i> Add Media Link
             </button>
           </div>
-          <div id="grid-media" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            </div>
+          <div id="grid-media" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
         </div>
 
         <div id="view-innovations" class="admin-section hidden">
@@ -174,6 +177,49 @@
           </div>
         </div>
 
+        <div id="view-jobs" class="admin-section hidden">
+          <div class="flex justify-between items-end mb-6">
+            <p class="text-gray-500 text-sm">Manage active career opportunities visible on the recruitment portal.</p>
+            <button onclick="openModal('job')" class="bg-[#111827] hover:bg-[#D71A21] text-white font-bold py-2 px-6 rounded shadow transition-colors text-sm uppercase tracking-widest">
+              <i class="fa-solid fa-plus mr-2"></i> Create Job Post
+            </button>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <table class="w-full text-left text-sm whitespace-nowrap">
+              <thead class="bg-gray-50 border-b border-gray-200 text-gray-500 uppercase text-[10px] tracking-widest font-bold">
+                <tr>
+                  <th class="p-4">Job Title</th>
+                  <th class="p-4">Department</th>
+                  <th class="p-4">Status</th>
+                  <th class="p-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="table-jobs" class="divide-y divide-gray-100 text-gray-800 font-medium"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="view-applications" class="admin-section hidden">
+          <div class="flex justify-between items-end mb-6">
+            <p class="text-gray-500 text-sm">Review candidate submissions and manage their employment status.</p>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <table class="w-full text-left text-sm whitespace-nowrap">
+              <thead class="bg-gray-50 border-b border-gray-200 text-gray-500 uppercase text-[10px] tracking-widest font-bold">
+                <tr>
+                  <th class="p-4">Date</th>
+                  <th class="p-4">Roblox User</th>
+                  <th class="p-4">Discord</th>
+                  <th class="p-4">Position Applied</th>
+                  <th class="p-4">Status</th>
+                  <th class="p-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="table-applications" class="divide-y divide-gray-100 text-gray-800 font-medium"></tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
     </main>
   </div>
@@ -189,9 +235,7 @@
         <div id="data-form" class="space-y-5">
           <input type="hidden" id="entry-id">
           <input type="hidden" id="entry-type">
-          
-          <div id="form-fields" class="space-y-5">
-            </div>
+          <div id="form-fields" class="space-y-5"></div>
         </div>
       </div>
 
@@ -214,6 +258,8 @@
     let dbNews = [];
     let dbMedia = [];
     let dbInnovations = [];
+    let dbJobs = [];
+    let dbApplications = [];
 
     document.addEventListener("DOMContentLoaded", () => {
       const checkSupabase = setInterval(() => {
@@ -222,7 +268,6 @@
           supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
           checkSession();
           
-          // Listen for auth state changes
           supabase.auth.onAuthStateChange((event, session) => {
             if (event === 'SIGNED_OUT') showLogin();
           });
@@ -230,28 +275,24 @@
       }, 100);
     });
 
-    // --- NEW BULLETPROOF AUTHENTICATION FUNCTION ---
     async function attemptLogin() {
       const email = document.getElementById('login-email').value;
       const password = document.getElementById('login-password').value;
       const btn = document.getElementById('login-btn');
       const err = document.getElementById('login-error');
       
-      // Basic validation
       if (!email || !password) {
         err.innerText = "Please enter your executive email and passcode.";
         err.classList.remove('hidden');
         return;
       }
 
-      // Safety Check
       if (!supabase) {
         err.innerText = "System still connecting to the database. Please wait a moment.";
         err.classList.remove('hidden');
         return;
       }
 
-      // Show Loading State
       btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i>`;
       err.classList.add('hidden');
       
@@ -259,15 +300,12 @@
         const { data, error } = await supabase.auth.signInWithPassword({ email, password });
         
         if (error) {
-          err.innerText = error.message; // Supabase will return "Invalid login credentials"
+          err.innerText = error.message; 
           err.classList.remove('hidden');
           btn.innerHTML = `Authenticate <i class="fa-solid fa-fingerprint ml-2"></i>`;
         } else if (data.session) {
-          // Success!
           btn.innerHTML = `Authenticated <i class="fa-solid fa-check ml-2"></i>`;
-          setTimeout(() => {
-             loadDashboard(data.session.user);
-          }, 400);
+          setTimeout(() => { loadDashboard(data.session.user); }, 400);
         } else {
           err.innerText = "Please verify your email address in Supabase.";
           err.classList.remove('hidden');
@@ -304,11 +342,7 @@
     function loadDashboard(user) {
       document.getElementById('login-view').classList.add('hidden');
       document.getElementById('admin-view').classList.remove('hidden');
-      
-      if(user && user.email) {
-          document.getElementById('admin-email').innerText = user.email.split('@')[0];
-      }
-      
+      if(user && user.email) { document.getElementById('admin-email').innerText = user.email.split('@')[0]; }
       fetchAllData();
     }
 
@@ -326,7 +360,9 @@
         'flights': 'Flight Radar Management',
         'news': 'Corporate Newsroom Archives',
         'media': 'Media Gallery Database',
-        'innovations': 'Engineering & Innovations'
+        'innovations': 'Engineering & Innovations',
+        'jobs': 'Job Postings Management',
+        'applications': 'Application Review Center'
       };
       document.getElementById('section-title').innerText = titles[tab];
     }
@@ -337,33 +373,39 @@
       fetchNews();
       fetchMedia();
       fetchInnovations();
+      fetchJobs();
+      fetchApplications();
     }
 
     async function fetchFlights() {
       const { data } = await supabase.from('egr_flights').select('*').order('departure_time', { ascending: true });
       if(data) { dbFlights = data; renderFlights(); }
     }
-    
     async function fetchNews() {
       const { data } = await supabase.from('egr_news').select('*').order('published_at', { ascending: false });
       if(data) { dbNews = data; renderNews(); }
     }
-
     async function fetchMedia() {
       const { data } = await supabase.from('egr_media').select('*').order('created_at', { ascending: false });
       if(data) { dbMedia = data; renderMedia(); }
     }
-
     async function fetchInnovations() {
       const { data } = await supabase.from('egr_innovations').select('*').order('created_at', { ascending: false });
       if(data) { dbInnovations = data; renderInnovations(); }
+    }
+    async function fetchJobs() {
+      const { data } = await supabase.from('egr_jobs').select('*').order('created_at', { ascending: false });
+      if(data) { dbJobs = data; renderJobs(); }
+    }
+    async function fetchApplications() {
+      const { data } = await supabase.from('egr_applications').select('*').order('created_at', { ascending: false });
+      if(data) { dbApplications = data; renderApplications(); }
     }
 
     // --- RENDERING ---
     function renderFlights() {
       const tbody = document.getElementById('table-flights');
       if (dbFlights.length === 0) return tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-gray-400">No active flights.</td></tr>`;
-      
       let html = '';
       dbFlights.forEach(f => {
         const time = new Date(f.departure_time).toLocaleString('en-US', {month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit'});
@@ -391,7 +433,6 @@
     function renderNews() {
       const tbody = document.getElementById('table-news');
       if (dbNews.length === 0) return tbody.innerHTML = `<tr><td colspan="4" class="p-8 text-center text-gray-400">No news articles found.</td></tr>`;
-      
       let html = '';
       dbNews.forEach(n => {
         const time = new Date(n.published_at).toLocaleDateString();
@@ -413,7 +454,6 @@
     function renderMedia() {
       const grid = document.getElementById('grid-media');
       if (dbMedia.length === 0) return grid.innerHTML = `<div class="col-span-full text-center p-8 text-gray-400 font-bold">No media uploaded.</div>`;
-      
       let html = '';
       dbMedia.forEach(m => {
         html += `
@@ -431,7 +471,6 @@
     function renderInnovations() {
       const tbody = document.getElementById('table-innovations');
       if (dbInnovations.length === 0) return tbody.innerHTML = `<tr><td colspan="3" class="p-8 text-center text-gray-400">No innovations logged.</td></tr>`;
-      
       let html = '';
       dbInnovations.forEach(i => {
         const active = i.is_active ? `<span class="text-green-600 font-bold text-xs">Active Protocol</span>` : `<span class="text-gray-400 font-bold text-xs">Archived</span>`;
@@ -442,6 +481,54 @@
             <td class="p-4 text-right">
               <button onclick="openModal('innovation', '${i.id}')" class="text-blue-600 hover:text-blue-800 mr-3"><i class="fa-solid fa-pen"></i></button>
               <button onclick="deleteRecord('egr_innovations', '${i.id}')" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          </tr>`;
+      });
+      tbody.innerHTML = html;
+    }
+
+    function renderJobs() {
+      const tbody = document.getElementById('table-jobs');
+      if (dbJobs.length === 0) return tbody.innerHTML = `<tr><td colspan="4" class="p-8 text-center text-gray-400">No job postings created.</td></tr>`;
+      let html = '';
+      dbJobs.forEach(j => {
+        const active = j.is_active ? `<span class="text-green-600 font-bold text-xs">Hiring Open</span>` : `<span class="text-[#D71A21] font-bold text-xs">Closed</span>`;
+        html += `
+          <tr class="hover:bg-gray-50 border-b border-gray-100">
+            <td class="p-4 font-bold text-[#111827]">${j.title}</td>
+            <td class="p-4 text-gray-500">${j.department || 'N/A'}</td>
+            <td class="p-4">${active}</td>
+            <td class="p-4 text-right">
+              <button onclick="openModal('job', '${j.id}')" class="text-blue-600 hover:text-blue-800 mr-3"><i class="fa-solid fa-pen"></i></button>
+              <button onclick="deleteRecord('egr_jobs', '${j.id}')" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          </tr>`;
+      });
+      tbody.innerHTML = html;
+    }
+
+    function renderApplications() {
+      const tbody = document.getElementById('table-applications');
+      if (dbApplications.length === 0) return tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-gray-400">No applications received yet.</td></tr>`;
+      let html = '';
+      dbApplications.forEach(a => {
+        const time = new Date(a.created_at).toLocaleDateString();
+        
+        let statusBadge = `<span class="px-2 py-1 bg-gray-200 text-gray-700 rounded text-[10px] font-bold uppercase">${a.status}</span>`;
+        if(a.status === 'Under Review') statusBadge = `<span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-[10px] font-bold uppercase">Reviewing</span>`;
+        if(a.status === 'Approved') statusBadge = `<span class="px-2 py-1 bg-green-100 text-green-700 rounded text-[10px] font-bold uppercase">Approved</span>`;
+        if(a.status === 'Denied') statusBadge = `<span class="px-2 py-1 bg-red-100 text-red-700 rounded text-[10px] font-bold uppercase">Denied</span>`;
+
+        html += `
+          <tr class="hover:bg-gray-50 border-b border-gray-100">
+            <td class="p-4 text-sm text-gray-500">${time}</td>
+            <td class="p-4 font-bold text-[#111827]">${a.roblox_username}</td>
+            <td class="p-4 text-blue-600 text-sm">${a.discord_username}</td>
+            <td class="p-4 text-sm font-semibold">${a.job_title}</td>
+            <td class="p-4">${statusBadge}</td>
+            <td class="p-4 text-right">
+              <button onclick="openModal('application', '${a.id}')" class="text-white bg-[#111827] hover:bg-gray-800 px-3 py-1 rounded text-xs font-bold mr-2 transition-colors">Review</button>
+              <button onclick="deleteRecord('egr_applications', '${a.id}')" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
             </td>
           </tr>`;
       });
@@ -462,14 +549,12 @@
       if (type === 'flight') {
         title.innerText = id ? "Edit Flight" : "Dispatch New Flight";
         const f = id ? dbFlights.find(x => x.id === id) : {};
-        
         let dtStr = '';
         if(f.departure_time) {
           const d = new Date(f.departure_time);
           d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
           dtStr = d.toISOString().slice(0,16);
         }
-
         html = `
           <div class="grid grid-cols-2 gap-4">
             <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Flight Number</label>
@@ -528,6 +613,54 @@
           <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Description</label>
           <textarea id="i-desc" class="w-full px-3 py-2 border rounded h-24 focus:ring-2 focus:ring-[#D71A21] outline-none" required>${i.description || ''}</textarea></div>
           <div class="flex items-center"><input type="checkbox" id="i-active" class="w-4 h-4 text-[#D71A21]" ${i.is_active !== false ? 'checked' : ''}><label class="ml-2 text-sm font-bold text-[#111827]">Active Protocol</label></div>
+        `;
+      }
+      else if (type === 'job') {
+        title.innerText = id ? "Edit Job Posting" : "Create Job Posting";
+        const j = id ? dbJobs.find(x => x.id === id) : {};
+        html = `
+          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Job Title</label>
+          <input type="text" id="j-title" value="${j.title || ''}" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#D71A21] outline-none" required></div>
+          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Department</label>
+          <input type="text" id="j-dep" value="${j.department || ''}" placeholder="e.g. Flight Operations" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#D71A21] outline-none" required></div>
+          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Job Description / Requirements</label>
+          <textarea id="j-desc" class="w-full px-3 py-2 border rounded h-32 focus:ring-2 focus:ring-[#D71A21] outline-none" required>${j.description || ''}</textarea></div>
+          <div class="flex items-center"><input type="checkbox" id="j-active" class="w-4 h-4 text-[#D71A21]" ${j.is_active !== false ? 'checked' : ''}><label class="ml-2 text-sm font-bold text-[#111827]">Open for Applications</label></div>
+        `;
+      }
+      else if (type === 'application') {
+        title.innerText = "Review Application";
+        const a = dbApplications.find(x => x.id === id);
+        
+        // This modal is primarily for viewing read-only data, so we format it beautifully.
+        html = `
+          <div class="grid grid-cols-2 gap-4 mb-4 bg-white p-4 rounded border border-gray-200">
+            <div>
+              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Roblox Username</p>
+              <p class="font-bold text-[#111827] text-lg">${a.roblox_username}</p>
+            </div>
+            <div>
+              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Discord Tag</p>
+              <p class="font-bold text-blue-600 text-lg">${a.discord_username}</p>
+            </div>
+          </div>
+          <div class="mb-4">
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Position Applied For</p>
+            <p class="font-bold text-[#111827] bg-gray-100 p-3 rounded">${a.job_title}</p>
+          </div>
+          <div class="mb-6">
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Application Answers</p>
+            <div class="text-sm text-gray-700 bg-white p-4 border border-gray-200 rounded h-40 overflow-y-auto whitespace-pre-wrap font-mono">${a.answers || 'No answers provided.'}</div>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Applicant Status</label>
+            <select id="a-status" class="w-full px-3 py-3 font-bold border rounded focus:ring-2 focus:ring-[#D71A21] outline-none">
+              <option value="Pending" ${a.status==='Pending'?'selected':''}>Pending</option>
+              <option value="Under Review" ${a.status==='Under Review'?'selected':''}>Under Review</option>
+              <option value="Approved" ${a.status==='Approved'?'selected':''}>Approved</option>
+              <option value="Denied" ${a.status==='Denied'?'selected':''}>Denied</option>
+            </select>
+          </div>
         `;
       }
 
@@ -592,6 +725,22 @@
           is_active: document.getElementById('i-active').checked
         };
       }
+      else if (type === 'job') {
+        table = 'egr_jobs';
+        payload = {
+          title: document.getElementById('j-title').value,
+          department: document.getElementById('j-dep').value,
+          description: document.getElementById('j-desc').value,
+          is_active: document.getElementById('j-active').checked
+        };
+      }
+      else if (type === 'application') {
+        table = 'egr_applications';
+        // For applications, we only let the admin update the status
+        payload = {
+          status: document.getElementById('a-status').value
+        };
+      }
 
       if (id) {
         await supabase.from(table).update(payload).eq('id', id);
@@ -602,20 +751,26 @@
       closeModal();
       btn.innerText = "Save Record";
       
+      // Refresh Data
       if(type === 'flight') fetchFlights();
       if(type === 'news') fetchNews();
       if(type === 'media') fetchMedia();
       if(type === 'innovation') fetchInnovations();
+      if(type === 'job') fetchJobs();
+      if(type === 'application') fetchApplications();
     }
 
     async function deleteRecord(table, id) {
       if(!supabase) return;
-      if(confirm("Are you sure you want to permanently delete this record?")) {
+      if(confirm("Are you sure you want to permanently delete this record? This action cannot be undone.")) {
         await supabase.from(table).delete().eq('id', id);
+        
         if(table === 'egr_flights') fetchFlights();
         if(table === 'egr_news') fetchNews();
         if(table === 'egr_media') fetchMedia();
         if(table === 'egr_innovations') fetchInnovations();
+        if(table === 'egr_jobs') fetchJobs();
+        if(table === 'egr_applications') fetchApplications();
       }
     }
   </script>
