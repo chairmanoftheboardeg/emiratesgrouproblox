@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EGR Admin Center</title>
+  <title>EGR Operations Command Center</title>
   <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" />
   
   <script src="https://cdn.tailwindcss.com"></script>
@@ -227,8 +227,9 @@
       }, 100);
     });
 
-    // --- AUTHENTICATION ---
+    // --- AUTHENTICATION (FAIL-PROOFED) ---
     async function checkSession() {
+      if (!supabase) return;
       const { data: { session } } = await supabase.auth.getSession();
       if (session && session.user) {
         loadDashboard(session.user);
@@ -244,11 +245,20 @@
 
     document.getElementById('login-form').addEventListener('submit', async (e) => {
       e.preventDefault();
+      
       const email = document.getElementById('login-email').value;
       const password = document.getElementById('login-password').value;
       const btn = document.getElementById('login-btn');
       const err = document.getElementById('login-error');
       
+      // Safety Check: Ensure Supabase loaded before they can submit
+      if (!supabase) {
+        err.innerText = "System still connecting to the database. Please wait 2 seconds.";
+        err.classList.remove('hidden');
+        return;
+      }
+
+      // Show Loading state
       btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i>`;
       err.classList.add('hidden');
       
@@ -256,36 +266,46 @@
         const { data, error } = await supabase.auth.signInWithPassword({ email, password });
         
         if (error) {
-          err.innerText = error.message || "Access Denied: Invalid Credentials";
+          // If password is wrong or user doesn't exist
+          err.innerText = error.message || "Invalid Credentials. Access Denied.";
           err.classList.remove('hidden');
-          btn.innerHTML = `Authenticate <i class="fa-solid fa-fingerprint ml-2"></i>`;
-        } else if (data.user) {
+        } else if (data.session) {
+          // If login is entirely successful
           btn.innerHTML = `Authenticated <i class="fa-solid fa-check ml-2"></i>`;
-          loadDashboard(data.user);
+          setTimeout(() => {
+             loadDashboard(data.session.user);
+          }, 400);
+        } else {
+          // Edge case: Email needs to be confirmed in Supabase settings
+          err.innerText = "Please confirm your email address before logging in.";
+          err.classList.remove('hidden');
         }
       } catch (exception) {
+        // Fallback for network drops
+        console.error("Login Exception:", exception);
         err.innerText = "Network connection failed. Try again.";
         err.classList.remove('hidden');
-        btn.innerHTML = `Authenticate <i class="fa-solid fa-fingerprint ml-2"></i>`;
+      } finally {
+        // Ensure button ALWAYS goes back to normal if not authenticated
+        if (!err.classList.contains('hidden')) {
+          btn.innerHTML = `Authenticate <i class="fa-solid fa-fingerprint ml-2"></i>`;
+        }
       }
     });
 
     document.getElementById('logout-btn').addEventListener('click', async () => {
         await supabase.auth.signOut();
-        window.location.reload(); // Force hard reload to clear data
+        window.location.reload(); 
     });
 
     function loadDashboard(user) {
-      // Hide login, show admin
       document.getElementById('login-view').classList.add('hidden');
       document.getElementById('admin-view').classList.remove('hidden');
       
-      // Set user email in sidebar
       if(user && user.email) {
           document.getElementById('admin-email').innerText = user.email.split('@')[0];
       }
       
-      // Fetch all dynamic data immediately
       fetchAllData();
     }
 
@@ -440,7 +460,6 @@
         title.innerText = id ? "Edit Flight" : "Dispatch New Flight";
         const f = id ? dbFlights.find(x => x.id === id) : {};
         
-        // Format datetime-local string
         let dtStr = '';
         if(f.departure_time) {
           const d = new Date(f.departure_time);
