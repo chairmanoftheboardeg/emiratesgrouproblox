@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EGR Operations Command Center</title>
+  <title>EGR Admin Center</title>
   <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" />
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
@@ -24,7 +24,7 @@
 </head>
 <body class="flex flex-col h-screen overflow-hidden text-gray-900">
 
-  <div id="login-view" class="fixed inset-0 z-50 bg-[#111827] flex items-center justify-center p-6 transition-opacity duration-500">
+  <div id="login-view" class="fixed inset-0 z-[100] bg-[#111827] flex items-center justify-center p-6 transition-opacity duration-500">
     <div class="bg-white p-10 rounded-2xl shadow-2xl w-full max-w-md relative overflow-hidden">
       <div class="absolute top-0 left-0 w-full h-2 bg-[#D71A21]"></div>
       <div class="text-center mb-8">
@@ -175,7 +175,7 @@
     </main>
   </div>
 
-  <div id="data-modal" class="fixed inset-0 z-[100] bg-[#111827]/80 backdrop-blur-sm hidden flex items-center justify-center p-4 transition-opacity opacity-0">
+  <div id="data-modal" class="fixed inset-0 z-[200] bg-[#111827]/80 backdrop-blur-sm hidden flex items-center justify-center p-4 transition-opacity opacity-0">
     <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col max-h-[90vh]">
       <div class="bg-[#111827] text-white p-6 border-b-4 border-[#D71A21] flex justify-between items-center">
         <h2 class="text-xl font-bold uppercase tracking-widest" id="modal-title">Form Title</h2>
@@ -219,9 +219,9 @@
           supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
           checkSession();
           
+          // Listen for auth state changes globally
           supabase.auth.onAuthStateChange((event, session) => {
-            if (event === 'SIGNED_IN') loadDashboard(session.user);
-            else if (event === 'SIGNED_OUT') showLogin();
+            if (event === 'SIGNED_OUT') showLogin();
           });
         }
       }, 100);
@@ -230,8 +230,11 @@
     // --- AUTHENTICATION ---
     async function checkSession() {
       const { data: { session } } = await supabase.auth.getSession();
-      if (session) loadDashboard(session.user);
-      else showLogin();
+      if (session && session.user) {
+        loadDashboard(session.user);
+      } else {
+        showLogin();
+      }
     }
     
     function showLogin() {
@@ -249,39 +252,53 @@
       btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i>`;
       err.classList.add('hidden');
       
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) {
-        err.innerText = "Access Denied: Invalid Credentials";
+      try {
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        
+        if (error) {
+          err.innerText = error.message || "Access Denied: Invalid Credentials";
+          err.classList.remove('hidden');
+          btn.innerHTML = `Authenticate <i class="fa-solid fa-fingerprint ml-2"></i>`;
+        } else if (data.user) {
+          btn.innerHTML = `Authenticated <i class="fa-solid fa-check ml-2"></i>`;
+          loadDashboard(data.user);
+        }
+      } catch (exception) {
+        err.innerText = "Network connection failed. Try again.";
         err.classList.remove('hidden');
         btn.innerHTML = `Authenticate <i class="fa-solid fa-fingerprint ml-2"></i>`;
       }
     });
 
-    document.getElementById('logout-btn').addEventListener('click', async () => await supabase.auth.signOut());
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+        await supabase.auth.signOut();
+        window.location.reload(); // Force hard reload to clear data
+    });
 
     function loadDashboard(user) {
-      document.getElementById('login-view').classList.add('opacity-0', 'hidden');
+      // Hide login, show admin
+      document.getElementById('login-view').classList.add('hidden');
       document.getElementById('admin-view').classList.remove('hidden');
-      document.getElementById('admin-email').innerText = user.email.split('@')[0];
       
-      // Load initial data
+      // Set user email in sidebar
+      if(user && user.email) {
+          document.getElementById('admin-email').innerText = user.email.split('@')[0];
+      }
+      
+      // Fetch all dynamic data immediately
       fetchAllData();
     }
 
     // --- NAVIGATION ---
     function switchTab(tab) {
-      // Hide all sections
       document.querySelectorAll('.admin-section').forEach(el => el.classList.add('hidden'));
-      // Reset all tabs
       document.querySelectorAll('.admin-tab').forEach(el => {
         el.className = "admin-tab w-full text-left px-4 py-3 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors";
       });
       
-      // Show selected
       document.getElementById(`view-${tab}`).classList.remove('hidden');
       document.getElementById(`tab-${tab}`).className = "admin-tab w-full text-left px-4 py-3 bg-[#D71A21] text-white rounded text-sm font-bold shadow transition-colors";
       
-      // Update Titles
       const titles = {
         'flights': 'Flight Radar Management',
         'news': 'Corporate Newsroom Archives',
@@ -560,7 +577,6 @@
       closeModal();
       btn.innerText = "Save Record";
       
-      // Refresh Specific Data
       if(type === 'flight') fetchFlights();
       if(type === 'news') fetchNews();
       if(type === 'media') fetchMedia();
