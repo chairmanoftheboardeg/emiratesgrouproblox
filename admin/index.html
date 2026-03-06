@@ -32,7 +32,8 @@
         <h1 class="text-2xl font-bold text-[#111827] tracking-wider uppercase">Command Center</h1>
         <p class="text-[10px] text-[#D71A21] font-bold uppercase tracking-widest mt-1">Level 4 Clearance Required</p>
       </div>
-      <form id="login-form" class="space-y-6">
+      
+      <form id="login-form" class="space-y-6" onsubmit="event.preventDefault(); handleLogin(); return false;">
         <div>
           <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Executive Email</label>
           <input type="email" id="login-email" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded focus:ring-2 focus:ring-[#D71A21] outline-none transition-shadow" required>
@@ -42,10 +43,12 @@
           <input type="password" id="login-password" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded focus:ring-2 focus:ring-[#D71A21] outline-none transition-shadow" required>
         </div>
         <div id="login-error" class="hidden text-[#D71A21] text-sm font-bold text-center bg-red-50 p-3 rounded border border-red-100"></div>
-        <button type="submit" id="login-btn" class="w-full bg-[#111827] hover:bg-gray-900 text-white font-bold py-4 rounded shadow-lg transition-colors uppercase tracking-widest flex justify-center items-center text-sm">
+        
+        <button type="button" onclick="handleLogin()" id="login-btn" class="w-full bg-[#111827] hover:bg-gray-900 text-white font-bold py-4 rounded shadow-lg transition-colors uppercase tracking-widest flex justify-center items-center text-sm">
           Authenticate <i class="fa-solid fa-fingerprint ml-2"></i>
         </button>
       </form>
+
     </div>
   </div>
 
@@ -183,12 +186,14 @@
       </div>
       
       <div class="p-8 overflow-y-auto flex-grow bg-gray-50">
-        <form id="data-form" class="space-y-5">
+        <form id="data-form" class="space-y-5" onsubmit="event.preventDefault(); saveData(); return false;">
           <input type="hidden" id="entry-id">
           <input type="hidden" id="entry-type">
           
           <div id="form-fields" class="space-y-5">
             </div>
+          
+          <button type="submit" class="hidden"></button>
         </form>
       </div>
 
@@ -227,7 +232,7 @@
       }, 100);
     });
 
-    // --- AUTHENTICATION (FAIL-PROOFED) ---
+    // --- AUTHENTICATION (BULLETPROOFED) ---
     async function checkSession() {
       if (!supabase) return;
       const { data: { session } } = await supabase.auth.getSession();
@@ -243,17 +248,25 @@
       document.getElementById('login-view').classList.remove('hidden', 'opacity-0');
     }
 
-    document.getElementById('login-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const email = document.getElementById('login-email').value;
-      const password = document.getElementById('login-password').value;
+    // Completely separated JS function attached directly to the button
+    async function handleLogin() {
+      const emailInput = document.getElementById('login-email');
+      const passwordInput = document.getElementById('login-password');
+      const email = emailInput.value;
+      const password = passwordInput.value;
       const btn = document.getElementById('login-btn');
       const err = document.getElementById('login-error');
       
-      // Safety Check: Ensure Supabase loaded before they can submit
+      // Basic validation
+      if (!email || !password) {
+        err.innerText = "Please enter both email and password.";
+        err.classList.remove('hidden');
+        return;
+      }
+
+      // Safety Check: Ensure Supabase loaded
       if (!supabase) {
-        err.innerText = "System still connecting to the database. Please wait 2 seconds.";
+        err.innerText = "System still connecting to the database. Please wait a moment.";
         err.classList.remove('hidden');
         return;
       }
@@ -266,32 +279,28 @@
         const { data, error } = await supabase.auth.signInWithPassword({ email, password });
         
         if (error) {
-          // If password is wrong or user doesn't exist
+          // Password wrong or user doesn't exist
           err.innerText = error.message || "Invalid Credentials. Access Denied.";
           err.classList.remove('hidden');
+          btn.innerHTML = `Authenticate <i class="fa-solid fa-fingerprint ml-2"></i>`;
         } else if (data.session) {
-          // If login is entirely successful
+          // Success!
           btn.innerHTML = `Authenticated <i class="fa-solid fa-check ml-2"></i>`;
           setTimeout(() => {
              loadDashboard(data.session.user);
           }, 400);
         } else {
-          // Edge case: Email needs to be confirmed in Supabase settings
-          err.innerText = "Please confirm your email address before logging in.";
+          err.innerText = "Please confirm your email address in Supabase.";
           err.classList.remove('hidden');
-        }
-      } catch (exception) {
-        // Fallback for network drops
-        console.error("Login Exception:", exception);
-        err.innerText = "Network connection failed. Try again.";
-        err.classList.remove('hidden');
-      } finally {
-        // Ensure button ALWAYS goes back to normal if not authenticated
-        if (!err.classList.contains('hidden')) {
           btn.innerHTML = `Authenticate <i class="fa-solid fa-fingerprint ml-2"></i>`;
         }
+      } catch (exception) {
+        console.error("Login Exception:", exception);
+        err.innerText = "Network connection failed. Check your internet.";
+        err.classList.remove('hidden');
+        btn.innerHTML = `Authenticate <i class="fa-solid fa-fingerprint ml-2"></i>`;
       }
-    });
+    }
 
     document.getElementById('logout-btn').addEventListener('click', async () => {
         await supabase.auth.signOut();
