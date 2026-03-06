@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Innovation | Emirates Group Roblox</title>
+  
+  <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" id="favicon" />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../../style.css"> 
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+
+  <style>
+    @keyframes loadBar { 0% { width: 0%; } 100% { width: 100%; } }
+    .animate-load-bar { animation: loadBar 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen relative fade-in bg-gray-50">
+
+  <div id="egr-loader" class="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center transition-opacity duration-700">
+    <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox" class="h-20 md:h-28 object-contain mb-8 opacity-90 animate-pulse">
+    <div class="w-48 h-[2px] bg-gray-200 overflow-hidden">
+      <div class="h-full bg-[#D71A21] animate-load-bar"></div>
+    </div>
+  </div>
+
+  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-50 border-b-4 border-[#D71A21]">
+    <a href="/" class="flex items-center group">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox Logo" class="h-10 md:h-12 object-contain group-hover:opacity-80 transition-opacity">
+    </a>
+
+    <button id="mobile-menu-btn" class="lg:hidden text-gray-800 text-2xl focus:outline-none">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="hidden lg:flex space-x-6 text-sm font-bold items-center text-gray-700">
+      <a href="/" class="hover:text-[#D71A21] transition-colors">Home</a>
+      
+      <div class="relative group py-2">
+        <button class="text-[#D71A21] transition-colors flex items-center">
+          About Us <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/about/vision/" class="block px-5 py-3 hover:bg-gray-50 border-b">Vision, Mission & Story</a>
+          <a href="/about/people/" class="block px-5 py-3 hover:bg-gray-50 border-b">Our People</a>
+          <a href="/about/governance/" class="block px-5 py-3 hover:bg-gray-50 border-b">Our Governance</a>
+          <a href="/about/subsidiaries/" class="block px-5 py-3 hover:bg-gray-50 border-b">Our Subsidiaries</a>
+          <a href="/about/partners/" class="block px-5 py-3 hover:bg-gray-50 border-b">Partners & Affiliates</a>
+          <a href="/about/timeline/" class="block px-5 py-3 hover:bg-gray-50 border-b">Timeline</a>
+          <a href="/about/innovation/" class="block px-5 py-3 hover:bg-gray-50 text-[#D71A21]">Our Innovation</a>
+        </div>
+      </div>
+
+      <a href="/flights/" class="hover:text-[#D71A21] transition-colors">Flights</a>
+      
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Media <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/media/newsroom/" class="block px-5 py-3 hover:bg-gray-50 border-b">Newsroom</a>
+          <a href="/media/gallery/" class="block px-5 py-3 hover:bg-gray-50">Media Gallery</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Help Center <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block px-5 py-3 hover:bg-gray-50 border-b"><i class="fa-brands fa-discord mr-2"></i> Contact Us</a>
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block px-5 py-3 hover:bg-gray-50 text-[#D71A21]"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Report an Issue</a>
+        </div>
+      </div>
+
+      <a href="https://careers.emiratesgrouproblox.link" target="_blank" class="bg-[#D71A21] hover:bg-red-800 text-white px-5 py-2 rounded transition-colors shadow-md flex items-center uppercase tracking-widest text-xs">
+        Careers <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-[10px]"></i>
+      </a>
+    </div>
+  </nav>
+
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#111827] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col lg:hidden">
+    <div class="p-6 flex justify-between items-center border-b border-gray-800 bg-white">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Logo" class="h-10 object-contain">
+      <button id="mobile-menu-close" class="text-gray-800 text-3xl focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <div class="p-6 overflow-y-auto space-y-8 text-white flex-grow">
+      <a href="/" class="block text-xl font-bold hover:text-[#D71A21]">Home</a>
+      
+      <div>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">About Us</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
+          <a href="/about/vision/" class="block hover:text-white">Vision, Mission & Story</a>
+          <a href="/about/people/" class="block hover:text-white">Our People</a>
+          <a href="/about/governance/" class="block hover:text-white">Our Governance</a>
+          <a href="/about/subsidiaries/" class="block hover:text-white">Our Subsidiaries</a>
+          <a href="/about/partners/" class="block hover:text-white">Partners & Affiliates</a>
+          <a href="/about/timeline/" class="block hover:text-white">Timeline</a>
+          <a href="/about/innovation/" class="block text-[#D71A21]">Our Innovation</a>
+        </div>
+      </div>
+
+      <a href="/flights/" class="block text-xl font-bold hover:text-[#D71A21]">Flights</a>
+
+      <div>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Media</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
+          <a href="/media/newsroom/" class="block hover:text-white">Newsroom</a>
+          <a href="/media/gallery/" class="block hover:text-white">Media Gallery</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Help Center</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block hover:text-white"><i class="fa-brands fa-discord mr-2"></i> Contact Us</a>
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block text-[#D71A21]"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Report an Issue</a>
+        </div>
+      </div>
+
+      <a href="https://careers.emiratesgrouproblox.link" target="_blank" class="block bg-[#D71A21] text-white text-center py-4 rounded font-bold uppercase tracking-widest mt-6">
+        Careers Portal <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
+      </a>
+    </div>
+  </div>
+
+  <header class="bg-[#111827] text-white py-24 md:py-32 px-6 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20 mix-blend-overlay" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;"></div>
+    <div class="max-w-5xl mx-auto relative z-10 text-center">
+      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Pushing Boundaries</span>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 uppercase tracking-tight">Our Innovation</h1>
+      <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed">Pioneering the next generation of virtual aviation through advanced scripting, unparalleled architectural design, and operational tech.</p>
+    </div>
+  </header>
+
+  <main class="flex-grow py-20 px-6 md:px-12 w-full bg-gray-50">
+    <div class="max-w-6xl mx-auto space-y-16">
+
+      <section class="bg-white border border-gray-200 p-10 md:p-14 rounded-2xl shadow-sm flex flex-col md:flex-row items-center gap-10">
+        <div class="md:w-1/3 flex justify-center">
+          <i class="fa-solid fa-microchip text-[8rem] text-[#111827] opacity-10"></i>
+        </div>
+        <div class="md:w-2/3">
+          <h2 class="text-2xl font-bold text-[#111827] mb-4 uppercase tracking-wider">The Future is Here</h2>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            Emirates Group Roblox refuses to settle for standard capabilities. Our dedicated development and engineering teams, alongside our key tech partners like Simple Tech, continuously work behind the scenes to engineer bespoke features that elevate our airline above the rest.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            From the upcoming rollout of ROAV (Personal Game Development) to proprietary internal booking mechanics, we are redefining what is computationally possible within a virtual environment.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="flex items-center mb-10">
+          <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-wider">Latest Developments</h3>
+          <div class="h-[1px] bg-gray-300 flex-grow ml-6"></div>
+        </div>
+
+        <div id="innovations-container" class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div class="col-span-full text-center py-20">
+            <i class="fa-solid fa-circle-notch fa-spin text-4xl text-[#D71A21] mb-4"></i>
+            <p class="text-gray-500 font-bold uppercase tracking-widest text-sm">Syncing with EGR Engineering Database...</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="bg-[#111827] text-white py-12 md:py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
+      <div class="md:col-span-2">
+        <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest">Emirates Group Roblox</h3>
+        <p class="text-sm text-gray-400 max-w-md mb-6 leading-relaxed">The premier virtual aviation organization on the Roblox platform. A proud subsidiary of the Tyler Nicholas Group, committed to structural perfection and digital realism.</p>
+        
+        <div class="flex flex-wrap gap-4 text-xl text-gray-400">
+          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="hover:text-[#5865F2] transition-colors"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white transition-colors"><i class="fa-solid fa-cube"></i></a>
+          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] transition-colors"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] transition-colors"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] transition-colors"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] transition-colors"><i class="fa-brands fa-trello"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Corporate Links</h4>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li><a href="/about/vision/" class="hover:text-[#D71A21] transition-colors">Our Vision</a></li>
+          <li><a href="/flights/" class="hover:text-[#D71A21] transition-colors">Flight Radar</a></li>
+          <li><a href="/media/newsroom/" class="hover:text-[#D71A21] transition-colors">Newsroom</a></li>
+          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors">Careers Portal</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Legal & Support</h4>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-[#D71A21] transition-colors">Tyler Nicholas Group</a></li>
+          <li><a href="https://discord.gg/nDAZ3p475V" target="_blank" class="hover:text-[#D71A21] transition-colors">Contact Support</a></li>
+          <li><span class="italic text-xs mt-4 block">Disclaimer: EGR is a virtual organization and is not affiliated with the real-world Emirates airline.</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-10 md:mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 text-center md:text-left gap-2">
+      <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
+      <p>Powered by Tyler Nicholas Group Network</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileClose = document.getElementById('mobile-menu-close');
+      const mobileMenu = document.getElementById('mobile-menu-overlay');
+
+      if(mobileBtn && mobileClose && mobileMenu) {
+        mobileBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+        mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+      }
+
+      setTimeout(() => {
+        const loader = document.getElementById('egr-loader');
+        if(loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 700);
+        }
+      }, 1000); 
+
+      // SUPABASE FETCH LOGIC FOR INNOVATIONS
+      const checkSupabase = setInterval(async () => {
+        if (window.supabase) {
+          clearInterval(checkSupabase); 
+          const supabase = window.supabase.createClient(
+            'https://zboyabxzhptnxnmofvcz.supabase.co', 
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
+          );
+
+          try {
+            const { data: innovations, error } = await supabase
+              .from('egr_innovations')
+              .select('*')
+              .eq('is_active', true)
+              .order('created_at', { ascending: false });
+
+            const container = document.getElementById('innovations-container');
+
+            if (error || !innovations || innovations.length === 0) {
+              container.innerHTML = `
+                <div class="col-span-full text-center py-12 bg-white rounded-xl shadow-sm border border-gray-200">
+                  <i class="fa-solid fa-code text-4xl text-gray-300 mb-4"></i>
+                  <p class="text-gray-500 font-bold">Systems in Development.</p>
+                  <p class="text-gray-400 text-sm mt-2">Our engineers are currently logging new innovations into the database. Check back soon.</p>
+                </div>`;
+            } else {
+              let html = '';
+              innovations.forEach(item => {
+                const img = item.image_url ? `<img src="${item.image_url}" alt="${item.title}" class="w-full h-64 object-cover border-b border-gray-200 group-hover:scale-105 transition-transform duration-500">` : `<div class="w-full h-48 bg-[#111827] flex items-center justify-center border-b border-gray-800"><i class="fa-solid fa-server text-5xl text-gray-700"></i></div>`;
+                
+                html += `
+                  <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 group flex flex-col">
+                    <div class="relative overflow-hidden">
+                        ${img}
+                        <div class="absolute top-4 right-4 bg-[#D71A21] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded shadow">Active Protocol</div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                      <h4 class="text-2xl font-bold text-[#111827] mb-3">${item.title}</h4>
+                      <p class="text-gray-600 leading-relaxed text-sm flex-grow">${item.description}</p>
+                    </div>
+                  </div>
+                `;
+              });
+              container.innerHTML = html;
+            }
+          } catch (err) {
+            document.getElementById('innovations-container').innerHTML = `<div class="col-span-full text-center text-red-500 font-bold py-12">Database connection failed.</div>`;
+          }
+        }
+      }, 100);
+    });
+  </script>
+</body>
+</html>
