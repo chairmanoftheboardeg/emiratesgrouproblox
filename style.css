@@ -56,3 +56,16 @@ body {
 @keyframes blinker {
   50% { opacity: 0; }
 }
+
+/* Loading Screen Animation */
+#egr-loader { 
+  transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out; 
+}
+.loader-plane {
+  animation: fly 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes fly {
+  0% { transform: translateX(-50px) translateY(10px) scale(0.8); opacity: 0; }
+  50% { opacity: 1; transform: translateX(0) translateY(0) scale(1.1); }
+  100% { transform: translateX(50px) translateY(-10px) scale(0.8); opacity: 0; }
+}
