@@ -3,28 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Emirates Group Roblox | Premier Virtual Aviation</title>
+  <title>Emirates Group Roblox</title>
   
-  <link rel="icon" href="YOUR_EGR_LOGO_LINK_HERE.png" id="favicon" />
+  <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" id="favicon" />
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+
+  <style>
+    /* Sleek Corporate Loading Bar Animation */
+    @keyframes loadBar {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+    .animate-load-bar {
+      animation: loadBar 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+  </style>
 </head>
 <body class="flex flex-col min-h-screen relative fade-in bg-gray-50">
 
-  <div id="egr-loader" class="fixed inset-0 z-[9999] bg-[#111827] flex flex-col items-center justify-center transition-opacity duration-1000">
-    <div class="relative w-24 h-24 mb-6 flex items-center justify-center">
-      <i class="fa-solid fa-plane-up text-4xl text-[#D71A21] absolute animate-pulse"></i>
-      <svg class="animate-spin w-full h-full text-gray-800" viewBox="0 0 24 24">
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"></circle>
-        <path class="opacity-100" fill="#D71A21" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-      </svg>
+  <div id="egr-loader" class="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center transition-opacity duration-1000">
+    <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox" class="h-20 md:h-28 object-contain mb-8 opacity-90 animate-pulse">
+    <div class="w-48 h-[2px] bg-gray-200 overflow-hidden">
+      <div class="h-full bg-[#D71A21] animate-load-bar"></div>
     </div>
-    <h2 class="text-white text-2xl font-serif font-bold tracking-[0.2em] uppercase drop-shadow-lg text-center px-4">Emirates Group</h2>
-    <p class="text-[#D71A21] text-xs font-bold tracking-[0.3em] mt-3 uppercase text-center">Establishing Radar Uplink...</p>
   </div>
 
   <div id="egr-announcement" class="bg-[#111827] text-white text-center py-2 text-xs md:text-sm font-bold tracking-widest uppercase hidden z-40 relative border-b border-gray-800"></div>
@@ -32,7 +38,7 @@
   <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-50 border-b-4 border-[#D71A21]">
     
     <a href="/" class="flex items-center group">
-      <img src="YOUR_EGR_LOGO_LINK_HERE.png" alt="Emirates Group Roblox Logo" class="h-10 md:h-12 object-contain group-hover:opacity-80 transition-opacity">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox Logo" class="h-10 md:h-12 object-contain group-hover:opacity-80 transition-opacity">
     </a>
 
     <button id="mobile-menu-btn" class="lg:hidden text-gray-800 text-2xl focus:outline-none">
@@ -87,7 +93,7 @@
 
   <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#111827] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col lg:hidden">
     <div class="p-6 flex justify-between items-center border-b border-gray-800 bg-white">
-      <img src="YOUR_EGR_LOGO_LINK_HERE.png" alt="Logo" class="h-10 object-contain">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Logo" class="h-10 object-contain">
       <button id="mobile-menu-close" class="text-gray-800 text-3xl focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
     </div>
     
@@ -318,12 +324,12 @@
         mobileMenu.classList.add('translate-x-full');
       });
 
-      // Loader smoothly
+      // Sleek Loader Logic
       setTimeout(() => {
         const loader = document.getElementById('egr-loader');
         loader.style.opacity = '0';
         setTimeout(() => { loader.style.display = 'none'; }, 1000);
-      }, 1500);
+      }, 1600); // 1.6s to let the red bar finish animating
 
       // Setup Supabase
       const checkSupabase = setInterval(async () => {
