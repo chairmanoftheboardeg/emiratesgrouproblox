@@ -3,138 +3,314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emirates Group Roblox</title>
+    <title>Emirates Group Roblox | Vision 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        /* --- CORPORATE THEME (Based on TNG Screenshots) --- */
+        :root {
+            --bg-deep-navy: #040f1d;
+            --bg-card: #ffffff;
+            --text-light: #ffffff;
+            --text-dark: #1a202c;
+            --text-muted: #718096;
+            --accent-red: #d71920;
+            --border-light: #e2e8f0;
+            --border-dark: #2d3748;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { background-color: var(--bg-deep-navy); color: var(--text-light); }
+        a { text-decoration: none; color: inherit; transition: color 0.2s; }
+        a:hover { color: var(--accent-red); }
+
+        /* --- NAVBAR --- */
+        header { border-bottom: 1px solid var(--border-dark); background-color: var(--bg-deep-navy); position: sticky; top: 0; z-index: 1000; }
+        #announcement-bar { background-color: var(--accent-red); color: white; text-align: center; padding: 8px; font-size: 0.85rem; font-weight: 600; display: none; }
+        
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; }
+        .nav-left { display: flex; align-items: center; gap: 20px; }
+        .nav-logo { height: 45px; }
+        .nav-titles { display: flex; flex-direction: column; }
+        .nav-titles .brand { color: var(--accent-red); font-weight: 700; font-size: 1.1rem; }
+        .nav-titles .sub-brand { color: var(--text-muted); font-size: 0.8rem; }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; font-size: 0.9rem; font-weight: 500; }
+        .theme-toggle { background: transparent; border: 1px solid var(--border-dark); color: white; padding: 6px 14px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .theme-toggle .dot { width: 8px; height: 8px; background-color: var(--accent-red); border-radius: 50%; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(to bottom, rgba(4, 15, 29, 0.4), rgba(4, 15, 29, 0.95)), url('https://i.ibb.co/49gwZ9r/EGR-Headquarters-Pic.png') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 15px; font-weight: 700; }
+        .hero p { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 30px; max-width: 600px; }
+
+        /* --- LAYOUT & CARDS (Matching Screenshot 2) --- */
+        section { padding: 60px 5%; }
+        .section-title { font-size: 1.8rem; margin-bottom: 30px; text-transform: uppercase; font-weight: 700; }
+        
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .card {
+            background-color: var(--bg-card);
+            color: var(--text-dark);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card h3 { font-size: 1.3rem; margin-bottom: 15px; color: var(--bg-deep-navy); }
+        .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-light); padding-top: 15px; margin-top: auto; }
+        .card-btn { border: 1px solid var(--border-dark); padding: 6px 15px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; color: var(--text-dark); }
+        .card-tag { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- FOOTER (Matching Screenshot 3) --- */
+        footer {
+            background-color: var(--bg-deep-navy);
+            border-top: 1px solid var(--border-dark);
+            padding: 60px 5% 30px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 40px; }
+        .footer-brand h2 { font-size: 1.2rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-brand p { color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; max-width: 90%; }
+        .time-box { background: white; color: var(--text-dark); padding: 10px 15px; border-radius: 4px; display: inline-block; font-weight: 600; margin-bottom: 20px; }
+        
+        .footer-col h3 { color: var(--accent-red); font-size: 1rem; margin-bottom: 20px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: var(--text-muted); }
+        .footer-col ul li a:hover { color: white; }
+        
+        .social-icons { display: flex; gap: 15px; font-size: 1.5rem; margin-top: 15px; flex-wrap: wrap; }
+        .social-icons a { color: var(--text-light); }
+        .social-icons a:hover { color: var(--accent-red); }
+
+        .hq-hours { background-color: rgba(255,255,255,0.05); padding: 15px; border-radius: 6px; margin-top: 20px; border: 1px solid var(--border-dark); }
+        .hq-hours p { margin-bottom: 5px; font-size: 0.85rem; color: #cbd5e1; }
+        
+        .footer-bottom { border-top: 1px solid var(--border-dark); padding-top: 20px; text-align: center; color: var(--text-muted); font-size: 0.8rem; }
+    </style>
 </head>
 <body>
 
-    <div id="loader">
-        <img src="https://i.ibb.co/B5N3JWD1/LOGO-EMIRATES-ROBLOX.png" alt="Loading..." class="loader-logo">
-    </div>
-
     <header>
-        <div id="announcement-bar">
-            Attention: Expected server downtime at 00:00 UTC for scheduled maintenance.
-        </div>
+        <div id="announcement-bar">Loading announcements...</div>
         <nav>
             <div class="nav-left">
                 <img src="https://i.ibb.co/B5N3JWD1/LOGO-EMIRATES-ROBLOX.png" alt="EGR Logo" class="nav-logo">
                 <div class="nav-titles">
                     <span class="brand">Emirates Group Roblox</span>
-                    <span class="sub-brand">Vision 2026 | Owned by Tyler Nicholas Group</span>
+                    <span class="sub-brand">Vision 2026 | <a href="https://tylernicholasgroup.com" target="_blank" style="text-decoration: underline;">Owned & Operated by The Tyler Nicholas Group</a></span>
                 </div>
             </div>
             <div class="nav-links">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Operations</a>
-                <a href="#">Community</a>
-                <a href="#">Media</a>
-                <a href="#">Careers</a>
-                <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
-                    <span class="dot"></span> <span id="themeText">Dark</span>
-                </button>
+                <a href="/">Home</a>
+                <a href="/about.html">About</a>
+                <a href="/operations.html">Operations</a>
+                <a href="/community.html">Community</a>
+                <a href="/media.html">Media</a>
+                <a href="https://careers.emiratesgrouproblox.link">Careers</a>
+                <button class="theme-toggle"><span class="dot"></span> Dark</button>
             </div>
         </nav>
     </header>
 
     <section class="hero">
-        <h1>Welcome to Vision 2026</h1>
-        <p>A multi-divisional virtual aviation organisation built for realism, operational integrity, and corporate-grade standards.</p>
-        <div class="quick-actions">
-            <button class="btn btn-primary">Join our Discord</button>
-            <button class="btn btn-secondary">Explore Careers</button>
-        </div>
+        <h1>Setting the Standard.</h1>
+        <p>A highly detailed virtual airline bringing the spirit of corporate aviation to the digital skies. Experience comprehensive flight operations and integrated live systems.</p>
     </section>
 
-    <section id="about-preview">
-        <div class="about-grid">
-            <div>
-                <h2 class="section-title">Corporate structure built for realism</h2>
-                <p style="color: var(--text-muted); margin-bottom: 20px; line-height: 1.6;">
-                    Emirates Group Roblox is a multi-divisional virtual aviation organisation operating under Vision 2026. We maintain operational integrity through governance, standards, and a disciplined execution model.
-                </p>
-                <button class="btn btn-secondary">Read Full Corporate Profile</button>
+    <section id="divisions">
+        <h2 class="section-title">Our Divisions</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div>
+                    <h3>Emirates Airlines Roblox</h3>
+                    <p>The flagship virtual airline operation delivering premium global connectivity. Setting the standard for online roleplay communities.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="card-btn">Website <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <span class="card-tag">Aviation</span>
+                </div>
             </div>
-            <div class="founder-card">
-                <img src="https://tr.rbxcdn.com/30DAY-Avatar-6AE5E4CBB0ABEED01B53A9B8CC8DE407-Png/720/720/Avatar/Webp/noFilter" alt="Tyler Nicholas">
-                <div class="founder-info">
-                    <h3>Tyler Nicholas</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Founder & Owner, Tyler Nicholas Group</p>
-                    <p style="font-size: 0.85rem; line-height: 1.4;">"Our commitment is to elevate the virtual aviation experience beyond simple flight simulation, building a true corporate ecosystem."</p>
+            <div class="card">
+                <div>
+                    <h3>Fly Dubai Roblox</h3>
+                    <p>A 100% subsidiary providing agile, regional flight operations under the EGR umbrella. Currently operating under new executive leadership.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="card-btn">Website <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <span class="card-tag">Aviation</span>
+                </div>
+            </div>
+            <div class="card">
+                <div>
+                    <h3>Falcon LTD</h3>
+                    <p>A digital storefront and specialized service provider offering secure, high-quality digital assets, tools, and infrastructure solutions.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="card-btn">Website <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <span class="card-tag">Digital Services</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="subsidiaries">
-        <h2 class="section-title">Our Divisions</h2>
-        <div class="card-grid">
-            <div class="card">
-                <h3>Emirates Airlines</h3>
-                <p style="color: var(--text-muted);">The flagship virtual airline operation delivering premium global connectivity.</p>
-            </div>
-            <div class="card">
-                <h3>Fly Dubai</h3>
-                <p style="color: var(--text-muted);">A 100% subsidiary providing agile, regional flight operations under the EGR umbrella.</p>
-            </div>
-            <div class="card">
-                <h3>Falcon LTD</h3>
-                <p style="color: var(--text-muted);">Our dedicated digital storefront for high-fidelity Roblox aviation assets and services.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="latest-news" style="background-color: var(--bg-secondary);">
-        <h2 class="section-title">Latest News</h2>
+    <section id="news">
+        <h2 class="section-title">Latest Updates</h2>
         <div class="card-grid" id="news-container">
-            <div class="card">
-                <h3>Fly Dubai Acquisition Finalised</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">Emirates Group Roblox officially integrates Fly Dubai as a wholly owned subsidiary...</p>
-            </div>
-            <div class="card">
-                <h3>Vision 2026 Framework Published</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">The board has outlined the new strategic operating model for the upcoming year...</p>
-            </div>
-            <div class="card">
-                <h3>Now Hiring: Director of Operations</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">We are seeking an experienced executive to lead ground and flight operations...</p>
-            </div>
+            <p style="color: var(--text-muted);">Fetching live data from secure backend...</p>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Emirates Group Roblox. Owned and Operated by The Tyler Nicholas Group. All rights reserved.</p>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h2>Tyler Nicholas Group</h2>
+                <p>A global holding company headquartered in the Seychelles, driving strategic growth and synergy across diverse, high-potential digital and on-site verticals.</p>
+                <div class="time-box">
+                    Dubai Local Time: <span id="dubai-time">Loading...</span>
+                </div>
+                <div class="hq-hours">
+                    <p><strong style="color: white;">HQ Opening Hours</strong></p>
+                    <p>Mon-Fri: 06:00 - 20:00</p>
+                    <p>Sat-Sun: 10:30 - 17:30</p>
+                    <p style="color: var(--accent-red); margin-top: 5px; font-weight: 600;">Operations: 24/7</p>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Corporate</h3>
+                <ul>
+                    <li><a href="/about.html">Core Values & Culture</a></li>
+                    <li><a href="#">Diversity & Inclusion</a></li>
+                    <li><a href="#">Sustainability & ESG</a></li>
+                    <li><a href="https://tylernicholasgroup.com" target="_blank">Global Partnerships</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">TNG Legal & Copyright</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Connect</h3>
+                <ul>
+                    <li><a href="#">Contact Us / Help Center</a></li>
+                    <li><a href="https://tylernicholasgroup.com" target="_blank" style="color: var(--accent-red);">Meet Tyler Nicholas &rarr;</a></li>
+                </ul>
+                <div class="social-icons">
+                    <a href="https://discord.gg/nDAZ3p475V" target="_blank" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                    <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" title="Roblox"><i class="fa-solid fa-gamepad"></i></a>
+                    <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" title="Trello"><i class="fa-brands fa-trello"></i></a>
+                    <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Tyler Nicholas. All rights reserved. Emirates Group Roblox is a subsidiary of the Tyler Nicholas Group.</p>
+        </div>
     </footer>
 
     <script>
-        // --- 1. Loading Screen Animation ---
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 500); // Wait for fade out to finish before hiding
-            }, 1200); // Show loader for 1.2 seconds minimum
-        });
+        // 1. Live Dubai Time Clock
+        function updateDubaiTime() {
+            const timeOptions = { timeZone: 'Asia/Dubai', hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const dubaiTime = new Date().toLocaleTimeString('en-US', timeOptions);
+            document.getElementById('dubai-time').innerText = dubaiTime;
+        }
+        setInterval(updateDubaiTime, 1000);
+        updateDubaiTime();
 
-        // --- 2. Theme Toggle Logic ---
-        function toggleTheme() {
-            const body = document.body;
-            const themeText = document.getElementById('themeText');
-            
-            body.classList.toggle('light-mode');
-            
-            if (body.classList.contains('light-mode')) {
-                themeText.textContent = 'Light';
-            } else {
-                themeText.textContent = 'Dark';
+        // 2. Supabase Initialization
+        const SUPABASE_URL = 'https://zboyabxzhptnxnmofvcz.supabase.co';
+        // Note: The key provided earlier had a space in the middle. Make sure to paste the exact unbroken anon key here.
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys';
+        
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // 3. Fetch Active Announcements
+        async function fetchAnnouncements() {
+            const { data, error } = await supabase
+                .from('announcements')
+                .select('message')
+                .eq('is_active', true)
+                .order('created_at', { ascending: false })
+                .limit(1);
+
+            if (data && data.length > 0) {
+                const banner = document.getElementById('announcement-bar');
+                banner.innerText = data[0].message;
+                banner.style.display = 'block';
             }
         }
+
+        // 4. Fetch Latest News
+        async function fetchNews() {
+            const { data, error } = await supabase
+                .from('news_articles')
+                .select('title, content, slug')
+                .order('published_date', { ascending: false })
+                .limit(3);
+
+            const container = document.getElementById('news-container');
+            
+            if (error) {
+                container.innerHTML = `<p style="color: red;">Failed to load data: Check Supabase connection or RLS policies.</p>`;
+                return;
+            }
+
+            if (data && data.length > 0) {
+                container.innerHTML = ''; // Clear loading text
+                data.forEach(article => {
+                    // Create card matching the design
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <div>
+                            <h3>${article.title}</h3>
+                            <p>${article.content.substring(0, 100)}...</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/news/${article.slug}" class="card-btn">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+                            <span class="card-tag">Press</span>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            } else {
+                container.innerHTML = `<p style="color: var(--text-muted);">No recent updates found in database.</p>`;
+            }
+        }
+
+        // Initialize fetches on load
+        fetchAnnouncements();
+        fetchNews();
     </script>
 </body>
 </html>
