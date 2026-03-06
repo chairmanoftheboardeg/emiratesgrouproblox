@@ -3,218 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emirates Group Roblox | Homepage</title>
-    <link rel="icon" type="image/png" href="https://i.ibb.co/39zdb6XJ/LOGO-EMIRATES-ROBLOX.png">
+    <title>Emirates Group Roblox</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
-    <div id="announcement-bar" class="announcement-bar hidden">
-        <p id="announcement-text">Loading latest updates...</p>
+    <div id="loader">
+        <img src="https://i.ibb.co/B5N3JWD1/LOGO-EMIRATES-ROBLOX.png" alt="Loading..." class="loader-logo">
     </div>
 
-    <header class="navbar">
-        <div class="nav-container">
-            <div class="brand">
-                <a href="/">
-                    <img src="https://i.ibb.co/39zdb6XJ/LOGO-EMIRATES-ROBLOX.png" alt="EGR Logo" class="nav-logo">
-                </a>
-            </div>
-            <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
-            <nav class="nav-links" id="nav-links">
-                <a href="/about/">About Us</a>
-                <a href="/about/our-people/">Our People</a>
-                <a href="/operations/">Operations</a>
-                <a href="/careers/">Careers</a>
-                <a href="/media/">Media</a>
-                <a href="https://staff.emiratesgrouproblox.link" class="btn-primary mobile-only">Staff Portal</a>
-            </nav>
-            <div class="nav-actions desktop-only">
-                <a href="https://staff.emiratesgrouproblox.link" class="btn-primary">Staff Portal</a>
-            </div>
+    <header>
+        <div id="announcement-bar">
+            Attention: Expected server downtime at 00:00 UTC for scheduled maintenance.
         </div>
+        <nav>
+            <div class="nav-left">
+                <img src="https://i.ibb.co/B5N3JWD1/LOGO-EMIRATES-ROBLOX.png" alt="EGR Logo" class="nav-logo">
+                <div class="nav-titles">
+                    <span class="brand">Emirates Group Roblox</span>
+                    <span class="sub-brand">Vision 2026 | Owned by Tyler Nicholas Group</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Operations</a>
+                <a href="#">Community</a>
+                <a href="#">Media</a>
+                <a href="#">Careers</a>
+                <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
+                    <span class="dot"></span> <span id="themeText">Dark</span>
+                </button>
+            </div>
+        </nav>
     </header>
 
-    <section class="hero" id="dynamic-hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h2>Pioneering the Future of Virtual Aviation</h2>
-            <p>Experience unparalleled realism and professionalism under our Vision 2026 framework.</p>
-            <div class="hero-buttons">
-                <a href="/careers/" class="btn-primary">Explore Careers</a>
-                <a href="/about/" class="btn-secondary">Discover Our Story</a>
-            </div>
+    <section class="hero">
+        <h1>Welcome to Vision 2026</h1>
+        <p>A multi-divisional virtual aviation organisation built for realism, operational integrity, and corporate-grade standards.</p>
+        <div class="quick-actions">
+            <button class="btn btn-primary">Join our Discord</button>
+            <button class="btn btn-secondary">Explore Careers</button>
         </div>
     </section>
 
-    <div class="tng-banner">
-        <p>Proudly owned and operated by the <strong><a href="#">Tyler Nicholas Group</a></strong>. Setting the standard in virtual enterprise.</p>
-    </div>
-
-    <section class="founder-section">
-        <div class="container founder-grid">
-            <div class="founder-image">
-                <img src="https://via.placeholder.com/400x500.png?text=Tyler+Nicholas+Photo" alt="Tyler Nicholas, Founder">
+    <section id="about-preview">
+        <div class="about-grid">
+            <div>
+                <h2 class="section-title">Corporate structure built for realism</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px; line-height: 1.6;">
+                    Emirates Group Roblox is a multi-divisional virtual aviation organisation operating under Vision 2026. We maintain operational integrity through governance, standards, and a disciplined execution model.
+                </p>
+                <button class="btn btn-secondary">Read Full Corporate Profile</button>
             </div>
-            <div class="founder-text">
-                <h3>Why We Fly: A Message from the Founder</h3>
-                <p>"When I established Emirates Group Roblox, the goal wasn't just to create another virtual airline. It was to build a standard-setting community where professionalism, high-fidelity aviation, and dedicated roleplay intersect."</p>
-                <p>"Under the Tyler Nicholas Group umbrella, EGR represents the pinnacle of our Vision 2026 framework. We are more than just a fleet of aircraft; we are a network of passionate individuals, from our ground crews to our executive board. We built this space for you to thrive, lead, and experience the best of Roblox aviation."</p>
-                <p class="signature">- Tyler Nicholas, Founder & Chairman</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="divisions-section">
-        <div class="container">
-            <h3 class="section-title">Our Operations</h3>
-            <div class="cards-grid">
-                <div class="card">
-                    <i class="fas fa-plane-departure card-icon"></i>
-                    <h4>Emirates Airlines</h4>
-                    <p>Our flagship carrier providing premium international roleplay flights across our vast virtual network.</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-plane card-icon"></i>
-                    <h4>Fly Dubai Roblox</h4>
-                    <p>Our agile sister airline, focused on high-frequency regional operations and dynamic flight schedules.</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-truck-moving card-icon"></i>
-                    <h4>Ground & Hub</h4>
-                    <p>The backbone of our operations. Managing ATC, baggage, gate logistics, and airport security.</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-users card-icon"></i>
-                    <h4>Our People</h4>
-                    <p>Meet the Board of Directors, the Executive team, and the dedicated staff that keep us in the skies.</p>
-                    <a href="/about/our-people/" class="card-link">View Directory &rarr;</a>
+            <div class="founder-card">
+                <img src="https://tr.rbxcdn.com/30DAY-Avatar-6AE5E4CBB0ABEED01B53A9B8CC8DE407-Png/720/720/Avatar/Webp/noFilter" alt="Tyler Nicholas">
+                <div class="founder-info">
+                    <h3>Tyler Nicholas</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Founder & Owner, Tyler Nicholas Group</p>
+                    <p style="font-size: 0.85rem; line-height: 1.4;">"Our commitment is to elevate the virtual aviation experience beyond simple flight simulation, building a true corporate ecosystem."</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="corporate-footer">
-        <div class="footer-grid">
-            <div class="footer-col brand-col">
-                <img src="https://i.ibb.co/39zdb6XJ/LOGO-EMIRATES-ROBLOX.png" alt="EGR Logo" class="footer-logo">
-                <p>Pioneering the future of virtual aviation.</p>
-                <a href="#" class="tng-footer-link">Explore the Tyler Nicholas Group &rarr;</a>
+    <section id="subsidiaries">
+        <h2 class="section-title">Our Divisions</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>Emirates Airlines</h3>
+                <p style="color: var(--text-muted);">The flagship virtual airline operation delivering premium global connectivity.</p>
             </div>
-            
-            <div class="footer-col">
-                <h4>Operational Status</h4>
-                <p><i class="fas fa-clock"></i> <strong>HQ Hours:</strong> 6:00 AM - 7:00 PM (Daily)</p>
-                <p><i class="fas fa-plane"></i> <strong>Operations:</strong> 24/7 Active</p>
-                <p><i class="fas fa-globe"></i> <strong>Dubai Time:</strong> <span id="dubai-clock">Loading...</span></p>
+            <div class="card">
+                <h3>Fly Dubai</h3>
+                <p style="color: var(--text-muted);">A 100% subsidiary providing agile, regional flight operations under the EGR umbrella.</p>
             </div>
-
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <a href="/careers/">Careers Portal</a>
-                <a href="/about/our-people/">Our People</a>
-                <a href="/media/newsroom/">Newsroom & Press</a>
-                <a href="/help/">Help Center & FAQ</a>
-            </div>
-
-            <div class="footer-col text-center">
-                <h4>Connect With Us</h4>
-                <div class="social-icons">
-                    <a href="https://discord.gg/nDAZ3p475V" target="_blank"><i class="fab fa-discord"></i></a>
-                    <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank"><i class="fab fa-youtube"></i></a>
-                    <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank"><i class="fab fa-telegram"></i></a>
-                    <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank"><i class="fa-solid fa-gamepad"></i></a>
-                    <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank"><i class="fab fa-trello"></i></a>
-                    <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank"><i class="fab fa-tiktok"></i></a>
-                </div>
+            <div class="card">
+                <h3>Falcon LTD</h3>
+                <p style="color: var(--text-muted);">Our dedicated digital storefront for high-fidelity Roblox aviation assets and services.</p>
             </div>
         </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2026 Tyler Nicholas Group. All Rights Reserved. Not affiliated with the real-world Emirates Group.</p>
-            <div class="legal-links">
-                <span class="last-updated">Last Updated: <span id="last-update-date"></span></span>
-                <a href="/legal/tos/">Terms of Service</a>
-                <a href="/legal/privacy/">Privacy Policy</a>
+    </section>
+
+    <section id="latest-news" style="background-color: var(--bg-secondary);">
+        <h2 class="section-title">Latest News</h2>
+        <div class="card-grid" id="news-container">
+            <div class="card">
+                <h3>Fly Dubai Acquisition Finalised</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Emirates Group Roblox officially integrates Fly Dubai as a wholly owned subsidiary...</p>
+            </div>
+            <div class="card">
+                <h3>Vision 2026 Framework Published</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">The board has outlined the new strategic operating model for the upcoming year...</p>
+            </div>
+            <div class="card">
+                <h3>Now Hiring: Director of Operations</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">We are seeking an experienced executive to lead ground and flight operations...</p>
             </div>
         </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Emirates Group Roblox. Owned and Operated by The Tyler Nicholas Group. All rights reserved.</p>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            // 1. Dynamic Hero Background Slider (Isolated from database errors)
-            try {
-                const heroImages = [
-                    "url('https://i.ibb.co/S7DBmmZG/A350-New-Pics-2.png')",
-                    "url('https://i.ibb.co/YBdMHYSJ/A350-New-Pics.png')",
-                    "url('https://i.ibb.co/YYT47Ys/EGR-Headquarters-Pic.png')",
-                    "url('https://i.ibb.co/LX1x6sym/A380-800-PIC-1.jpg')",
-                    "url('https://i.ibb.co/FLN5KjCR/Boeing-777-PIC-1.png')",
-                    "url('https://i.ibb.co/5WFHHqSk/Emirates-Roblox-Crew-Uniform-Pack-removebg-preview.png')"
-                ];
-                let currentImg = 0;
-                const heroSection = document.getElementById('dynamic-hero');
-                heroSection.style.backgroundImage = heroImages[0];
-                
-                setInterval(() => {
-                    currentImg = (currentImg + 1) % heroImages.length;
-                    heroSection.style.backgroundImage = heroImages[currentImg];
-                }, 5000);
-            } catch(e) { console.error("Slider error:", e); }
-
-            // 2. Live Dubai Clock
-            try {
-                function updateDubaiTime() {
-                    const clockElement = document.getElementById('dubai-clock');
-                    if(clockElement) {
-                        clockElement.innerText = new Date().toLocaleTimeString('en-US', {
-                            timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit', second: '2-digit'
-                        });
-                    }
-                }
-                setInterval(updateDubaiTime, 1000);
-                updateDubaiTime();
-            } catch(e) { console.error("Clock error:", e); }
-
-            // 3. Last Updated Date
-            const dateSpan = document.getElementById('last-update-date');
-            if(dateSpan) dateSpan.innerText = new Date(document.lastModified).toLocaleDateString();
-
-            // 4. Mobile Menu
-            const menuToggle = document.getElementById('mobile-menu');
-            const navLinks = document.getElementById('nav-links');
-            if(menuToggle) {
-                menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
-            }
-
-            // 5. Supabase Connection (Wrapped in try/catch so it doesn't break the page if it fails)
-            try {
-                const supabaseUrl = 'https://zboyabxzhptnxnmofvcz.supabase.co';
-                const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys';
-                const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-                async function fetchAnnouncement() {
-                    const { data, error } = await supabase.from('announcements').select('message, link_url').eq('is_active', true).limit(1).single();
-                    if (data) {
-                        const bar = document.getElementById('announcement-bar');
-                        const text = document.getElementById('announcement-text');
-                        bar.classList.remove('hidden');
-                        if (data.link_url) {
-                            text.innerHTML = `<a href="${data.link_url}" style="color: white; text-decoration: underline;">${data.message}</a>`;
-                        } else {
-                            text.innerText = data.message;
-                        }
-                    }
-                }
-                fetchAnnouncement();
-            } catch (error) {
-                console.error("Supabase failed to load or table missing:", error);
-            }
+        // --- 1. Loading Screen Animation ---
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500); // Wait for fade out to finish before hiding
+            }, 1200); // Show loader for 1.2 seconds minimum
         });
+
+        // --- 2. Theme Toggle Logic ---
+        function toggleTheme() {
+            const body = document.body;
+            const themeText = document.getElementById('themeText');
+            
+            body.classList.toggle('light-mode');
+            
+            if (body.classList.contains('light-mode')) {
+                themeText.textContent = 'Light';
+            } else {
+                themeText.textContent = 'Dark';
+            }
+        }
     </script>
 </body>
 </html>
