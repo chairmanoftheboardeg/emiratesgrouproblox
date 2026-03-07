@@ -283,6 +283,173 @@
     </div>
   </section>
 
+  <section id="feedback-section" class="py-20 px-6 bg-gray-50 border-t border-gray-200">
+  <div class="max-w-7xl mx-auto">
+    
+    <div class="text-center mb-12">
+      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-3 block"><i class="fa-solid fa-star mr-2"></i> Passenger Experience</span>
+      <h2 class="text-3xl md:text-5xl font-bold text-[#111827] uppercase tracking-tight">Community Feedback</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      
+      <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 flex flex-col h-[600px]">
+        <h3 class="text-xl font-bold text-[#111827] uppercase tracking-widest mb-6 border-b border-gray-100 pb-4">Recent Reviews</h3>
+        
+        <div id="feedback-wall" class="flex-grow overflow-y-auto space-y-6 pr-2">
+          <div class="text-center py-10 text-gray-400">
+            <i class="fa-solid fa-circle-notch fa-spin text-3xl mb-3"></i>
+            <p class="font-bold uppercase tracking-widest text-xs">Loading Reviews...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-[#111827] p-8 md:p-10 rounded-xl shadow-lg border border-gray-800 text-white flex flex-col justify-center">
+        <h3 class="text-2xl font-bold uppercase tracking-wide mb-2">Share Your Experience</h3>
+        <p class="text-gray-400 text-sm mb-8 leading-relaxed">Have you flown with us or joined our community? We value your honest feedback to help us maintain the Emirates Group Roblox standard.</p>
+
+        <div id="feedback-form-container" class="space-y-6">
+          <div>
+            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Full Name / Roblox Username *</label>
+            <input type="text" id="fb-name" placeholder="Who are you?" class="w-full px-4 py-3 bg-gray-900 border border-gray-700 text-white rounded outline-none focus:border-[#D71A21] transition-colors">
+          </div>
+          
+          <div>
+            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Rating *</label>
+            <select id="fb-rating" class="w-full px-4 py-3 bg-gray-900 border border-gray-700 text-white rounded outline-none focus:border-[#D71A21] transition-colors appearance-none font-bold">
+              <option value="5">⭐⭐⭐⭐⭐ (5/5 - Exceptional)</option>
+              <option value="4">⭐⭐⭐⭐ (4/5 - Great)</option>
+              <option value="3">⭐⭐⭐ (3/5 - Average)</option>
+              <option value="2">⭐⭐ (2/5 - Below Average)</option>
+              <option value="1">⭐ (1/5 - Poor)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Feedback Description *</label>
+            <textarea id="fb-desc" rows="4" placeholder="Tell us about your experience..." class="w-full px-4 py-3 bg-gray-900 border border-gray-700 text-white rounded outline-none focus:border-[#D71A21] transition-colors resize-none"></textarea>
+          </div>
+
+          <button onclick="submitFeedback()" id="fb-submit-btn" class="w-full bg-[#D71A21] hover:bg-red-800 text-white font-bold py-4 rounded transition-colors uppercase tracking-widest text-sm shadow-md mt-4">
+            Post Feedback <i class="fa-solid fa-paper-plane ml-2"></i>
+          </button>
+        </div>
+
+        <div id="fb-success-message" class="hidden text-center py-10">
+          <div class="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-check text-3xl"></i>
+          </div>
+          <h4 class="text-xl font-bold uppercase tracking-widest mb-2">Feedback Received</h4>
+          <p class="text-gray-400 text-sm">Thank you for helping us elevate the EGR experience.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Wait for Supabase to load from your main site's header
+    const checkSupabaseFb = setInterval(() => {
+      if (window.supabase) {
+        clearInterval(checkSupabaseFb);
+        fetchFeedback();
+      }
+    }, 100);
+  });
+
+  async function fetchFeedback() {
+    const supabase = window.supabase.createClient('https://zboyabxzhptnxnmofvcz.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys');
+    
+    try {
+      const { data, error } = await supabase
+        .from('egr_feedback')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(20); // Fetches the latest 20 reviews
+
+      const wall = document.getElementById('feedback-wall');
+      
+      if (error) throw error;
+
+      if (!data || data.length === 0) {
+        wall.innerHTML = `<div class="text-center py-10 text-gray-400 font-bold uppercase tracking-widest text-xs">No feedback yet. Be the first!</div>`;
+        return;
+      }
+
+      let html = '';
+      data.forEach(item => {
+        const date = new Date(item.created_at).toLocaleDateString();
+        
+        // Generate Star Icons
+        let starsHTML = '';
+        for(let i = 1; i <= 5; i++) {
+          if(i <= item.rating) starsHTML += `<i class="fa-solid fa-star text-[#D71A21] text-sm mr-1"></i>`;
+          else starsHTML += `<i class="fa-regular fa-star text-gray-300 text-sm mr-1"></i>`;
+        }
+
+        html += `
+          <div class="bg-gray-50 border border-gray-200 p-5 rounded-lg shadow-sm">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <h4 class="font-bold text-[#111827] uppercase tracking-wide">${item.full_name}</h4>
+                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">${date}</p>
+              </div>
+              <div class="flex">${starsHTML}</div>
+            </div>
+            <p class="text-gray-600 text-sm leading-relaxed italic">"${item.description}"</p>
+          </div>
+        `;
+      });
+      
+      wall.innerHTML = html;
+
+    } catch (err) {
+      document.getElementById('feedback-wall').innerHTML = `<div class="text-center py-10 text-red-500 font-bold">Failed to load feedback.</div>`;
+    }
+  }
+
+  async function submitFeedback() {
+    const name = document.getElementById('fb-name').value.trim();
+    const rating = parseInt(document.getElementById('fb-rating').value);
+    const desc = document.getElementById('fb-desc').value.trim();
+    const btn = document.getElementById('fb-submit-btn');
+
+    if(!name || !desc) {
+      return alert("Please provide your name and a description.");
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Posting...`;
+
+    const supabase = window.supabase.createClient('https://zboyabxzhptnxnmofvcz.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys');
+
+    try {
+      const { error } = await supabase.from('egr_feedback').insert([{ 
+        full_name: name, 
+        rating: rating, 
+        description: desc 
+      }]);
+
+      if (error) throw error;
+
+      // Hide form, show success
+      document.getElementById('feedback-form-container').classList.add('hidden');
+      document.getElementById('fb-success-message').classList.remove('hidden');
+
+      // Refresh the wall instantly so they see their review
+      fetchFeedback();
+
+    } catch (err) {
+      alert("Error posting feedback: " + err.message);
+      btn.disabled = false;
+      btn.innerHTML = `Post Feedback <i class="fa-solid fa-paper-plane ml-2"></i>`;
+    }
+  }
+</script>
+
   <footer class="bg-[#111827] text-white py-12 md:py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
       <div class="md:col-span-2">
