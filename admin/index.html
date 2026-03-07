@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EGR Operations Command Center</title>
+  <title>EGR Admin Center</title>
   <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" />
   
   <script src="https://cdn.tailwindcss.com"></script>
@@ -209,7 +209,8 @@
                 <tr>
                   <th class="p-4">Date</th>
                   <th class="p-4">Roblox User</th>
-                  <th class="p-4">Discord</th>
+                  <th class="p-4">Discord User</th>
+                  <th class="p-4">Discord ID</th>
                   <th class="p-4">Position Applied</th>
                   <th class="p-4">Status</th>
                   <th class="p-4 text-right">Actions</th>
@@ -225,7 +226,7 @@
   </div>
 
   <div id="data-modal" class="fixed inset-0 z-[200] bg-[#111827]/80 backdrop-blur-sm hidden flex items-center justify-center p-4 transition-opacity opacity-0">
-    <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col max-h-[90vh]">
+    <div class="bg-white rounded-xl shadow-2xl w-full max-w-4xl overflow-hidden flex flex-col max-h-[95vh]">
       <div class="bg-[#111827] text-white p-6 border-b-4 border-[#D71A21] flex justify-between items-center">
         <h2 class="text-xl font-bold uppercase tracking-widest" id="modal-title">Form Title</h2>
         <button onclick="closeModal()" class="text-gray-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
@@ -286,7 +287,6 @@
         err.classList.remove('hidden');
         return;
       }
-
       if (!supabase) {
         err.innerText = "System still connecting to the database. Please wait a moment.";
         err.classList.remove('hidden');
@@ -298,7 +298,6 @@
       
       try {
         const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-        
         if (error) {
           err.innerText = error.message; 
           err.classList.remove('hidden');
@@ -346,13 +345,11 @@
       fetchAllData();
     }
 
-    // --- NAVIGATION ---
     function switchTab(tab) {
       document.querySelectorAll('.admin-section').forEach(el => el.classList.add('hidden'));
       document.querySelectorAll('.admin-tab').forEach(el => {
         el.className = "admin-tab w-full text-left px-4 py-3 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors";
       });
-      
       document.getElementById(`view-${tab}`).classList.remove('hidden');
       document.getElementById(`tab-${tab}`).className = "admin-tab w-full text-left px-4 py-3 bg-[#D71A21] text-white rounded text-sm font-bold shadow transition-colors";
       
@@ -367,7 +364,6 @@
       document.getElementById('section-title').innerText = titles[tab];
     }
 
-    // --- DATA FETCHING ---
     async function fetchAllData() {
       fetchFlights();
       fetchNews();
@@ -402,7 +398,6 @@
       if(data) { dbApplications = data; renderApplications(); }
     }
 
-    // --- RENDERING ---
     function renderFlights() {
       const tbody = document.getElementById('table-flights');
       if (dbFlights.length === 0) return tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-gray-400">No active flights.</td></tr>`;
@@ -410,14 +405,10 @@
       dbFlights.forEach(f => {
         const time = new Date(f.departure_time).toLocaleString('en-US', {month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit'});
         let statusBadge = `<span class="px-2 py-1 bg-gray-200 text-gray-700 rounded text-[10px] font-bold uppercase">${f.status}</span>`;
-        if(f.status === 'Boarding') statusBadge = `<span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded text-[10px] font-bold uppercase">Boarding</span>`;
-        if(f.status === 'In-Air') statusBadge = `<span class="px-2 py-1 bg-green-100 text-green-700 rounded text-[10px] font-bold uppercase">In-Air</span>`;
-        if(f.status === 'Delayed') statusBadge = `<span class="px-2 py-1 bg-red-100 text-red-700 rounded text-[10px] font-bold uppercase">Delayed</span>`;
-
         html += `
           <tr class="hover:bg-gray-50 border-b border-gray-100">
             <td class="p-4 font-bold text-[#111827]">${f.flight_number}</td>
-            <td class="p-4 text-xs font-bold text-gray-500">${f.departure_airport} <i class="fa-solid fa-arrow-right mx-1"></i> ${f.arrival_airport}</td>
+            <td class="p-4 text-xs font-bold text-gray-500">${f.departure_airport} -> ${f.arrival_airport}</td>
             <td class="p-4 text-sm">${time}</td>
             <td class="p-4 text-sm text-gray-500">${f.aircraft_type || 'N/A'}</td>
             <td class="p-4">${statusBadge}</td>
@@ -436,7 +427,7 @@
       let html = '';
       dbNews.forEach(n => {
         const time = new Date(n.published_at).toLocaleDateString();
-        const active = n.is_active ? `<span class="text-green-600 font-bold text-xs"><i class="fa-solid fa-circle text-[8px] mr-1"></i> Public</span>` : `<span class="text-gray-400 font-bold text-xs">Draft</span>`;
+        const active = n.is_active ? `<span class="text-green-600 font-bold text-xs">Public</span>` : `<span class="text-gray-400 font-bold text-xs">Draft</span>`;
         html += `
           <tr class="hover:bg-gray-50 border-b border-gray-100">
             <td class="p-4 text-sm text-gray-500">${time}</td>
@@ -461,7 +452,7 @@
             <img src="${m.image_url}" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-[#111827]/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center items-center p-4 text-center">
               <p class="text-white font-bold text-sm mb-4">${m.title || 'Untitled'}</p>
-              <button onclick="deleteRecord('egr_media', '${m.id}')" class="bg-[#D71A21] text-white px-4 py-2 rounded text-xs font-bold uppercase tracking-widest hover:bg-red-800"><i class="fa-solid fa-trash mr-1"></i> Delete</button>
+              <button onclick="deleteRecord('egr_media', '${m.id}')" class="bg-[#D71A21] text-white px-4 py-2 rounded text-xs font-bold uppercase tracking-widest hover:bg-red-800">Delete</button>
             </div>
           </div>`;
       });
@@ -509,7 +500,7 @@
 
     function renderApplications() {
       const tbody = document.getElementById('table-applications');
-      if (dbApplications.length === 0) return tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-gray-400">No applications received yet.</td></tr>`;
+      if (dbApplications.length === 0) return tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-gray-400">No applications received yet.</td></tr>`;
       let html = '';
       dbApplications.forEach(a => {
         const time = new Date(a.created_at).toLocaleDateString();
@@ -523,11 +514,12 @@
           <tr class="hover:bg-gray-50 border-b border-gray-100">
             <td class="p-4 text-sm text-gray-500">${time}</td>
             <td class="p-4 font-bold text-[#111827]">${a.roblox_username}</td>
-            <td class="p-4 text-blue-600 text-sm">${a.discord_username}</td>
+            <td class="p-4 text-blue-600 text-sm font-semibold">${a.discord_username}</td>
+            <td class="p-4 text-gray-400 text-xs font-mono">${a.discord_id || 'N/A'}</td>
             <td class="p-4 text-sm font-semibold">${a.job_title}</td>
             <td class="p-4">${statusBadge}</td>
             <td class="p-4 text-right">
-              <button onclick="openModal('application', '${a.id}')" class="text-white bg-[#111827] hover:bg-gray-800 px-3 py-1 rounded text-xs font-bold mr-2 transition-colors">Review</button>
+              <button onclick="openModal('application', '${a.id}')" class="text-white bg-[#111827] hover:bg-gray-800 px-3 py-1 rounded text-xs font-bold mr-2 transition-colors">Review Full Dossier</button>
               <button onclick="deleteRecord('egr_applications', '${a.id}')" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
             </td>
           </tr>`;
@@ -535,7 +527,6 @@
       tbody.innerHTML = html;
     }
 
-    // --- MODAL FORMS ---
     function openModal(type, id = null) {
       const modal = document.getElementById('data-modal');
       const formFields = document.getElementById('form-fields');
@@ -628,37 +619,86 @@
           <div class="flex items-center"><input type="checkbox" id="j-active" class="w-4 h-4 text-[#D71A21]" ${j.is_active !== false ? 'checked' : ''}><label class="ml-2 text-sm font-bold text-[#111827]">Open for Applications</label></div>
         `;
       }
+
+      // ==========================================
+      // NEW FULL APPLICATION REVIEW MODAL 
+      // ==========================================
       else if (type === 'application') {
-        title.innerText = "Review Application";
+        title.innerText = "Review Candidate Dossier";
         const a = dbApplications.find(x => x.id === id);
         
-        // This modal is primarily for viewing read-only data, so we format it beautifully.
         html = `
-          <div class="grid grid-cols-2 gap-4 mb-4 bg-white p-4 rounded border border-gray-200">
-            <div>
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Roblox Username</p>
-              <p class="font-bold text-[#111827] text-lg">${a.roblox_username}</p>
-            </div>
-            <div>
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Discord Tag</p>
-              <p class="font-bold text-blue-600 text-lg">${a.discord_username}</p>
-            </div>
-          </div>
           <div class="mb-4">
             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Position Applied For</p>
-            <p class="font-bold text-[#111827] bg-gray-100 p-3 rounded">${a.job_title}</p>
+            <p class="font-bold text-white bg-[#111827] p-3 rounded shadow-inner uppercase tracking-wide">${a.job_title || 'N/A'}</p>
           </div>
-          <div class="mb-6">
-            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Application Answers</p>
-            <div class="text-sm text-gray-700 bg-white p-4 border border-gray-200 rounded h-40 overflow-y-auto whitespace-pre-wrap font-mono">${a.answers || 'No answers provided.'}</div>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+            <div>
+              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Roblox Username</p>
+              <p class="font-bold text-[#111827]">${a.roblox_username || 'N/A'}</p>
+            </div>
+            <div>
+              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Discord User</p>
+              <p class="font-bold text-blue-600">${a.discord_username || 'N/A'}</p>
+            </div>
+            <div>
+              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Discord ID</p>
+              <p class="font-bold text-gray-600 font-mono text-sm">${a.discord_id || 'N/A'}</p>
+            </div>
+            <div>
+              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Date Submitted</p>
+              <p class="font-bold text-gray-600 text-sm">${new Date(a.created_at).toLocaleDateString()}</p>
+            </div>
           </div>
-          <div>
-            <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Applicant Status</label>
-            <select id="a-status" class="w-full px-3 py-3 font-bold border rounded focus:ring-2 focus:ring-[#D71A21] outline-none">
-              <option value="Pending" ${a.status==='Pending'?'selected':''}>Pending</option>
-              <option value="Under Review" ${a.status==='Under Review'?'selected':''}>Under Review</option>
-              <option value="Approved" ${a.status==='Approved'?'selected':''}>Approved</option>
-              <option value="Denied" ${a.status==='Denied'?'selected':''}>Denied</option>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 bg-gray-100 p-4 rounded-xl border border-gray-200">
+            <div>
+              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Legal Name</p>
+              <p class="font-bold text-[#111827]">${a.legal_name || 'N/A'} ${a.preferred_name ? `("${a.preferred_name}")` : ''}</p>
+            </div>
+            <div>
+              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Date of Birth</p>
+              <p class="font-bold text-[#111827]">${a.date_of_birth || 'N/A'}</p>
+            </div>
+            <div>
+              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Country of Residency</p>
+              <p class="font-bold text-[#111827]">${a.country_residency || 'N/A'}</p>
+            </div>
+            <div>
+              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Discovery Source</p>
+              <p class="font-bold text-[#111827]">${a.source || 'N/A'}</p>
+            </div>
+          </div>
+
+          <div class="mb-6 space-y-4">
+            <div class="bg-white p-4 border border-gray-200 rounded-xl shadow-sm">
+                <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest mb-2">Why are they a good fit?</p>
+                <p class="text-sm text-gray-700 whitespace-pre-wrap">${a.fit_reason || 'N/A'}</p>
+            </div>
+            <div class="bg-white p-4 border border-gray-200 rounded-xl shadow-sm">
+                <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest mb-2">Why EGR?</p>
+                <p class="text-sm text-gray-700 whitespace-pre-wrap">${a.why_egr || 'N/A'}</p>
+            </div>
+          </div>
+
+          <div class="bg-green-50 p-4 border border-green-200 rounded-xl mb-6 flex justify-between items-center">
+              <div>
+                  <p class="text-[10px] font-bold text-green-700 uppercase tracking-widest mb-1"><i class="fa-solid fa-file-contract mr-1"></i> Electronic Signature & Agreements</p>
+                  <p class="font-serif italic text-lg text-[#111827]">${a.e_signature || 'Not Signed'}</p>
+              </div>
+              <div class="text-right">
+                  <span class="bg-green-600 text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-widest">Agreements Checked: ${a.agreements_checked ? 'YES' : 'NO'}</span>
+              </div>
+          </div>
+
+          <div class="bg-gray-100 p-6 rounded-xl border border-gray-300">
+            <label class="block text-xs font-bold text-[#111827] uppercase tracking-widest mb-3"><i class="fa-solid fa-gavel mr-2 text-[#D71A21]"></i> Official HR Decision</label>
+            <select id="a-status" class="w-full px-4 py-4 font-bold text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D71A21] outline-none shadow-sm">
+              <option value="Pending" ${a.status==='Pending'?'selected':''}>⏳ Pending Review</option>
+              <option value="Under Review" ${a.status==='Under Review'?'selected':''}>🔎 Under Review (In Progress)</option>
+              <option value="Approved" ${a.status==='Approved'?'selected':''}>✅ Approved (Send Letter of Intent)</option>
+              <option value="Denied" ${a.status==='Denied'?'selected':''}>❌ Denied (14 Day Cooldown)</option>
             </select>
           </div>
         `;
@@ -736,10 +776,7 @@
       }
       else if (type === 'application') {
         table = 'egr_applications';
-        // For applications, we only let the admin update the status
-        payload = {
-          status: document.getElementById('a-status').value
-        };
+        payload = { status: document.getElementById('a-status').value };
       }
 
       if (id) {
@@ -751,7 +788,6 @@
       closeModal();
       btn.innerText = "Save Record";
       
-      // Refresh Data
       if(type === 'flight') fetchFlights();
       if(type === 'news') fetchNews();
       if(type === 'media') fetchMedia();
