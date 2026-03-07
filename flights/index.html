@@ -149,18 +149,29 @@
     </div>
   </header>
 
+  <div class="bg-gray-900 border-b border-gray-800 py-4 px-6 overflow-hidden">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-center md:justify-between items-center gap-6 text-xs font-mono font-bold uppercase tracking-widest text-gray-400">
+      <div class="flex items-center"><i class="fa-regular fa-clock text-[#D71A21] mr-2"></i> Dubai: <span id="clk-dxb" class="ml-2 text-white">--:--:--</span></div>
+      <div class="flex items-center"><i class="fa-regular fa-clock text-[#D71A21] mr-2"></i> Seychelles: <span id="clk-sez" class="ml-2 text-white">--:--:--</span></div>
+      <div class="flex items-center"><i class="fa-regular fa-clock text-[#D71A21] mr-2"></i> London: <span id="clk-lhr" class="ml-2 text-white">--:--:--</span></div>
+      <div class="flex items-center"><i class="fa-regular fa-clock text-[#D71A21] mr-2"></i> New York: <span id="clk-jfk" class="ml-2 text-white">--:--:--</span></div>
+    </div>
+  </div>
+
   <main class="flex-grow py-12 px-4 md:px-12 w-full bg-gray-50">
     <div class="max-w-7xl mx-auto">
       
       <div class="bg-[#0a1017] rounded-xl shadow-2xl overflow-hidden border-2 border-[#111827]">
         
-        <div class="bg-[#111827] border-b-4 border-[#D71A21] p-6 flex items-center justify-between">
+        <div class="bg-[#111827] border-b-4 border-[#D71A21] p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div class="flex items-center">
             <i class="fa-solid fa-plane-departure text-3xl text-white mr-4"></i>
-            <h2 class="text-3xl font-bold text-white tracking-widest">Departures</h2>
+            <h2 class="text-3xl font-bold text-white tracking-widest uppercase">Departures</h2>
           </div>
-          <div class="hidden md:block">
-            <span class="bg-[#D71A21] text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-widest">Network Wide Radar</span>
+          <div>
+            <span class="bg-[#D71A21] text-white text-[10px] md:text-xs font-bold px-3 py-1 rounded uppercase tracking-widest border border-red-800 shadow-inner">
+              <i class="fa-solid fa-globe mr-1"></i> All Times Local to Dubai (GST +4)
+            </span>
           </div>
         </div>
 
@@ -170,7 +181,7 @@
               <tr>
                 <th class="py-3 px-6 font-bold w-32">Flight</th>
                 <th class="py-3 px-6 font-bold">Destination</th>
-                <th class="py-3 px-6 font-bold">Time</th>
+                <th class="py-3 px-6 font-bold">Date & Time</th>
                 <th class="py-3 px-6 font-bold">Aircraft</th>
                 <th class="py-3 px-6 font-bold text-right">Remarks / Status</th>
               </tr>
@@ -300,17 +311,25 @@
         }
       }, 1000); 
 
-      // Live Clock Logic
-      function updateClock() {
+      // Live Clocks Logic
+      function updateClocks() {
         const now = new Date();
+        
+        // Header Local Computer Time
         const timeString = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
         const dateString = now.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
-        
         document.getElementById('live-clock').innerText = timeString;
         document.getElementById('footer-date').innerText = dateString;
+
+        // Global Hub Timezones Widget
+        const options = { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        document.getElementById('clk-dxb').innerText = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'Asia/Dubai' }).format(now) + ' GST';
+        document.getElementById('clk-sez').innerText = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'Indian/Mahe' }).format(now) + ' SCT';
+        document.getElementById('clk-lhr').innerText = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'Europe/London' }).format(now) + ' UK';
+        document.getElementById('clk-jfk').innerText = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'America/New_York' }).format(now) + ' EST';
       }
-      setInterval(updateClock, 1000);
-      updateClock();
+      setInterval(updateClocks, 1000);
+      updateClocks();
 
       // SUPABASE FETCH LOGIC FOR FLIGHTS
       const checkSupabase = setInterval(async () => {
@@ -326,7 +345,7 @@
               .from('egr_flights')
               .select('*')
               .order('departure_time', { ascending: true })
-              .limit(15); // Show up to 15 flights on the big board
+              .limit(15); 
 
             const board = document.getElementById('full-flight-board');
 
@@ -360,20 +379,22 @@
                   remarkText = 'DELAYED';
                 }
 
-                // Format Time specifically for Airport Board (e.g., 14:35)
+                // FORCE DUBAI TIMEZONE (GST +4) & ADD DATE
                 const dateObj = new Date(flight.departure_time);
-                const timeString = dateObj.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+                const timeString = dateObj.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour12: false, hour: '2-digit', minute: '2-digit' });
+                const dateString = dateObj.toLocaleDateString('en-US', { timeZone: 'Asia/Dubai', month: 'short', day: '2-digit' });
                 
-                // Add a visual indicator if it's not a standard EGR flight based on flight number prefix
-                let operatorIcon = '<span class="bg-gray-800 text-xs px-2 py-1 rounded mr-2 text-gray-300">EGR</span>';
-                if(flight.flight_number.startsWith('FZ')) operatorIcon = '<span class="bg-blue-900 text-xs px-2 py-1 rounded mr-2 text-white">FZ</span>';
-                if(flight.flight_number.startsWith('EKC')) operatorIcon = '<span class="bg-yellow-700 text-xs px-2 py-1 rounded mr-2 text-white">CARGO</span>';
+                let operatorIcon = '<span class="bg-gray-800 text-xs px-2 py-1 rounded mr-2 text-gray-300 shadow-inner border border-gray-700">EGR</span>';
+                if(flight.flight_number.startsWith('FZ')) operatorIcon = '<span class="bg-blue-900 text-xs px-2 py-1 rounded mr-2 text-white shadow-inner border border-blue-800">FZ</span>';
+                if(flight.flight_number.startsWith('EKC')) operatorIcon = '<span class="bg-yellow-700 text-xs px-2 py-1 rounded mr-2 text-white shadow-inner border border-yellow-600">CARGO</span>';
 
                 html += `
                   <tr class="fids-row hover:bg-gray-700 transition-colors border-b border-gray-800/50">
-                    <td class="py-4 px-6 font-bold text-white">${operatorIcon} ${flight.flight_number}</td>
-                    <td class="py-4 px-6 text-gray-200">${flight.arrival_airport}</td>
-                    <td class="py-4 px-6 text-yellow-400 font-bold tracking-widest">${timeString}</td>
+                    <td class="py-4 px-6 font-bold text-white text-lg">${operatorIcon} ${flight.flight_number}</td>
+                    <td class="py-4 px-6 text-gray-200 text-lg uppercase tracking-wide">${flight.arrival_airport}</td>
+                    <td class="py-4 px-6 font-bold tracking-widest text-gray-400 uppercase text-xs">
+                        ${dateString} <span class="text-yellow-400 text-lg ml-3">${timeString}</span>
+                    </td>
                     <td class="py-4 px-6 text-gray-400 text-sm">${flight.aircraft_type || '---'}</td>
                     <td class="py-4 px-6 text-right uppercase tracking-widest text-xs ${statusColor}">${dot} ${remarkText}</td>
                   </tr>
