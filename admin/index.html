@@ -16,7 +16,6 @@
     .fade-in { animation: fadeIn 0.5s ease-in forwards; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     
-    /* Custom Scrollbar for Admin */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #f1f1f1; }
     ::-webkit-scrollbar-thumb { background: #111827; border-radius: 4px; }
@@ -66,18 +65,27 @@
         <span class="inline-block mt-2 bg-[#D71A21] text-white text-[10px] px-2 py-0.5 rounded uppercase tracking-widest font-bold">Authorized</span>
       </div>
       
-      <nav class="flex-grow p-4 space-y-2 overflow-y-auto">
-        <button onclick="switchTab('flights')" id="tab-flights" class="admin-tab w-full text-left px-4 py-3 bg-[#D71A21] text-white rounded text-sm font-bold shadow transition-colors"><i class="fa-solid fa-plane-radar w-6 text-center"></i> Flight Radar</button>
-        <button onclick="switchTab('news')" id="tab-news" class="admin-tab w-full text-left px-4 py-3 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-regular fa-newspaper w-6 text-center"></i> Newsroom</button>
-        <button onclick="switchTab('media')" id="tab-media" class="admin-tab w-full text-left px-4 py-3 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-images w-6 text-center"></i> Media Gallery</button>
-        <button onclick="switchTab('innovations')" id="tab-innovations" class="admin-tab w-full text-left px-4 py-3 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-microchip w-6 text-center"></i> Innovations</button>
+      <nav class="flex-grow p-4 space-y-1 overflow-y-auto no-scrollbar">
+        <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold px-4 pt-2 pb-1">Operations</p>
+        <button onclick="switchTab('flights')" id="tab-flights" class="admin-tab w-full text-left px-4 py-2 bg-[#D71A21] text-white rounded text-sm font-bold shadow transition-colors"><i class="fa-solid fa-plane-radar w-6 text-center"></i> Flight Radar</button>
+        <button onclick="switchTab('announcements')" id="tab-announcements" class="admin-tab w-full text-left px-4 py-2 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-bullhorn w-6 text-center"></i> Announcements</button>
+        <button onclick="switchTab('stats')" id="tab-stats" class="admin-tab w-full text-left px-4 py-2 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-chart-line w-6 text-center"></i> Global Statistics</button>
+        
+        <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold px-4 pt-4 pb-1">Corporate & Media</p>
+        <button onclick="switchTab('news')" id="tab-news" class="admin-tab w-full text-left px-4 py-2 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-regular fa-newspaper w-6 text-center"></i> Newsroom</button>
+        <button onclick="switchTab('media')" id="tab-media" class="admin-tab w-full text-left px-4 py-2 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-images w-6 text-center"></i> Media Gallery</button>
+        <button onclick="switchTab('innovations')" id="tab-innovations" class="admin-tab w-full text-left px-4 py-2 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-microchip w-6 text-center"></i> Innovations</button>
         
         <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold px-4 pt-4 pb-1">Recruitment</p>
-        <button onclick="switchTab('jobs')" id="tab-jobs" class="admin-tab w-full text-left px-4 py-3 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-briefcase w-6 text-center"></i> Job Postings</button>
-        <button onclick="switchTab('applications')" id="tab-applications" class="admin-tab w-full text-left px-4 py-3 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-file-signature w-6 text-center"></i> Applications</button>
+        <button onclick="switchTab('jobs')" id="tab-jobs" class="admin-tab w-full text-left px-4 py-2 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-briefcase w-6 text-center"></i> Job Postings</button>
+        <button onclick="switchTab('applications')" id="tab-applications" class="admin-tab w-full text-left px-4 py-2 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-file-signature w-6 text-center"></i> Applications</button>
+
+        <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold px-4 pt-4 pb-1">Safety & QA</p>
+        <button onclick="switchTab('feedback')" id="tab-feedback" class="admin-tab w-full text-left px-4 py-2 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-star w-6 text-center"></i> QA Feedback</button>
+        <button onclick="switchTab('blacklist')" id="tab-blacklist" class="admin-tab w-full text-left px-4 py-2 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-shield-halved w-6 text-center"></i> Blacklist DB</button>
 
         <hr class="border-gray-800 my-4">
-        <a href="../" target="_blank" class="block w-full text-left px-4 py-3 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-up-right-from-square w-6 text-center"></i> View Live Site</a>
+        <a href="../" target="_blank" class="block w-full text-left px-4 py-2 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors mb-4"><i class="fa-solid fa-arrow-up-right-from-square w-6 text-center"></i> View Live Site</a>
       </nav>
       
       <div class="p-4 border-t border-gray-800 bg-[#0a1017]">
@@ -102,24 +110,46 @@
           <div class="flex justify-between items-end mb-6">
             <p class="text-gray-500 text-sm">Manage scheduled and live flights appearing on the public radar.</p>
             <button onclick="openModal('flight')" class="bg-[#111827] hover:bg-[#D71A21] text-white font-bold py-2 px-6 rounded shadow transition-colors text-sm uppercase tracking-widest">
-              <i class="fa-solid fa-plus mr-2"></i> Dispatch New Flight
+              <i class="fa-solid fa-plus mr-2"></i> Dispatch Flight
             </button>
           </div>
           <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <table class="w-full text-left text-sm whitespace-nowrap">
               <thead class="bg-gray-50 border-b border-gray-200 text-gray-500 uppercase text-[10px] tracking-widest font-bold">
-                <tr>
-                  <th class="p-4">Flight No.</th>
-                  <th class="p-4">Route</th>
-                  <th class="p-4">Departure Time</th>
-                  <th class="p-4">Aircraft</th>
-                  <th class="p-4">Status</th>
-                  <th class="p-4 text-right">Actions</th>
-                </tr>
+                <tr><th class="p-4">Flight No.</th><th class="p-4">Route</th><th class="p-4">Departure Time</th><th class="p-4">Aircraft</th><th class="p-4">Status</th><th class="p-4 text-right">Actions</th></tr>
               </thead>
-              <tbody id="table-flights" class="divide-y divide-gray-100 text-gray-800 font-medium">
-                <tr><td colspan="6" class="p-8 text-center text-gray-400"><i class="fa-solid fa-circle-notch fa-spin"></i> Fetching Radar Data...</td></tr>
-              </tbody>
+              <tbody id="table-flights" class="divide-y divide-gray-100 text-gray-800 font-medium"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="view-announcements" class="admin-section hidden">
+          <div class="flex justify-between items-end mb-6">
+            <p class="text-gray-500 text-sm">Manage the dynamic alert banner displayed across the network.</p>
+            <button onclick="openModal('announcement')" class="bg-[#111827] hover:bg-[#D71A21] text-white font-bold py-2 px-6 rounded shadow transition-colors text-sm uppercase tracking-widest">
+              <i class="fa-solid fa-plus mr-2"></i> New Alert
+            </button>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <table class="w-full text-left text-sm whitespace-nowrap">
+              <thead class="bg-gray-50 border-b border-gray-200 text-gray-500 uppercase text-[10px] tracking-widest font-bold">
+                <tr><th class="p-4">Date</th><th class="p-4">Message</th><th class="p-4">Status</th><th class="p-4 text-right">Actions</th></tr>
+              </thead>
+              <tbody id="table-announcements" class="divide-y divide-gray-100 text-gray-800 font-medium"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="view-stats" class="admin-section hidden">
+          <div class="flex justify-between items-end mb-6">
+            <p class="text-gray-500 text-sm">Update the numerical values for the public scale grid on the homepage.</p>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <table class="w-full text-left text-sm whitespace-nowrap">
+              <thead class="bg-gray-50 border-b border-gray-200 text-gray-500 uppercase text-[10px] tracking-widest font-bold">
+                <tr><th class="p-4">Statistic Label</th><th class="p-4">Current Value</th><th class="p-4 text-right">Actions</th></tr>
+              </thead>
+              <tbody id="table-stats" class="divide-y divide-gray-100 text-gray-800 font-medium"></tbody>
             </table>
           </div>
         </div>
@@ -134,12 +164,7 @@
           <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <table class="w-full text-left text-sm whitespace-nowrap">
               <thead class="bg-gray-50 border-b border-gray-200 text-gray-500 uppercase text-[10px] tracking-widest font-bold">
-                <tr>
-                  <th class="p-4">Date</th>
-                  <th class="p-4">Headline</th>
-                  <th class="p-4">Visibility</th>
-                  <th class="p-4 text-right">Actions</th>
-                </tr>
+                <tr><th class="p-4">Date</th><th class="p-4">Headline</th><th class="p-4">Visibility</th><th class="p-4 text-right">Actions</th></tr>
               </thead>
               <tbody id="table-news" class="divide-y divide-gray-100 text-gray-800 font-medium"></tbody>
             </table>
@@ -150,7 +175,7 @@
           <div class="flex justify-between items-end mb-6">
             <p class="text-gray-500 text-sm">Upload high-resolution image URLs to the public gallery.</p>
             <button onclick="openModal('media')" class="bg-[#111827] hover:bg-[#D71A21] text-white font-bold py-2 px-6 rounded shadow transition-colors text-sm uppercase tracking-widest">
-              <i class="fa-solid fa-upload mr-2"></i> Add Media Link
+              <i class="fa-solid fa-upload mr-2"></i> Add Media
             </button>
           </div>
           <div id="grid-media" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
@@ -166,11 +191,7 @@
           <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <table class="w-full text-left text-sm whitespace-nowrap">
               <thead class="bg-gray-50 border-b border-gray-200 text-gray-500 uppercase text-[10px] tracking-widest font-bold">
-                <tr>
-                  <th class="p-4">Title</th>
-                  <th class="p-4">Status</th>
-                  <th class="p-4 text-right">Actions</th>
-                </tr>
+                <tr><th class="p-4">Title</th><th class="p-4">Status</th><th class="p-4 text-right">Actions</th></tr>
               </thead>
               <tbody id="table-innovations" class="divide-y divide-gray-100 text-gray-800 font-medium"></tbody>
             </table>
@@ -181,18 +202,13 @@
           <div class="flex justify-between items-end mb-6">
             <p class="text-gray-500 text-sm">Manage active career opportunities visible on the recruitment portal.</p>
             <button onclick="openModal('job')" class="bg-[#111827] hover:bg-[#D71A21] text-white font-bold py-2 px-6 rounded shadow transition-colors text-sm uppercase tracking-widest">
-              <i class="fa-solid fa-plus mr-2"></i> Create Job Post
+              <i class="fa-solid fa-plus mr-2"></i> Create Job
             </button>
           </div>
           <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <table class="w-full text-left text-sm whitespace-nowrap">
               <thead class="bg-gray-50 border-b border-gray-200 text-gray-500 uppercase text-[10px] tracking-widest font-bold">
-                <tr>
-                  <th class="p-4">Job Title</th>
-                  <th class="p-4">Department</th>
-                  <th class="p-4">Status</th>
-                  <th class="p-4 text-right">Actions</th>
-                </tr>
+                <tr><th class="p-4">Job Title</th><th class="p-4">Department</th><th class="p-4">Status</th><th class="p-4 text-right">Actions</th></tr>
               </thead>
               <tbody id="table-jobs" class="divide-y divide-gray-100 text-gray-800 font-medium"></tbody>
             </table>
@@ -206,17 +222,40 @@
           <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <table class="w-full text-left text-sm whitespace-nowrap">
               <thead class="bg-gray-50 border-b border-gray-200 text-gray-500 uppercase text-[10px] tracking-widest font-bold">
-                <tr>
-                  <th class="p-4">Date</th>
-                  <th class="p-4">Roblox User</th>
-                  <th class="p-4">Discord User</th>
-                  <th class="p-4">Discord ID</th>
-                  <th class="p-4">Position Applied</th>
-                  <th class="p-4">Status</th>
-                  <th class="p-4 text-right">Actions</th>
-                </tr>
+                <tr><th class="p-4">Date</th><th class="p-4">Roblox User</th><th class="p-4">Discord</th><th class="p-4">Position Applied</th><th class="p-4">Status</th><th class="p-4 text-right">Actions</th></tr>
               </thead>
               <tbody id="table-applications" class="divide-y divide-gray-100 text-gray-800 font-medium"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="view-feedback" class="admin-section hidden">
+          <div class="flex justify-between items-end mb-6">
+            <p class="text-gray-500 text-sm">Review passenger evaluations before allowing them on the public wall.</p>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <table class="w-full text-left text-sm whitespace-nowrap">
+              <thead class="bg-gray-50 border-b border-gray-200 text-gray-500 uppercase text-[10px] tracking-widest font-bold">
+                <tr><th class="p-4">Date</th><th class="p-4">Author</th><th class="p-4">Rating</th><th class="p-4">Status</th><th class="p-4 text-right">Actions</th></tr>
+              </thead>
+              <tbody id="table-feedback" class="divide-y divide-gray-100 text-gray-800 font-medium"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="view-blacklist" class="admin-section hidden">
+          <div class="flex justify-between items-end mb-6">
+            <p class="text-gray-500 text-sm">Manage the public moderation database for banned users.</p>
+            <button onclick="openModal('blacklist')" class="bg-[#111827] hover:bg-[#D71A21] text-white font-bold py-2 px-6 rounded shadow transition-colors text-sm uppercase tracking-widest">
+              <i class="fa-solid fa-plus mr-2"></i> Add Ban Record
+            </button>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <table class="w-full text-left text-sm whitespace-nowrap">
+              <thead class="bg-gray-50 border-b border-gray-200 text-gray-500 uppercase text-[10px] tracking-widest font-bold">
+                <tr><th class="p-4">Date Banned</th><th class="p-4">Discord Username</th><th class="p-4">Reason Code</th><th class="p-4 text-right">Actions</th></tr>
+              </thead>
+              <tbody id="table-blacklist" class="divide-y divide-gray-100 text-gray-800 font-medium"></tbody>
             </table>
           </div>
         </div>
@@ -250,17 +289,11 @@
   <script>
     let supabase = null;
     
-    // Config
     const SUPABASE_URL = 'https://zboyabxzhptnxnmofvcz.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys';
 
-    // Data Storage
-    let dbFlights = [];
-    let dbNews = [];
-    let dbMedia = [];
-    let dbInnovations = [];
-    let dbJobs = [];
-    let dbApplications = [];
+    let dbFlights = [], dbNews = [], dbMedia = [], dbInnovations = [], dbJobs = [], dbApplications = [];
+    let dbAnnouncements = [], dbStats = [], dbFeedback = [], dbBlacklist = [];
 
     document.addEventListener("DOMContentLoaded", () => {
       const checkSupabase = setInterval(() => {
@@ -268,10 +301,7 @@
           clearInterval(checkSupabase); 
           supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
           checkSession();
-          
-          supabase.auth.onAuthStateChange((event, session) => {
-            if (event === 'SIGNED_OUT') showLogin();
-          });
+          supabase.auth.onAuthStateChange((event, session) => { if (event === 'SIGNED_OUT') showLogin(); });
         }
       }, 100);
     });
@@ -282,49 +312,23 @@
       const btn = document.getElementById('login-btn');
       const err = document.getElementById('login-error');
       
-      if (!email || !password) {
-        err.innerText = "Please enter your executive email and passcode.";
-        err.classList.remove('hidden');
-        return;
-      }
-      if (!supabase) {
-        err.innerText = "System still connecting to the database. Please wait a moment.";
-        err.classList.remove('hidden');
-        return;
-      }
+      if (!email || !password) { err.innerText = "Credentials required."; err.classList.remove('hidden'); return; }
+      if (!supabase) return;
 
       btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i>`;
       err.classList.add('hidden');
       
       try {
         const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) {
-          err.innerText = error.message; 
-          err.classList.remove('hidden');
-          btn.innerHTML = `Authenticate <i class="fa-solid fa-fingerprint ml-2"></i>`;
-        } else if (data.session) {
-          btn.innerHTML = `Authenticated <i class="fa-solid fa-check ml-2"></i>`;
-          setTimeout(() => { loadDashboard(data.session.user); }, 400);
-        } else {
-          err.innerText = "Please verify your email address in Supabase.";
-          err.classList.remove('hidden');
-          btn.innerHTML = `Authenticate <i class="fa-solid fa-fingerprint ml-2"></i>`;
-        }
-      } catch (exception) {
-        err.innerText = "Network connection failed. Please try again.";
-        err.classList.remove('hidden');
-        btn.innerHTML = `Authenticate <i class="fa-solid fa-fingerprint ml-2"></i>`;
-      }
+        if (error) { err.innerText = error.message; err.classList.remove('hidden'); btn.innerHTML = `Authenticate`; } 
+        else if (data.session) { btn.innerHTML = `Authenticated`; setTimeout(() => { loadDashboard(data.session.user); }, 400); }
+      } catch (exception) { err.innerText = "Network failed."; err.classList.remove('hidden'); btn.innerHTML = `Authenticate`; }
     }
 
     async function checkSession() {
       if (!supabase) return;
       const { data: { session } } = await supabase.auth.getSession();
-      if (session && session.user) {
-        loadDashboard(session.user);
-      } else {
-        showLogin();
-      }
+      if (session && session.user) loadDashboard(session.user); else showLogin();
     }
     
     function showLogin() {
@@ -332,201 +336,169 @@
       document.getElementById('login-view').classList.remove('hidden', 'opacity-0');
     }
 
-    async function logout() {
-        if(!supabase) return;
-        await supabase.auth.signOut();
-        window.location.reload(); 
-    }
+    async function logout() { if(supabase) { await supabase.auth.signOut(); window.location.reload(); } }
 
     function loadDashboard(user) {
       document.getElementById('login-view').classList.add('hidden');
       document.getElementById('admin-view').classList.remove('hidden');
-      if(user && user.email) { document.getElementById('admin-email').innerText = user.email.split('@')[0]; }
+      if(user && user.email) document.getElementById('admin-email').innerText = user.email.split('@')[0];
       fetchAllData();
     }
 
     function switchTab(tab) {
       document.querySelectorAll('.admin-section').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.admin-tab').forEach(el => {
-        el.className = "admin-tab w-full text-left px-4 py-3 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors";
-      });
+      document.querySelectorAll('.admin-tab').forEach(el => el.className = "admin-tab w-full text-left px-4 py-2 hover:bg-white/10 text-gray-400 hover:text-white rounded text-sm font-bold transition-colors");
+      
       document.getElementById(`view-${tab}`).classList.remove('hidden');
-      document.getElementById(`tab-${tab}`).className = "admin-tab w-full text-left px-4 py-3 bg-[#D71A21] text-white rounded text-sm font-bold shadow transition-colors";
+      document.getElementById(`tab-${tab}`).className = "admin-tab w-full text-left px-4 py-2 bg-[#D71A21] text-white rounded text-sm font-bold shadow transition-colors";
       
       const titles = {
-        'flights': 'Flight Radar Management',
-        'news': 'Corporate Newsroom Archives',
-        'media': 'Media Gallery Database',
-        'innovations': 'Engineering & Innovations',
-        'jobs': 'Job Postings Management',
-        'applications': 'Application Review Center'
+        'flights': 'Flight Radar Management', 'news': 'Corporate Newsroom', 'media': 'Media Gallery Database',
+        'innovations': 'Engineering & Innovations', 'jobs': 'Job Postings Management', 'applications': 'Application Review Center',
+        'announcements': 'Network Announcements', 'stats': 'Global Statistics Management', 'feedback': 'Quality Assurance Feedback', 'blacklist': 'Moderation Database'
       };
       document.getElementById('section-title').innerText = titles[tab];
     }
 
     async function fetchAllData() {
-      fetchFlights();
-      fetchNews();
-      fetchMedia();
-      fetchInnovations();
-      fetchJobs();
-      fetchApplications();
+      fetchFlights(); fetchNews(); fetchMedia(); fetchInnovations(); fetchJobs(); fetchApplications();
+      fetchAnnouncements(); fetchStats(); fetchFeedback(); fetchBlacklist();
     }
 
-    async function fetchFlights() {
-      const { data } = await supabase.from('egr_flights').select('*').order('departure_time', { ascending: true });
-      if(data) { dbFlights = data; renderFlights(); }
-    }
-    async function fetchNews() {
-      const { data } = await supabase.from('egr_news').select('*').order('published_at', { ascending: false });
-      if(data) { dbNews = data; renderNews(); }
-    }
-    async function fetchMedia() {
-      const { data } = await supabase.from('egr_media').select('*').order('created_at', { ascending: false });
-      if(data) { dbMedia = data; renderMedia(); }
-    }
-    async function fetchInnovations() {
-      const { data } = await supabase.from('egr_innovations').select('*').order('created_at', { ascending: false });
-      if(data) { dbInnovations = data; renderInnovations(); }
-    }
-    async function fetchJobs() {
-      const { data } = await supabase.from('egr_jobs').select('*').order('created_at', { ascending: false });
-      if(data) { dbJobs = data; renderJobs(); }
-    }
-    async function fetchApplications() {
-      const { data } = await supabase.from('egr_applications').select('*').order('created_at', { ascending: false });
-      if(data) { dbApplications = data; renderApplications(); }
-    }
+    // --- FETCHERS ---
+    async function fetchFlights() { const {data} = await supabase.from('egr_flights').select('*').order('departure_time', {ascending: true}); if(data) {dbFlights=data; renderFlights();} }
+    async function fetchNews() { const {data} = await supabase.from('egr_news').select('*').order('published_at', {ascending: false}); if(data) {dbNews=data; renderNews();} }
+    async function fetchMedia() { const {data} = await supabase.from('egr_media').select('*').order('created_at', {ascending: false}); if(data) {dbMedia=data; renderMedia();} }
+    async function fetchInnovations() { const {data} = await supabase.from('egr_innovations').select('*').order('created_at', {ascending: false}); if(data) {dbInnovations=data; renderInnovations();} }
+    async function fetchJobs() { const {data} = await supabase.from('egr_jobs').select('*').order('created_at', {ascending: false}); if(data) {dbJobs=data; renderJobs();} }
+    async function fetchApplications() { const {data} = await supabase.from('egr_applications').select('*').order('created_at', {ascending: false}); if(data) {dbApplications=data; renderApplications();} }
+    
+    async function fetchAnnouncements() { const {data} = await supabase.from('egr_announcements').select('*').order('created_at', {ascending: false}); if(data) {dbAnnouncements=data; renderAnnouncements();} }
+    async function fetchStats() { const {data} = await supabase.from('egr_statistics').select('*').order('id', {ascending: true}); if(data) {dbStats=data; renderStats();} }
+    async function fetchFeedback() { const {data} = await supabase.from('egr_feedback').select('*').order('created_at', {ascending: false}); if(data) {dbFeedback=data; renderFeedback();} }
+    async function fetchBlacklist() { const {data} = await supabase.from('egr_blacklist').select('*').order('created_at', {ascending: false}); if(data) {dbBlacklist=data; renderBlacklist();} }
 
+    // --- RENDERERS ---
     function renderFlights() {
       const tbody = document.getElementById('table-flights');
-      if (dbFlights.length === 0) return tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-gray-400">No active flights.</td></tr>`;
+      if (dbFlights.length === 0) return tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-gray-400">No data.</td></tr>`;
       let html = '';
       dbFlights.forEach(f => {
-        const time = new Date(f.departure_time).toLocaleString('en-US', {month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit'});
         let statusBadge = `<span class="px-2 py-1 bg-gray-200 text-gray-700 rounded text-[10px] font-bold uppercase">${f.status}</span>`;
-        html += `
-          <tr class="hover:bg-gray-50 border-b border-gray-100">
-            <td class="p-4 font-bold text-[#111827]">${f.flight_number}</td>
-            <td class="p-4 text-xs font-bold text-gray-500">${f.departure_airport} -> ${f.arrival_airport}</td>
-            <td class="p-4 text-sm">${time}</td>
-            <td class="p-4 text-sm text-gray-500">${f.aircraft_type || 'N/A'}</td>
+        html += `<tr class="border-b border-gray-100">
+            <td class="p-4 font-bold">${f.flight_number}</td><td class="p-4 text-xs font-bold text-gray-500">${f.departure_airport} -> ${f.arrival_airport}</td>
+            <td class="p-4 text-sm">${new Date(f.departure_time).toLocaleString()}</td><td class="p-4 text-sm text-gray-500">${f.aircraft_type || 'N/A'}</td>
             <td class="p-4">${statusBadge}</td>
-            <td class="p-4 text-right">
-              <button onclick="openModal('flight', '${f.id}')" class="text-blue-600 hover:text-blue-800 mr-3"><i class="fa-solid fa-pen"></i></button>
-              <button onclick="deleteRecord('egr_flights', '${f.id}')" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
-            </td>
+            <td class="p-4 text-right"><button onclick="openModal('flight', '${f.id}')" class="text-blue-600 mr-3"><i class="fa-solid fa-pen"></i></button><button onclick="deleteRecord('egr_flights', '${f.id}')" class="text-red-500"><i class="fa-solid fa-trash"></i></button></td>
           </tr>`;
-      });
-      tbody.innerHTML = html;
+      }); tbody.innerHTML = html;
+    }
+
+    function renderAnnouncements() {
+      const tbody = document.getElementById('table-announcements');
+      if (dbAnnouncements.length === 0) return tbody.innerHTML = `<tr><td colspan="4" class="p-8 text-center text-gray-400">No data.</td></tr>`;
+      let html = '';
+      dbAnnouncements.forEach(a => {
+        const active = a.is_active ? `<span class="text-green-600 font-bold text-xs">Live</span>` : `<span class="text-gray-400 font-bold text-xs">Hidden</span>`;
+        html += `<tr class="border-b border-gray-100">
+            <td class="p-4 text-sm text-gray-500">${new Date(a.created_at).toLocaleDateString()}</td><td class="p-4 font-bold">${a.message}</td><td class="p-4">${active}</td>
+            <td class="p-4 text-right"><button onclick="openModal('announcement', '${a.id}')" class="text-blue-600 mr-3"><i class="fa-solid fa-pen"></i></button><button onclick="deleteRecord('egr_announcements', '${a.id}')" class="text-red-500"><i class="fa-solid fa-trash"></i></button></td>
+          </tr>`;
+      }); tbody.innerHTML = html;
+    }
+
+    function renderStats() {
+      const tbody = document.getElementById('table-stats');
+      if (dbStats.length === 0) return tbody.innerHTML = `<tr><td colspan="3" class="p-8 text-center text-gray-400">No data.</td></tr>`;
+      let html = '';
+      dbStats.forEach(s => {
+        html += `<tr class="border-b border-gray-100">
+            <td class="p-4 font-bold text-gray-600 uppercase tracking-widest text-xs">${s.label}</td><td class="p-4 font-bold font-mono text-xl">${s.value}<span class="text-[#D71A21]">${s.suffix}</span></td>
+            <td class="p-4 text-right"><button onclick="openModal('stat', '${s.id}')" class="text-white bg-[#111827] px-3 py-1 rounded text-xs font-bold uppercase tracking-widest">Edit Value</button></td>
+          </tr>`;
+      }); tbody.innerHTML = html;
+    }
+
+    function renderFeedback() {
+      const tbody = document.getElementById('table-feedback');
+      if (dbFeedback.length === 0) return tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-400">No data.</td></tr>`;
+      let html = '';
+      dbFeedback.forEach(f => {
+        const active = f.is_approved ? `<span class="text-green-600 font-bold text-xs">Public</span>` : `<span class="text-[#D71A21] font-bold text-xs bg-red-100 px-2 py-1 rounded">Needs Review</span>`;
+        html += `<tr class="border-b border-gray-100 ${!f.is_approved ? 'bg-red-50' : ''}">
+            <td class="p-4 text-sm text-gray-500">${new Date(f.created_at).toLocaleDateString()}</td><td class="p-4 font-bold">${f.full_name}</td>
+            <td class="p-4 text-[#D71A21] font-bold">${f.rating}/5</td><td class="p-4">${active}</td>
+            <td class="p-4 text-right"><button onclick="openModal('feedback', '${f.id}')" class="text-white bg-[#111827] px-3 py-1 rounded text-xs font-bold mr-2">Review</button><button onclick="deleteRecord('egr_feedback', '${f.id}')" class="text-red-500"><i class="fa-solid fa-trash"></i></button></td>
+          </tr>`;
+      }); tbody.innerHTML = html;
+    }
+
+    function renderBlacklist() {
+      const tbody = document.getElementById('table-blacklist');
+      if (dbBlacklist.length === 0) return tbody.innerHTML = `<tr><td colspan="4" class="p-8 text-center text-gray-400">No data.</td></tr>`;
+      let html = '';
+      dbBlacklist.forEach(b => {
+        html += `<tr class="border-b border-gray-100">
+            <td class="p-4 text-sm text-gray-500">${new Date(b.created_at).toLocaleDateString()}</td><td class="p-4 font-bold text-red-600">${b.roblox_username}</td><td class="p-4 font-mono text-sm">${b.reason}</td>
+            <td class="p-4 text-right"><button onclick="openModal('blacklist', '${b.id}')" class="text-blue-600 mr-3"><i class="fa-solid fa-pen"></i></button><button onclick="deleteRecord('egr_blacklist', '${b.id}')" class="text-red-500"><i class="fa-solid fa-trash"></i></button></td>
+          </tr>`;
+      }); tbody.innerHTML = html;
     }
 
     function renderNews() {
       const tbody = document.getElementById('table-news');
-      if (dbNews.length === 0) return tbody.innerHTML = `<tr><td colspan="4" class="p-8 text-center text-gray-400">No news articles found.</td></tr>`;
+      if (dbNews.length === 0) return tbody.innerHTML = `<tr><td colspan="4" class="p-8 text-center text-gray-400">No data.</td></tr>`;
       let html = '';
       dbNews.forEach(n => {
-        const time = new Date(n.published_at).toLocaleDateString();
         const active = n.is_active ? `<span class="text-green-600 font-bold text-xs">Public</span>` : `<span class="text-gray-400 font-bold text-xs">Draft</span>`;
-        html += `
-          <tr class="hover:bg-gray-50 border-b border-gray-100">
-            <td class="p-4 text-sm text-gray-500">${time}</td>
-            <td class="p-4 font-bold text-[#111827]">${n.title}</td>
-            <td class="p-4">${active}</td>
-            <td class="p-4 text-right">
-              <button onclick="openModal('news', '${n.id}')" class="text-blue-600 hover:text-blue-800 mr-3"><i class="fa-solid fa-pen"></i></button>
-              <button onclick="deleteRecord('egr_news', '${n.id}')" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
-            </td>
-          </tr>`;
-      });
-      tbody.innerHTML = html;
+        html += `<tr class="border-b border-gray-100"><td class="p-4 text-sm text-gray-500">${new Date(n.published_at).toLocaleDateString()}</td><td class="p-4 font-bold">${n.title}</td><td class="p-4">${active}</td><td class="p-4 text-right"><button onclick="openModal('news', '${n.id}')" class="text-blue-600 mr-3"><i class="fa-solid fa-pen"></i></button><button onclick="deleteRecord('egr_news', '${n.id}')" class="text-red-500"><i class="fa-solid fa-trash"></i></button></td></tr>`;
+      }); tbody.innerHTML = html;
     }
-
-    function renderMedia() {
-      const grid = document.getElementById('grid-media');
-      if (dbMedia.length === 0) return grid.innerHTML = `<div class="col-span-full text-center p-8 text-gray-400 font-bold">No media uploaded.</div>`;
-      let html = '';
-      dbMedia.forEach(m => {
-        html += `
-          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm group relative aspect-square">
-            <img src="${m.image_url}" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-[#111827]/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center items-center p-4 text-center">
-              <p class="text-white font-bold text-sm mb-4">${m.title || 'Untitled'}</p>
-              <button onclick="deleteRecord('egr_media', '${m.id}')" class="bg-[#D71A21] text-white px-4 py-2 rounded text-xs font-bold uppercase tracking-widest hover:bg-red-800">Delete</button>
-            </div>
-          </div>`;
-      });
-      grid.innerHTML = html;
-    }
-
-    function renderInnovations() {
-      const tbody = document.getElementById('table-innovations');
-      if (dbInnovations.length === 0) return tbody.innerHTML = `<tr><td colspan="3" class="p-8 text-center text-gray-400">No innovations logged.</td></tr>`;
-      let html = '';
-      dbInnovations.forEach(i => {
-        const active = i.is_active ? `<span class="text-green-600 font-bold text-xs">Active Protocol</span>` : `<span class="text-gray-400 font-bold text-xs">Archived</span>`;
-        html += `
-          <tr class="hover:bg-gray-50 border-b border-gray-100">
-            <td class="p-4 font-bold text-[#111827]">${i.title}</td>
-            <td class="p-4">${active}</td>
-            <td class="p-4 text-right">
-              <button onclick="openModal('innovation', '${i.id}')" class="text-blue-600 hover:text-blue-800 mr-3"><i class="fa-solid fa-pen"></i></button>
-              <button onclick="deleteRecord('egr_innovations', '${i.id}')" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
-            </td>
-          </tr>`;
-      });
-      tbody.innerHTML = html;
-    }
-
+    
     function renderJobs() {
       const tbody = document.getElementById('table-jobs');
-      if (dbJobs.length === 0) return tbody.innerHTML = `<tr><td colspan="4" class="p-8 text-center text-gray-400">No job postings created.</td></tr>`;
+      if (dbJobs.length === 0) return tbody.innerHTML = `<tr><td colspan="4" class="p-8 text-center text-gray-400">No data.</td></tr>`;
       let html = '';
       dbJobs.forEach(j => {
-        const active = j.is_active ? `<span class="text-green-600 font-bold text-xs">Hiring Open</span>` : `<span class="text-[#D71A21] font-bold text-xs">Closed</span>`;
-        html += `
-          <tr class="hover:bg-gray-50 border-b border-gray-100">
-            <td class="p-4 font-bold text-[#111827]">${j.title}</td>
-            <td class="p-4 text-gray-500">${j.department || 'N/A'}</td>
-            <td class="p-4">${active}</td>
-            <td class="p-4 text-right">
-              <button onclick="openModal('job', '${j.id}')" class="text-blue-600 hover:text-blue-800 mr-3"><i class="fa-solid fa-pen"></i></button>
-              <button onclick="deleteRecord('egr_jobs', '${j.id}')" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
-            </td>
-          </tr>`;
-      });
-      tbody.innerHTML = html;
+        const active = j.is_active ? `<span class="text-green-600 font-bold text-xs">Open</span>` : `<span class="text-[#D71A21] font-bold text-xs">Closed</span>`;
+        html += `<tr class="border-b border-gray-100"><td class="p-4 font-bold">${j.title}</td><td class="p-4 text-gray-500">${j.department || 'N/A'}</td><td class="p-4">${active}</td><td class="p-4 text-right"><button onclick="openModal('job', '${j.id}')" class="text-blue-600 mr-3"><i class="fa-solid fa-pen"></i></button><button onclick="deleteRecord('egr_jobs', '${j.id}')" class="text-red-500"><i class="fa-solid fa-trash"></i></button></td></tr>`;
+      }); tbody.innerHTML = html;
     }
 
     function renderApplications() {
       const tbody = document.getElementById('table-applications');
-      if (dbApplications.length === 0) return tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-gray-400">No applications received yet.</td></tr>`;
+      if (dbApplications.length === 0) return tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-gray-400">No data.</td></tr>`;
       let html = '';
       dbApplications.forEach(a => {
-        const time = new Date(a.created_at).toLocaleDateString();
-        
-        let statusBadge = `<span class="px-2 py-1 bg-gray-200 text-gray-700 rounded text-[10px] font-bold uppercase">${a.status}</span>`;
-        if(a.status === 'Under Review') statusBadge = `<span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-[10px] font-bold uppercase">Reviewing</span>`;
-        if(a.status === 'Approved') statusBadge = `<span class="px-2 py-1 bg-green-100 text-green-700 rounded text-[10px] font-bold uppercase">Approved</span>`;
-        if(a.status === 'Denied') statusBadge = `<span class="px-2 py-1 bg-red-100 text-red-700 rounded text-[10px] font-bold uppercase">Denied</span>`;
-
-        html += `
-          <tr class="hover:bg-gray-50 border-b border-gray-100">
-            <td class="p-4 text-sm text-gray-500">${time}</td>
-            <td class="p-4 font-bold text-[#111827]">${a.roblox_username}</td>
-            <td class="p-4 text-blue-600 text-sm font-semibold">${a.discord_username}</td>
-            <td class="p-4 text-gray-400 text-xs font-mono">${a.discord_id || 'N/A'}</td>
-            <td class="p-4 text-sm font-semibold">${a.job_title}</td>
-            <td class="p-4">${statusBadge}</td>
-            <td class="p-4 text-right">
-              <button onclick="openModal('application', '${a.id}')" class="text-white bg-[#111827] hover:bg-gray-800 px-3 py-1 rounded text-xs font-bold mr-2 transition-colors">Review Full Dossier</button>
-              <button onclick="deleteRecord('egr_applications', '${a.id}')" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
-            </td>
-          </tr>`;
-      });
-      tbody.innerHTML = html;
+        let badge = `<span class="px-2 py-1 bg-gray-200 text-gray-700 rounded text-[10px] font-bold uppercase">${a.status}</span>`;
+        if(a.status === 'Under Review') badge = `<span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-[10px] font-bold uppercase">Reviewing</span>`;
+        if(a.status === 'Approved') badge = `<span class="px-2 py-1 bg-green-100 text-green-700 rounded text-[10px] font-bold uppercase">Approved</span>`;
+        if(a.status === 'Denied') badge = `<span class="px-2 py-1 bg-red-100 text-red-700 rounded text-[10px] font-bold uppercase">Denied</span>`;
+        html += `<tr class="border-b border-gray-100"><td class="p-4 text-sm text-gray-500">${new Date(a.created_at).toLocaleDateString()}</td><td class="p-4 font-bold">${a.roblox_username}</td><td class="p-4 text-blue-600 font-semibold text-sm">${a.discord_username}</td><td class="p-4 text-sm font-semibold">${a.job_title}</td><td class="p-4">${badge}</td><td class="p-4 text-right"><button onclick="openModal('application', '${a.id}')" class="text-white bg-[#111827] px-3 py-1 rounded text-xs font-bold mr-2">Review</button><button onclick="deleteRecord('egr_applications', '${a.id}')" class="text-red-500"><i class="fa-solid fa-trash"></i></button></td></tr>`;
+      }); tbody.innerHTML = html;
     }
 
+    function renderInnovations() {
+      const tbody = document.getElementById('table-innovations');
+      if (dbInnovations.length === 0) return tbody.innerHTML = `<tr><td colspan="3" class="p-8 text-center text-gray-400">No data.</td></tr>`;
+      let html = '';
+      dbInnovations.forEach(i => {
+        const active = i.is_active ? `<span class="text-green-600 font-bold text-xs">Active</span>` : `<span class="text-gray-400 font-bold text-xs">Archived</span>`;
+        html += `<tr class="border-b border-gray-100"><td class="p-4 font-bold">${i.title}</td><td class="p-4">${active}</td><td class="p-4 text-right"><button onclick="openModal('innovation', '${i.id}')" class="text-blue-600 mr-3"><i class="fa-solid fa-pen"></i></button><button onclick="deleteRecord('egr_innovations', '${i.id}')" class="text-red-500"><i class="fa-solid fa-trash"></i></button></td></tr>`;
+      }); tbody.innerHTML = html;
+    }
+
+    function renderMedia() {
+      const grid = document.getElementById('grid-media');
+      if (dbMedia.length === 0) return grid.innerHTML = `<div class="col-span-full text-center p-8 text-gray-400 font-bold">No media.</div>`;
+      let html = '';
+      dbMedia.forEach(m => {
+        html += `<div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm group relative aspect-square"><img src="${m.image_url}" class="w-full h-full object-cover"><div class="absolute inset-0 bg-[#111827]/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center items-center p-4 text-center"><p class="text-white font-bold text-sm mb-4">${m.title || 'Untitled'}</p><button onclick="deleteRecord('egr_media', '${m.id}')" class="bg-[#D71A21] text-white px-4 py-2 rounded text-xs font-bold uppercase">Delete</button></div></div>`;
+      }); grid.innerHTML = html;
+    }
+
+
+    // --- MODALS ---
     function openModal(type, id = null) {
       const modal = document.getElementById('data-modal');
       const formFields = document.getElementById('form-fields');
@@ -537,170 +509,99 @@
       
       let html = '';
 
-      if (type === 'flight') {
+      if (type === 'announcement') {
+        title.innerText = id ? "Edit Banner" : "New Banner";
+        const a = id ? dbAnnouncements.find(x => x.id === id) : {};
+        html = `
+          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Alert Message</label>
+          <input type="text" id="a-msg" value="${a.message || ''}" class="w-full px-3 py-2 border rounded outline-none" required></div>
+          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Hyperlink URL (Optional)</label>
+          <input type="url" id="a-url" value="${a.link_url || ''}" placeholder="https://..." class="w-full px-3 py-2 border rounded outline-none"></div>
+          <div class="flex items-center"><input type="checkbox" id="a-active" class="w-4 h-4 text-[#D71A21]" ${a.is_active !== false ? 'checked' : ''}><label class="ml-2 text-sm font-bold text-[#111827]">Activate immediately (will hide others)</label></div>
+        `;
+      }
+      else if (type === 'stat') {
+        title.innerText = "Edit Statistic";
+        const s = dbStats.find(x => x.id === id);
+        html = `
+          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">${s.label}</label>
+          <input type="number" id="s-val" value="${s.value}" class="w-full px-4 py-3 font-mono font-bold text-xl border rounded outline-none" required></div>
+          <p class="text-xs text-gray-400 mt-2">Note: Suffix (${s.suffix}) is applied automatically on frontend.</p>
+        `;
+      }
+      else if (type === 'blacklist') {
+        title.innerText = id ? "Edit Ban Record" : "Add to Blacklist";
+        const b = id ? dbBlacklist.find(x => x.id === id) : {};
+        html = `
+          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Discord Username</label>
+          <input type="text" id="b-user" value="${b.roblox_username || ''}" class="w-full px-3 py-2 border rounded outline-none font-bold" required></div>
+          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Reason for Ban</label>
+          <textarea id="b-reason" class="w-full px-3 py-2 border rounded h-24 outline-none" required>${b.reason || ''}</textarea></div>
+        `;
+      }
+      else if (type === 'feedback') {
+        title.innerText = "Review Feedback";
+        const fb = dbFeedback.find(x => x.id === id);
+        html = `
+          <div class="bg-gray-100 p-4 rounded mb-4">
+            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Author</p><p class="font-bold text-[#111827] text-lg">${fb.full_name}</p>
+            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-3 mb-1">Rating</p><p class="font-bold text-[#D71A21]">${fb.rating} / 5</p>
+          </div>
+          <div class="bg-white border p-4 rounded mb-4">
+             <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Message Content</p>
+             <p class="text-gray-700 italic">"${fb.description}"</p>
+          </div>
+          <div class="flex items-center bg-green-50 p-4 border border-green-200 rounded">
+            <input type="checkbox" id="fb-active" class="w-5 h-5 text-green-600" ${fb.is_approved ? 'checked' : ''}>
+            <label class="ml-3 text-sm font-bold text-green-800">Approved for Public Wall</label>
+          </div>
+        `;
+      }
+      else if (type === 'flight') {
         title.innerText = id ? "Edit Flight" : "Dispatch New Flight";
         const f = id ? dbFlights.find(x => x.id === id) : {};
         let dtStr = '';
-        if(f.departure_time) {
-          const d = new Date(f.departure_time);
-          d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-          dtStr = d.toISOString().slice(0,16);
-        }
+        if(f.departure_time) { const d = new Date(f.departure_time); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); dtStr = d.toISOString().slice(0,16); }
         html = `
           <div class="grid grid-cols-2 gap-4">
-            <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Flight Number</label>
-            <input type="text" id="f-num" value="${f.flight_number || 'EGR'}" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#D71A21] outline-none" required></div>
-            <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Aircraft</label>
-            <input type="text" id="f-ac" value="${f.aircraft_type || ''}" placeholder="e.g. A380-800" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#D71A21] outline-none"></div>
+            <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Flight Number</label><input type="text" id="f-num" value="${f.flight_number || 'EGR'}" class="w-full px-3 py-2 border rounded outline-none" required></div>
+            <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Aircraft</label><input type="text" id="f-ac" value="${f.aircraft_type || ''}" placeholder="e.g. A380-800" class="w-full px-3 py-2 border rounded outline-none"></div>
           </div>
           <div class="grid grid-cols-2 gap-4">
-            <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Departure Airport</label>
-            <input type="text" id="f-dep" value="${f.departure_airport || ''}" placeholder="OMDB" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#D71A21] outline-none" required></div>
-            <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Arrival Airport</label>
-            <input type="text" id="f-arr" value="${f.arrival_airport || ''}" placeholder="EGLL" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#D71A21] outline-none" required></div>
+            <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Dep Airport</label><input type="text" id="f-dep" value="${f.departure_airport || ''}" class="w-full px-3 py-2 border rounded outline-none" required></div>
+            <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Arr Airport</label><input type="text" id="f-arr" value="${f.arrival_airport || ''}" class="w-full px-3 py-2 border rounded outline-none" required></div>
           </div>
-          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Departure Time</label>
-          <input type="datetime-local" id="f-time" value="${dtStr}" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#D71A21] outline-none" required></div>
+          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Departure Time</label><input type="datetime-local" id="f-time" value="${dtStr}" class="w-full px-3 py-2 border rounded outline-none" required></div>
           <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Status</label>
-          <select id="f-status" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#D71A21] outline-none">
-            <option value="Scheduled" ${f.status==='Scheduled'?'selected':''}>Scheduled</option>
-            <option value="Boarding" ${f.status==='Boarding'?'selected':''}>Boarding</option>
-            <option value="In-Air" ${f.status==='In-Air'?'selected':''}>In-Air</option>
-            <option value="Landed" ${f.status==='Landed'?'selected':''}>Landed</option>
-            <option value="Delayed" ${f.status==='Delayed'?'selected':''}>Delayed</option>
-          </select></div>
-        `;
+          <select id="f-status" class="w-full px-3 py-2 border rounded outline-none">
+            <option value="Scheduled" ${f.status==='Scheduled'?'selected':''}>Scheduled</option><option value="Boarding" ${f.status==='Boarding'?'selected':''}>Boarding</option>
+            <option value="In-Air" ${f.status==='In-Air'?'selected':''}>In-Air</option><option value="Landed" ${f.status==='Landed'?'selected':''}>Landed</option><option value="Delayed" ${f.status==='Delayed'?'selected':''}>Delayed</option>
+          </select></div>`;
       } 
       else if (type === 'news') {
-        title.innerText = id ? "Edit Article" : "Draft Press Release";
         const n = id ? dbNews.find(x => x.id === id) : {};
-        html = `
-          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Headline</label>
-          <input type="text" id="n-title" value="${n.title || ''}" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#D71A21] outline-none" required></div>
-          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Image URL (Optional)</label>
-          <input type="url" id="n-img" value="${n.image_url || ''}" placeholder="https://..." class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#D71A21] outline-none"></div>
-          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Content Body</label>
-          <textarea id="n-content" class="w-full px-3 py-2 border rounded h-32 focus:ring-2 focus:ring-[#D71A21] outline-none" required>${n.content || ''}</textarea></div>
-          <div class="flex items-center"><input type="checkbox" id="n-active" class="w-4 h-4 text-[#D71A21]" ${n.is_active !== false ? 'checked' : ''}><label class="ml-2 text-sm font-bold text-[#111827]">Publish Immediately</label></div>
-        `;
+        html = `<div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Headline</label><input type="text" id="n-title" value="${n.title || ''}" class="w-full px-3 py-2 border rounded outline-none" required></div><div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Image URL</label><input type="url" id="n-img" value="${n.image_url || ''}" class="w-full px-3 py-2 border rounded outline-none"></div><div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Body</label><textarea id="n-content" class="w-full px-3 py-2 border rounded h-32 outline-none" required>${n.content || ''}</textarea></div><div class="flex items-center"><input type="checkbox" id="n-active" class="w-4 h-4 text-[#D71A21]" ${n.is_active !== false ? 'checked' : ''}><label class="ml-2 text-sm font-bold">Publish</label></div>`;
       }
       else if (type === 'media') {
-        title.innerText = "Upload Media Link";
-        html = `
-          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Image Title</label>
-          <input type="text" id="m-title" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#D71A21] outline-none"></div>
-          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Direct Image URL *</label>
-          <input type="url" id="m-img" placeholder="https://..." class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#D71A21] outline-none" required></div>
-        `;
+        html = `<div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Image Title</label><input type="text" id="m-title" class="w-full px-3 py-2 border rounded outline-none"></div><div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">URL *</label><input type="url" id="m-img" class="w-full px-3 py-2 border rounded outline-none" required></div>`;
       }
       else if (type === 'innovation') {
-        title.innerText = id ? "Edit Innovation" : "Log Innovation";
         const i = id ? dbInnovations.find(x => x.id === id) : {};
-        html = `
-          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Technology Title</label>
-          <input type="text" id="i-title" value="${i.title || ''}" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#D71A21] outline-none" required></div>
-          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Image URL (Optional)</label>
-          <input type="url" id="i-img" value="${i.image_url || ''}" placeholder="https://..." class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#D71A21] outline-none"></div>
-          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Description</label>
-          <textarea id="i-desc" class="w-full px-3 py-2 border rounded h-24 focus:ring-2 focus:ring-[#D71A21] outline-none" required>${i.description || ''}</textarea></div>
-          <div class="flex items-center"><input type="checkbox" id="i-active" class="w-4 h-4 text-[#D71A21]" ${i.is_active !== false ? 'checked' : ''}><label class="ml-2 text-sm font-bold text-[#111827]">Active Protocol</label></div>
-        `;
+        html = `<div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Title</label><input type="text" id="i-title" value="${i.title || ''}" class="w-full px-3 py-2 border rounded outline-none" required></div><div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Image URL</label><input type="url" id="i-img" value="${i.image_url || ''}" class="w-full px-3 py-2 border rounded outline-none"></div><div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Description</label><textarea id="i-desc" class="w-full px-3 py-2 border rounded h-24 outline-none" required>${i.description || ''}</textarea></div><div class="flex items-center"><input type="checkbox" id="i-active" class="w-4 h-4 text-[#D71A21]" ${i.is_active !== false ? 'checked' : ''}><label class="ml-2 text-sm font-bold">Active Protocol</label></div>`;
       }
       else if (type === 'job') {
-        title.innerText = id ? "Edit Job Posting" : "Create Job Posting";
         const j = id ? dbJobs.find(x => x.id === id) : {};
-        html = `
-          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Job Title</label>
-          <input type="text" id="j-title" value="${j.title || ''}" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#D71A21] outline-none" required></div>
-          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Department</label>
-          <input type="text" id="j-dep" value="${j.department || ''}" placeholder="e.g. Flight Operations" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#D71A21] outline-none" required></div>
-          <div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Job Description / Requirements</label>
-          <textarea id="j-desc" class="w-full px-3 py-2 border rounded h-32 focus:ring-2 focus:ring-[#D71A21] outline-none" required>${j.description || ''}</textarea></div>
-          <div class="flex items-center"><input type="checkbox" id="j-active" class="w-4 h-4 text-[#D71A21]" ${j.is_active !== false ? 'checked' : ''}><label class="ml-2 text-sm font-bold text-[#111827]">Open for Applications</label></div>
-        `;
+        html = `<div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Job Title</label><input type="text" id="j-title" value="${j.title || ''}" class="w-full px-3 py-2 border rounded outline-none" required></div><div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Department</label><input type="text" id="j-dep" value="${j.department || ''}" class="w-full px-3 py-2 border rounded outline-none" required></div><div><label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Description</label><textarea id="j-desc" class="w-full px-3 py-2 border rounded h-32 outline-none" required>${j.description || ''}</textarea></div><div class="flex items-center"><input type="checkbox" id="j-active" class="w-4 h-4 text-[#D71A21]" ${j.is_active !== false ? 'checked' : ''}><label class="ml-2 text-sm font-bold">Open</label></div>`;
       }
-
-      // ==========================================
-      // NEW FULL APPLICATION REVIEW MODAL 
-      // ==========================================
       else if (type === 'application') {
         title.innerText = "Review Candidate Dossier";
         const a = dbApplications.find(x => x.id === id);
-        
         html = `
-          <div class="mb-4">
-            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Position Applied For</p>
-            <p class="font-bold text-white bg-[#111827] p-3 rounded shadow-inner uppercase tracking-wide">${a.job_title || 'N/A'}</p>
-          </div>
-
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
-            <div>
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Roblox Username</p>
-              <p class="font-bold text-[#111827]">${a.roblox_username || 'N/A'}</p>
-            </div>
-            <div>
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Discord User</p>
-              <p class="font-bold text-blue-600">${a.discord_username || 'N/A'}</p>
-            </div>
-            <div>
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Discord ID</p>
-              <p class="font-bold text-gray-600 font-mono text-sm">${a.discord_id || 'N/A'}</p>
-            </div>
-            <div>
-              <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Date Submitted</p>
-              <p class="font-bold text-gray-600 text-sm">${new Date(a.created_at).toLocaleDateString()}</p>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 bg-gray-100 p-4 rounded-xl border border-gray-200">
-            <div>
-              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Legal Name</p>
-              <p class="font-bold text-[#111827]">${a.legal_name || 'N/A'} ${a.preferred_name ? `("${a.preferred_name}")` : ''}</p>
-            </div>
-            <div>
-              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Date of Birth</p>
-              <p class="font-bold text-[#111827]">${a.date_of_birth || 'N/A'}</p>
-            </div>
-            <div>
-              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Country of Residency</p>
-              <p class="font-bold text-[#111827]">${a.country_residency || 'N/A'}</p>
-            </div>
-            <div>
-              <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Discovery Source</p>
-              <p class="font-bold text-[#111827]">${a.source || 'N/A'}</p>
-            </div>
-          </div>
-
-          <div class="mb-6 space-y-4">
-            <div class="bg-white p-4 border border-gray-200 rounded-xl shadow-sm">
-                <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest mb-2">Why are they a good fit?</p>
-                <p class="text-sm text-gray-700 whitespace-pre-wrap">${a.fit_reason || 'N/A'}</p>
-            </div>
-            <div class="bg-white p-4 border border-gray-200 rounded-xl shadow-sm">
-                <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest mb-2">Why EGR?</p>
-                <p class="text-sm text-gray-700 whitespace-pre-wrap">${a.why_egr || 'N/A'}</p>
-            </div>
-          </div>
-
-          <div class="bg-green-50 p-4 border border-green-200 rounded-xl mb-6 flex justify-between items-center">
-              <div>
-                  <p class="text-[10px] font-bold text-green-700 uppercase tracking-widest mb-1"><i class="fa-solid fa-file-contract mr-1"></i> Electronic Signature & Agreements</p>
-                  <p class="font-serif italic text-lg text-[#111827]">${a.e_signature || 'Not Signed'}</p>
-              </div>
-              <div class="text-right">
-                  <span class="bg-green-600 text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-widest">Agreements Checked: ${a.agreements_checked ? 'YES' : 'NO'}</span>
-              </div>
-          </div>
-
-          <div class="bg-gray-100 p-6 rounded-xl border border-gray-300">
-            <label class="block text-xs font-bold text-[#111827] uppercase tracking-widest mb-3"><i class="fa-solid fa-gavel mr-2 text-[#D71A21]"></i> Official HR Decision</label>
-            <select id="a-status" class="w-full px-4 py-4 font-bold text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D71A21] outline-none shadow-sm">
-              <option value="Pending" ${a.status==='Pending'?'selected':''}>⏳ Pending Review</option>
-              <option value="Under Review" ${a.status==='Under Review'?'selected':''}>🔎 Under Review (In Progress)</option>
-              <option value="Approved" ${a.status==='Approved'?'selected':''}>✅ Approved (Send Letter of Intent)</option>
-              <option value="Denied" ${a.status==='Denied'?'selected':''}>❌ Denied (14 Day Cooldown)</option>
-            </select>
-          </div>
+          <div class="mb-4"><p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Position</p><p class="font-bold text-white bg-[#111827] p-3 rounded">${a.job_title}</p></div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 bg-white p-4 rounded border"><div class="font-bold">${a.roblox_username}</div><div class="font-bold text-blue-600">${a.discord_username}</div><div class="font-mono text-sm">${a.discord_id}</div><div class="text-sm">${new Date(a.created_at).toLocaleDateString()}</div></div>
+          <div class="grid grid-cols-2 gap-4 mb-4 bg-gray-100 p-4 rounded"><div class="font-bold">${a.legal_name}</div><div class="font-bold">${a.country_residency}</div></div>
+          <div class="mb-4 space-y-4"><div class="bg-white p-4 border rounded"><p class="text-[10px] font-bold text-[#D71A21] uppercase mb-1">Why EGR?</p><p class="text-sm whitespace-pre-wrap">${a.why_egr}</p></div></div>
+          <div class="bg-gray-100 p-6 rounded border"><label class="block text-xs font-bold mb-2">HR Decision</label><select id="a-status" class="w-full px-4 py-3 font-bold border rounded"><option value="Pending" ${a.status==='Pending'?'selected':''}>Pending</option><option value="Under Review" ${a.status==='Under Review'?'selected':''}>Reviewing</option><option value="Approved" ${a.status==='Approved'?'selected':''}>Approved</option><option value="Denied" ${a.status==='Denied'?'selected':''}>Denied</option></select></div>
         `;
       }
 
@@ -719,71 +620,48 @@
       const type = document.getElementById('entry-type').value;
       const id = document.getElementById('entry-id').value;
       const btn = document.getElementById('save-btn');
-      
       if(!supabase) return alert("Database not connected.");
 
       btn.innerText = "Saving...";
-
-      let table = '';
-      let payload = {};
+      let table = '', payload = {};
 
       if (type === 'flight') {
         table = 'egr_flights';
-        const dateObj = new Date(document.getElementById('f-time').value);
-        payload = {
-          flight_number: document.getElementById('f-num').value,
-          aircraft_type: document.getElementById('f-ac').value,
-          departure_airport: document.getElementById('f-dep').value,
-          arrival_airport: document.getElementById('f-arr').value,
-          departure_time: dateObj.toISOString(),
-          status: document.getElementById('f-status').value
-        };
+        payload = { flight_number: document.getElementById('f-num').value, aircraft_type: document.getElementById('f-ac').value, departure_airport: document.getElementById('f-dep').value, arrival_airport: document.getElementById('f-arr').value, departure_time: new Date(document.getElementById('f-time').value).toISOString(), status: document.getElementById('f-status').value };
       } 
       else if (type === 'news') {
-        table = 'egr_news';
-        payload = {
-          title: document.getElementById('n-title').value,
-          content: document.getElementById('n-content').value,
-          image_url: document.getElementById('n-img').value || null,
-          is_active: document.getElementById('n-active').checked
-        };
+        table = 'egr_news'; payload = { title: document.getElementById('n-title').value, content: document.getElementById('n-content').value, image_url: document.getElementById('n-img').value || null, is_active: document.getElementById('n-active').checked };
       }
       else if (type === 'media') {
-        table = 'egr_media';
-        if(!document.getElementById('m-img').value) { btn.innerText = "Save Record"; return alert("URL Required"); }
-        payload = {
-          title: document.getElementById('m-title').value || 'Media Update',
-          image_url: document.getElementById('m-img').value
-        };
+        table = 'egr_media'; if(!document.getElementById('m-img').value) return btn.innerText = "Save Record"; payload = { title: document.getElementById('m-title').value || 'Media Update', image_url: document.getElementById('m-img').value };
       }
       else if (type === 'innovation') {
-        table = 'egr_innovations';
-        payload = {
-          title: document.getElementById('i-title').value,
-          description: document.getElementById('i-desc').value,
-          image_url: document.getElementById('i-img').value || null,
-          is_active: document.getElementById('i-active').checked
-        };
+        table = 'egr_innovations'; payload = { title: document.getElementById('i-title').value, description: document.getElementById('i-desc').value, image_url: document.getElementById('i-img').value || null, is_active: document.getElementById('i-active').checked };
       }
       else if (type === 'job') {
-        table = 'egr_jobs';
-        payload = {
-          title: document.getElementById('j-title').value,
-          department: document.getElementById('j-dep').value,
-          description: document.getElementById('j-desc').value,
-          is_active: document.getElementById('j-active').checked
-        };
+        table = 'egr_jobs'; payload = { title: document.getElementById('j-title').value, department: document.getElementById('j-dep').value, description: document.getElementById('j-desc').value, is_active: document.getElementById('j-active').checked };
       }
       else if (type === 'application') {
-        table = 'egr_applications';
-        payload = { status: document.getElementById('a-status').value };
+        table = 'egr_applications'; payload = { status: document.getElementById('a-status').value };
+      }
+      else if (type === 'announcement') {
+        table = 'egr_announcements'; 
+        payload = { message: document.getElementById('a-msg').value, link_url: document.getElementById('a-url').value || null, is_active: document.getElementById('a-active').checked };
+        // If this one is active, deactivate others
+        if(payload.is_active) await supabase.from(table).update({is_active: false}).neq('id', id||'00000000-0000-0000-0000-000000000000'); 
+      }
+      else if (type === 'stat') {
+        table = 'egr_statistics'; payload = { value: document.getElementById('s-val').value };
+      }
+      else if (type === 'blacklist') {
+        table = 'egr_blacklist'; payload = { roblox_username: document.getElementById('b-user').value, reason: document.getElementById('b-reason').value };
+      }
+      else if (type === 'feedback') {
+        table = 'egr_feedback'; payload = { is_approved: document.getElementById('fb-active').checked };
       }
 
-      if (id) {
-        await supabase.from(table).update(payload).eq('id', id);
-      } else {
-        await supabase.from(table).insert([payload]);
-      }
+      if (id) await supabase.from(table).update(payload).eq('id', id);
+      else await supabase.from(table).insert([payload]);
 
       closeModal();
       btn.innerText = "Save Record";
@@ -794,19 +672,25 @@
       if(type === 'innovation') fetchInnovations();
       if(type === 'job') fetchJobs();
       if(type === 'application') fetchApplications();
+      if(type === 'announcement') fetchAnnouncements();
+      if(type === 'stat') fetchStats();
+      if(type === 'blacklist') fetchBlacklist();
+      if(type === 'feedback') fetchFeedback();
     }
 
     async function deleteRecord(table, id) {
       if(!supabase) return;
-      if(confirm("Are you sure you want to permanently delete this record? This action cannot be undone.")) {
+      if(confirm("Are you sure you want to permanently delete this record?")) {
         await supabase.from(table).delete().eq('id', id);
-        
         if(table === 'egr_flights') fetchFlights();
         if(table === 'egr_news') fetchNews();
         if(table === 'egr_media') fetchMedia();
         if(table === 'egr_innovations') fetchInnovations();
         if(table === 'egr_jobs') fetchJobs();
         if(table === 'egr_applications') fetchApplications();
+        if(table === 'egr_announcements') fetchAnnouncements();
+        if(table === 'egr_blacklist') fetchBlacklist();
+        if(table === 'egr_feedback') fetchFeedback();
       }
     }
   </script>
