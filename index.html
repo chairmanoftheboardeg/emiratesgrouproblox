@@ -167,7 +167,9 @@
           <h3 class="text-xl font-bold uppercase tracking-wide" id="next-flight-route">Searching Radar...</h3>
         </div>
       </div>
-      <div class="flex gap-4 text-center font-mono bg-gray-900 border border-gray-700 px-6 py-3 rounded-lg">
+      <div class="flex gap-3 md:gap-4 text-center font-mono bg-gray-900 border border-gray-700 px-4 md:px-6 py-3 rounded-lg">
+        <div><span id="cd-days" class="text-2xl font-bold text-[#D71A21]">00</span><p class="text-[10px] text-gray-500 uppercase tracking-widest">DYS</p></div>
+        <span class="text-2xl text-gray-600 font-bold">:</span>
         <div><span id="cd-hrs" class="text-2xl font-bold text-[#D71A21]">00</span><p class="text-[10px] text-gray-500 uppercase tracking-widest">HRS</p></div>
         <span class="text-2xl text-gray-600 font-bold">:</span>
         <div><span id="cd-min" class="text-2xl font-bold text-[#D71A21]">00</span><p class="text-[10px] text-gray-500 uppercase tracking-widest">MIN</p></div>
@@ -259,7 +261,7 @@
                 <th class="p-4 font-bold">Flight</th>
                 <th class="p-4 font-bold">Route</th>
                 <th class="p-4 font-bold">Aircraft</th>
-                <th class="p-4 font-bold">Departure Time</th>
+                <th class="p-4 font-bold">Date & Time</th>
                 <th class="p-4 font-bold text-right">Status</th>
               </tr>
             </thead>
@@ -540,7 +542,7 @@
             }
           } catch(e) {}
 
-          // Fetch Next Flight Countdown
+          // UPDATED: Fetch Next Flight Countdown (Calculates Days correctly)
           try {
             const nowIso = new Date().toISOString();
             const { data: nextFlight } = await supabase.from('egr_flights').select('*').gt('departure_time', nowIso).order('departure_time', { ascending: true }).limit(1).maybeSingle();
@@ -548,14 +550,19 @@
             if (nextFlight) {
               document.getElementById('next-flight-route').innerHTML = `<span class="text-[#D71A21]">${nextFlight.flight_number}</span> &nbsp;<i class="fa-solid fa-arrow-right-long text-gray-600 mx-2"></i>&nbsp; ${nextFlight.arrival_airport}`;
               const flightTime = new Date(nextFlight.departure_time).getTime();
+              
               setInterval(() => {
                 const distance = flightTime - new Date().getTime();
                 if (distance > 0) {
+                  document.getElementById('cd-days').innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
                   document.getElementById('cd-hrs').innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
                   document.getElementById('cd-min').innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
                   document.getElementById('cd-sec').innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
                 } else {
-                  document.getElementById('cd-hrs').innerText = "00"; document.getElementById('cd-min').innerText = "00"; document.getElementById('cd-sec').innerText = "00";
+                  document.getElementById('cd-days').innerText = "00";
+                  document.getElementById('cd-hrs').innerText = "00"; 
+                  document.getElementById('cd-min').innerText = "00"; 
+                  document.getElementById('cd-sec').innerText = "00";
                   document.getElementById('next-flight-route').innerText = "Flight Boarding/Departed";
                 }
               }, 1000);
@@ -564,7 +571,7 @@
             }
           } catch(e) {}
 
-          // Fetch Live Radar
+          // UPDATED: Fetch Live Radar (Now includes Date + Time)
           try {
             const { data: flights, error } = await supabase.from('egr_flights').select('*').order('departure_time', { ascending: true }).limit(5);
             const board = document.getElementById('live-flight-board');
@@ -577,13 +584,17 @@
                 if(flight.status === 'Boarding') { statusColor = 'text-yellow-600 font-bold'; dot = '<i class="fa-solid fa-circle text-[8px] blink-dot mr-1"></i>'; }
                 if(flight.status === 'In-Air') { statusColor = 'text-green-600 font-bold'; dot = '<i class="fa-solid fa-circle text-[8px] blink-dot mr-1"></i>'; }
                 if(flight.status === 'Delayed') { statusColor = 'text-[#D71A21] font-bold'; }
+                
                 const dateObj = new Date(flight.departure_time);
+                const dateStr = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                const timeStr = dateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+                
                 html += `
                   <tr class="hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-0 group cursor-default">
                     <td class="p-4 md:p-5 font-bold text-[#111827] group-hover:text-[#D71A21] transition-colors"><i class="fa-solid fa-plane mr-2 text-gray-400 group-hover:text-[#D71A21]"></i> ${flight.flight_number}</td>
                     <td class="p-4 md:p-5"><span class="font-bold text-gray-700">${flight.departure_airport}</span> <i class="fa-solid fa-arrow-right-long text-gray-400 mx-1 md:mx-2"></i> <span class="font-bold text-gray-700">${flight.arrival_airport}</span></td>
                     <td class="p-4 md:p-5 text-gray-500">${flight.aircraft_type || 'TBD'}</td>
-                    <td class="p-4 md:p-5 font-semibold text-gray-800">${dateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</td>
+                    <td class="p-4 md:p-5 font-semibold text-gray-800">${dateStr} <span class="text-gray-400 font-normal ml-1">${timeStr}</span></td>
                     <td class="p-4 md:p-5 text-right uppercase tracking-widest text-[10px] ${statusColor}">${dot} ${flight.status}</td>
                   </tr>`;
               });
