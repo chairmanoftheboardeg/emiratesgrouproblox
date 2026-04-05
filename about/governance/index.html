@@ -3,29 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Governance | Emirates Group Roblox</title>
+  <title>Corporate Governance | Emirates Group Roblox</title>
   
   <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" id="favicon" />
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="../../style.css"> 
 
   <style>
-    @keyframes loadBar { 0% { width: 0%; } 100% { width: 100%; } }
-    .animate-load-bar { animation: loadBar 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+    
+    body { font-family: 'Inter', sans-serif; background-color: #f9fafb; scroll-behavior: smooth; overflow-x: hidden; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+    
+    /* Cinematic Text Fill Loader */
+    #egr-loader {
+        position: fixed; inset: 0; z-index: 9999;
+        background-color: #111827; 
+        display: flex; align-items: center; justify-content: center;
+        transition: opacity 0.8s ease;
+    }
+    .loader-content { display: flex; flex-direction: column; align-items: flex-end; }
+    .loader-text-wrapper {
+        position: relative; font-family: 'Inter', sans-serif; font-weight: 900;
+        letter-spacing: -2px; line-height: 1; text-transform: capitalize;
+    }
+    .loader-base-text { color: #374151; }
+    .loader-fill-text {
+        position: absolute; left: 0; top: 0; color: #ffffff; 
+        overflow: hidden; white-space: nowrap; width: 0%; transition: width 0.1s linear;
+    }
+    .loader-info { color: #9CA3AF; font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-top: 8px; }
+    
+    .zoom-through { animation: zoomOutEffect 1.2s cubic-bezier(0.7, 0, 0.2, 1) forwards; }
+    @keyframes zoomOutEffect {
+        0% { transform: scale(1); opacity: 1; }
+        40% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(40); opacity: 0; filter: blur(5px); }
+    }
+
+    /* Custom Scrollbar for Legal Framework Box */
+    .legal-scroll::-webkit-scrollbar { width: 6px; }
+    .legal-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+    .legal-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    .legal-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #D71A21; border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: #b5151c; }
   </style>
 </head>
-<body class="flex flex-col min-h-screen relative fade-in bg-gray-50">
+<body class="flex flex-col min-h-screen relative">
 
-  <div id="egr-loader" class="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center transition-opacity duration-700">
-    <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox" class="h-20 md:h-28 object-contain mb-8 opacity-90 animate-pulse">
-    <div class="w-48 h-[2px] bg-gray-200 overflow-hidden">
-      <div class="h-full bg-[#D71A21] animate-load-bar"></div>
+  <div id="egr-loader">
+    <div class="loader-content" id="loader-animate-container">
+      <div class="loader-text-wrapper text-4xl md:text-7xl lg:text-8xl">
+        <div class="loader-base-text">Emirates Group Roblox</div>
+        <div class="loader-fill-text" id="loader-fill">Emirates Group Roblox</div>
+      </div>
+      <div class="loader-info lowercase">loading... <span id="loader-perc">0</span>%</div>
     </div>
   </div>
 
-  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-50 border-b-4 border-[#D71A21]">
+  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-40 border-b-4 border-[#D71A21]">
     <a href="/" class="flex items-center group">
       <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox Logo" class="h-10 md:h-12 object-contain group-hover:opacity-80 transition-opacity">
     </a>
@@ -39,20 +80,48 @@
       
       <div class="relative group py-2">
         <button class="text-[#D71A21] transition-colors flex items-center">
-          About Us <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+          About EGR <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
         </button>
         <div class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
           <a href="/about/vision/" class="block px-5 py-3 hover:bg-gray-50 border-b">Vision, Mission & Story</a>
-          <a href="/about/people/" class="block px-5 py-3 hover:bg-gray-50 border-b">Our People</a>
-          <a href="/about/governance/" class="block px-5 py-3 hover:bg-gray-50 border-b text-[#D71A21]">Our Governance</a>
-          <a href="/about/subsidiaries/" class="block px-5 py-3 hover:bg-gray-50 border-b">Our Subsidiaries</a>
-          <a href="/about/partners/" class="block px-5 py-3 hover:bg-gray-50 border-b">Partners & Affiliates</a>
-          <a href="/about/timeline/" class="block px-5 py-3 hover:bg-gray-50 border-b">Timeline</a>
-          <a href="/about/innovation/" class="block px-5 py-3 hover:bg-gray-50">Our Innovation</a>
+          <a href="/about/leadership/" class="block px-5 py-3 hover:bg-gray-50 border-b">Executive Leadership</a>
+          <a href="/about/governance/" class="block px-5 py-3 bg-gray-50 text-[#D71A21] border-b">Corporate Governance</a>
+          <a href="/about/innovation/" class="block px-5 py-3 hover:bg-gray-50 border-b">Innovation & Future</a>
+          <a href="/about/affiliates/" class="block px-5 py-3 hover:bg-gray-50">Affiliates & Partners</a>
         </div>
       </div>
 
-      <a href="/flights/" class="hover:text-[#D71A21] transition-colors">Flights</a>
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Our Network <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="https://directory.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Network Directory</a>
+          <a href="/network/subsidiaries/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Subsidiaries Overview</a>
+          
+          <p class="px-5 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold bg-gray-50">Aviation</p>
+          <a href="https://ek.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Emirates Airline</a>
+          <a href="https://fz.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Fly Dubai</a>
+          <a href="/network/executive/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Emirates Executive</a>
+          
+          <p class="px-5 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold bg-gray-50">Corporate & Leisure</p>
+          <a href="/network/dnata/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">dnata</a>
+          <a href="/network/holidays/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Emirates Holidays</a>
+          
+          <p class="px-5 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold bg-gray-50">Education</p>
+          <a href="https://eau.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 text-sm">EGRAU</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Operations <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/flights/" class="block px-5 py-3 hover:bg-gray-50 border-b">Live Flight Radar</a>
+          <a href="/operations/database/" class="block px-5 py-3 hover:bg-gray-50 text-[#D71A21]"><i class="fa-solid fa-shield-halved mr-2"></i>Ban Database</a>
+        </div>
+      </div>
       
       <div class="relative group py-2">
         <button class="hover:text-[#D71A21] transition-colors flex items-center">
@@ -68,9 +137,10 @@
         <button class="hover:text-[#D71A21] transition-colors flex items-center">
           Help Center <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
         </button>
-        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
-          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block px-5 py-3 hover:bg-gray-50 border-b"><i class="fa-brands fa-discord mr-2"></i> Contact Us</a>
-          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block px-5 py-3 hover:bg-gray-50 text-[#D71A21]"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Report an Issue</a>
+        <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/help/" class="block px-5 py-3 hover:bg-gray-50 border-b">Contact Us</a>
+          <a href="/help/feedback/" class="block px-5 py-3 hover:bg-gray-50 border-b">Passenger Experience</a>
+          <a href="/help/report-issue/" class="block px-5 py-3 hover:bg-gray-50 text-[#D71A21]">Report an Issue</a>
         </div>
       </div>
 
@@ -86,202 +156,662 @@
       <button id="mobile-menu-close" class="text-gray-800 text-3xl focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
     </div>
     
-    <div class="p-6 overflow-y-auto space-y-8 text-white flex-grow">
-      <a href="/" class="block text-xl font-bold hover:text-[#D71A21]">Home</a>
+    <div class="p-6 overflow-y-auto space-y-8 text-white flex-grow bg-[#111827]">
+      <a href="/" class="block text-xl font-bold hover:text-[#D71A21] transition-colors">Home</a>
       
       <div>
-        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">About Us</p>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">About EGR</p>
         <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
-          <a href="/about/vision/" class="block hover:text-white">Vision, Mission & Story</a>
-          <a href="/about/people/" class="block hover:text-white">Our People</a>
-          <a href="/about/governance/" class="block text-[#D71A21]">Our Governance</a>
-          <a href="/about/subsidiaries/" class="block hover:text-white">Our Subsidiaries</a>
-          <a href="/about/partners/" class="block hover:text-white">Partners & Affiliates</a>
-          <a href="/about/timeline/" class="block hover:text-white">Timeline</a>
-          <a href="/about/innovation/" class="block hover:text-white">Our Innovation</a>
-        </div>
-      </div>
-
-      <a href="/flights/" class="block text-xl font-bold hover:text-[#D71A21]">Flights</a>
-
-      <div>
-        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Media</p>
-        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
-          <a href="/media/newsroom/" class="block hover:text-white">Newsroom</a>
-          <a href="/media/gallery/" class="block hover:text-white">Media Gallery</a>
+          <a href="/about/vision/" class="block hover:text-white transition-colors">Vision, Mission & Story</a>
+          <a href="/about/leadership/" class="block hover:text-white transition-colors">Executive Leadership</a>
+          <a href="/about/governance/" class="block text-[#D71A21] font-bold">Corporate Governance</a>
+          <a href="/about/innovation/" class="block hover:text-white transition-colors">Innovation & Future</a>
+          <a href="/about/affiliates/" class="block hover:text-white transition-colors">Affiliates & Partners</a>
         </div>
       </div>
 
       <div>
-        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Help Center</p>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Our Network</p>
         <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
-          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block hover:text-white"><i class="fa-brands fa-discord mr-2"></i> Contact Us</a>
-          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block text-[#D71A21]"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Report an Issue</a>
+          <a href="https://directory.emiratesgrouproblox.link" target="_blank" class="block text-[#D71A21] font-bold">Network Directory</a>
+          <a href="/network/subsidiaries/" class="block text-[#D71A21] font-bold">Subsidiaries Overview</a>
+          <a href="https://ek.emiratesgrouproblox.link" target="_blank" class="block hover:text-white transition-colors mt-2">Emirates Airline</a>
+          <a href="https://fz.emiratesgrouproblox.link" target="_blank" class="block hover:text-white transition-colors">Fly Dubai</a>
+          <a href="/network/executive/" class="block hover:text-white transition-colors">Emirates Executive</a>
+          <a href="/network/dnata/" class="block hover:text-white transition-colors">dnata</a>
+          <a href="/network/holidays/" class="block hover:text-white transition-colors">Emirates Holidays</a>
+          <a href="https://eau.emiratesgrouproblox.link" target="_blank" class="block hover:text-white transition-colors">EGRAU</a>
         </div>
       </div>
 
-      <a href="https://careers.emiratesgrouproblox.link" target="_blank" class="block bg-[#D71A21] text-white text-center py-4 rounded font-bold uppercase tracking-widest mt-6">
+      <a href="https://careers.emiratesgrouproblox.link" target="_blank" class="block bg-[#D71A21] text-white text-center py-4 rounded font-bold uppercase tracking-widest mt-6 hover:bg-red-800 transition-colors">
         Careers Portal <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
       </a>
     </div>
   </div>
 
-  <header class="bg-[#111827] text-white py-24 md:py-32 px-6 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 mix-blend-overlay" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;"></div>
-    <div class="max-w-5xl mx-auto relative z-10 text-center">
-      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Structural Integrity</span>
-      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 uppercase tracking-tight">Our Governance</h1>
-      <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed">The strategic framework, chain of command, and uncompromising operational standards that govern Emirates Group Roblox.</p>
+  <header class="relative bg-[#111827] text-white py-24 md:py-32 px-6 overflow-hidden border-b-4 border-[#D71A21]">
+    <div class="absolute inset-0 bg-[#111827]/90 z-10"></div>
+    <div class="absolute inset-0 z-0 bg-cover bg-center opacity-20" style="background-image: url('https://i.ibb.co/tTyxcwxP/a350v2.webp'); background-attachment: fixed;"></div>
+    
+    <div class="relative z-20 max-w-5xl mx-auto text-center">
+      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block"><i class="fa-solid fa-scale-balanced mr-2"></i> About EGR</span>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight uppercase tracking-tighter drop-shadow-xl">Corporate <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D71A21] to-red-600">Governance.</span></h1>
+      <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">The structural foundation, chain of command, and official compliance framework that dictates operations across the Emirates Group Roblox network.</p>
     </div>
   </header>
 
-  <main class="flex-grow py-20 px-6 md:px-12 w-full bg-white">
-    <div class="max-w-6xl mx-auto space-y-24">
-
-      <section class="text-center max-w-4xl mx-auto">
-        <i class="fa-solid fa-scale-balanced text-5xl text-[#D71A21] mb-6"></i>
-        <h2 class="text-3xl md:text-4xl font-bold text-[#111827] mb-6 uppercase tracking-tighter">A Foundation of Precision</h2>
-        <p class="text-gray-600 text-lg leading-relaxed">
-          Operating a virtual aviation network of this magnitude requires more than just an active community; it requires rigorous corporate governance. As a subsidiary of the Tyler Nicholas Group, Emirates Group Roblox operates under a strict, real-world inspired hierarchical model. This ensures accountability at every level, from our Executive Suite down to our frontline Ground Services.
-        </p>
-      </section>
-
-      <section>
-        <div class="flex items-center mb-10">
-          <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-wider">The Corporate Hierarchy</h3>
-          <div class="h-[1px] bg-gray-200 flex-grow ml-6"></div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="bg-gray-50 border border-gray-200 p-8 rounded-xl shadow-sm relative overflow-hidden group hover:border-[#D71A21] transition-colors">
-            <div class="absolute top-0 right-0 w-16 h-16 bg-[#D71A21] text-white flex items-center justify-center rounded-bl-full text-2xl font-bold opacity-10 group-hover:opacity-100 transition-opacity">1</div>
-            <i class="fa-solid fa-gavel text-3xl text-[#111827] mb-4"></i>
-            <h4 class="text-xl font-bold text-[#111827] mb-2 uppercase">The Board of Directors</h4>
-            <p class="text-sm text-[#D71A21] font-bold tracking-widest uppercase mb-4">Strategic Oversight</p>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              Led by the Founder and Chairman, the Board is responsible for the macro-level trajectory of EGR. They authorize subsidiary expansions, approve fleet acquisitions, and set the ultimate corporate mandates.
-            </p>
-          </div>
-
-          <div class="bg-gray-50 border border-gray-200 p-8 rounded-xl shadow-sm relative overflow-hidden group hover:border-[#D71A21] transition-colors">
-            <div class="absolute top-0 right-0 w-16 h-16 bg-[#111827] text-white flex items-center justify-center rounded-bl-full text-2xl font-bold opacity-10 group-hover:opacity-100 transition-opacity">2</div>
-            <i class="fa-solid fa-briefcase text-3xl text-[#111827] mb-4"></i>
-            <h4 class="text-xl font-bold text-[#111827] mb-2 uppercase">The Executive C-Suite</h4>
-            <p class="text-sm text-[#111827] font-bold tracking-widest uppercase mb-4">Tactical Execution</p>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              Headed by the CEO and COO, the C-Suite translates the Board's vision into actionable reality. They manage inter-departmental logistics, oversee finances, and ensure daily operations run flawlessly.
-            </p>
-          </div>
-
-          <div class="bg-gray-50 border border-gray-200 p-8 rounded-xl shadow-sm relative overflow-hidden group hover:border-[#D71A21] transition-colors">
-            <div class="absolute top-0 right-0 w-16 h-16 bg-gray-300 text-gray-700 flex items-center justify-center rounded-bl-full text-2xl font-bold opacity-20 group-hover:opacity-100 transition-opacity">3</div>
-            <i class="fa-solid fa-sitemap text-3xl text-[#111827] mb-4"></i>
-            <h4 class="text-xl font-bold text-[#111827] mb-2 uppercase">Department Directives</h4>
-            <p class="text-sm text-gray-500 font-bold tracking-widest uppercase mb-4">Frontline Operations</p>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              The backbone of the airline. Directors of Flight Ops, Ground Services, Public Relations, and Human Resources govern their specific divisions, ensuring every staff member adheres to our strict SOPs.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="bg-[#111827] rounded-2xl text-white p-10 md:p-16 shadow-2xl relative overflow-hidden">
-        <i class="fa-solid fa-shield-halved absolute -right-10 -bottom-10 text-[15rem] text-white opacity-5"></i>
+  <main class="flex-grow">
+    
+    <section class="py-20 px-6 md:px-12 bg-white border-b border-gray-200">
+      <div class="max-w-7xl mx-auto">
         
-        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 class="text-3xl font-serif font-bold mb-4 uppercase tracking-wider text-white">Regulatory Compliance</h3>
-            <p class="text-gray-300 leading-relaxed mb-6">
-              Emirates Group Roblox operates with a zero-tolerance policy for unprofessionalism. Our governance structure mandates strict adherence to both our internal Code of Conduct and external platform guidelines.
-            </p>
-            <ul class="space-y-4">
-              <li class="flex items-start">
-                <i class="fa-solid fa-check text-[#D71A21] mt-1 mr-3"></i>
-                <span class="text-sm text-gray-300"><strong class="text-white">Roblox ToS Alignment:</strong> Full compliance with the Roblox Terms of Service and Community Standards in all communication and in-game activities.</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fa-solid fa-check text-[#D71A21] mt-1 mr-3"></i>
-                <span class="text-sm text-gray-300"><strong class="text-white">Merit-Based Advancement:</strong> Promotions and operational clearances are governed strictly by skill, attendance, and behavioral assessments via our HR tracking systems.</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fa-solid fa-check text-[#D71A21] mt-1 mr-3"></i>
-                <span class="text-sm text-gray-300"><strong class="text-white">Aviation Standard Operating Procedures (SOPs):</strong> Mandatory adherence to highly detailed manuals governing flight physics, ATC communication, and passenger handling.</span>
-              </li>
-            </ul>
-          </div>
-          
-          <div class="bg-white/10 border border-white/20 p-8 rounded-xl backdrop-blur-sm">
-            <h4 class="text-xl font-bold mb-4 text-[#D71A21] uppercase tracking-widest text-center">The TNG Mandate</h4>
-            <p class="text-sm text-gray-200 leading-relaxed text-center italic">
-              "As a Tyler Nicholas Group subsidiary, EGR is subject to routine corporate audits. We reserve the right to immediately terminate any member or staff affiliate who compromises the safety, luxury, or integrity of our virtual environment."
-            </p>
-          </div>
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b border-gray-200 pb-6 gap-6">
+            <div>
+                <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-3 block"><i class="fa-solid fa-file-contract mr-2"></i> Official Policy</span>
+                <h2 class="text-3xl font-bold text-[#111827] uppercase tracking-tight">Legal, Safety & Compliance Framework</h2>
+                <div class="flex items-center mt-3 text-sm text-gray-500 font-semibold gap-4">
+                    <span class="bg-gray-100 border border-gray-200 px-3 py-1 rounded"><i class="fa-regular fa-calendar text-[#D71A21] mr-2"></i> Effective: April 2026</span>
+                    <span class="bg-gray-100 border border-gray-200 px-3 py-1 rounded"><i class="fa-solid fa-users text-[#D71A21] mr-2"></i> Published By: Human Resources & Safety</span>
+                </div>
+            </div>
+            <a href="/help/report-issue/" class="bg-[#111827] hover:bg-[#D71A21] text-white px-6 py-3 rounded font-bold transition-colors text-xs uppercase tracking-widest shadow w-full md:w-auto text-center flex items-center justify-center">
+                Report an Issue <i class="fa-solid fa-triangle-exclamation ml-2"></i>
+            </a>
         </div>
-      </section>
 
-    </div>
+        <div class="flex flex-col lg:flex-row gap-8 bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden shadow-sm h-[700px]">
+            <div class="lg:w-1/3 bg-white border-r border-gray-200 flex flex-col h-full">
+                <div class="p-6 border-b border-gray-200 bg-[#111827] text-white">
+                    <h3 class="font-bold uppercase tracking-widest text-sm">Table of Contents</h3>
+                    <p class="text-[10px] text-gray-400 mt-1">EGR-LSC-001 (Rev. April 2026)</p>
+                </div>
+                <div class="overflow-y-auto legal-scroll flex-grow p-4 space-y-1" id="legal-tabs">
+                    <button onclick="showLegalSection('sec-1', this)" class="legal-tab-btn w-full text-left px-4 py-3 text-sm font-bold text-[#D71A21] bg-red-50 rounded transition-colors">1. Community Conduct</button>
+                    <button onclick="showLegalSection('sec-2', this)" class="legal-tab-btn w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded transition-colors">2. Harassment & Hate</button>
+                    <button onclick="showLegalSection('sec-3', this)" class="legal-tab-btn w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded transition-colors">3. Threats & Safety</button>
+                    <button onclick="showLegalSection('sec-4', this)" class="legal-tab-btn w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded transition-colors">4. Privacy & Doxxing</button>
+                    <button onclick="showLegalSection('sec-5', this)" class="legal-tab-btn w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded transition-colors">5. Sexual Content & Age Stds</button>
+                    <button onclick="showLegalSection('sec-6', this)" class="legal-tab-btn w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded transition-colors">6. Fraud & Impersonation</button>
+                    <button onclick="showLegalSection('sec-7', this)" class="legal-tab-btn w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded transition-colors">7. Platform Integrity & Cheating</button>
+                    <button onclick="showLegalSection('sec-8', this)" class="legal-tab-btn w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded transition-colors">8. Event Integrity & Roleplay</button>
+                    <button onclick="showLegalSection('sec-9', this)" class="legal-tab-btn w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded transition-colors">9. Staff Standards</button>
+                    <button onclick="showLegalSection('sec-10', this)" class="legal-tab-btn w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded transition-colors">10. Flight Operations Standards</button>
+                    <button onclick="showLegalSection('sec-11', this)" class="legal-tab-btn w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded transition-colors">11. Ground Operations Standards</button>
+                    <button onclick="showLegalSection('sec-12', this)" class="legal-tab-btn w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded transition-colors">12. OCC & ATC Standards</button>
+                    <button onclick="showLegalSection('sec-13', this)" class="legal-tab-btn w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded transition-colors">13. Training & Certification</button>
+                    <button onclick="showLegalSection('sec-14', this)" class="legal-tab-btn w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded transition-colors">14. Partnerships & Alliances</button>
+                    <button onclick="showLegalSection('sec-15', this)" class="legal-tab-btn w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded transition-colors">15. Intellectual Property & DMCA</button>
+                    <button onclick="showLegalSection('sec-16', this)" class="legal-tab-btn w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded transition-colors">16. Enforcement & Appeals</button>
+                </div>
+            </div>
+
+            <div class="lg:w-2/3 p-8 overflow-y-auto legal-scroll bg-gray-50 relative">
+                
+                <div id="sec-1" class="legal-section">
+                    <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-tight mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Section 1: Community Conduct & Professionalism</h3>
+                    <ul class="space-y-5 text-gray-700 leading-relaxed text-sm">
+                        <li><strong class="text-[#111827]">1.1 Respectful Conduct.</strong> Maintain courteous, professional interaction across all EGR spaces. Harassment, intimidation, humiliation, or persistent hostility is prohibited.</li>
+                        <li><strong class="text-[#111827]">1.2 Disruptive Behavior.</strong> Intentional disruption of events, operations, trainings, or communications channels is prohibited.</li>
+                        <li><strong class="text-[#111827]">1.3 Inappropriate Language.</strong> Excessive profanity, vulgarity, or explicit language in official contexts is prohibited. Keep communications suitable for a broad audience.</li>
+                        <li><strong class="text-[#111827]">1.4 Targeted Provocation.</strong> Deliberate provocation aimed at inciting conflict, outrage, or retaliation is prohibited.</li>
+                        <li><strong class="text-[#111827]">1.5 Spamming & Flooding.</strong> Spam, repetitive messaging, mass tagging, or disruptive media flooding is prohibited.</li>
+                        <li><strong class="text-[#111827]">1.6 Compliance with Staff Direction.</strong> Refusal to follow reasonable instructions issued by authorized staff during official operations is prohibited.</li>
+                        <li><strong class="text-[#111827]">1.7 False Statements Presented as Fact.</strong> Knowingly spreading false information as fact about EGR, its staff, or members is prohibited.</li>
+                        <li><strong class="text-[#111827]">1.8 Misuse of Support Systems.</strong> Abuse of ticketing/support channels through spam, threats, or manipulation is prohibited.</li>
+                        <li><strong class="text-[#111827]">1.9 Off-Platform Targeting.</strong> Off-platform raids, harassment, or threats that target EGR or its members may be enforced when evidenced and safety-relevant.</li>
+                    </ul>
+                </div>
+
+                <div id="sec-2" class="legal-section hidden">
+                    <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-tight mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Section 2: Harassment, Hate, and Discrimination</h3>
+                    <ul class="space-y-5 text-gray-700 leading-relaxed text-sm">
+                        <li><strong class="text-[#111827]">2.1 Harassment and Bullying.</strong> Harassment, bullying, or sustained unwanted contact is prohibited.</li>
+                        <li><strong class="text-[#111827]">2.2 Hate Speech.</strong> Slurs, hateful conduct, or demeaning content targeting protected characteristics is prohibited.</li>
+                        <li><strong class="text-[#111827]">2.3 Discrimination.</strong> Discriminatory treatment or exclusion based on protected characteristics is prohibited.</li>
+                        <li><strong class="text-[#111827]">2.4 Coded Hate and Dogwhistles.</strong> Coded language, symbols, or memes used to promote hate are prohibited.</li>
+                        <li><strong class="text-[#111827]">2.5 Sexual Harassment.</strong> Unwanted sexual comments, advances, or sexualized targeting is prohibited.</li>
+                        <li><strong class="text-[#111827]">2.6 Stalking.</strong> Stalking, obsessive monitoring, or repeated intimidation is prohibited.</li>
+                        <li><strong class="text-[#111827]">2.7 Public Shaming Campaigns.</strong> Organized public shaming, humiliation threads, or call-out campaigns are prohibited.</li>
+                        <li><strong class="text-[#111827]">2.8 Hate as Roleplay.</strong> Roleplay does not excuse hate speech, discriminatory conduct, or targeted abuse.</li>
+                        <li><strong class="text-[#111827]">2.9 De-escalation Duty.</strong> Members must disengage and report rather than escalate through retaliation or dogpiling.</li>
+                    </ul>
+                </div>
+
+                <div id="sec-3" class="legal-section hidden">
+                    <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-tight mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Section 3: Threats, Violence, and Safety</h3>
+                    <ul class="space-y-5 text-gray-700 leading-relaxed text-sm">
+                        <li><strong class="text-[#111827]">3.1 Threats of Violence.</strong> Threats of violence or harm (real or implied) are prohibited.</li>
+                        <li><strong class="text-[#111827]">3.2 Encouragement of Harm.</strong> Encouraging self-harm, violence, or dangerous behavior is prohibited.</li>
+                        <li><strong class="text-[#111827]">3.3 Incitement and Brigading.</strong> Inciting others to harass, raid, or target individuals is prohibited.</li>
+                        <li><strong class="text-[#111827]">3.4 Extremism and Violent Ideology.</strong> Extremist propaganda, recruitment, or glorification of violence is prohibited.</li>
+                        <li><strong class="text-[#111827]">3.5 Emergency Conduct.</strong> During incidents, comply with staff instructions, do not obstruct response, and avoid spreading panic.</li>
+                        <li><strong class="text-[#111827]">3.6 Dangerous In-Game Conduct.</strong> Reckless actions intended to cause collisions, crashes, or safety incidents during official sessions are prohibited.</li>
+                        <li><strong class="text-[#111827]">3.7 Child Safety.</strong> Any conduct that risks child safety, including grooming or exploitation, is prohibited and will be escalated.</li>
+                        <li><strong class="text-[#111827]">3.8 Safety Reporting Integrity.</strong> Do not discourage reporting. Intimidation of reporters or witnesses is prohibited.</li>
+                        <li><strong class="text-[#111827]">3.9 Retaliation for Safety Reports.</strong> Retaliation against individuals who report safety concerns is prohibited.</li>
+                    </ul>
+                </div>
+
+                <div id="sec-4" class="legal-section hidden">
+                    <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-tight mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Section 4: Privacy, Doxxing, and Data Protection</h3>
+                    <ul class="space-y-5 text-gray-700 leading-relaxed text-sm">
+                        <li><strong class="text-[#111827]">4.1 Doxxing.</strong> Sharing, threatening to share, or soliciting private information is prohibited.</li>
+                        <li><strong class="text-[#111827]">4.2 Invasive Requests.</strong> Requesting photos, addresses, school/work details, or other sensitive data is prohibited.</li>
+                        <li><strong class="text-[#111827]">4.3 Account Security Abuse.</strong> Attempting to obtain credentials, security codes, or account access is prohibited.</li>
+                        <li><strong class="text-[#111827]">4.4 Impersonation for Access.</strong> Impersonation used to obtain private information or access is prohibited.</li>
+                        <li><strong class="text-[#111827]">4.5 Unauthorized Publishing.</strong> Publishing private staff discussions, internal evidence, or restricted communications without authorization is prohibited.</li>
+                        <li><strong class="text-[#111827]">4.6 Privacy of Minors.</strong> Extra care is required with minors. Any attempt to collect or exploit minor data is prohibited.</li>
+                        <li><strong class="text-[#111827]">4.7 Unauthorized Tracking.</strong> Use of tracking services, doxxing tools, or stalking behavior is prohibited.</li>
+                        <li><strong class="text-[#111827]">4.8 Consent Standard.</strong> Consent to share information must be explicit, informed, and freely given.</li>
+                        <li><strong class="text-[#111827]">4.9 Privacy Threats.</strong> Threatening to leak information or to report maliciously as coercion is prohibited.</li>
+                    </ul>
+                </div>
+
+                <div id="sec-5" class="legal-section hidden">
+                    <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-tight mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Section 5: Sexual Content, Exploitation & Age Standards</h3>
+                    <ul class="space-y-5 text-gray-700 leading-relaxed text-sm">
+                        <li><strong class="text-[#111827]">5.1 Sexual Content.</strong> Explicit sexual content is prohibited in all EGR spaces.</li>
+                        <li><strong class="text-[#111827]">5.2 NSFW Material.</strong> Pornographic or sexually explicit imagery, links, or descriptions are prohibited.</li>
+                        <li><strong class="text-[#111827]">5.3 Sexualization of Minors.</strong> Any sexual content involving minors is prohibited and will be escalated.</li>
+                        <li><strong class="text-[#111827]">5.4 Grooming.</strong> Manipulative conduct intended to form sexual relationships, especially involving minors, is prohibited.</li>
+                        <li><strong class="text-[#111827]">5.5 Solicitation.</strong> Soliciting sexual content, nudes, or sexual favors is prohibited.</li>
+                        <li><strong class="text-[#111827]">5.6 Age-Inappropriate Discussions.</strong> Age-inappropriate content is prohibited in EGR public spaces.</li>
+                        <li><strong class="text-[#111827]">5.7 Coercion.</strong> Coercion, pressure, or manipulation for sexualized interaction is prohibited.</li>
+                        <li><strong class="text-[#111827]">5.8 Boundary Violations.</strong> Ignoring boundaries or continuing after being told to stop is prohibited.</li>
+                        <li><strong class="text-[#111827]">5.9 Mandatory Escalation.</strong> Severe violations may be escalated to platform safety channels and result in permanent removal.</li>
+                    </ul>
+                </div>
+
+                <div id="sec-6" class="legal-section hidden">
+                    <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-tight mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Section 6: Fraud, Scams, and Impersonation</h3>
+                    <ul class="space-y-5 text-gray-700 leading-relaxed text-sm">
+                        <li><strong class="text-[#111827]">6.1 Scams and Phishing.</strong> Scams, phishing, fake giveaways, or deceptive links are prohibited.</li>
+                        <li><strong class="text-[#111827]">6.2 Fraudulent Trades.</strong> Deceptive trading, fake items, or impersonated exchanges are prohibited.</li>
+                        <li><strong class="text-[#111827]">6.3 Impersonation of Staff.</strong> Impersonating EGR staff, leadership, or official roles is prohibited.</li>
+                        <li><strong class="text-[#111827]">6.4 Impersonation of Members.</strong> Impersonating members, partners, or communities is prohibited.</li>
+                        <li><strong class="text-[#111827]">6.5 False Authority Claims.</strong> Claiming authority, certification, or rank without authorization is prohibited.</li>
+                        <li><strong class="text-[#111827]">6.6 Unapproved Solicitation.</strong> Unapproved fundraising, donations, or monetary solicitation in EGR spaces is prohibited.</li>
+                        <li><strong class="text-[#111827]">6.7 Extortion or Coercion.</strong> Extortion, coercion, or threats to obtain benefits are prohibited.</li>
+                        <li><strong class="text-[#111827]">6.8 Misleading Branding.</strong> Misleading media implying official affiliation or endorsement is prohibited.</li>
+                        <li><strong class="text-[#111827]">6.9 Failure to Report Scams.</strong> Members should report scams; knowingly enabling scams may result in enforcement.</li>
+                    </ul>
+                </div>
+
+                <div id="sec-7" class="legal-section hidden">
+                    <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-tight mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Section 7: Platform Integrity and Cheating</h3>
+                    <ul class="space-y-5 text-gray-700 leading-relaxed text-sm">
+                        <li><strong class="text-[#111827]">7.1 Exploits.</strong> Use, distribution, or promotion of exploits is prohibited.</li>
+                        <li><strong class="text-[#111827]">7.2 Unauthorized Scripts.</strong> Unauthorized scripts, cheat tools, or automation that alters integrity is prohibited.</li>
+                        <li><strong class="text-[#111827]">7.3 Bug Abuse.</strong> Intentional abuse of bugs for advantage or disruption is prohibited.</li>
+                        <li><strong class="text-[#111827]">7.4 Ban Evasion.</strong> Ban evasion or circumvention tactics are prohibited.</li>
+                        <li><strong class="text-[#111827]">7.5 Malicious Links or Malware.</strong> Posting malware, malicious links, or harmful files is prohibited.</li>
+                        <li><strong class="text-[#111827]">7.6 Unauthorized Data Collection.</strong> Collecting user data through bots or tools without authorization is prohibited.</li>
+                        <li><strong class="text-[#111827]">7.7 Evidence Tampering.</strong> Altering logs, screenshots, or evidence is prohibited.</li>
+                        <li><strong class="text-[#111827]">7.8 Operational Interference Tools.</strong> Using tools to interfere with ATC/OCC or operations is prohibited.</li>
+                        <li><strong class="text-[#111827]">7.9 Platform Rule Compliance.</strong> Roblox and Discord enforcement actions may be mirrored within EGR spaces.</li>
+                    </ul>
+                </div>
+
+                <div id="sec-8" class="legal-section hidden">
+                    <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-tight mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Section 8: Event Integrity and Roleplay Standards</h3>
+                    <ul class="space-y-5 text-gray-700 leading-relaxed text-sm">
+                        <li><strong class="text-[#111827]">8.1 Operational Realism.</strong> Maintain realistic behavior aligned with aviation roleplay standards during official sessions.</li>
+                        <li><strong class="text-[#111827]">8.2 Session Discipline.</strong> Do not derail briefings, ceremonies, or operations.</li>
+                        <li><strong class="text-[#111827]">8.3 Procedure Compliance.</strong> Follow procedures for check-in, boarding, ATC interaction, and dispatch coordination.</li>
+                        <li><strong class="text-[#111827]">8.4 Sabotage.</strong> Intentional sabotage of flights, ground operations, ATC/OCC, or training is prohibited.</li>
+                        <li><strong class="text-[#111827]">8.5 Communications Discipline.</strong> Use correct channels and avoid unnecessary chatter during active operations.</li>
+                        <li><strong class="text-[#111827]">8.6 Uniform and Identity Rules.</strong> Respect role assignments, uniforms, and credential standards where applicable.</li>
+                        <li><strong class="text-[#111827]">8.7 Unauthorized Directives.</strong> Do not issue operational directives or announcements unless authorized.</li>
+                        <li><strong class="text-[#111827]">8.8 Qualification Misrepresentation.</strong> Do not claim qualifications, ranks, or certifications not assigned.</li>
+                        <li><strong class="text-[#111827]">8.9 Event Privacy.</strong> Publishing restricted operational communications is prohibited.</li>
+                    </ul>
+                </div>
+
+                <div id="sec-9" class="legal-section hidden">
+                    <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-tight mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Section 9: Staff Standards and Authority</h3>
+                    <ul class="space-y-5 text-gray-700 leading-relaxed text-sm">
+                        <li><strong class="text-[#111827]">9.1 Abuse of Authority.</strong> Staff must not abuse tools, permissions, or authority.</li>
+                        <li><strong class="text-[#111827]">9.2 Bias and Favoritism.</strong> Selective enforcement, favoritism, or protection of friends is prohibited.</li>
+                        <li><strong class="text-[#111827]">9.3 Professional Conduct.</strong> Staff must model professionalism, restraint, and impartiality.</li>
+                        <li><strong class="text-[#111827]">9.4 Confidentiality.</strong> Staff must protect internal discussions, evidence, and reports.</li>
+                        <li><strong class="text-[#111827]">9.5 Retaliation.</strong> Retaliatory moderation or intimidation is prohibited.</li>
+                        <li><strong class="text-[#111827]">9.6 Conflict of Interest.</strong> Staff must disclose conflicts and recuse where appropriate.</li>
+                        <li><strong class="text-[#111827]">9.7 Evidence Handling.</strong> Staff must preserve evidence integrity and avoid tampering.</li>
+                        <li><strong class="text-[#111827]">9.8 Documentation.</strong> Staff must document significant actions using approved channels.</li>
+                        <li><strong class="text-[#111827]">9.9 Duty of Care.</strong> Staff must prioritize safety and respond to credible risk promptly.</li>
+                    </ul>
+                </div>
+
+                <div id="sec-10" class="legal-section hidden">
+                    <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-tight mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Section 10: Flight Operations Standards</h3>
+                    <ul class="space-y-5 text-gray-700 leading-relaxed text-sm">
+                        <li><strong class="text-[#111827]">10.1 Flight Deck Discipline.</strong> Pilots must follow published SOPs, briefings, and aircraft limitations.</li>
+                        <li><strong class="text-[#111827]">10.2 Clearance Compliance.</strong> Follow ATC clearances and OCC dispatch instructions unless safety requires deviation.</li>
+                        <li><strong class="text-[#111827]">10.3 Runway and Taxi Safety.</strong> Unsafe taxiing, runway incursions, or reckless maneuvering is prohibited.</li>
+                        <li><strong class="text-[#111827]">10.4 Comms Protocols.</strong> Use correct channels and concise phraseology; avoid unnecessary chatter.</li>
+                        <li><strong class="text-[#111827]">10.5 Professional Interactions.</strong> Maintain professional tone with passengers, crew, ATC, and ground teams.</li>
+                        <li><strong class="text-[#111827]">10.6 Controlled Emergency Roleplay.</strong> Emergency roleplay must remain controlled and not be used to harass or disrupt.</li>
+                        <li><strong class="text-[#111827]">10.7 Aircraft Handling Integrity.</strong> Intentional stalling, crashing, or unrealistic maneuvers in official sessions is prohibited.</li>
+                        <li><strong class="text-[#111827]">10.8 Crew Coordination.</strong> Coordinate with cabin leadership when roleplay requires interaction.</li>
+                        <li><strong class="text-[#111827]">10.9 Operational Reporting.</strong> Comply with logging, checklists, and reporting requirements where in effect.</li>
+                    </ul>
+                </div>
+
+                <div id="sec-11" class="legal-section hidden">
+                    <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-tight mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Section 11: Airport & Ground Operations Standards</h3>
+                    <ul class="space-y-5 text-gray-700 leading-relaxed text-sm">
+                        <li><strong class="text-[#111827]">11.1 Gate Management.</strong> Follow assigned gate procedures and respect OCC/dispatch assignments.</li>
+                        <li><strong class="text-[#111827]">11.2 Ramp Safety.</strong> Unsafe ramp behavior, vehicle collisions, or reckless towing is prohibited.</li>
+                        <li><strong class="text-[#111827]">11.3 Passenger Service.</strong> Maintain respectful guest service and avoid confrontations.</li>
+                        <li><strong class="text-[#111827]">11.4 Queue and Boarding Integrity.</strong> Do not bypass lines or interfere with staff operations.</li>
+                        <li><strong class="text-[#111827]">11.5 Equipment Use.</strong> Use ground equipment only when authorized and in realistic manner.</li>
+                        <li><strong class="text-[#111827]">11.6 Coordination.</strong> Coordinate with ATC/OCC and flight crew during turns and departures.</li>
+                        <li><strong class="text-[#111827]">11.7 Incident Reporting.</strong> Report safety incidents promptly with relevant evidence.</li>
+                        <li><strong class="text-[#111827]">11.8 Restricted Areas.</strong> Do not enter restricted areas without authorization.</li>
+                        <li><strong class="text-[#111827]">11.9 Operational Channel Discipline.</strong> Keep operational channels clear during active sessions.</li>
+                    </ul>
+                </div>
+
+                <div id="sec-12" class="legal-section hidden">
+                    <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-tight mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Section 12: OCC and ATC Integrity Standards</h3>
+                    <ul class="space-y-5 text-gray-700 leading-relaxed text-sm">
+                        <li><strong class="text-[#111827]">12.1 Impartial Control.</strong> Controllers and dispatchers must operate impartially and without favoritism.</li>
+                        <li><strong class="text-[#111827]">12.2 Operational Clarity.</strong> Provide clear instructions and maintain calm communications under pressure.</li>
+                        <li><strong class="text-[#111827]">12.3 No Abuse of Power.</strong> Do not weaponize clearances, delays, or assignments to retaliate or harass.</li>
+                        <li><strong class="text-[#111827]">12.4 Safety First.</strong> Prioritize safety, de-escalation, and orderly sequencing.</li>
+                        <li><strong class="text-[#111827]">12.5 Documentation and Logs.</strong> Maintain required logs and preserve evidence during incidents.</li>
+                        <li><strong class="text-[#111827]">12.6 Qualification Requirements.</strong> Only qualified members may staff ATC/OCC roles in official sessions.</li>
+                        <li><strong class="text-[#111827]">12.7 Confidentiality.</strong> Protect operational data, internal notes, and incident evidence.</li>
+                        <li><strong class="text-[#111827]">12.8 Escalation Protocol.</strong> Escalate severe disruptions according to incident SOP.</li>
+                        <li><strong class="text-[#111827]">12.9 Integrity of Decisions.</strong> Do not fabricate constraints to manipulate outcomes.</li>
+                    </ul>
+                </div>
+
+                <div id="sec-13" class="legal-section hidden">
+                    <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-tight mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Section 13: Training and Certification Integrity</h3>
+                    <ul class="space-y-5 text-gray-700 leading-relaxed text-sm">
+                        <li><strong class="text-[#111827]">13.1 Fair Assessment.</strong> Examiners must assess fairly and consistently.</li>
+                        <li><strong class="text-[#111827]">13.2 No Certificate Fraud.</strong> Falsifying certificates, ranks, or records is prohibited.</li>
+                        <li><strong class="text-[#111827]">13.3 Trainee Conduct.</strong> Trainees must remain respectful and follow instructor guidance.</li>
+                        <li><strong class="text-[#111827]">13.4 Exam Security.</strong> Sharing exam materials without authorization is prohibited.</li>
+                        <li><strong class="text-[#111827]">13.5 Instructor Conduct.</strong> Instructors must avoid harassment, favoritism, or retaliation.</li>
+                        <li><strong class="text-[#111827]">13.6 Record Integrity.</strong> Do not misrepresent attendance or completion.</li>
+                        <li><strong class="text-[#111827]">13.7 Safety Emphasis.</strong> Training must prioritize safety and professionalism.</li>
+                        <li><strong class="text-[#111827]">13.8 Remediation Compliance.</strong> Participants must follow remediation plans when assigned.</li>
+                        <li><strong class="text-[#111827]">13.9 Appeals Process.</strong> Certification disputes must follow the defined review and appeals process.</li>
+                    </ul>
+                </div>
+
+                <div id="sec-14" class="legal-section hidden">
+                    <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-tight mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Section 14: Cross-Organization Partnerships</h3>
+                    <ul class="space-y-5 text-gray-700 leading-relaxed text-sm">
+                        <li><strong class="text-[#111827]">14.1 Partner Vetting.</strong> Partnerships require due diligence and safety review.</li>
+                        <li><strong class="text-[#111827]">14.2 Event Hosting Standards.</strong> Joint events require a written plan, roles, moderation coverage, and escalation path.</li>
+                        <li><strong class="text-[#111827]">14.3 Mutual Ban Notices.</strong> Safety-relevant notices may be exchanged consistent with the Privacy Policy.</li>
+                        <li><strong class="text-[#111827]">14.4 Brand Controls.</strong> Partners may not use EGR branding without written permission.</li>
+                        <li><strong class="text-[#111827]">14.5 No Raid Cooperation.</strong> Partners must not facilitate raids, disruption, or harassment campaigns.</li>
+                        <li><strong class="text-[#111827]">14.6 Dispute Resolution.</strong> Cross-org disputes must be escalated to liaisons; public escalation is prohibited.</li>
+                        <li><strong class="text-[#111827]">14.7 Guest Standards.</strong> Guests must follow EGR rules while in EGR-controlled spaces.</li>
+                        <li><strong class="text-[#111827]">14.8 Termination Rights.</strong> EGR may suspend or terminate alliances presenting safety or integrity risk.</li>
+                        <li><strong class="text-[#111827]">14.9 Recordkeeping.</strong> Alliance agreements and incident summaries must be documented and retained.</li>
+                    </ul>
+                </div>
+
+                <div id="sec-15" class="legal-section hidden">
+                    <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-tight mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Section 15: Intellectual Property & DMCA Compliance</h3>
+                    <ul class="space-y-5 text-gray-700 leading-relaxed text-sm">
+                        <li><strong class="text-[#111827]">15.1 Asset Protection.</strong> EGR-created assets may not be copied, redistributed, or re-uploaded without permission.</li>
+                        <li><strong class="text-[#111827]">15.2 Unauthorized Resale.</strong> Selling or trading EGR assets without authorization is prohibited.</li>
+                        <li><strong class="text-[#111827]">15.3 Derivative Works.</strong> Derivative works using EGR assets require written authorization.</li>
+                        <li><strong class="text-[#111827]">15.4 Attribution Removal.</strong> Removing identifiers, watermarks, or authorship markers is prohibited.</li>
+                        <li><strong class="text-[#111827]">15.5 Confidential Materials.</strong> Internal documents and training content may not be publicly distributed.</li>
+                        <li><strong class="text-[#111827]">15.6 Report Asset Theft.</strong> Report suspected theft promptly with evidence.</li>
+                        <li><strong class="text-[#111827]">15.7 DMCA Cooperation.</strong> Users must comply with takedown and investigation procedures.</li>
+                        <li><strong class="text-[#111827]">15.8 Repeat Infringer Standard.</strong> Repeated infringement may result in permanent removal.</li>
+                        <li><strong class="text-[#111827]">15.9 Third-Party IP.</strong> Do not upload content you do not own or have permission to use.</li>
+                    </ul>
+                </div>
+
+                <div id="sec-16" class="legal-section hidden">
+                    <h3 class="text-2xl font-bold text-[#111827] uppercase tracking-tight mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Section 16: Enforcement & Appeals</h3>
+                    <ul class="space-y-5 text-gray-700 leading-relaxed text-sm">
+                        <li><strong class="text-[#111827]">16.1 Discretionary Enforcement.</strong> EGR may act quickly to protect safety and integrity when risk is credible.</li>
+                        <li><strong class="text-[#111827]">16.2 Graduated Discipline.</strong> Actions range from warnings to permanent removal depending on severity and history.</li>
+                        <li><strong class="text-[#111827]">16.3 Evidence Standards.</strong> Enforcement requires reasonable evidence; severe actions require stronger documentation.</li>
+                        <li><strong class="text-[#111827]">16.4 Appeals.</strong> Appeals must be submitted through official channels within stated timelines.</li>
+                        <li><strong class="text-[#111827]">16.5 No Harassment of Staff.</strong> Harassing staff for enforcement decisions is prohibited.</li>
+                        <li><strong class="text-[#111827]">16.6 No Public Trials.</strong> Public disciplinary debates or evidence exposure is prohibited.</li>
+                        <li><strong class="text-[#111827]">16.7 Policy Updates.</strong> EGR may update policies; continued participation constitutes acceptance.</li>
+                        <li><strong class="text-[#111827]">16.8 Severability.</strong> If any provision is unenforceable, remaining provisions remain in effect.</li>
+                        <li><strong class="text-[#111827]">16.9 Non-Affiliation.</strong> EGR is a community organization and not affiliated with any real-world airline or company.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="py-24 px-6 md:px-12 bg-gray-100 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-3 block"><i class="fa-solid fa-sitemap mr-2"></i> Department Directory</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-[#111827] uppercase tracking-tight mb-4">Organizational Hierarchy</h2>
+                <p class="text-gray-500 font-medium max-w-2xl mx-auto">The official chain of command and departmental structure for Emirates Group Roblox, operating under the Tyler Nicholas Group.</p>
+            </div>
+
+            <div class="mb-12">
+                <h3 class="text-xl font-bold text-[#111827] uppercase tracking-widest mb-6 border-b-2 border-[#D71A21] pb-2 inline-block">Executive Board (C-Suite)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 border-l-4 border-l-[#D71A21]">
+                        <h4 class="font-bold text-gray-900 mb-1">Group Chairman</h4>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest">Highest Executive Authority</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <h4 class="font-bold text-gray-900 mb-1">Vice Chairman</h4>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest"><i class="fa-solid fa-arrow-turn-up mr-1"></i> Reports to Group Chairman</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <h4 class="font-bold text-gray-900 mb-1">President & Executive Director</h4>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest"><i class="fa-solid fa-arrow-turn-up mr-1"></i> Reports to Group Chairman</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <h4 class="font-bold text-gray-900 mb-1">Vice President</h4>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest"><i class="fa-solid fa-arrow-turn-up mr-1"></i> Reports to President & Exec. Dir.</p>
+                    </div>
+                    <div class="bg-[#111827] p-6 rounded-xl shadow-sm border border-gray-800">
+                        <h4 class="font-bold text-white mb-1">Emirates Chief Executive Officer</h4>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest"><i class="fa-solid fa-arrow-turn-up mr-1 text-[#D71A21]"></i> Reports to President & Exec. Dir.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <h4 class="font-bold text-gray-900 mb-1">Chief Operating & Financial Officer</h4>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest"><i class="fa-solid fa-arrow-turn-up mr-1"></i> Reports to President & Exec. Dir.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <h4 class="font-bold text-gray-900 mb-1">Chief Human Resources & Legal Officer</h4>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest"><i class="fa-solid fa-arrow-turn-up mr-1"></i> Reports to President & Exec. Dir.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <h4 class="font-bold text-gray-900 mb-1">Chief Technology Officer</h4>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest"><i class="fa-solid fa-arrow-turn-up mr-1"></i> Reports to President & Exec. Dir.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <h4 class="font-bold text-gray-900 mb-1">Chief Commercial & Marketing Officer</h4>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest"><i class="fa-solid fa-arrow-turn-up mr-1"></i> Reports to President & Exec. Dir.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <h4 class="font-bold text-gray-900 mb-1">Chief Training & Development Officer</h4>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest"><i class="fa-solid fa-arrow-turn-up mr-1"></i> Reports to President & Exec. Dir.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+                    <div class="bg-gray-100 px-6 py-4 border-b border-gray-200">
+                        <h4 class="font-bold text-[#111827] uppercase tracking-widest text-sm mb-1">Human Resources & Safety</h4>
+                        <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest">Reports to: CHRLO</p>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <ul class="space-y-4 text-sm">
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Human Resources Director</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: CHRLO</span></li>
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Talent Acquisition & Relations Manager</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: HR Director</span></li>
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Staff Welfare Officer</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: HR Director</span></li>
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Director of Server Safety & Compliance</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: HR Director</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+                    <div class="bg-gray-100 px-6 py-4 border-b border-gray-200">
+                        <h4 class="font-bold text-[#111827] uppercase tracking-widest text-sm mb-1">Operations Control Center</h4>
+                        <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest">Reports to: COFO</p>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <ul class="space-y-4 text-sm">
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Director of O.C.C.</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: COFO</span></li>
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Flight Dispatcher</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: Director of O.C.C.</span></li>
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Crew Scheduler</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: Director of O.C.C.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+                    <div class="bg-gray-100 px-6 py-4 border-b border-gray-200">
+                        <h4 class="font-bold text-[#111827] uppercase tracking-widest text-sm mb-1">Technology & Development</h4>
+                        <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest">Reports to: CTO</p>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <ul class="space-y-4 text-sm">
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Lead Developer</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: CTO</span></li>
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Game Development Engineer</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: Lead Developer</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+                    <div class="bg-gray-100 px-6 py-4 border-b border-gray-200">
+                        <h4 class="font-bold text-[#111827] uppercase tracking-widest text-sm mb-1">Commercial & Corp Affairs</h4>
+                        <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest">Reports to: CCMO</p>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <ul class="space-y-4 text-sm">
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Marketing Director</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: CCMO</span></li>
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Alliance Director</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: CCMO</span></li>
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Events Coordinator</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: Marketing Director</span></li>
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">EGR Ambassador</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: Alliance Director</span></li>
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Customer Care Representative</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: Marketing & Alliance Dirs.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-[#111827] text-white rounded-xl shadow-sm border border-gray-800 overflow-hidden flex flex-col xl:col-span-2">
+                    <div class="bg-gray-900 px-6 py-4 border-b border-gray-800">
+                        <h4 class="font-bold text-white uppercase tracking-widest text-sm mb-1">Flight Operations</h4>
+                        <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest">Reports to: EK CEO & COFO</p>
+                    </div>
+                    <div class="p-6 flex-grow grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <ul class="space-y-4 text-sm">
+                            <li class="border-b border-gray-800 pb-2"><strong class="block text-gray-100">Chief Pilot</strong><span class="text-[10px] text-gray-400 uppercase tracking-widest">Reports to: EK CEO, COFO & OCC Dir.</span></li>
+                            <li class="border-b border-gray-800 pb-2"><strong class="block text-gray-100">Captain</strong><span class="text-[10px] text-gray-400 uppercase tracking-widest">Reports to: Chief Pilot (also CEO/COFO)</span></li>
+                            <li class="border-b border-gray-800 pb-2"><strong class="block text-gray-100">First Officer</strong><span class="text-[10px] text-gray-400 uppercase tracking-widest">Reports to: Chief Pilot (In-Game: Captain)</span></li>
+                            <li class="border-b border-gray-800 pb-2 border-0"><strong class="block text-gray-100">Cadet Pilot</strong><span class="text-[10px] text-gray-400 uppercase tracking-widest">Reports to: Chief Pilot & Certified Instructor</span></li>
+                        </ul>
+                        <ul class="space-y-4 text-sm">
+                            <li class="border-b border-gray-800 pb-2"><strong class="block text-gray-100">Purser</strong><span class="text-[10px] text-gray-400 uppercase tracking-widest">Reports to: EK CEO, COFO</span></li>
+                            <li class="border-b border-gray-800 pb-2 border-0"><strong class="block text-gray-100">Flight Attendant</strong><span class="text-[10px] text-gray-400 uppercase tracking-widest">Reports to: EK CEO, COFO (In-Game: Purser)</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col xl:col-span-2">
+                    <div class="bg-gray-100 px-6 py-4 border-b border-gray-200">
+                        <h4 class="font-bold text-[#111827] uppercase tracking-widest text-sm mb-1">Emirates Aviation University</h4>
+                        <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest">Reports to: CTDO</p>
+                    </div>
+                    <div class="p-6 flex-grow grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 border-b border-gray-200 pb-1">University Administration</p>
+                            <ul class="space-y-4 text-sm">
+                                <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">VP of Emirates Aviation University</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: CTDO</span></li>
+                                <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Dean of Admissions</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: VP of EAU</span></li>
+                                <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Examiner</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: VP of EAU</span></li>
+                                <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Certified Instructor</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: VP of EAU</span></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 border-b border-gray-200 pb-1">Academy Heads</p>
+                            <ul class="space-y-4 text-sm">
+                                <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Head of Flight Training</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: VP of EAU</span></li>
+                                <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Head of ATC Training</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: VP of EAU</span></li>
+                                <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Head of Operations Training</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: VP of EAU</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+                    <div class="bg-gray-100 px-6 py-4 border-b border-gray-200">
+                        <h4 class="font-bold text-[#111827] uppercase tracking-widest text-sm mb-1">dnata / Airport Operations</h4>
+                        <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest">Reports to: EK CEO & COFO</p>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <ul class="space-y-4 text-sm">
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Director of Airport Operations</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: CEO, COFO & OCC</span></li>
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Ground Handling Agent</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: CEO, COFO & Dir of Airport Ops</span></li>
+                            <li class="border-b border-gray-100 pb-2 last:border-0 last:pb-0"><strong class="block text-gray-800">Guest Service Agent</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: CEO, COFO & Dir of Airport Ops</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col xl:col-span-3">
+                    <div class="bg-gray-100 px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+                        <div>
+                            <h4 class="font-bold text-[#111827] uppercase tracking-widest text-sm mb-1">Internal Sub-Divisions</h4>
+                            <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest">Reports to: EK CEO</p>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 border-b border-gray-200 pb-1">Emirates Executive (VIP)</p>
+                            <ul class="space-y-4 text-sm">
+                                <li class="border-b border-gray-100 pb-2"><strong class="block text-gray-800">Director of Exec. Flights</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: EK CEO</span></li>
+                                <li class="border-b border-gray-100 pb-2"><strong class="block text-gray-800">VIP Charter Pilot</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: Dir. of Exec Flights</span></li>
+                                <li><strong class="block text-gray-800">VIP Flight Attendant</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: Dir. of Exec Flights</span></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 border-b border-gray-200 pb-1">Emirates Skywards</p>
+                            <ul class="space-y-4 text-sm">
+                                <li class="border-b border-gray-100 pb-2"><strong class="block text-gray-800">Director of Loyalty & Rewards</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: EK CEO</span></li>
+                                <li><strong class="block text-gray-800">Skywards Concierge</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: Dir. of Loyalty & Rewards</span></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 border-b border-gray-200 pb-1">Emirates Airline Foundation</p>
+                            <ul class="space-y-4 text-sm">
+                                <li class="border-b border-gray-100 pb-2"><strong class="block text-gray-800">Dir. of Community Initiatives</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: EK CEO</span></li>
+                                <li><strong class="block text-gray-800">Event Volunteer</strong><span class="text-[10px] text-gray-500 uppercase tracking-widest">Reports to: Dir. of Comm. Initiatives</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
   </main>
 
-  <footer class="bg-[#111827] text-white py-12 md:py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
+  <footer class="bg-[#111827] text-white py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
       <div class="md:col-span-2">
         <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest">Emirates Group Roblox</h3>
-        <p class="text-sm text-gray-400 max-w-md mb-6 leading-relaxed">The premier virtual aviation organization on the Roblox platform. A proud subsidiary of the Tyler Nicholas Group, committed to structural perfection and digital realism.</p>
+        <p class="text-sm text-gray-400 max-w-md mb-8 leading-relaxed">The premier virtual aviation organization on the Roblox platform. Setting the standard for structural perfection and digital realism.</p>
         
-        <div class="flex flex-wrap gap-4 text-xl text-gray-400">
-          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="hover:text-[#5865F2] transition-colors"><i class="fa-brands fa-discord"></i></a>
-          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white transition-colors"><i class="fa-solid fa-cube"></i></a>
-          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] transition-colors"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] transition-colors"><i class="fa-brands fa-telegram"></i></a>
-          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] transition-colors"><i class="fa-brands fa-youtube"></i></a>
-          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] transition-colors"><i class="fa-brands fa-trello"></i></a>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2 inline-block">Connect With Us</h4>
+        <div class="flex flex-wrap items-center gap-5 text-2xl text-gray-400 mt-2">
+          <a href="https://discord.gg/nDAZ3p475V7" target="_blank" class="hover:text-[#5865F2] hover:scale-110 transition-all duration-300" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300 flex items-center" aria-label="Roblox">
+            <svg class="w-[1em] h-[1em] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.445 0L0 20.457l18.555 3.543L24 3.543 5.445 0zm10.125 14.596l-4.102-.782-.782-4.102 4.102.782.782 4.102z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] hover:scale-110 transition-all duration-300" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] hover:scale-110 transition-all duration-300" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] hover:scale-110 transition-all duration-300" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] hover:scale-110 transition-all duration-300" aria-label="Trello"><i class="fa-brands fa-trello"></i></a>
+          <a href="https://www.linkedin.com/company/emirates-group-roblox-vision2026" target="_blank" class="hover:text-[#0A66C2] hover:scale-110 transition-all duration-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
       </div>
 
       <div>
-        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Corporate Links</h4>
-        <ul class="space-y-3 text-sm text-gray-400">
-          <li><a href="/about/vision/" class="hover:text-[#D71A21] transition-colors">Our Vision</a></li>
-          <li><a href="/flights/" class="hover:text-[#D71A21] transition-colors">Flight Radar</a></li>
-          <li><a href="/media/newsroom/" class="hover:text-[#D71A21] transition-colors">Newsroom</a></li>
-          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors">Careers Portal</a></li>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">EGR Network</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://ek.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><i class="fa-solid fa-angle-right text-[#D71A21] mr-1 text-[10px]"></i> Emirates Airline</a></li>
+          <li><a href="https://fz.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><i class="fa-solid fa-angle-right text-[#D71A21] mr-1 text-[10px]"></i> Fly Dubai</a></li>
+          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><i class="fa-solid fa-angle-right text-[#D71A21] mr-1 text-[10px]"></i> Careers Portal</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Legal & Support</h4>
-        <ul class="space-y-3 text-sm text-gray-400">
-          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-[#D71A21] transition-colors">Tyler Nicholas Group</a></li>
-          <li><a href="https://discord.gg/nDAZ3p475V" target="_blank" class="hover:text-[#D71A21] transition-colors">Contact Support</a></li>
-          <li><span class="italic text-xs mt-4 block">Disclaimer: EGR is a virtual organization and is not affiliated with the real-world Emirates airline.</span></li>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Tyler Nicholas Group</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><i class="fa-solid fa-angle-right text-[#D71A21] mr-1 text-[10px]"></i> TNG Hub</a></li>
+          <li><a href="https://tyler.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><i class="fa-solid fa-angle-right text-[#D71A21] mr-1 text-[10px]"></i> The Founder</a></li>
+          <li><a href="https://payhip.com/FalconLtd" target="_blank" class="hover:text-white transition-colors"><i class="fa-solid fa-angle-right text-[#D71A21] mr-1 text-[10px]"></i> Falcon LTD</a></li>
+          <li><a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><i class="fa-solid fa-angle-right text-[#D71A21] mr-1 text-[10px]"></i> BlueWave Digital</a></li>
         </ul>
       </div>
     </div>
-    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-10 md:mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 text-center md:text-left gap-2">
+    
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs text-gray-500 font-bold tracking-wider uppercase text-center md:text-left gap-4">
       <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
-      <p>Powered by Tyler Nicholas Group Network</p>
+      <p>A proud subsidiary of the <a href="https://tylernicholasgroup.com" class="text-gray-300 hover:text-white transition-colors">Tyler Nicholas Group</a> Network</p>
     </div>
   </footer>
 
   <script>
+    // --- ANIMATED TEXT LOADER LOGIC ---
+    let perc = 0;
+    const percEl = document.getElementById('loader-perc');
+    const fillEl = document.getElementById('loader-fill');
+    const loader = document.getElementById('egr-loader');
+    const animateContainer = document.getElementById('loader-animate-container');
+    
+    const progressInterval = setInterval(() => {
+        perc += Math.floor(Math.random() * 8) + 2; 
+        if (perc >= 99) perc = 99; 
+        percEl.innerText = perc;
+        fillEl.style.width = perc + '%';
+    }, 120);
+
+    window.addEventListener('load', () => {
+        clearInterval(progressInterval);
+        percEl.innerText = '100';
+        fillEl.style.width = '100%';
+        
+        setTimeout(() => {
+            animateContainer.classList.add('zoom-through');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 800);
+            }, 600);
+        }, 400);
+    });
+
+    // --- LEGAL FRAMEWORK TAB LOGIC ---
+    function showLegalSection(id, btnElement) {
+        // Hide all sections
+        const sections = document.querySelectorAll('.legal-section');
+        sections.forEach(sec => sec.classList.add('hidden'));
+        
+        // Show target section
+        document.getElementById(id).classList.remove('hidden');
+
+        // Reset all buttons
+        const buttons = document.querySelectorAll('.legal-tab-btn');
+        buttons.forEach(btn => {
+            btn.classList.remove('text-[#D71A21]', 'bg-red-50');
+            btn.classList.add('text-gray-600', 'hover:bg-gray-100');
+        });
+
+        // Style active button
+        btnElement.classList.remove('text-gray-600', 'hover:bg-gray-100');
+        btnElement.classList.add('text-[#D71A21]', 'bg-red-50');
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
+      // Mobile Menu Logic
       const mobileBtn = document.getElementById('mobile-menu-btn');
       const mobileClose = document.getElementById('mobile-menu-close');
       const mobileMenu = document.getElementById('mobile-menu-overlay');
-
       if(mobileBtn && mobileClose && mobileMenu) {
         mobileBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
         mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
       }
-
-      setTimeout(() => {
-        const loader = document.getElementById('egr-loader');
-        if(loader) {
-            loader.style.opacity = '0';
-            setTimeout(() => { loader.style.display = 'none'; }, 700);
-        }
-      }, 1000); 
     });
   </script>
 </body>
