@@ -13,33 +13,32 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Manrope:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    body { font-family: 'Manrope', sans-serif; background-color: #f8f9fa; overflow: hidden; color: #0A1128; }
-    .font-serif { font-family: 'Cormorant Garamond', serif; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #F5F4F0; overflow: hidden; color: #1E1E1E; }
     .font-mono { font-family: 'Space Mono', monospace; }
     
     /* Cinematic Text Fill Loader */
     #egr-loader {
         position: fixed; inset: 0; z-index: 9999;
-        background-color: #0A1128; 
+        background-color: #1E1E1E; 
         display: flex; align-items: center; justify-content: center;
-        transition: opacity 0.8s ease;
+        transition: opacity 0.6s ease;
     }
     .loader-content { display: flex; flex-direction: column; align-items: flex-end; }
     .loader-text-wrapper {
-        position: relative; font-family: 'Manrope', sans-serif; font-weight: 800;
-        letter-spacing: -2px; line-height: 1; text-transform: uppercase;
+        position: relative; font-weight: 800;
+        letter-spacing: -1px; line-height: 1; text-transform: uppercase;
     }
-    .loader-base-text { color: #1e293b; }
+    .loader-base-text { color: #333; }
     .loader-fill-text {
         position: absolute; left: 0; top: 0; color: #ffffff; 
         overflow: hidden; white-space: nowrap; width: 0%; transition: width 0.1s linear;
     }
-    .loader-info { color: #94a3b8; font-size: 10px; font-weight: 700; letter-spacing: 2px; margin-top: 12px; text-transform: uppercase; }
+    .loader-info { color: #888; font-size: 10px; font-weight: 700; letter-spacing: 2px; margin-top: 12px; text-transform: uppercase; }
     
-    .zoom-through { animation: zoomOutEffect 1.2s cubic-bezier(0.7, 0, 0.2, 1) forwards; }
+    .zoom-through { animation: zoomOutEffect 1s cubic-bezier(0.7, 0, 0.2, 1) forwards; }
     @keyframes zoomOutEffect {
         0% { transform: scale(1); opacity: 1; }
         40% { transform: scale(1.05); opacity: 1; }
@@ -50,29 +49,30 @@
     .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
     .custom-scroll::-webkit-scrollbar-track { background: transparent; }
     .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
-    .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-
-    /* Tab Transitions */
-    .tab-content { display: none; animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-    .tab-content.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-
-    /* Nav Link Active State */
-    .nav-link.active { background-color: rgba(255,255,255,0.05); color: #ffffff; border-left-color: #D71A21; }
     
-    /* ID Card Styling */
-    .id-card { background: linear-gradient(135deg, #0A1128 0%, #1e293b 100%); position: relative; overflow: hidden; }
-    .id-card::before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 12px 12px; pointer-events: none; }
+    /* Tab Transitions */
+    .tab-content { display: none; animation: fadeIn 0.4s ease-out; }
+    .tab-content.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Nav Link Active State (Soft purple accent) */
+    .nav-link.active { color: #8B7FE8; font-weight: 800; }
+    .nav-link.active::before { content: ''; position: absolute; left: -24px; top: 50%; transform: translateY(-50%); width: 4px; height: 20px; background-color: #8B7FE8; border-radius: 4px; }
+    
+    /* Pill Row Colors */
+    .row-purple { background-color: #E8E5FF; }
+    .row-yellow { background-color: #FFF7D6; }
+    .row-cream { background-color: #F5EAE0; }
     
     /* Rating Button Styles */
-    .rating-btn.selected { background-color: #0A1128; color: white; border-color: #0A1128; }
+    .rating-btn.selected { background-color: #1E1E1E; color: white; border-color: #1E1E1E; }
   </style>
 </head>
 <body class="flex h-screen w-full">
 
   <div id="egr-loader">
     <div class="loader-content" id="loader-animate-container">
-      <div class="loader-text-wrapper text-3xl md:text-6xl lg:text-7xl">
+      <div class="loader-text-wrapper text-3xl md:text-5xl lg:text-6xl">
         <div class="loader-base-text">Emirates Group Roblox</div>
         <div class="loader-fill-text" id="loader-fill">Emirates Group Roblox</div>
       </div>
@@ -80,396 +80,274 @@
     </div>
   </div>
 
-  <div class="lg:hidden fixed top-0 left-0 w-full bg-[#0A1128] text-white flex justify-between items-center p-5 z-50 shadow-md">
-      <p class="font-serif font-bold tracking-widest text-sm uppercase">My Portal</p>
-      <button id="mobile-menu-btn" class="text-[10px] font-bold uppercase tracking-widest text-gray-300 border border-gray-600 px-3 py-1 rounded">Menu</button>
+  <div class="lg:hidden fixed top-0 left-0 w-full bg-[#1E1E1E] text-white flex justify-between items-center p-5 z-50 shadow-md">
+      <p class="font-bold tracking-widest text-sm uppercase">My Portal</p>
+      <button id="mobile-menu-btn" class="text-[10px] font-bold uppercase tracking-widest text-gray-300 border border-gray-600 px-3 py-1 rounded-full">Menu</button>
   </div>
 
-  <aside id="sidebar" class="w-64 bg-[#0A1128] flex-shrink-0 flex flex-col justify-between h-full shadow-2xl z-40 fixed lg:relative transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+  <aside id="sidebar" class="w-64 bg-[#1E1E1E] flex-shrink-0 flex flex-col justify-between h-full shadow-2xl z-40 fixed lg:relative transform -translate-x-full lg:translate-x-0 transition-transform duration-300 rounded-r-[2rem] lg:rounded-none">
       
       <div class="p-8 pb-4">
-          <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" class="h-8 object-contain mb-12 opacity-80">
+          <div class="flex items-center gap-3 mb-16">
+              <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" class="h-6 object-contain filter brightness-0 invert">
+              <span class="text-white font-bold text-sm tracking-wide">EGR Portal</span>
+          </div>
           
-          <nav class="space-y-1">
-              <p class="text-gray-500 text-[8px] font-bold uppercase tracking-widest mb-4 pl-4">Dashboard</p>
-              <button data-tab="tab-overview" class="nav-link active w-full text-left px-4 py-3 text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400 hover:text-white transition-all border-l-2 border-transparent">
-                  Overview
+          <nav class="space-y-4 pl-6">
+              <button data-tab="tab-overview" class="nav-link active relative w-full text-left text-xs font-semibold tracking-wide text-gray-400 hover:text-white transition-all">
+                  Dashboard
               </button>
-              <button data-tab="tab-inbox" class="nav-link w-full text-left px-4 py-3 text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400 hover:text-white transition-all border-l-2 border-transparent flex justify-between items-center">
+              <button data-tab="tab-inbox" class="nav-link relative w-full text-left text-xs font-semibold tracking-wide text-gray-400 hover:text-white transition-all flex justify-between items-center pr-4">
                   Inbox
-                  <span id="unread-badge" class="hidden bg-[#D71A21] text-white px-1.5 py-0.5 rounded-sm text-[9px] font-mono leading-none">0</span>
+                  <span id="unread-badge" class="hidden bg-[#8B7FE8] text-white px-2 py-0.5 rounded-full text-[9px] font-bold leading-none">0</span>
               </button>
-              
-              <div class="h-8"></div>
-              
-              <p class="text-gray-500 text-[8px] font-bold uppercase tracking-widest mb-4 pl-4">Operations</p>
-              <button data-tab="tab-bookings" class="nav-link w-full text-left px-4 py-3 text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400 hover:text-white transition-all border-l-2 border-transparent">
+              <button data-tab="tab-bookings" class="nav-link relative w-full text-left text-xs font-semibold tracking-wide text-gray-400 hover:text-white transition-all">
                   My Bookings
               </button>
-              <button data-tab="tab-skywards" class="nav-link w-full text-left px-4 py-3 text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400 hover:text-white transition-all border-l-2 border-transparent">
+              <button data-tab="tab-skywards" class="nav-link relative w-full text-left text-xs font-semibold tracking-wide text-gray-400 hover:text-white transition-all">
                   Skywards
               </button>
-              <button data-tab="tab-immersion" class="nav-link w-full text-left px-4 py-3 text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400 hover:text-white transition-all border-l-2 border-transparent">
-                  Travel Log
-              </button>
-
-              <div class="h-8"></div>
-
-              <p class="text-gray-500 text-[8px] font-bold uppercase tracking-widest mb-4 pl-4">Corporate</p>
-              <button data-tab="tab-support" class="nav-link w-full text-left px-4 py-3 text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400 hover:text-white transition-all border-l-2 border-transparent">
+              <button data-tab="tab-support" class="nav-link relative w-full text-left text-xs font-semibold tracking-wide text-gray-400 hover:text-white transition-all">
                   Support Desk
               </button>
-              <button data-tab="tab-compliance" class="nav-link w-full text-left px-4 py-3 text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400 hover:text-white transition-all border-l-2 border-transparent">
+              <button data-tab="tab-compliance" class="nav-link relative w-full text-left text-xs font-semibold tracking-wide text-gray-400 hover:text-white transition-all">
                   Compliance
               </button>
           </nav>
       </div>
 
-      <div class="p-6 border-t border-gray-800 bg-[#060a18]">
-          <div class="flex items-center gap-4 mb-6">
-              <div id="sidebar-avatar" class="w-10 h-10 rounded bg-[#D71A21] flex items-center justify-center text-white font-serif font-bold text-lg shadow-md shrink-0 opacity-0 transition-opacity">
+      <div class="p-8">
+          <div class="flex items-center gap-3 mb-6">
+              <div id="sidebar-avatar" class="w-10 h-10 rounded-full bg-[#8B7FE8] flex items-center justify-center text-white font-bold text-lg shrink-0 shadow-lg">
                   -
               </div>
               <div class="overflow-hidden">
-                  <p id="sidebar-name" class="text-white text-xs font-bold truncate tracking-wide">Loading...</p>
-                  <p id="sidebar-tier" class="text-[#D71A21] text-[9px] uppercase tracking-widest font-bold">-- TIER</p>
+                  <p id="sidebar-name" class="text-white text-xs font-bold truncate">Loading...</p>
+                  <p id="sidebar-tier" class="text-[#8B7FE8] text-[9px] uppercase tracking-widest font-bold">-- TIER</p>
               </div>
           </div>
-          <button id="logout-btn" class="w-full text-left text-[9px] font-bold text-gray-500 hover:text-white uppercase tracking-widest transition-colors">
-              SIGN OUT SESSION &rarr;
+          <button id="logout-btn" class="w-full text-left text-[10px] font-bold text-gray-500 hover:text-white uppercase tracking-widest transition-colors pl-2">
+              SIGN OUT
           </button>
       </div>
   </aside>
 
-  <div id="mobile-overlay" class="lg:hidden fixed inset-0 bg-black/60 z-30 hidden backdrop-blur-sm transition-opacity"></div>
+  <div id="mobile-overlay" class="lg:hidden fixed inset-0 bg-black/40 z-30 hidden backdrop-blur-sm transition-opacity"></div>
 
-  <main class="flex-1 h-full overflow-y-auto custom-scroll bg-[#f8f9fa] pt-20 lg:pt-0 relative">
+  <main class="flex-1 h-full overflow-y-auto custom-scroll bg-[#F5F4F0] pt-20 lg:pt-0 relative px-4 md:px-8 lg:px-12 pb-12">
       
-      <div class="bg-white border-b border-gray-200 px-10 py-5 flex justify-between items-center shadow-sm sticky top-0 z-20 hidden lg:flex">
-          <div class="flex items-center gap-3">
-              <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-              <span class="text-[9px] font-bold uppercase tracking-widest text-gray-400">NETWORK SECURED</span>
+      <div class="py-6 flex justify-between items-center hidden lg:flex">
+          <div class="flex items-center gap-2">
+              <div class="w-2 h-2 rounded-full bg-green-500"></div>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400">NETWORK SECURED</span>
           </div>
-          <a href="/help/" class="text-[9px] font-bold uppercase tracking-[0.2em] text-[#0A1128] hover:text-[#D71A21] transition-colors">
-              HELP CENTER
-          </a>
+          <div class="flex gap-6">
+              <a href="/flights/" class="text-[10px] font-bold uppercase tracking-widest text-gray-500 hover:text-[#1E1E1E] transition-colors">FLIGHT RADAR</a>
+              <a href="/help/" class="text-[10px] font-bold uppercase tracking-widest text-gray-500 hover:text-[#1E1E1E] transition-colors">HELP CENTER</a>
+          </div>
       </div>
 
-      <div class="max-w-[1500px] mx-auto p-6 md:p-10 lg:p-12" id="portal-content">
+      <div class="max-w-[1400px] mx-auto mt-4" id="portal-content">
 
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 md:p-14 flex flex-col xl:flex-row justify-between items-start gap-12 relative overflow-hidden mb-12">
-              <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-gray-50 rounded-full blur-3xl -mr-40 -mt-40 pointer-events-none"></div>
+          <div class="bg-white rounded-[2.5rem] shadow-sm p-8 md:p-12 flex flex-col xl:flex-row justify-between items-center gap-10 relative overflow-hidden mb-10">
+              <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#F5EAE0] rounded-full blur-3xl -mr-20 -mt-40 pointer-events-none opacity-60"></div>
 
-              <div class="flex items-center gap-8 relative z-10 w-full xl:w-auto">
-                  <div id="hero-avatar" class="w-28 h-28 md:w-36 md:h-36 rounded-full shadow-lg border-4 border-white bg-[#0A1128] flex items-center justify-center shrink-0">
-                      <span id="hero-initial" class="font-serif text-5xl md:text-6xl text-white"></span>
+              <div class="flex flex-col md:flex-row items-center md:items-start gap-8 relative z-10 w-full xl:w-auto text-center md:text-left">
+                  <div id="hero-avatar-container" class="w-32 h-32 md:w-40 md:h-40 rounded-[2rem] shadow-lg bg-[#8B7FE8] flex items-center justify-center shrink-0">
+                      <span id="hero-initial" class="text-6xl font-bold text-white">-</span>
                   </div>
-                  <div>
-                      <div class="flex items-center gap-4 mb-2">
-                          <h1 id="hero-name" class="text-4xl md:text-5xl font-serif font-bold text-[#0A1128] tracking-tight leading-none">Member</h1>
-                          <span id="hero-verified" class="hidden border border-[#0A1128] text-[#0A1128] px-2 py-0.5 rounded text-[8px] font-bold uppercase tracking-[0.2em]">VERIFIED</span>
-                      </div>
-                      <p class="text-xs font-mono text-gray-400 uppercase tracking-widest mb-5">RBLX: <span id="hero-roblox" class="text-gray-600">@USER</span></p>
-                      <div class="flex gap-6 text-[9px] font-bold uppercase tracking-widest text-gray-400">
-                          <span>JOINED: <span id="hero-joined" class="text-[#0A1128]">00.00.00</span></span>
-                          <span>STATUS: <span id="hero-status" class="text-green-600">ACTIVE</span></span>
+                  <div class="mt-2 md:mt-4">
+                      <h1 id="hero-name" class="text-4xl md:text-5xl font-bold text-[#1E1E1E] tracking-tight leading-none mb-3">Member</h1>
+                      <p class="text-sm font-semibold text-gray-500 mb-6">Emirates Group <span id="hero-roblox" class="text-gray-400 font-mono ml-2">@USER</span></p>
+                      
+                      <div class="flex flex-wrap justify-center md:justify-start gap-3">
+                          <span id="hero-status" class="px-4 py-1.5 bg-green-50 text-green-700 rounded-full text-[10px] font-bold uppercase tracking-widest">ACTIVE</span>
+                          <span id="hero-joined" class="px-4 py-1.5 bg-gray-100 text-gray-600 rounded-full text-[10px] font-bold uppercase tracking-widest">JOINED: --</span>
                       </div>
                   </div>
               </div>
 
-              <div class="w-full xl:w-auto flex flex-col xl:items-end relative z-10 border-t xl:border-t-0 border-gray-100 pt-8 xl:pt-0">
-                  <p class="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">Total Skywards Balance</p>
-                  <h2 id="hero-miles" class="text-6xl md:text-7xl font-serif font-bold text-[#0A1128] tracking-tighter mb-4">0</h2>
-                  <span id="hero-tier-badge" class="bg-gray-100 text-gray-600 border border-gray-200 px-3 py-1 rounded text-[9px] font-bold uppercase tracking-widest">LOADING TIER</span>
+              <div class="w-full xl:w-auto flex flex-col items-center xl:items-end relative z-10 bg-white/50 backdrop-blur-sm p-8 rounded-[2rem] border border-gray-50 shadow-sm">
+                  <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Skywards Points</p>
+                  <h2 id="hero-miles" class="text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#8B7FE8] to-[#1E1E1E] tracking-tighter mb-4">0</h2>
+                  <span id="hero-tier-badge" class="bg-[#1E1E1E] text-white px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest">BLUE TIER</span>
               </div>
           </div>
 
           <div id="tab-overview" class="tab-content active">
-              <h2 class="text-sm font-bold text-[#0A1128] uppercase tracking-[0.2em] mb-6">Executive Summary</h2>
-              
-              <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-12">
-                  <div class="xl:col-span-1 id-card rounded-2xl p-8 shadow-lg text-white flex flex-col justify-between h-[280px]">
-                      <div class="relative z-10 flex justify-between items-start border-b border-gray-700 pb-4 mb-4">
-                          <div>
-                              <p class="text-[7px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">Official Document</p>
-                              <p class="font-serif text-xl tracking-wide">Emirates ID</p>
-                          </div>
+              <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-8">
+                  <div class="xl:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div class="bg-white rounded-[2rem] p-8 shadow-sm text-center border border-gray-100">
+                          <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Total Flights</p>
+                          <h3 id="stat-flights" class="text-5xl font-bold text-[#1E1E1E]">0</h3>
                       </div>
-                      <div class="relative z-10 flex-grow flex flex-col justify-end">
-                          <p class="text-[8px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">Holder</p>
-                          <p id="id-name" class="font-bold text-2xl tracking-tight mb-6">Loading...</p>
-                          
-                          <div class="grid grid-cols-2 gap-4 pt-4 border-t border-gray-700">
-                              <div>
-                                  <p class="text-[7px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">Discord ID</p>
-                                  <p id="id-discord" class="font-mono text-xs">------</p>
-                              </div>
-                              <div>
-                                  <p class="text-[7px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">Clearance</p>
-                                  <p id="id-tier" class="font-bold text-xs text-[#D71A21] uppercase tracking-widest">--</p>
-                              </div>
-                          </div>
+                      <div class="bg-white rounded-[2rem] p-8 shadow-sm text-center border border-gray-100">
+                          <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Exec Charters</p>
+                          <h3 id="stat-exec" class="text-5xl font-bold text-[#1E1E1E]">0</h3>
                       </div>
-                  </div>
-
-                  <div class="xl:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-200 p-8 md:p-10 flex flex-col justify-center relative">
-                      <p class="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-6">Upcoming Itinerary</p>
-                      <div id="overview-next-flight">
-                          <p class="text-sm font-mono text-gray-400">Scanning manifest...</p>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-                      <p class="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">Total Flights</p>
-                      <h3 id="stat-flights" class="text-4xl font-mono font-bold text-[#0A1128]">0</h3>
-                  </div>
-                  <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-                      <p class="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">Exec Charters</p>
-                      <h3 id="stat-exec" class="text-4xl font-mono font-bold text-[#0A1128]">0</h3>
-                  </div>
-                  <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 border-b-4 border-b-[#D71A21]">
-                      <p class="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">Activity Streak</p>
-                      <div class="flex items-baseline gap-2">
-                          <h3 id="stat-streak" class="text-4xl font-mono font-bold text-[#0A1128]">0</h3>
-                          <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">WEEKS</span>
+                      <div class="bg-white rounded-[2rem] p-8 shadow-sm text-center border border-gray-100 border-b-4 border-b-[#8B7FE8]">
+                          <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Activity Streak</p>
+                          <h3 id="stat-streak" class="text-5xl font-bold text-[#1E1E1E]">0 <span class="text-sm text-gray-400">wks</span></h3>
                       </div>
                   </div>
               </div>
           </div>
 
           <div id="tab-bookings" class="tab-content">
-              <h2 class="text-sm font-bold text-[#0A1128] uppercase tracking-[0.2em] mb-8">Reservation Terminal</h2>
+              <h2 class="text-xl font-bold text-[#1E1E1E] mb-6">Reservation Terminal</h2>
               
-              <div id="digital-ticket-container" class="mb-12 hidden">
-                  <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col md:flex-row">
-                      <div class="bg-[#0A1128] text-white p-8 md:p-10 md:w-1/3 flex flex-col justify-between">
-                          <div class="mb-8">
-                              <span class="text-[8px] font-bold text-[#D71A21] uppercase tracking-[0.2em] block mb-2">BOARDING PASS</span>
-                              <p class="font-serif text-3xl" id="ticket-seat-class">Economy</p>
-                          </div>
-                          <div>
-                              <p class="text-[8px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">Ticket Reference</p>
-                              <p class="font-mono text-xl text-white" id="ticket-ref-display">EK-00000</p>
-                          </div>
+              <div id="digital-ticket-container" class="mb-10 hidden">
+                  <div class="bg-white rounded-[2.5rem] shadow-sm p-8 md:p-10 flex flex-col md:flex-row justify-between items-center gap-8 border border-gray-100">
+                      <div>
+                          <span class="text-[10px] font-bold text-[#8B7FE8] uppercase tracking-widest block mb-2">BOARDING PASS</span>
+                          <p class="text-3xl font-bold text-[#1E1E1E]" id="ticket-seat-class">Economy</p>
+                          <p class="font-mono text-gray-500 mt-2" id="ticket-ref-display">EK-00000</p>
                       </div>
-                      <div class="p-8 md:p-10 md:w-2/3 flex flex-col justify-center">
-                          <div class="flex justify-between items-center mb-8 border-b border-gray-100 pb-8">
-                              <div>
-                                  <p class="text-[8px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">Status</p>
-                                  <p class="font-bold text-sm uppercase tracking-widest text-[#0A1128]" id="ticket-status-display">CONFIRMED</p>
-                              </div>
-                              <div class="text-right">
-                                  <p class="text-[8px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">Seat</p>
-                                  <p class="font-mono font-bold text-xl text-[#0A1128]" id="ticket-seat-display">TBA</p>
-                              </div>
-                          </div>
-                          <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] text-center" id="ticket-countdown">CHECK-IN OPENS 24H BEFORE FLIGHT</p>
+                      <div class="text-center md:text-right">
+                          <p class="font-bold text-lg uppercase tracking-widest text-[#1E1E1E]" id="ticket-status-display">CONFIRMED</p>
+                          <p class="font-mono font-bold text-2xl text-gray-400 mt-2" id="ticket-seat-display">TBA</p>
                       </div>
                   </div>
               </div>
 
-              <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-                  <div class="p-6 border-b border-gray-100 bg-gray-50">
-                      <p class="text-[9px] font-bold text-gray-500 uppercase tracking-[0.2em]">Booking History</p>
-                  </div>
-                  <div id="bookings-history-list" class="divide-y divide-gray-100">
-                      <div class="p-10 text-center font-mono text-xs text-gray-400 uppercase tracking-widest">Loading Records...</div>
-                  </div>
+              <div class="grid grid-cols-4 gap-4 px-6 pb-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                  <div class="col-span-2">Reference</div>
+                  <div>Status</div>
+                  <div class="text-right">Date</div>
+              </div>
+              <div id="bookings-list" class="space-y-3">
+                  <div class="bg-white rounded-full p-6 text-center font-mono text-xs text-gray-400 uppercase tracking-widest border border-gray-100">Scanning Database...</div>
               </div>
           </div>
 
           <div id="tab-skywards" class="tab-content">
-              <h2 class="text-sm font-bold text-[#0A1128] uppercase tracking-[0.2em] mb-8">Loyalty & Analytics</h2>
+              <h2 class="text-xl font-bold text-[#1E1E1E] mb-6">Loyalty Program</h2>
               
-              <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 md:p-10 mb-8">
+              <div class="bg-white rounded-[2.5rem] shadow-sm p-8 md:p-12 mb-8 border border-gray-100">
                   <div class="flex justify-between items-end mb-6">
                       <div>
-                          <p class="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">Progression Status</p>
-                          <h3 class="text-3xl font-serif font-bold text-[#0A1128] uppercase tracking-tight" id="analytics-tier">BLUE TIER</h3>
+                          <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Progression Status</p>
+                          <h3 class="text-3xl font-bold text-[#1E1E1E] uppercase tracking-tight" id="analytics-tier">BLUE TIER</h3>
                       </div>
                       <div class="text-right">
-                          <p class="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">Target Miles</p>
-                          <p class="font-mono text-lg font-bold text-[#0A1128]" id="analytics-req">25,000</p>
+                          <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Target</p>
+                          <p class="font-mono text-xl font-bold text-[#1E1E1E]" id="analytics-req">25,000</p>
                       </div>
                   </div>
-                  <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden mb-10">
-                      <div id="analytics-progress" class="bg-[#0A1128] h-full transition-all duration-1000" style="width: 0%;"></div>
+                  <div class="w-full bg-gray-100 h-3 rounded-full overflow-hidden mb-10">
+                      <div id="analytics-progress" class="bg-[#8B7FE8] h-full transition-all duration-1000" style="width: 0%;"></div>
                   </div>
                   
-                  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-gray-100">
+                  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-gray-100 text-center md:text-left">
                       <div>
-                          <p class="text-[8px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">Flights</p>
-                          <p class="font-mono text-sm font-bold text-[#0A1128]" id="analytics-flight-req">0</p>
-                      </div>
-                      <div>
-                          <p class="text-[8px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">Exec. Flights</p>
-                          <p class="font-mono text-sm font-bold text-[#0A1128]" id="analytics-exec-req">0</p>
+                          <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Flights</p>
+                          <p class="font-mono text-lg font-bold text-[#1E1E1E]" id="analytics-flight-req">0</p>
                       </div>
                       <div>
-                          <p class="text-[8px] font-bold text-[#D71A21] uppercase tracking-[0.2em] mb-1">Lounge Access</p>
-                          <p class="font-bold text-xs text-[#0A1128] uppercase tracking-widest" id="perk-lounge">DENIED</p>
+                          <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Exec. Flights</p>
+                          <p class="font-mono text-lg font-bold text-[#1E1E1E]" id="analytics-exec-req">0</p>
                       </div>
                       <div>
-                          <p class="text-[8px] font-bold text-[#D71A21] uppercase tracking-[0.2em] mb-1">Boarding</p>
-                          <p class="font-bold text-xs text-[#0A1128] uppercase tracking-widest" id="perk-boarding">STANDARD</p>
+                          <p class="text-[10px] font-bold text-[#8B7FE8] uppercase tracking-widest mb-1">Lounge</p>
+                          <p class="font-bold text-sm text-[#1E1E1E] uppercase" id="perk-lounge">DENIED</p>
                       </div>
-                  </div>
-              </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-10 flex flex-col justify-center h-48">
-                      <p class="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">Total Distance Flown</p>
-                      <div class="flex items-baseline gap-3">
-                          <p class="text-5xl font-mono font-bold text-[#0A1128]" id="stat-dist">0</p>
-                          <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Nautical Miles</span>
+                      <div>
+                          <p class="text-[10px] font-bold text-[#8B7FE8] uppercase tracking-widest mb-1">Boarding</p>
+                          <p class="font-bold text-sm text-[#1E1E1E] uppercase" id="perk-boarding">STANDARD</p>
                       </div>
-                  </div>
-                  <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-10 flex flex-col justify-center h-48">
-                      <p class="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">Corporate Milestone</p>
-                      <p class="text-2xl font-serif font-bold text-[#0A1128] uppercase tracking-tight" id="stat-milestone">NEW RECRUIT</p>
-                  </div>
-              </div>
-          </div>
-
-          <div id="tab-immersion" class="tab-content">
-              <h2 class="text-sm font-bold text-[#0A1128] uppercase tracking-[0.2em] mb-8">Digital Passport & Logbook</h2>
-              
-              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden h-[450px] flex flex-col">
-                      <div class="p-8 border-b border-gray-800 bg-[#0A1128] text-white shrink-0">
-                          <p class="text-[8px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">Official Document</p>
-                          <h3 class="text-2xl font-serif tracking-tight">Destination Stamps</h3>
-                      </div>
-                      <div class="p-8 flex-grow overflow-y-auto custom-scroll grid grid-cols-2 gap-6" id="passport-grid">
-                          <div class="col-span-2 text-center py-20 font-mono text-xs text-gray-400 uppercase tracking-widest">
-                              No destinations visited yet.
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden h-[450px] flex flex-col">
-                      <div class="p-8 border-b border-gray-100 bg-gray-50 shrink-0">
-                          <p class="text-[8px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-1">Fleet Experience</p>
-                          <h3 class="text-2xl font-serif font-bold text-[#0A1128] tracking-tight">Aircraft Logbook</h3>
-                      </div>
-                      <div class="flex-grow overflow-y-auto custom-scroll" id="aircraft-list">
-                          <div class="py-20 text-center font-mono text-xs text-gray-400 uppercase tracking-widest">
-                              Logbook Empty.
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div id="tab-inbox" class="tab-content">
-              <h2 class="text-sm font-bold text-[#0A1128] uppercase tracking-[0.2em] mb-8">Secure Inbox</h2>
-              <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-                  <div id="inbox-list" class="divide-y divide-gray-100">
-                      <div class="p-20 text-center font-mono text-xs text-gray-400 uppercase tracking-widest">Inbox is empty.</div>
                   </div>
               </div>
           </div>
 
           <div id="tab-support" class="tab-content">
-              <div class="flex justify-between items-center mb-8">
-                  <h2 class="text-sm font-bold text-[#0A1128] uppercase tracking-[0.2em]">Corporate Support</h2>
-                  <a href="/help/" class="text-[9px] font-bold border border-[#0A1128] text-[#0A1128] px-4 py-2 rounded uppercase tracking-[0.15em] hover:bg-[#0A1128] hover:text-white transition-colors">NEW REQUEST</a>
+              <div class="flex justify-between items-center mb-6">
+                  <h2 class="text-xl font-bold text-[#1E1E1E]">Support Desk</h2>
+                  <a href="/help/" class="text-[10px] font-bold bg-[#1E1E1E] text-white px-5 py-2.5 rounded-full uppercase tracking-widest hover:bg-[#8B7FE8] transition-colors">NEW REQUEST</a>
               </div>
 
-              <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-                  <div class="grid grid-cols-4 md:grid-cols-6 gap-4 p-6 border-b border-gray-100 bg-gray-50 text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em]">
-                      <div class="col-span-2 md:col-span-3">Subject</div>
-                      <div class="hidden md:block">Category</div>
-                      <div>Status</div>
-                      <div class="text-right">Action</div>
-                  </div>
-                  <div id="tickets-list" class="divide-y divide-gray-100">
-                      <div class="p-20 text-center font-mono text-xs text-gray-400 uppercase tracking-widest">Scanning Records...</div>
-                  </div>
+              <div class="grid grid-cols-5 gap-4 px-6 pb-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                  <div class="col-span-2">Subject</div>
+                  <div class="hidden md:block">Category</div>
+                  <div>Status</div>
+                  <div class="text-right">Action</div>
+              </div>
+              <div id="tickets-list" class="space-y-3">
+                  <div class="bg-white rounded-full p-6 text-center font-mono text-xs text-gray-400 uppercase tracking-widest border border-gray-100">Scanning Records...</div>
               </div>
           </div>
 
           <div id="tab-compliance" class="tab-content">
-              <div class="flex justify-between items-center mb-8">
-                  <h2 class="text-sm font-bold text-[#D71A21] uppercase tracking-[0.2em]">Compliance Record</h2>
+              <h2 class="text-xl font-bold text-[#D71A21] mb-6">Compliance Record</h2>
+              
+              <div id="compliance-list" class="space-y-4">
+                  <div class="bg-white rounded-[2rem] p-10 text-center font-mono text-xs text-gray-400 uppercase tracking-widest border border-gray-100">Scanning Database...</div>
               </div>
-              <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-                  <div id="compliance-list" class="divide-y divide-gray-100">
-                      <div class="p-20 text-center font-mono text-xs text-gray-400 uppercase tracking-widest">Scanning Database...</div>
-                  </div>
+          </div>
+
+          <div id="tab-inbox" class="tab-content">
+              <h2 class="text-xl font-bold text-[#1E1E1E] mb-6">Secure Inbox</h2>
+              <div id="inbox-list" class="space-y-3">
+                  <div class="bg-white rounded-[2rem] p-10 text-center font-mono text-xs text-gray-400 uppercase tracking-widest border border-gray-100">Inbox is empty.</div>
               </div>
           </div>
 
       </div>
   </main>
 
-  <div id="ticket-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-[#0A1128]/90 backdrop-blur-sm transition-opacity duration-300 opacity-0 px-4 py-10">
-      <div id="ticket-modal-content" class="bg-white w-full max-w-3xl h-full max-h-[800px] rounded-2xl shadow-2xl flex flex-col relative transform translate-y-10 transition-transform duration-500 ease-out overflow-hidden border border-gray-200">
+  <div id="ticket-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-[#1E1E1E]/80 backdrop-blur-sm transition-opacity duration-300 opacity-0 px-4 py-10">
+      <div id="ticket-modal-content" class="bg-white w-full max-w-3xl h-full max-h-[800px] rounded-[2.5rem] shadow-2xl flex flex-col relative transform translate-y-10 transition-transform duration-500 overflow-hidden">
           
-          <div class="bg-[#0A1128] text-white p-8 md:p-10 border-b border-gray-800 flex justify-between items-start shrink-0">
+          <div class="bg-[#F5F4F0] p-8 border-b border-gray-200 flex justify-between items-center shrink-0">
               <div>
-                  <span id="modal-ticket-id" class="text-gray-400 font-mono text-[10px] uppercase tracking-widest mb-3 block">TKT-XXXXXX</span>
-                  <h2 id="modal-ticket-subject" class="text-2xl md:text-3xl font-serif font-bold tracking-tight mb-4">Loading Request...</h2>
-                  <span id="modal-ticket-status" class="inline-block px-3 py-1 rounded text-[9px] font-bold uppercase tracking-widest border border-gray-600 bg-[#1e293b] text-gray-300">STATUS</span>
+                  <span id="modal-ticket-id" class="text-gray-400 font-mono text-[10px] uppercase tracking-widest mb-1 block">TKT-XXXXXX</span>
+                  <h2 id="modal-ticket-subject" class="text-2xl font-bold text-[#1E1E1E] tracking-tight">Loading...</h2>
               </div>
-              <button onclick="closeTicketModal()" class="text-gray-400 hover:text-white transition-colors text-[9px] font-bold uppercase tracking-[0.2em]">
+              <button onclick="closeTicketModal()" class="bg-white border border-gray-200 text-gray-500 hover:text-[#1E1E1E] px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm">
                   CLOSE
               </button>
           </div>
 
-          <div id="modal-chat-box" class="flex-grow overflow-y-auto p-8 md:p-10 bg-gray-50 space-y-10 custom-scroll">
+          <div id="modal-chat-box" class="flex-grow overflow-y-auto p-8 md:p-10 bg-white space-y-8 custom-scroll">
               <div class="text-center py-20 text-gray-400 font-mono text-xs uppercase tracking-widest">Retrieving logs...</div>
           </div>
 
-          <div id="modal-reply-box" class="p-8 md:p-10 bg-white border-t border-gray-200 shrink-0 hidden">
-              <form id="ticket-reply-form" class="flex flex-col gap-4">
+          <div id="modal-reply-box" class="p-6 md:p-8 bg-[#F5F4F0] border-t border-gray-200 shrink-0 hidden">
+              <form id="ticket-reply-form" class="flex gap-4">
                   <input type="hidden" id="reply-ticket-id">
-                  <label class="block text-[9px] font-bold text-gray-500 uppercase tracking-[0.2em]">Add Response</label>
-                  <textarea id="reply-content" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-5 text-sm resize-none h-24 focus:outline-none focus:border-[#0A1128] transition-colors" placeholder="Type your message to staff here..." required></textarea>
-                  <div class="text-right mt-2">
-                      <button type="submit" id="reply-submit-btn" class="bg-[#0A1128] hover:bg-[#D71A21] text-white px-8 py-3.5 rounded text-[9px] font-bold uppercase tracking-[0.2em] transition-colors">
-                          TRANSMIT MESSAGE &rarr;
-                      </button>
-                  </div>
+                  <input type="text" id="reply-content" class="w-full bg-white border border-gray-200 rounded-full px-6 py-4 text-sm focus:outline-none focus:border-[#8B7FE8]" placeholder="Type your message..." required>
+                  <button type="submit" id="reply-submit-btn" class="bg-[#1E1E1E] hover:bg-[#8B7FE8] text-white px-8 py-4 rounded-full text-[10px] font-bold uppercase tracking-widest transition-colors shrink-0">
+                      SEND
+                  </button>
               </form>
           </div>
       </div>
   </div>
 
-  <div id="feedback-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center bg-[#0A1128]/90 backdrop-blur-sm transition-opacity duration-300 opacity-0 px-4">
-      <div id="feedback-modal-content" class="bg-white w-full max-w-lg rounded-2xl shadow-2xl flex flex-col relative transform translate-y-10 transition-transform duration-500 ease-out overflow-hidden p-10 md:p-12 text-center">
+  <div id="feedback-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center bg-[#1E1E1E]/80 backdrop-blur-sm transition-opacity duration-300 opacity-0 px-4">
+      <div id="feedback-modal-content" class="bg-white w-full max-w-lg rounded-[2.5rem] shadow-2xl flex flex-col relative transform translate-y-10 transition-transform duration-500 overflow-hidden p-10 text-center">
           
-          <button onclick="closeFeedbackModal()" class="absolute top-6 right-6 text-gray-400 hover:text-[#0A1128] transition-colors text-[9px] font-bold uppercase tracking-[0.2em]">
+          <button onclick="closeFeedbackModal()" class="absolute top-6 right-6 text-gray-400 hover:text-[#1E1E1E] text-[10px] font-bold uppercase tracking-widest">
               CLOSE
           </button>
 
-          <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[9px] mb-4 block mt-4">Quality Assurance</span>
-          <h2 class="text-3xl font-serif font-bold text-[#0A1128] mb-4">Service Evaluation</h2>
-          <p class="text-sm text-gray-500 leading-relaxed mb-10">This support ticket has been closed. Please rate the quality of assistance you received.</p>
+          <h2 class="text-2xl font-bold text-[#1E1E1E] mb-2 mt-4">Service Evaluation</h2>
+          <p class="text-sm text-gray-500 mb-8">Please rate the quality of assistance you received.</p>
 
-          <form id="feedback-form" class="space-y-8">
+          <form id="feedback-form" class="space-y-6">
               <input type="hidden" id="feedback-ticket-id">
               <input type="hidden" id="feedback-rating-value" value="0">
 
-              <div>
-                  <label class="block text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">Rating (1 = Poor, 5 = Excellent)</label>
-                  <div class="flex justify-center gap-3">
-                      <button type="button" class="rating-btn w-12 h-12 rounded border border-gray-200 text-gray-500 font-mono font-bold text-lg hover:border-[#0A1128] hover:text-[#0A1128] transition-colors bg-gray-50" data-val="1">1</button>
-                      <button type="button" class="rating-btn w-12 h-12 rounded border border-gray-200 text-gray-500 font-mono font-bold text-lg hover:border-[#0A1128] hover:text-[#0A1128] transition-colors bg-gray-50" data-val="2">2</button>
-                      <button type="button" class="rating-btn w-12 h-12 rounded border border-gray-200 text-gray-500 font-mono font-bold text-lg hover:border-[#0A1128] hover:text-[#0A1128] transition-colors bg-gray-50" data-val="3">3</button>
-                      <button type="button" class="rating-btn w-12 h-12 rounded border border-gray-200 text-gray-500 font-mono font-bold text-lg hover:border-[#0A1128] hover:text-[#0A1128] transition-colors bg-gray-50" data-val="4">4</button>
-                      <button type="button" class="rating-btn w-12 h-12 rounded border border-gray-200 text-gray-500 font-mono font-bold text-lg hover:border-[#0A1128] hover:text-[#0A1128] transition-colors bg-gray-50" data-val="5">5</button>
-                  </div>
+              <div class="flex justify-center gap-3">
+                  <button type="button" class="rating-btn w-12 h-12 rounded-full border border-gray-200 text-gray-500 font-mono font-bold text-lg hover:border-[#1E1E1E] hover:text-[#1E1E1E] transition-colors bg-gray-50" data-val="1">1</button>
+                  <button type="button" class="rating-btn w-12 h-12 rounded-full border border-gray-200 text-gray-500 font-mono font-bold text-lg hover:border-[#1E1E1E] hover:text-[#1E1E1E] transition-colors bg-gray-50" data-val="2">2</button>
+                  <button type="button" class="rating-btn w-12 h-12 rounded-full border border-gray-200 text-gray-500 font-mono font-bold text-lg hover:border-[#1E1E1E] hover:text-[#1E1E1E] transition-colors bg-gray-50" data-val="3">3</button>
+                  <button type="button" class="rating-btn w-12 h-12 rounded-full border border-gray-200 text-gray-500 font-mono font-bold text-lg hover:border-[#1E1E1E] hover:text-[#1E1E1E] transition-colors bg-gray-50" data-val="4">4</button>
+                  <button type="button" class="rating-btn w-12 h-12 rounded-full border border-gray-200 text-gray-500 font-mono font-bold text-lg hover:border-[#1E1E1E] hover:text-[#1E1E1E] transition-colors bg-gray-50" data-val="5">5</button>
               </div>
 
-              <div class="text-left mt-8">
-                  <label class="block text-[9px] font-bold text-[#0A1128] uppercase tracking-[0.2em] mb-3">Comments (Optional)</label>
-                  <textarea id="feedback-comment" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-4 text-sm resize-none h-24 focus:outline-none focus:border-[#0A1128] transition-colors"></textarea>
-              </div>
+              <textarea id="feedback-comment" class="w-full bg-gray-50 border border-gray-200 rounded-[1.5rem] p-5 text-sm resize-none h-24 focus:outline-none focus:border-[#1E1E1E] mt-4" placeholder="Optional comments..."></textarea>
 
-              <button type="submit" id="feedback-submit-btn" class="w-full bg-[#0A1128] hover:bg-[#D71A21] text-white py-4 rounded text-[10px] font-bold uppercase tracking-[0.2em] transition-colors mt-4">
+              <button type="submit" id="feedback-submit-btn" class="w-full bg-[#1E1E1E] hover:bg-[#8B7FE8] text-white py-4 rounded-full text-[10px] font-bold uppercase tracking-widest transition-colors mt-2">
                   SUBMIT EVALUATION
               </button>
           </form>
@@ -477,27 +355,42 @@
   </div>
 
   <script>
-    // --- SECURE LOADER LOGIC ---
-    const progressInterval = setInterval(() => {
-        let perc = parseInt(document.getElementById('loader-perc').innerText);
-        perc += Math.floor(Math.random() * 8) + 2; 
-        if (perc >= 99) perc = 99; 
-        document.getElementById('loader-perc').innerText = perc;
-        document.getElementById('loader-fill').style.width = perc + '%';
-    }, 80);
-
+    // --- ABSOLUTE FAILSAFE LOADER LOGIC ---
+    let loaderHidden = false;
+    
     function hideLoader() {
+        if(loaderHidden) return;
+        loaderHidden = true;
+        
         clearInterval(progressInterval);
         document.getElementById('loader-perc').innerText = '100';
         document.getElementById('loader-fill').style.width = '100%';
+        
         setTimeout(() => {
-            document.getElementById('loader-animate-container').classList.add('zoom-through');
+            const container = document.getElementById('loader-animate-container');
+            if(container) container.classList.add('zoom-through');
             setTimeout(() => {
-                document.getElementById('egr-loader').style.display = 'none'; 
-                document.getElementById('portal-content').classList.remove('hidden');
+                const loader = document.getElementById('egr-loader');
+                if(loader) loader.style.display = 'none'; 
+                const content = document.getElementById('portal-content');
+                if(content) content.classList.remove('hidden');
             }, 800);
         }, 400);
     }
+
+    // Force loader to hide after 3.5 seconds MAXIMUM
+    setTimeout(hideLoader, 3500);
+
+    const progressInterval = setInterval(() => {
+        if(loaderHidden) return;
+        const el = document.getElementById('loader-perc');
+        if(!el) return;
+        let perc = parseInt(el.innerText) || 0;
+        perc += Math.floor(Math.random() * 15) + 5; 
+        if (perc >= 99) perc = 99; 
+        el.innerText = perc;
+        document.getElementById('loader-fill').style.width = perc + '%';
+    }, 100);
 
     // --- UI TABS & MENU ---
     document.querySelectorAll('.nav-link').forEach(btn => {
@@ -505,395 +398,386 @@
             document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
             btn.classList.add('active');
-            document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+            const tabId = btn.getAttribute('data-tab');
+            if(document.getElementById(tabId)) {
+                document.getElementById(tabId).classList.add('active');
+            }
             
             document.getElementById('sidebar').classList.remove('translate-x-0');
             document.getElementById('mobile-overlay').classList.add('hidden');
         });
     });
 
-    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
         document.getElementById('sidebar').classList.add('translate-x-0');
         document.getElementById('mobile-overlay').classList.remove('hidden');
     });
-    document.getElementById('mobile-overlay').addEventListener('click', () => {
+    document.getElementById('mobile-overlay')?.addEventListener('click', () => {
         document.getElementById('sidebar').classList.remove('translate-x-0');
         document.getElementById('mobile-overlay').classList.add('hidden');
     });
 
-    // --- BULLETPROOF SUPABASE & DATA LOGIC ---
+    // --- BULLETPROOF DATA ENGINE ---
     let currentUser = null;
-    let userProfile = null;
 
-    document.addEventListener("DOMContentLoaded", async () => {
-      const supabase = window.supabase.createClient(
-        'https://zboyabxzhptnxnmofvcz.supabase.co', 
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
-      );
+    window.addEventListener('load', async () => {
+        if (!window.supabase) {
+            console.error("Supabase CDN failed to load.");
+            hideLoader();
+            return;
+        }
 
-      try {
-          // 1. Check Session
-          const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-          if (sessionError) throw sessionError;
-          if (!session) { window.location.href = '/myportal/login/'; return; }
-          currentUser = session.user;
+        const supabase = window.supabase.createClient(
+            'https://zboyabxzhptnxnmofvcz.supabase.co', 
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
+        );
 
-          // 2. Fetch Profile Safely
-          const { data: profile, error: profileError } = await supabase.from('egr_users').select('*').eq('id', currentUser.id).single();
-          
-          if (profileError && profileError.code !== 'PGRST116') {
-              console.error("Profile Error:", profileError);
-          }
+        try {
+            // 1. Session Check
+            const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+            if (sessionError) throw sessionError;
+            if (!session) { window.location.href = '/myportal/login/'; return; }
+            currentUser = session.user;
+            const meta = currentUser.user_metadata || {};
 
-          if (profile) {
-              userProfile = profile;
-              const name = profile.full_name || 'Member';
-              const initial = name.charAt(0).toUpperCase();
-              
-              // Text Fields
-              document.getElementById('profile-name').innerText = name;
-              document.getElementById('hero-name').innerText = name;
-              document.getElementById('sidebar-name').innerText = name;
-              document.getElementById('id-name').innerText = name;
-              
-              document.getElementById('hero-roblox').innerText = `@${profile.roblox_username || 'Unknown'}`;
-              document.getElementById('id-discord').innerText = profile.discord_id || 'N/A';
-              
-              if(profile.is_verified) document.getElementById('hero-verified').classList.remove('hidden');
+            // 2. Profile Fetch (Try custom table first)
+            let profile = null;
+            try {
+                const { data: pData } = await supabase.from('egr_users').select('*').eq('id', currentUser.id).single();
+                if(pData) profile = pData;
+            } catch(e) { console.error("Profile Fetch Warning:", e); }
 
-              if(profile.created_at) {
-                  const joined = new Date(profile.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' }).replace(/\//g, '.');
-                  document.getElementById('hero-joined').innerText = joined;
-              }
+            // 3. Populate UI securely (Fallback to Auth Meta if profile row is missing)
+            const name = (profile && profile.full_name) ? profile.full_name : (meta.full_name || 'Member');
+            const roblox = (profile && profile.roblox_username) ? profile.roblox_username : (meta.roblox_username || 'Unknown');
+            const discordId = (profile && profile.discord_id) ? profile.discord_id : (meta.discord_id || 'N/A');
+            const initial = name.charAt(0).toUpperCase();
 
-              // Skywards Logic
-              const pts = profile.skywards_points || 0;
-              const flights = profile.flights_taken || 0;
-              const execs = profile.executive_flights_taken || 0;
-              
-              document.getElementById('hero-miles').innerText = pts.toLocaleString();
-              
-              // Calculate Tier
-              let tier = 'Blue'; let nextTier = 'Silver'; let reqPts = 25000; let reqFlt = 25; let reqEx = 0;
-              let badgeCol = 'bg-gray-100 text-gray-600 border-gray-300';
+            // Set Texts
+            const setText = (id, val) => { const el = document.getElementById(id); if(el) el.innerText = val; };
+            setText('hero-name', name);
+            setText('sidebar-name', name);
+            setText('hero-roblox', `@${roblox}`);
+            setText('hero-initial', initial);
+            
+            const sideAvatar = document.getElementById('sidebar-avatar');
+            if(sideAvatar) {
+                sideAvatar.innerText = initial;
+                sideAvatar.classList.remove('opacity-0');
+            }
 
-              if(pts >= 150000 && flights >= 140 && execs >= 5) { tier = 'Platinum'; reqPts = pts; badgeCol = 'bg-[#0A1128] text-white border-gray-700'; }
-              else if(pts >= 50000 && flights >= 50) { tier = 'Gold'; nextTier = 'Platinum'; reqPts = 150000; reqFlt = 140; reqEx = 5; badgeCol = 'bg-amber-100 text-amber-800 border-amber-300'; }
-              else if(pts >= 25000 && flights >= 25) { tier = 'Silver'; nextTier = 'Gold'; reqPts = 50000; reqFlt = 50; badgeCol = 'bg-slate-200 text-slate-700 border-slate-300'; }
+            if(profile && profile.is_verified) {
+                const verBadge = document.getElementById('hero-verified');
+                if(verBadge) verBadge.classList.remove('hidden');
+            }
 
-              const tBadge = `${tier} TIER`;
-              document.getElementById('hero-tier-badge').innerText = tBadge;
-              document.getElementById('hero-tier-badge').className = `px-3 py-1 rounded text-[9px] font-bold uppercase tracking-widest border ${badgeCol}`;
-              document.getElementById('sidebar-tier').innerText = tBadge;
-              document.getElementById('id-tier').innerText = tier;
-              
-              // Progress Bar Math
-              let progress = tier === 'Platinum' ? 100 : Math.min((pts / reqPts) * 100, 100);
-              document.getElementById('hero-progress-text').innerText = tier === 'Platinum' ? 'MAXIMUM TIER' : `${pts.toLocaleString()} / ${reqPts.toLocaleString()} MILES TO ${nextTier}`;
-              document.getElementById('hero-progress-bar').style.width = `${progress}%`;
+            // Set Join Date
+            const joinedDate = currentUser.created_at ? new Date(currentUser.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' }).replace(/\//g, '.') : '00.00.00';
+            setText('hero-joined', `JOINED: ${joinedDate}`);
 
-              // Analytics Tab
-              document.getElementById('analytics-tier').innerText = tBadge;
-              document.getElementById('analytics-req').innerText = tier === 'Platinum' ? 'MAX' : reqPts.toLocaleString();
-              document.getElementById('analytics-progress').style.width = `${progress}%`;
-              document.getElementById('analytics-flight-req').innerText = tier === 'Platinum' ? '-' : `${flights}/${reqFlt}`;
-              document.getElementById('analytics-exec-req').innerText = tier === 'Platinum' ? '-' : `${execs}/${reqEx}`;
-              
-              if(tier === 'Gold' || tier === 'Platinum') document.getElementById('perk-lounge').innerText = 'GRANTED';
-              if(tier === 'Platinum') document.getElementById('perk-boarding').innerText = 'VIP PRIORITY';
-              else if(tier === 'Gold' || tier === 'Silver') document.getElementById('perk-boarding').innerText = 'PRIORITY';
+            // Skywards Engine
+            const pts = profile ? (profile.skywards_points || 0) : 0;
+            const flights = profile ? (profile.flights_taken || 0) : 0;
+            const execs = profile ? (profile.executive_flights_taken || 0) : 0;
+            const streak = profile ? (profile.engagement_streak || 0) : 0;
+            
+            setText('hero-miles', pts.toLocaleString());
+            
+            let tier = 'Blue'; let nextTier = 'Silver'; let reqPts = 25000; let reqFlt = 25; let reqEx = 0;
+            if(pts >= 150000 && flights >= 140 && execs >= 5) { tier = 'Platinum'; reqPts = pts; }
+            else if(pts >= 50000 && flights >= 50) { tier = 'Gold'; nextTier = 'Platinum'; reqPts = 150000; reqFlt = 140; reqEx = 5; }
+            else if(pts >= 25000 && flights >= 25) { tier = 'Silver'; nextTier = 'Gold'; reqPts = 50000; reqFlt = 50; }
 
-              document.getElementById('stat-flights').innerText = flights;
-              document.getElementById('stat-exec').innerText = execs;
-              document.getElementById('stat-streak').innerText = profile.engagement_streak || 0;
-              document.getElementById('stat-streak-tab').innerText = profile.engagement_streak || 0;
-              document.getElementById('stat-dist').innerText = (profile.total_distance_flown || 0).toLocaleString();
+            setText('hero-tier-badge', `${tier} TIER`);
+            setText('sidebar-tier', `${tier} TIER`);
+            setText('analytics-tier', `${tier} TIER`);
+            setText('analytics-req', tier === 'Platinum' ? 'MAX' : reqPts.toLocaleString());
+            
+            const progBar = document.getElementById('analytics-progress');
+            if(progBar) progBar.style.width = `${tier === 'Platinum' ? 100 : Math.min((pts / reqPts) * 100, 100)}%`;
+            
+            setText('analytics-flight-req', tier === 'Platinum' ? '-' : `${flights}/${reqFlt}`);
+            setText('analytics-exec-req', tier === 'Platinum' ? '-' : `${execs}/${reqEx}`);
+            
+            if(tier === 'Gold' || tier === 'Platinum') setText('perk-lounge', 'GRANTED');
+            if(tier === 'Platinum') setText('perk-boarding', 'VIP PRIORITY');
+            else if(tier === 'Gold' || tier === 'Silver') setText('perk-boarding', 'PRIORITY');
 
-              let milestone = 'NEW RECRUIT';
-              if(flights >= 100) milestone = 'CENTURION';
-              else if(flights >= 50) milestone = 'FREQUENT FLYER';
-              document.getElementById('stat-milestone').innerText = milestone;
+            setText('stat-flights', flights);
+            setText('stat-exec', execs);
+            setText('stat-streak', streak);
 
-              // Typographic Monogram (Replaces PFP)
-              document.getElementById('hero-initial').innerText = initial;
-              const sideAvatar = document.getElementById('sidebar-avatar');
-              sideAvatar.innerText = initial;
-              sideAvatar.classList.remove('opacity-0');
+            if(profile && profile.account_status && profile.account_status !== 'Active') {
+                const heroStat = document.getElementById('hero-status');
+                if(heroStat) {
+                    heroStat.innerText = profile.account_status; 
+                    heroStat.className = 'px-4 py-1.5 bg-red-50 text-red-700 rounded-full text-[10px] font-bold uppercase tracking-widest';
+                }
+            }
 
-              // Status
-              if(profile.account_status !== 'Active') {
-                  const heroStat = document.getElementById('hero-status');
-                  heroStat.innerText = profile.account_status; 
-                  heroStat.className = 'text-[#D71A21]';
-              }
-          }
+            // Execute Secondary Loads (pass discord id for compliance check)
+            loadSecondaryData(supabase, discordId);
 
-      } catch (err) {
-          console.error("Dashboard Init Error:", err);
-          document.getElementById('hero-name').innerText = "Data Error";
-      } finally {
-          hideLoader(); // GUARANTEED TO RUN
-          loadData();
-      }
-
-      // --- SECONDARY FETCH FUNCTIONS (Wrapped in try/catch to prevent cascading failures) ---
-      async function loadData() {
-          try {
-              // 1. INBOX
-              const { data: inbox } = await supabase.from('egr_notifications').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false });
-              const unreadCount = inbox ? inbox.filter(n => !n.is_read).length : 0;
-              if(unreadCount > 0) {
-                  const badge = document.getElementById('unread-badge');
-                  badge.innerText = unreadCount; badge.classList.remove('hidden');
-              }
-              const inbList = document.getElementById('inbox-list');
-              if(inbox && inbox.length > 0) {
-                  let iHTML = '';
-                  inbox.forEach(n => {
-                      const d = new Date(n.created_at).toLocaleDateString('en-GB', {day:'2-digit',month:'2-digit',year:'2-digit'}).replace(/\//g,'.');
-                      const weight = n.is_read ? 'font-normal text-gray-500' : 'font-bold text-[#0A1128]';
-                      const dot = n.is_read ? '' : '<div class="w-1.5 h-1.5 rounded-full bg-[#D71A21] shrink-0 mt-1.5"></div>';
-                      iHTML += `
-                      <div class="p-8 hover:bg-gray-50 flex gap-4 transition-colors cursor-pointer border-b border-gray-100" onclick="if('${n.action_link}'!=='null') window.location.href='${n.action_link}'">
-                          ${dot}
-                          <div class="w-full">
-                              <div class="flex justify-between mb-2"><span class="text-[8px] font-bold text-[#D71A21] uppercase tracking-[0.2em]">${n.type}</span><span class="text-[9px] text-gray-400 font-mono">${d}</span></div>
-                              <p class="text-sm ${weight} mb-2 tracking-tight">${n.title}</p>
-                              <p class="text-xs text-gray-500 leading-relaxed line-clamp-2">${n.message}</p>
-                          </div>
-                      </div>`;
-                  });
-                  inbList.innerHTML = iHTML;
-              } else {
-                  inbList.innerHTML = '<div class="p-20 text-center font-mono text-xs text-gray-400 uppercase tracking-widest">Inbox is empty.</div>';
-              }
-
-              // 2. BOOKINGS
-              const { data: bookings, error } = await supabase.from('egr_bookings').select('*').eq('user_id', currentUser.id).order('booked_at', { ascending: false });
-              const nextFltEl = document.getElementById('overview-next-flight');
-              const bList = document.getElementById('bookings-list');
-              
-              if(!bookings || bookings.length === 0) {
-                  nextFltEl.innerHTML = '<p class="text-xs text-gray-500 font-semibold">No upcoming itineraries manifested.</p>';
-                  bList.innerHTML = '<div class="p-20 text-center font-mono text-xs text-gray-400 uppercase tracking-widest">No Records Found.</div>';
-              } else {
-                  const active = bookings.find(b => ['Confirmed','Check-In Open','Checked-In'].includes(b.status));
-                  if(active) {
-                      nextFltEl.innerHTML = `
-                          <p class="text-3xl font-serif font-bold text-[#0A1128] mb-2">${active.ticket_reference}</p>
-                          <p class="text-[9px] font-bold text-gray-500 uppercase tracking-[0.2em]">${active.seat_class} Class | ${active.status}</p>
-                      `;
-                      document.getElementById('digital-ticket-container').classList.remove('hidden');
-                      document.getElementById('ticket-seat-class').innerText = active.seat_class;
-                      document.getElementById('ticket-ref-display').innerText = active.ticket_reference;
-                      document.getElementById('ticket-status-display').innerText = active.status;
-                      document.getElementById('ticket-seat-display').innerText = active.seat_number || 'TBA';
-                      document.getElementById('ticket-countdown').innerText = active.status === 'Check-In Open' ? 'PROCEED TO GATE' : 'CHECK-IN OPENS 24H BEFORE DEPARTURE';
-                  } else {
-                      nextFltEl.innerHTML = '<p class="text-xs text-gray-500 font-semibold">No upcoming itineraries manifested.</p>';
-                  }
-
-                  let bHTML = '';
-                  bookings.forEach(b => {
-                      const d = new Date(b.booked_at).toLocaleDateString('en-GB', {day:'2-digit',month:'2-digit',year:'2-digit'}).replace(/\//g,'.');
-                      bHTML += `
-                      <div class="grid grid-cols-4 md:grid-cols-5 gap-4 p-8 items-center hover:bg-gray-50 transition-colors">
-                          <div class="col-span-2 md:col-span-2 text-[#0A1128] font-bold text-sm tracking-tight">${b.ticket_reference}</div>
-                          <div class="hidden md:block text-gray-500 text-xs font-mono">${b.seat_class}</div>
-                          <div><span class="px-2 py-1 rounded border border-gray-200 bg-white text-[8px] font-bold uppercase tracking-[0.2em] text-gray-600">${b.status}</span></div>
-                          <div class="text-right text-gray-400 font-mono text-[10px]">${d}</div>
-                      </div>`;
-                  });
-                  bList.innerHTML = bHTML;
-              }
-
-              // 3. TICKETS
-              const { data: tickets } = await supabase.from('egr_support_tickets').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false });
-              const tList = document.getElementById('tickets-list');
-              if(!tickets || tickets.length === 0) {
-                  tList.innerHTML = '<div class="p-20 text-center font-mono text-xs text-gray-400 uppercase tracking-widest">No Tickets Found.</div>';
-              } else {
-                  let tHTML = '';
-                  tickets.forEach(t => {
-                      let statCol = 'text-gray-500 border-gray-200 bg-white';
-                      if(t.status === 'Open' || t.status === 'In Review') statCol = 'text-blue-600 border-blue-200 bg-blue-50';
-                      if(t.status === 'Awaiting User Response') statCol = 'text-amber-600 border-amber-200 bg-amber-50';
-                      
-                      const badge = `<span class="px-2 py-1 rounded border ${statCol} text-[8px] font-bold uppercase tracking-[0.2em]">${t.status}</span>`;
-                      let action = `<button onclick="openTicket('${t.id}', '${t.subject.replace(/'/g, "\\'")}', '${t.status}')" class="text-[9px] font-bold text-[#0A1128] hover:text-[#D71A21] uppercase tracking-[0.2em] w-full text-right transition-colors">VIEW LOG</button>`;
-                      
-                      if(t.status === 'Closed' && !t.feedback_rating) {
-                          action = `<button onclick="openFeedback('${t.id}')" class="text-[9px] font-bold text-[#0A1128] border border-[#0A1128] hover:bg-[#0A1128] hover:text-white px-3 py-1.5 rounded uppercase tracking-[0.2em] w-full text-center transition-colors">RATE</button>`;
-                      }
-
-                      tHTML += `
-                      <div class="grid grid-cols-4 md:grid-cols-6 gap-4 p-8 items-center hover:bg-gray-50 transition-colors">
-                          <div class="col-span-2 md:col-span-3 text-[#0A1128] font-bold text-sm tracking-tight truncate">${t.subject}</div>
-                          <div class="hidden md:block text-gray-500 text-xs font-mono truncate">${t.category}</div>
-                          <div>${badge}</div><div class="text-right">${action}</div>
-                      </div>`;
-                  });
-                  tList.innerHTML = tHTML;
-              }
-
-              // 4. COMPLIANCE
-              if(userProfile && userProfile.discord_id) {
-                  const { data: infs } = await supabase.from('egr_blacklist').select('*').eq('discord_id', userProfile.discord_id).order('created_at', { ascending: false });
-                  const cList = document.getElementById('compliance-list');
-                  if(!infs || infs.length === 0) {
-                      cList.innerHTML = `<div class="p-20 text-center font-serif text-3xl font-bold text-green-600 tracking-tight">Impeccable Record.</div>`;
-                  } else {
-                      let cHTML = '';
-                      infs.forEach(i => {
-                          const d = new Date(i.created_at).toLocaleDateString('en-GB', {day:'2-digit',month:'2-digit',year:'2-digit'}).replace(/\//g,'.');
-                          cHTML += `
-                          <div class="p-8 md:p-10 hover:bg-gray-50 transition-colors flex flex-col md:flex-row justify-between gap-6 border-b border-gray-100">
-                              <div>
-                                  <span class="bg-red-50 text-[#D71A21] text-[8px] font-bold uppercase tracking-[0.2em] px-2 py-1 rounded border border-red-200 mb-4 inline-block">${i.violation_section}</span>
-                                  <p class="text-lg font-bold text-[#0A1128] tracking-tight mb-2">${i.specific_violations ? i.specific_violations.join(', ') : 'Rule Violation'}</p>
-                                  <p class="text-xs text-gray-500 leading-relaxed max-w-2xl">${i.detailed_reason || 'No detailed reason provided.'}</p>
-                              </div>
-                              <div class="text-left md:text-right shrink-0 flex flex-col justify-center">
-                                  <span class="block text-[#0A1128] font-bold text-[10px] uppercase tracking-[0.2em] mb-1">${i.status}</span>
-                                  <span class="block text-gray-400 font-mono text-[9px]">${d}</span>
-                              </div>
-                          </div>`;
-                      });
-                      cList.innerHTML = cHTML;
-                  }
-              }
-
-              // 5. IMMERSION (Passport & Logs)
-              try {
-                  const { data: stamps } = await supabase.from('egr_passport_stamps').select('*').eq('user_id', currentUser.id);
-                  const pGrid = document.getElementById('passport-grid');
-                  if(stamps && stamps.length > 0) {
-                      let sHTML = '';
-                      stamps.forEach(s => {
-                          sHTML += `<div class="border border-dashed border-gray-300 rounded-lg p-6 text-center bg-gray-50"><p class="text-[#D71A21] font-bold uppercase text-[8px] tracking-[0.2em] mb-2">ARRIVED</p><p class="font-serif text-xl font-bold text-[#0A1128]">${s.destination_airport}</p></div>`;
-                      });
-                      pGrid.innerHTML = sHTML;
-                  }
-              } catch(e) {}
-
-              try {
-                  const { data: planes } = await supabase.from('egr_aircraft_logs').select('*').eq('user_id', currentUser.id);
-                  const aList = document.getElementById('aircraft-list');
-                  if(planes && planes.length > 0) {
-                      let aHTML = '';
-                      planes.forEach(p => {
-                          aHTML += `<div class="p-6 border-b border-gray-100 flex justify-between items-center hover:bg-white transition-colors"><span class="font-bold text-[#0A1128] text-sm">${p.aircraft_type}</span><span class="font-mono text-gray-400 text-[10px]">${p.times_flown}x FLOWN</span></div>`;
-                      });
-                      aList.innerHTML = aHTML;
-                  }
-              } catch(e) {}
-
-          } catch(err) { console.error("Secondary Data Load Error:", err); }
-      }
-
-      // Logout
-      document.getElementById('logout-btn').addEventListener('click', async () => {
-          await supabase.auth.signOut();
-          window.location.href = '/myportal/login/';
-      });
-
-      // --- MODALS (Typographic Chat) ---
-      window.openTicket = async function(id, subject, status) {
-          try {
-              const modal = document.getElementById('ticket-modal');
-              const content = document.getElementById('ticket-modal-content');
-              
-              document.getElementById('modal-ticket-id').innerText = `REF: ${id.substring(0,8)}`;
-              document.getElementById('modal-ticket-subject').innerText = subject;
-              document.getElementById('reply-ticket-id').value = id;
-              document.getElementById('modal-ticket-status').innerText = `STATUS: ${status}`;
-
-              if(status === 'Closed' || status === 'Resolved') document.getElementById('modal-reply-box').classList.add('hidden');
-              else document.getElementById('modal-reply-box').classList.remove('hidden');
-
-              const chatBox = document.getElementById('modal-chat-box');
-              chatBox.innerHTML = '<div class="text-center py-20 text-gray-400 font-mono text-xs uppercase tracking-widest">Retrieving logs...</div>';
-              
-              modal.classList.remove('hidden');
-              setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('translate-y-10'); }, 10);
-
-              const { data: req } = await supabase.from('egr_support_tickets').select('content, created_at').eq('id', id).single();
-              const { data: msgs } = await supabase.from('egr_ticket_messages').select('*').eq('ticket_id', id).order('created_at', { ascending: true });
-
-              let cHTML = '';
-              if(req) {
-                  const tStr = new Date(req.created_at).toLocaleString();
-                  cHTML += `<div class="mb-10 border-l-2 border-[#0A1128] pl-6"><p class="text-[8px] text-[#0A1128] font-bold uppercase tracking-[0.2em] mb-2">INITIAL REQUEST <span class="font-mono text-gray-400 ml-3 normal-case font-normal tracking-normal text-[10px]">${tStr}</span></p><p class="text-sm text-gray-700 leading-relaxed">${req.content.replace(/\n/g, '<br>')}</p></div>`;
-              }
-
-              if(msgs && msgs.length > 0) {
-                  msgs.forEach(m => {
-                      const isMe = m.sender_id === currentUser.id;
-                      const tStr = new Date(m.created_at).toLocaleString();
-                      const sName = isMe ? 'YOU' : 'CORPORATE STAFF';
-                      const bCol = isMe ? 'border-gray-300' : 'border-[#D71A21]';
-                      const tCol = isMe ? 'text-gray-500' : 'text-[#D71A21]';
-                      cHTML += `<div class="mb-10 border-l-2 ${bCol} pl-6"><p class="text-[8px] ${tCol} font-bold uppercase tracking-[0.2em] mb-2">${sName} <span class="font-mono text-gray-400 ml-3 normal-case font-normal tracking-normal text-[10px]">${tStr}</span></p><p class="text-sm text-gray-700 leading-relaxed">${m.message.replace(/\n/g, '<br>')}</p></div>`;
-                  });
-              }
-              chatBox.innerHTML = cHTML;
-              chatBox.scrollTop = chatBox.scrollHeight;
-          } catch(e) { console.error(e); }
-      };
-
-      window.closeTicketModal = function() {
-          document.getElementById('ticket-modal').classList.add('opacity-0');
-          document.getElementById('ticket-modal-content').classList.add('translate-y-10');
-          setTimeout(() => { document.getElementById('ticket-modal').classList.add('hidden'); }, 300);
-      };
-
-      document.getElementById('ticket-reply-form').addEventListener('submit', async (e) => {
-          e.preventDefault();
-          const btn = document.getElementById('reply-submit-btn');
-          const input = document.getElementById('reply-content');
-          const tid = document.getElementById('reply-ticket-id').value;
-          
-          btn.innerHTML = 'TRANSMITTING...'; btn.disabled = true;
-          await supabase.from('egr_ticket_messages').insert({ ticket_id: tid, sender_id: currentUser.id, message: input.value });
-          input.value = ''; btn.innerHTML = 'TRANSMIT MESSAGE &rarr;'; btn.disabled = false;
-          openTicket(tid, document.getElementById('modal-ticket-subject').innerText, 'Awaiting User Response');
-      });
-
-      // --- FEEDBACK MODAL ---
-      const rBtns = document.querySelectorAll('.rating-btn');
-      const rVal = document.getElementById('feedback-rating-value');
-      rBtns.forEach(btn => {
-          btn.addEventListener('click', () => {
-              rBtns.forEach(b => b.classList.remove('selected', 'bg-[#0A1128]', 'text-white', 'border-[#0A1128]'));
-              btn.classList.add('selected', 'bg-[#0A1128]', 'text-white', 'border-[#0A1128]');
-              rVal.value = btn.getAttribute('data-val');
-          });
-      });
-
-      window.openFeedback = function(id) {
-          document.getElementById('feedback-ticket-id').value = id;
-          document.getElementById('feedback-modal').classList.remove('hidden');
-          setTimeout(() => { document.getElementById('feedback-modal').classList.remove('opacity-0'); document.getElementById('feedback-modal-content').classList.remove('translate-y-10'); }, 10);
-      }
-
-      window.closeFeedbackModal = function() {
-          document.getElementById('feedback-modal').classList.add('opacity-0');
-          document.getElementById('feedback-modal-content').classList.add('translate-y-10');
-          setTimeout(() => { document.getElementById('feedback-modal').classList.add('hidden'); }, 300);
-      }
-
-      document.getElementById('feedback-form').addEventListener('submit', async (e) => {
-          e.preventDefault();
-          const val = rVal.value;
-          if(val == "0") return alert("Please select a rating number 1 through 5.");
-          const btn = document.getElementById('feedback-submit-btn');
-          btn.innerHTML = 'LOGGING...'; btn.disabled = true;
-          
-          await supabase.from('egr_support_tickets').update({ feedback_rating: parseInt(val), feedback_comment: document.getElementById('feedback-comment').value }).eq('id', document.getElementById('feedback-ticket-id').value);
-          closeFeedbackModal(); loadData(); btn.innerHTML = 'SUBMIT EVALUATION'; btn.disabled = false;
-      });
-
+        } catch (err) {
+            console.error("Critical Dashboard Error:", err);
+            const hn = document.getElementById('hero-name');
+            if(hn) hn.innerText = "Connection Error";
+        } finally {
+            hideLoader(); 
+        }
     });
+
+    // --- SECONDARY DATA FETCHES (Each wrapped in own try/catch) ---
+    async function loadSecondaryData(supabase, discordId) {
+        
+        // INBOX
+        try {
+            const { data: inbox } = await supabase.from('egr_notifications').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false });
+            const unreadCount = inbox ? inbox.filter(n => !n.is_read).length : 0;
+            if(unreadCount > 0) {
+                const badge = document.getElementById('unread-badge');
+                if(badge) { badge.innerText = unreadCount; badge.classList.remove('hidden'); }
+            }
+            const inbList = document.getElementById('inbox-list');
+            if(inbox && inbox.length > 0 && inbList) {
+                let iHTML = '';
+                inbox.forEach(n => {
+                    const d = new Date(n.created_at).toLocaleDateString();
+                    const colorClass = n.is_read ? 'bg-white' : 'row-cream';
+                    iHTML += `
+                    <div class="${colorClass} rounded-[2rem] p-6 md:p-8 flex gap-4 transition-colors cursor-pointer border border-gray-100" onclick="if('${n.action_link}'!=='null') window.location.href='${n.action_link}'">
+                        <div class="w-full">
+                            <div class="flex justify-between mb-2"><span class="text-[9px] font-bold text-[#8B7FE8] uppercase tracking-widest">${n.type}</span><span class="text-[10px] text-gray-400 font-mono">${d}</span></div>
+                            <p class="text-sm font-bold text-[#1E1E1E] mb-1">${n.title}</p>
+                            <p class="text-xs text-gray-500 leading-relaxed truncate">${n.message}</p>
+                        </div>
+                    </div>`;
+                });
+                inbList.innerHTML = iHTML;
+            }
+        } catch(e) { console.error("Inbox Error:", e); }
+
+        // BOOKINGS
+        try {
+            const { data: bookings } = await supabase.from('egr_bookings').select('*').eq('user_id', currentUser.id).order('booked_at', { ascending: false });
+            const nextFltEl = document.getElementById('overview-next-flight');
+            const bList = document.getElementById('bookings-list');
+            
+            if(bookings && bookings.length > 0) {
+                const active = bookings.find(b => ['Confirmed','Check-In Open','Checked-In'].includes(b.status));
+                if(active && nextFltEl) {
+                    nextFltEl.innerHTML = `
+                        <p class="text-3xl font-bold text-[#1E1E1E] mb-2">${active.ticket_reference}</p>
+                        <p class="text-[10px] font-bold text-[#8B7FE8] uppercase tracking-widest">${active.seat_class} Class | ${active.status}</p>
+                    `;
+                    const dtc = document.getElementById('digital-ticket-container');
+                    if(dtc) {
+                        dtc.classList.remove('hidden');
+                        document.getElementById('ticket-seat-class').innerText = active.seat_class;
+                        document.getElementById('ticket-ref-display').innerText = active.ticket_reference;
+                        document.getElementById('ticket-status-display').innerText = active.status;
+                        document.getElementById('ticket-seat-display').innerText = active.seat_number || 'TBA';
+                    }
+                }
+
+                if(bList) {
+                    let bHTML = '';
+                    const colors = ['bg-white', 'row-purple', 'row-cream'];
+                    bookings.forEach((b, i) => {
+                        const d = new Date(b.booked_at).toLocaleDateString('en-GB', {day:'2-digit',month:'2-digit',year:'2-digit'}).replace(/\//g,'.');
+                        const bgCol = colors[i % 3];
+                        bHTML += `
+                        <div class="${bgCol} rounded-full p-6 grid grid-cols-4 items-center border border-gray-100">
+                            <div class="col-span-2 text-[#1E1E1E] font-bold text-sm pl-4">${b.ticket_reference}</div>
+                            <div><span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">${b.status}</span></div>
+                            <div class="text-right text-gray-400 font-mono text-[10px] pr-4">${d}</div>
+                        </div>`;
+                    });
+                    bList.innerHTML = bHTML;
+                }
+            } else if (bList) {
+                bList.innerHTML = '<div class="bg-white border border-gray-100 rounded-full p-6 text-center font-mono text-xs text-gray-400 uppercase tracking-widest">No Records Found</div>';
+            }
+        } catch(e) { console.error("Bookings Error:", e); }
+
+        // TICKETS
+        try {
+            const { data: tickets } = await supabase.from('egr_support_tickets').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false });
+            const tList = document.getElementById('tickets-list');
+            if(tickets && tickets.length > 0 && tList) {
+                let tHTML = '';
+                const colors = ['bg-white', 'row-yellow', 'row-cream'];
+                tickets.forEach((t, i) => {
+                    const bgCol = colors[i % 3];
+                    let action = `<button onclick="openTicket('${t.id}', '${t.subject.replace(/'/g, "\\'")}', '${t.status}')" class="text-[10px] font-bold text-[#8B7FE8] hover:text-[#1E1E1E] uppercase tracking-widest w-full text-right transition-colors pr-4">VIEW</button>`;
+                    if(t.status === 'Closed' && !t.feedback_rating) {
+                        action = `<button onclick="openFeedback('${t.id}')" class="text-[10px] font-bold text-white bg-[#1E1E1E] hover:bg-[#8B7FE8] px-4 py-2 rounded-full uppercase tracking-widest w-full text-center transition-colors">RATE</button>`;
+                    }
+                    tHTML += `
+                    <div class="${bgCol} rounded-full p-4 md:p-6 grid grid-cols-5 items-center border border-gray-100">
+                        <div class="col-span-2 text-[#1E1E1E] font-bold text-sm truncate pl-2 md:pl-4">${t.subject}</div>
+                        <div class="hidden md:block text-gray-500 text-xs font-mono truncate">${t.category}</div>
+                        <div class="text-[10px] font-bold uppercase tracking-widest text-gray-500">${t.status}</div>
+                        <div class="text-right">${action}</div>
+                    </div>`;
+                });
+                tList.innerHTML = tHTML;
+            } else if (tList) {
+                tList.innerHTML = '<div class="bg-white border border-gray-100 rounded-full p-6 text-center font-mono text-xs text-gray-400 uppercase tracking-widest">No Tickets Found</div>';
+            }
+        } catch(e) { console.error("Tickets Error:", e); }
+
+        // COMPLIANCE
+        try {
+            if(discordId && discordId !== 'N/A') {
+                const { data: infs } = await supabase.from('egr_blacklist').select('*').eq('discord_id', discordId).order('created_at', { ascending: false });
+                const cList = document.getElementById('compliance-list');
+                if(infs && infs.length > 0 && cList) {
+                    let cHTML = '';
+                    infs.forEach(i => {
+                        const d = new Date(i.created_at).toLocaleDateString();
+                        cHTML += `
+                        <div class="bg-red-50 rounded-[2rem] p-8 flex flex-col md:flex-row justify-between gap-6 border border-red-100">
+                            <div>
+                                <span class="bg-red-100 text-red-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4 inline-block">${i.violation_section}</span>
+                                <p class="text-lg font-bold text-[#1E1E1E] mb-2">${i.specific_violations ? i.specific_violations.join(', ') : 'Rule Violation'}</p>
+                                <p class="text-xs text-gray-600 leading-relaxed">${i.detailed_reason || 'No detailed reason provided.'}</p>
+                            </div>
+                            <div class="text-left md:text-right">
+                                <span class="block text-[#1E1E1E] font-bold text-xs uppercase tracking-widest mb-1">${i.status}</span>
+                                <span class="block text-red-400 font-mono text-[10px]">${d}</span>
+                            </div>
+                        </div>`;
+                    });
+                    cList.innerHTML = cHTML;
+                } else if (cList) {
+                    cList.innerHTML = `<div class="bg-green-50 rounded-[2rem] p-12 text-center border border-green-100"><p class="text-green-600 font-bold text-xl uppercase tracking-widest">CLEAR RECORD</p></div>`;
+                }
+            }
+        } catch(e) { console.error("Compliance Error:", e); }
+    }
+
+    // --- LOGOUT LOGIC ---
+    document.getElementById('logout-btn')?.addEventListener('click', async () => {
+        const supabase = window.supabase.createClient(
+            'https://zboyabxzhptnxnmofvcz.supabase.co', 
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
+        );
+        await supabase.auth.signOut();
+        window.location.href = '/myportal/login/';
+    });
+
+    // --- MODALS (Typographic Chat) ---
+    window.openTicket = async function(id, subject, status) {
+        try {
+            const modal = document.getElementById('ticket-modal');
+            const content = document.getElementById('ticket-modal-content');
+            if(!modal) return;
+            
+            document.getElementById('modal-ticket-id').innerText = `REF: ${id.substring(0,8)}`;
+            document.getElementById('modal-ticket-subject').innerText = subject;
+            document.getElementById('reply-ticket-id').value = id;
+            
+            const replyBox = document.getElementById('modal-reply-box');
+            if(status === 'Closed' || status === 'Resolved') replyBox.classList.add('hidden');
+            else replyBox.classList.remove('hidden');
+
+            const chatBox = document.getElementById('modal-chat-box');
+            chatBox.innerHTML = '<div class="text-center py-20 text-gray-400 font-mono text-xs uppercase tracking-widest">Retrieving logs...</div>';
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('translate-y-10'); }, 10);
+
+            const supabase = window.supabase.createClient(
+                'https://zboyabxzhptnxnmofvcz.supabase.co', 
+                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
+            );
+            const { data: req } = await supabase.from('egr_support_tickets').select('content, created_at').eq('id', id).single();
+            const { data: msgs } = await supabase.from('egr_ticket_messages').select('*').eq('ticket_id', id).order('created_at', { ascending: true });
+
+            let cHTML = '';
+            if(req) {
+                const tStr = new Date(req.created_at).toLocaleString();
+                cHTML += `<div class="mb-8 border-l-4 border-[#1E1E1E] pl-6"><p class="text-[9px] text-[#1E1E1E] font-bold uppercase tracking-widest mb-2">INITIAL REQUEST <span class="font-mono text-gray-400 ml-3 normal-case font-normal">${tStr}</span></p><p class="text-sm text-gray-700 leading-relaxed">${req.content.replace(/\n/g, '<br>')}</p></div>`;
+            }
+
+            if(msgs && msgs.length > 0) {
+                msgs.forEach(m => {
+                    const isMe = m.sender_id === currentUser.id;
+                    const tStr = new Date(m.created_at).toLocaleString();
+                    const sName = isMe ? 'YOU' : 'STAFF';
+                    const bCol = isMe ? 'border-gray-200' : 'border-[#8B7FE8]';
+                    const tCol = isMe ? 'text-gray-400' : 'text-[#8B7FE8]';
+                    cHTML += `<div class="mb-8 border-l-4 ${bCol} pl-6"><p class="text-[9px] ${tCol} font-bold uppercase tracking-widest mb-2">${sName} <span class="font-mono text-gray-400 ml-3 normal-case font-normal">${tStr}</span></p><p class="text-sm text-gray-700 leading-relaxed">${m.message.replace(/\n/g, '<br>')}</p></div>`;
+                });
+            }
+            chatBox.innerHTML = cHTML;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        } catch(e) { console.error(e); }
+    };
+
+    window.closeTicketModal = function() {
+        document.getElementById('ticket-modal').classList.add('opacity-0');
+        document.getElementById('ticket-modal-content').classList.add('translate-y-10');
+        setTimeout(() => { document.getElementById('ticket-modal').classList.add('hidden'); }, 300);
+    };
+
+    document.getElementById('ticket-reply-form')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('reply-submit-btn');
+        const input = document.getElementById('reply-content');
+        const tid = document.getElementById('reply-ticket-id').value;
+        
+        btn.innerHTML = 'WAIT...'; btn.disabled = true;
+        const supabase = window.supabase.createClient(
+            'https://zboyabxzhptnxnmofvcz.supabase.co', 
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
+        );
+        await supabase.from('egr_ticket_messages').insert({ ticket_id: tid, sender_id: currentUser.id, message: input.value });
+        input.value = ''; btn.innerHTML = 'SEND'; btn.disabled = false;
+        openTicket(tid, document.getElementById('modal-ticket-subject').innerText, 'Awaiting User Response');
+    });
+
+    // --- FEEDBACK MODAL ---
+    const rBtns = document.querySelectorAll('.rating-btn');
+    const rVal = document.getElementById('feedback-rating-value');
+    rBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            rBtns.forEach(b => b.classList.remove('selected', 'bg-[#1E1E1E]', 'text-white', 'border-[#1E1E1E]'));
+            btn.classList.add('selected', 'bg-[#1E1E1E]', 'text-white', 'border-[#1E1E1E]');
+            rVal.value = btn.getAttribute('data-val');
+        });
+    });
+
+    window.openFeedback = function(id) {
+        document.getElementById('feedback-ticket-id').value = id;
+        document.getElementById('feedback-modal').classList.remove('hidden');
+        setTimeout(() => { document.getElementById('feedback-modal').classList.remove('opacity-0'); document.getElementById('feedback-modal-content').classList.remove('translate-y-10'); }, 10);
+    }
+
+    window.closeFeedbackModal = function() {
+        document.getElementById('feedback-modal').classList.add('opacity-0');
+        document.getElementById('feedback-modal-content').classList.add('translate-y-10');
+        setTimeout(() => { document.getElementById('feedback-modal').classList.add('hidden'); }, 300);
+    }
+
+    document.getElementById('feedback-form')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const val = rVal.value;
+        if(val == "0") return alert("Please select a rating number 1 through 5.");
+        const btn = document.getElementById('feedback-submit-btn');
+        btn.innerHTML = 'LOGGING...'; btn.disabled = true;
+        
+        const supabase = window.supabase.createClient(
+            'https://zboyabxzhptnxnmofvcz.supabase.co', 
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
+        );
+        await supabase.from('egr_support_tickets').update({ feedback_rating: parseInt(val), feedback_comment: document.getElementById('feedback-comment').value }).eq('id', document.getElementById('feedback-ticket-id').value);
+        closeFeedbackModal(); 
+        btn.innerHTML = 'SUBMIT EVALUATION'; btn.disabled = false;
+        window.location.reload(); // Refresh to update list
+    });
+
   </script>
 </body>
 </html>
