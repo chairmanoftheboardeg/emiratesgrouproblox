@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portal | Emirates Group Roblox</title>
+  
+  <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" id="favicon" />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=JetBrains+Mono:wght@400;700&display=swap');
+    
+    body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; scroll-behavior: smooth; overflow-x: hidden; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    
+    /* Cinematic Text Fill Loader */
+    #egr-loader {
+        position: fixed; inset: 0; z-index: 9999;
+        background-color: #111827; 
+        display: flex; align-items: center; justify-content: center;
+        transition: opacity 0.8s ease;
+    }
+    .loader-content { display: flex; flex-direction: column; align-items: flex-end; }
+    .loader-text-wrapper {
+        position: relative; font-family: 'Inter', sans-serif; font-weight: 900;
+        letter-spacing: -2px; line-height: 1; text-transform: capitalize;
+    }
+    .loader-base-text { color: #374151; }
+    .loader-fill-text {
+        position: absolute; left: 0; top: 0; color: #ffffff; 
+        overflow: hidden; white-space: nowrap; width: 0%; transition: width 0.1s linear;
+    }
+    .loader-info { color: #9CA3AF; font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-top: 8px; }
+    
+    .zoom-through { animation: zoomOutEffect 1.2s cubic-bezier(0.7, 0, 0.2, 1) forwards; }
+    @keyframes zoomOutEffect {
+        0% { transform: scale(1); opacity: 1; }
+        40% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(40); opacity: 0; filter: blur(5px); }
+    }
+
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    
+    .chat-scroll::-webkit-scrollbar { width: 6px; }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen relative">
+
+  <div id="egr-loader">
+    <div class="loader-content" id="loader-animate-container">
+      <div class="loader-text-wrapper text-4xl md:text-7xl lg:text-8xl">
+        <div class="loader-base-text">Emirates Group Roblox</div>
+        <div class="loader-fill-text" id="loader-fill">Emirates Group Roblox</div>
+      </div>
+      <div class="loader-info lowercase">authenticating secure profile... <span id="loader-perc">0</span>%</div>
+    </div>
+  </div>
+
+  <nav class="bg-[#111827] text-white py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-40 border-b-4 border-[#D71A21]">
+    <div class="flex items-center gap-6">
+        <a href="/" class="flex items-center group">
+          <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="EGR Logo" class="h-8 md:h-10 object-contain group-hover:opacity-80 transition-opacity">
+        </a>
+        <div class="hidden md:block h-6 w-px bg-gray-700"></div>
+        <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-400">Corporate Portal</span>
+    </div>
+
+    <div class="flex items-center gap-4">
+        <a href="/help/" class="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-colors hidden sm:block">
+            Support Desk
+        </a>
+        <button id="logout-btn" class="bg-gray-800 hover:bg-[#D71A21] text-white px-4 py-2 rounded transition-colors shadow-sm flex items-center uppercase tracking-widest text-[10px] font-bold border border-gray-700">
+            Sign Out <i class="fa-solid fa-right-from-bracket ml-2"></i>
+        </button>
+    </div>
+  </nav>
+
+  <main class="flex-grow w-full max-w-[1400px] mx-auto py-10 px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10 hidden" id="portal-content">
+      
+      <aside class="lg:col-span-3 space-y-6">
+          
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+              <div class="h-24 bg-[#111827] relative">
+                  <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
+              </div>
+              <div class="px-6 pb-6 relative">
+                  <div class="w-20 h-20 bg-gray-100 rounded-xl border-4 border-white shadow-md flex items-center justify-center -mt-10 mb-4 text-3xl text-gray-400">
+                      <i class="fa-solid fa-user-tie"></i>
+                  </div>
+                  <h2 id="profile-name" class="text-xl font-bold text-[#111827] leading-tight mb-1">Loading...</h2>
+                  <p id="profile-roblox" class="text-sm font-semibold text-gray-500 mb-4">@...</p>
+                  
+                  <div class="bg-gray-50 rounded p-3 border border-gray-100 flex items-center justify-between">
+                      <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Account Status</span>
+                      <span id="profile-status" class="text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded border border-green-200 uppercase tracking-widest">Active</span>
+                  </div>
+              </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-[#111827] to-gray-900 rounded-2xl shadow-lg border border-gray-800 p-6 text-white relative overflow-hidden">
+              <div class="absolute -right-4 -top-4 text-gray-800 opacity-30 text-7xl transform rotate-12">
+                  <i class="fa-solid fa-plane"></i>
+              </div>
+              <div class="relative z-10">
+                  <img src="https://www.flydubai.com/System/img/EK_en.png" class="h-6 mb-6 filter invert opacity-80" alt="Skywards">
+                  <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Current Balance</p>
+                  <h3 id="skywards-balance" class="text-4xl font-serif font-bold text-white mb-1">0</h3>
+                  <p class="text-xs text-[#D71A21] font-bold uppercase tracking-widest">Miles</p>
+              </div>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 flex flex-col gap-2">
+              <a href="#flight-logs" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 text-sm font-bold text-gray-700 transition-colors">
+                  <span class="flex items-center"><i class="fa-solid fa-plane-arrival text-gray-400 w-6"></i> Flight Itinerary</span>
+                  <i class="fa-solid fa-chevron-right text-[10px] text-gray-400"></i>
+              </a>
+              <a href="#support-desk" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 text-sm font-bold text-gray-700 transition-colors">
+                  <span class="flex items-center"><i class="fa-solid fa-headset text-gray-400 w-6"></i> Support Tickets</span>
+                  <i class="fa-solid fa-chevron-right text-[10px] text-gray-400"></i>
+              </a>
+              <a href="#compliance-logs" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 text-sm font-bold text-gray-700 transition-colors">
+                  <span class="flex items-center"><i class="fa-solid fa-shield-halved text-[#D71A21] w-6"></i> Compliance Record</span>
+                  <i class="fa-solid fa-chevron-right text-[10px] text-gray-400"></i>
+              </a>
+          </div>
+      </aside>
+
+      <div class="lg:col-span-9 space-y-8">
+          
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col md:flex-row justify-between items-center gap-6 relative overflow-hidden">
+              <div class="absolute left-0 top-0 bottom-0 w-2 bg-[#D71A21]"></div>
+              
+              <div class="w-full">
+                  <span class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest mb-2 block">Current Booking</span>
+                  <div id="next-flight-container">
+                      <p class="text-sm text-gray-500 font-bold uppercase tracking-widest">Retrieving Itinerary...</p>
+                  </div>
+              </div>
+              
+              <div class="shrink-0 w-full md:w-auto text-center md:text-right">
+                  <a href="/flights/" class="inline-block bg-[#111827] hover:bg-gray-800 text-white text-xs font-bold py-3 px-6 rounded uppercase tracking-widest transition-colors w-full md:w-auto shadow-sm">
+                      View Live Radar
+                  </a>
+              </div>
+          </div>
+
+          <div id="support-desk" class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+              <div class="p-6 md:p-8 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                  <div>
+                      <h3 class="text-xl font-bold text-[#111827] tracking-tight">Support Desk</h3>
+                      <p class="text-xs text-gray-500 mt-1">Manage your active and past support requests.</p>
+                  </div>
+                  <a href="/help/" class="bg-white border border-gray-300 text-gray-700 hover:text-[#111827] hover:border-gray-400 text-[10px] font-bold py-2 px-4 rounded uppercase tracking-widest transition-colors shadow-sm">
+                      New Ticket +
+                  </a>
+              </div>
+              <div class="overflow-x-auto">
+                  <table class="w-full text-left border-collapse whitespace-nowrap">
+                      <thead>
+                          <tr class="bg-white text-gray-400 text-[10px] uppercase tracking-widest font-bold border-b border-gray-100">
+                              <th class="py-4 px-6 md:px-8">Ticket Subject</th>
+                              <th class="py-4 px-6 hidden sm:table-cell">Category</th>
+                              <th class="py-4 px-6">Status</th>
+                              <th class="py-4 px-6 text-right">Action</th>
+                          </tr>
+                      </thead>
+                      <tbody id="tickets-tbody" class="text-sm text-gray-700 divide-y divide-gray-100">
+                          <tr>
+                              <td colspan="4" class="py-10 text-center text-gray-400 font-bold uppercase tracking-widest text-xs">
+                                  <i class="fa-solid fa-circle-notch fa-spin mb-2 text-xl text-gray-300"></i><br>Syncing Tickets...
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              
+              <div id="flight-logs" class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col h-[400px]">
+                  <div class="p-6 border-b border-gray-100 bg-gray-50 shrink-0">
+                      <h3 class="text-lg font-bold text-[#111827] tracking-tight mb-1">Flight History</h3>
+                      <p class="text-[10px] text-gray-500 uppercase tracking-widest">Logged Attendance</p>
+                  </div>
+                  <div class="p-6 flex-grow overflow-y-auto bg-white flex items-center justify-center text-center">
+                      <div>
+                          <i class="fa-solid fa-plane-slash text-4xl text-gray-200 mb-3 block"></i>
+                          <p class="text-xs text-gray-400 font-bold uppercase tracking-widest">No Past Flights Logged</p>
+                      </div>
+                  </div>
+              </div>
+
+              <div id="compliance-logs" class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col h-[400px]">
+                  <div class="p-6 border-b border-gray-100 bg-red-50 shrink-0">
+                      <h3 class="text-lg font-bold text-[#D71A21] tracking-tight mb-1"><i class="fa-solid fa-shield-halved mr-2"></i> Compliance Record</h3>
+                      <p class="text-[10px] text-gray-500 uppercase tracking-widest">Network Infractions & Bans</p>
+                  </div>
+                  <div class="p-0 flex-grow overflow-y-auto bg-white">
+                      <ul id="infractions-list" class="divide-y divide-gray-100">
+                          <li class="p-10 text-center text-gray-400 font-bold uppercase tracking-widest text-xs">
+                              <i class="fa-solid fa-circle-notch fa-spin mb-2 text-xl text-gray-300 block"></i> Syncing Secure Database...
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+
+          </div>
+
+      </div>
+  </main>
+
+  <div id="ticket-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-[#111827]/80 backdrop-blur-sm transition-opacity duration-300 opacity-0 px-4">
+      <div id="ticket-modal-content" class="bg-white w-full max-w-3xl h-[85vh] rounded-2xl shadow-2xl flex flex-col relative transform translate-y-10 transition-transform duration-500 ease-out overflow-hidden border border-gray-200">
+          
+          <div class="bg-[#111827] text-white p-6 border-b border-gray-800 flex justify-between items-center shrink-0">
+              <div>
+                  <span id="modal-ticket-id" class="text-gray-400 font-mono text-[10px] uppercase tracking-widest mb-1 block">TKT-XXXXXX</span>
+                  <h2 id="modal-ticket-subject" class="text-xl font-bold tracking-tight">Loading Ticket...</h2>
+                  <span id="modal-ticket-status" class="inline-block mt-2 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-widest bg-gray-700 text-gray-300 border border-gray-600">Loading</span>
+              </div>
+              <button onclick="closeTicketModal()" class="text-gray-400 hover:text-white transition-colors w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full cursor-pointer">
+                  <i class="fa-solid fa-xmark"></i>
+              </button>
+          </div>
+
+          <div id="modal-chat-box" class="flex-grow overflow-y-auto p-6 bg-gray-50 space-y-6 chat-scroll">
+              <div class="text-center py-10 text-gray-400"><i class="fa-solid fa-circle-notch fa-spin"></i> Retrieving logs...</div>
+          </div>
+
+          <div id="modal-reply-box" class="p-6 bg-white border-t border-gray-200 shrink-0">
+              <form id="ticket-reply-form" class="relative">
+                  <input type="hidden" id="reply-ticket-id">
+                  <textarea id="reply-content" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-4 pr-16 text-sm resize-none h-20 focus:outline-none focus:border-[#D71A21] focus:bg-white transition-colors" placeholder="Type your reply to staff here..." required></textarea>
+                  <button type="submit" id="reply-submit-btn" class="absolute bottom-4 right-4 bg-[#111827] hover:bg-[#D71A21] text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors shadow-sm">
+                      <i class="fa-solid fa-paper-plane text-xs"></i>
+                  </button>
+              </form>
+          </div>
+
+      </div>
+  </div>
+
+  <footer class="bg-[#111827] text-white py-12 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-4 opacity-50 grayscale">
+            <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" class="h-6 object-contain">
+        </div>
+        <p class="text-[10px] text-gray-500 font-bold tracking-widest uppercase text-center md:text-right">
+            &copy; 2026 Emirates Group Roblox.<br>Corporate Portal Infrastructure.
+        </p>
+    </div>
+  </footer>
+
+  <script>
+    // --- ANIMATED TEXT LOADER LOGIC ---
+    let perc = 0;
+    const percEl = document.getElementById('loader-perc');
+    const fillEl = document.getElementById('loader-fill');
+    const loader = document.getElementById('egr-loader');
+    const animateContainer = document.getElementById('loader-animate-container');
+    const portalContent = document.getElementById('portal-content');
+    
+    const progressInterval = setInterval(() => {
+        perc += Math.floor(Math.random() * 8) + 2; 
+        if (perc >= 99) perc = 99; 
+        percEl.innerText = perc;
+        fillEl.style.width = perc + '%';
+    }, 100);
+
+    function hideLoader() {
+        clearInterval(progressInterval);
+        percEl.innerText = '100';
+        fillEl.style.width = '100%';
+        
+        setTimeout(() => {
+            animateContainer.classList.add('zoom-through');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => { 
+                    loader.style.display = 'none'; 
+                    portalContent.classList.remove('hidden');
+                }, 800);
+            }, 600);
+        }, 400);
+    }
+
+    // --- SUPABASE & DASHBOARD LOGIC ---
+    let currentUser = null;
+    let userProfile = null;
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      
+      const supabase = window.supabase.createClient(
+        'https://zboyabxzhptnxnmofvcz.supabase.co', 
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
+      );
+
+      // 1. Auth Check
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (!session) {
+          // Kick them out if not logged in
+          window.location.href = '/help/';
+          return;
+      }
+      
+      currentUser = session.user;
+
+      // 2. Fetch User Profile Data from egr_users
+      const { data: profileData, error: profileErr } = await supabase
+        .from('egr_users')
+        .select('*')
+        .eq('id', currentUser.id)
+        .single();
+
+      if (profileData) {
+          userProfile = profileData;
+          document.getElementById('profile-name').innerText = userProfile.full_name || 'Member';
+          document.getElementById('profile-roblox').innerText = `@${userProfile.roblox_username || 'Unknown'}`;
+          document.getElementById('skywards-balance').innerText = (userProfile.skywards_points || 0).toLocaleString();
+          
+          if(userProfile.account_status !== 'Active') {
+              const statEl = document.getElementById('profile-status');
+              statEl.innerText = userProfile.account_status;
+              statEl.className = 'text-[10px] font-bold text-[#D71A21] bg-red-50 px-2 py-0.5 rounded border border-red-200 uppercase tracking-widest';
+          }
+      }
+
+      hideLoader(); // Reveal the dashboard
+
+      // 3. Fetch Support Tickets
+      async function loadTickets() {
+          const tbody = document.getElementById('tickets-tbody');
+          const { data: tickets } = await supabase
+            .from('egr_support_tickets')
+            .select('*')
+            .eq('user_id', currentUser.id)
+            .order('created_at', { ascending: false });
+
+          if (!tickets || tickets.length === 0) {
+              tbody.innerHTML = `<tr><td colspan="4" class="py-10 text-center text-gray-400 font-bold uppercase tracking-widest text-xs">No Support Tickets Found.</td></tr>`;
+              return;
+          }
+
+          let html = '';
+          tickets.forEach(t => {
+              const dateObj = new Date(t.created_at).toLocaleDateString();
+              
+              // Status Styling
+              let statHTML = '';
+              if(t.status === 'Open' || t.status === 'In Review') {
+                  statHTML = `<span class="bg-blue-50 text-blue-600 border border-blue-200 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest">${t.status}</span>`;
+              } else if(t.status === 'Awaiting User Response') {
+                  statHTML = `<span class="bg-yellow-50 text-yellow-600 border border-yellow-200 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest animate-pulse">Action Req.</span>`;
+              } else {
+                  statHTML = `<span class="bg-gray-100 text-gray-500 border border-gray-200 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest">${t.status}</span>`;
+              }
+
+              html += `
+              <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="py-4 px-6 md:px-8">
+                      <p class="font-bold text-[#111827] text-sm">${t.subject}</p>
+                      <p class="text-[10px] text-gray-400 font-mono mt-1">${dateObj} | ID: ${t.id.substring(0,8)}</p>
+                  </td>
+                  <td class="py-4 px-6 hidden sm:table-cell text-xs text-gray-500 font-semibold">${t.category}</td>
+                  <td class="py-4 px-6">${statHTML}</td>
+                  <td class="py-4 px-6 text-right">
+                      <button onclick="openTicket('${t.id}', '${t.subject}', '${t.status}')" class="text-xs font-bold text-[#111827] hover:text-[#D71A21] uppercase tracking-widest transition-colors">View <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                  </td>
+              </tr>`;
+          });
+          tbody.innerHTML = html;
+      }
+      loadTickets();
+
+      // 4. Fetch Infractions / Compliance Record
+      async function loadCompliance() {
+          const list = document.getElementById('infractions-list');
+          if(!userProfile || !userProfile.discord_id) {
+              list.innerHTML = `<li class="p-10 text-center text-gray-400 font-bold uppercase tracking-widest text-xs">Verification Error.</li>`;
+              return;
+          }
+
+          const { data: infractions } = await supabase
+            .from('egr_blacklist')
+            .select('*')
+            .eq('discord_id', userProfile.discord_id)
+            .order('created_at', { ascending: false });
+
+          if (!infractions || infractions.length === 0) {
+              list.innerHTML = `
+              <li class="p-10 flex flex-col items-center justify-center text-center">
+                  <i class="fa-solid fa-shield-check text-4xl text-green-500 mb-3"></i>
+                  <p class="text-[#111827] font-bold text-lg mb-1">Clear Record</p>
+                  <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">No corporate infractions found.</p>
+              </li>`;
+              return;
+          }
+
+          let html = '';
+          infractions.forEach(inf => {
+              const dateObj = new Date(inf.created_at).toLocaleDateString();
+              html += `
+              <li class="p-6 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-l-4 border-l-[#D71A21]">
+                  <div>
+                      <span class="bg-red-50 text-[#D71A21] text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border border-red-100 mb-2 inline-block">${inf.violation_section}</span>
+                      <p class="text-sm font-bold text-[#111827]">${inf.specific_violations ? inf.specific_violations.join(', ') : 'Rule Violation'}</p>
+                      <p class="text-xs text-gray-500 mt-1">${inf.detailed_reason || 'No details provided.'}</p>
+                  </div>
+                  <div class="text-left sm:text-right shrink-0">
+                      <span class="block text-[#111827] font-bold text-xs uppercase tracking-widest">${inf.status}</span>
+                      <span class="block text-gray-400 font-mono text-[10px] mt-1">${dateObj}</span>
+                  </div>
+              </li>`;
+          });
+          list.innerHTML = html;
+      }
+      loadCompliance();
+
+      // 5. Setup Next Flight Placeholder
+      const flightContainer = document.getElementById('next-flight-container');
+      flightContainer.innerHTML = `
+          <div class="flex items-center gap-4 mt-2">
+              <i class="fa-solid fa-plane-slash text-2xl text-gray-300"></i>
+              <div>
+                  <h3 class="text-lg font-bold text-[#111827]">No Active Bookings</h3>
+                  <p class="text-xs text-gray-500 font-semibold">You are not manifested on any upcoming flights.</p>
+              </div>
+          </div>
+      `;
+
+      // --- LOGOUT LOGIC ---
+      document.getElementById('logout-btn').addEventListener('click', async () => {
+          await supabase.auth.signOut();
+          window.location.href = '/help/';
+      });
+
+      // --- TICKET MODAL LOGIC ---
+      window.openTicket = async function(id, subject, status) {
+          const modal = document.getElementById('ticket-modal');
+          const modalContent = document.getElementById('ticket-modal-content');
+          
+          // Setup UI
+          document.getElementById('modal-ticket-id').innerText = `TKT-${id.substring(0,8)}`;
+          document.getElementById('modal-ticket-subject').innerText = subject;
+          document.getElementById('reply-ticket-id').value = id;
+          
+          const statEl = document.getElementById('modal-ticket-status');
+          statEl.innerText = status;
+          if(status === 'Closed' || status === 'Resolved') {
+              statEl.className = 'inline-block mt-2 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-widest bg-gray-100 text-gray-500 border border-gray-200';
+              document.getElementById('modal-reply-box').classList.add('hidden'); // Disable replies if closed
+          } else {
+              statEl.className = 'inline-block mt-2 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-widest bg-blue-50 text-blue-600 border border-blue-200';
+              document.getElementById('modal-reply-box').classList.remove('hidden');
+          }
+
+          // Fetch original ticket content as first message
+          const chatBox = document.getElementById('modal-chat-box');
+          chatBox.innerHTML = '<div class="text-center py-10 text-gray-400"><i class="fa-solid fa-circle-notch fa-spin"></i> Retrieving logs...</div>';
+          
+          // Show Modal
+          modal.classList.remove('hidden');
+          setTimeout(() => {
+              modal.classList.remove('opacity-0');
+              modalContent.classList.remove('translate-y-10');
+          }, 10);
+          document.body.style.overflow = 'hidden';
+
+          // Load Messages Data
+          const { data: ticketRecord } = await supabase.from('egr_support_tickets').select('content, created_at').eq('id', id).single();
+          const { data: messages } = await supabase.from('egr_ticket_messages').select('*').eq('ticket_id', id).order('created_at', { ascending: true });
+
+          let chatHTML = '';
+          
+          // Append the original request as the first bubble
+          if(ticketRecord) {
+              const timeString = new Date(ticketRecord.created_at).toLocaleString();
+              chatHTML += `
+              <div class="flex justify-end mb-4">
+                  <div class="max-w-[85%]">
+                      <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1 text-right">You <span class="lowercase font-mono text-gray-300 ml-2">${timeString}</span></p>
+                      <div class="bg-[#111827] text-white p-4 rounded-2xl rounded-tr-none shadow-sm text-sm">
+                          ${ticketRecord.content.replace(/\n/g, '<br>')}
+                      </div>
+                  </div>
+              </div>`;
+          }
+
+          // Append all replies
+          if(messages && messages.length > 0) {
+              messages.forEach(m => {
+                  const isMe = m.sender_id === currentUser.id;
+                  const timeString = new Date(m.created_at).toLocaleString();
+                  
+                  if(isMe) {
+                      chatHTML += `
+                      <div class="flex justify-end mb-4">
+                          <div class="max-w-[85%]">
+                              <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1 text-right">You <span class="lowercase font-mono text-gray-300 ml-2">${timeString}</span></p>
+                              <div class="bg-[#111827] text-white p-4 rounded-2xl rounded-tr-none shadow-sm text-sm">
+                                  ${m.message.replace(/\n/g, '<br>')}
+                              </div>
+                          </div>
+                      </div>`;
+                  } else {
+                      chatHTML += `
+                      <div class="flex justify-start mb-4">
+                          <div class="max-w-[85%]">
+                              <p class="text-[10px] text-[#D71A21] font-bold uppercase tracking-widest mb-1"><i class="fa-solid fa-shield-halved mr-1"></i> EGR Support <span class="lowercase font-mono text-gray-400 ml-2">${timeString}</span></p>
+                              <div class="bg-white border border-gray-200 text-gray-800 p-4 rounded-2xl rounded-tl-none shadow-sm text-sm">
+                                  ${m.message.replace(/\n/g, '<br>')}
+                              </div>
+                          </div>
+                      </div>`;
+                  }
+              });
+          }
+
+          chatBox.innerHTML = chatHTML;
+          chatBox.scrollTop = chatBox.scrollHeight; // Auto scroll to bottom
+      };
+
+      window.closeTicketModal = function() {
+          const modal = document.getElementById('ticket-modal');
+          const modalContent = document.getElementById('ticket-modal-content');
+          modal.classList.add('opacity-0');
+          modalContent.classList.add('translate-y-10');
+          setTimeout(() => { 
+              modal.classList.add('hidden'); 
+              document.body.style.overflow = 'auto';
+          }, 300);
+      };
+
+      // Ticket Reply Submit
+      document.getElementById('ticket-reply-form').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const btn = document.getElementById('reply-submit-btn');
+          const input = document.getElementById('reply-content');
+          const ticketId = document.getElementById('reply-ticket-id').value;
+          
+          btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-xs"></i>';
+          btn.disabled = true;
+
+          await supabase.from('egr_ticket_messages').insert({
+              ticket_id: ticketId,
+              sender_id: currentUser.id,
+              message: input.value
+          });
+
+          input.value = '';
+          btn.innerHTML = '<i class="fa-solid fa-paper-plane text-xs"></i>';
+          btn.disabled = false;
+
+          // Reload chat
+          openTicket(ticketId, document.getElementById('modal-ticket-subject').innerText, document.getElementById('modal-ticket-status').innerText);
+      });
+
+    });
+  </script>
+</body>
+</html>
