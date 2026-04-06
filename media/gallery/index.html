@@ -9,6 +9,8 @@
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
@@ -60,7 +62,7 @@
         <div class="loader-base-text">Emirates Group Roblox</div>
         <div class="loader-fill-text" id="loader-fill">Emirates Group Roblox</div>
       </div>
-      <div class="loader-info lowercase">loading visual assets... <span id="loader-perc">0</span>%</div>
+      <div class="loader-info lowercase">syncing visual databases... <span id="loader-perc">0</span>%</div>
     </div>
   </div>
 
@@ -186,64 +188,19 @@
     
     <section class="py-16 px-4 md:px-8 max-w-[1400px] mx-auto">
       
-      <div class="flex flex-wrap justify-center gap-4 mb-12 border-b border-gray-200 pb-6">
+      <div class="flex flex-wrap justify-center gap-4 mb-12 border-b border-gray-200 pb-6" id="filter-controls">
           <button class="filter-btn active bg-[#111827] text-white px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-colors border border-[#111827]" data-filter="all">All Media</button>
           <button class="filter-btn text-gray-500 hover:text-[#111827] px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-colors border border-transparent hover:border-gray-200" data-filter="fleet">The Fleet</button>
-          <button class="filter-btn text-gray-500 hover:text-[#111827] px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-colors border border-transparent hover:border-gray-200" data-filter="ops">Operations</button>
-          <button class="filter-btn text-gray-500 hover:text-[#111827] px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-colors border border-transparent hover:border-gray-200" data-filter="corporate">Corporate HQ</button>
+          <button class="filter-btn text-gray-500 hover:text-[#111827] px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-colors border border-transparent hover:border-gray-200" data-filter="operations">Operations</button>
+          <button class="filter-btn text-gray-500 hover:text-[#111827] px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-colors border border-transparent hover:border-gray-200" data-filter="corporate">Corporate</button>
+          <button class="filter-btn text-gray-500 hover:text-[#111827] px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-colors border border-transparent hover:border-gray-200" data-filter="events">Events</button>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 relative" id="gallery-grid">
           
-          <div class="gallery-item fleet group relative rounded-xl overflow-hidden bg-gray-100 cursor-pointer shadow-sm hover:shadow-xl aspect-square" onclick="openLightbox('https://i.ibb.co/pjK8YGTN/A350-New-Pics.png', 'Airbus A350-900', 'The flagship of our modern fleet soaring above the clouds.')">
-              <img src="https://i.ibb.co/pjK8YGTN/A350-New-Pics.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="A350">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#111827]/90 via-[#111827]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <span class="text-[#D71A21] font-bold text-[10px] uppercase tracking-widest mb-1">Fleet</span>
-                  <h3 class="text-white font-bold text-lg leading-tight">Airbus A350-900</h3>
-              </div>
-          </div>
-
-          <div class="gallery-item corporate group relative rounded-xl overflow-hidden bg-gray-100 cursor-pointer shadow-sm hover:shadow-xl aspect-square" onclick="openLightbox('https://i.ibb.co/BVnGQR6m/EGR-Headquarters-Pic.png', 'EGR Global Headquarters', 'The central hub of our corporate governance and global operations.')">
-              <img src="https://i.ibb.co/BVnGQR6m/EGR-Headquarters-Pic.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="EGR HQ">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#111827]/90 via-[#111827]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <span class="text-[#D71A21] font-bold text-[10px] uppercase tracking-widest mb-1">Corporate</span>
-                  <h3 class="text-white font-bold text-lg leading-tight">Global Headquarters</h3>
-              </div>
-          </div>
-
-          <div class="gallery-item fleet group relative rounded-xl overflow-hidden bg-gray-100 cursor-pointer shadow-sm hover:shadow-xl aspect-square" onclick="openLightbox('https://i.ibb.co/tTyxcwxP/a350v2.webp', 'Next-Gen Architecture', 'Close-up detailing the superior mesh quality of our aircraft assets.')">
-              <img src="https://i.ibb.co/tTyxcwxP/a350v2.webp" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="A350 Detail">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#111827]/90 via-[#111827]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <span class="text-[#D71A21] font-bold text-[10px] uppercase tracking-widest mb-1">Fleet</span>
-                  <h3 class="text-white font-bold text-lg leading-tight">Next-Gen Architecture</h3>
-              </div>
-          </div>
-
-          <div class="gallery-item ops group relative rounded-xl overflow-hidden bg-[#111827] cursor-pointer shadow-sm hover:shadow-xl aspect-square flex items-center justify-center border border-gray-200" onclick="openLightbox('', 'Operations Control', 'Live telemetry and dispatching tracking network-wide flights.')">
-              <div class="text-center p-6 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                  <i class="fa-solid fa-satellite-dish text-4xl text-[#D71A21] mb-4"></i>
-                  <p class="text-white font-mono text-xs uppercase tracking-widest">O.C.C. Terminal View</p>
-              </div>
-              <div class="absolute inset-0 bg-gradient-to-t from-[#111827]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <span class="text-[#D71A21] font-bold text-[10px] uppercase tracking-widest mb-1">Operations</span>
-                  <h3 class="text-white font-bold text-lg leading-tight">Control Center</h3>
-              </div>
-          </div>
-
-          <div class="gallery-item corporate group relative rounded-xl overflow-hidden bg-gray-100 cursor-pointer shadow-sm hover:shadow-xl aspect-square" onclick="openLightbox('https://i.ibb.co/84g34ff6/Emirates-banner-logo.jpg', 'Emirates Flagship Brand', 'The iconic banner representing the pinnacle of our virtual aviation network.')">
-              <img src="https://i.ibb.co/84g34ff6/Emirates-banner-logo.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Emirates Banner">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#111827]/90 via-[#111827]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <span class="text-[#D71A21] font-bold text-[10px] uppercase tracking-widest mb-1">Corporate</span>
-                  <h3 class="text-white font-bold text-lg leading-tight">Flagship Identity</h3>
-              </div>
-          </div>
-
-          <div class="gallery-item fleet group relative rounded-xl overflow-hidden bg-gray-100 cursor-pointer shadow-sm hover:shadow-xl aspect-square" onclick="openLightbox('https://i.ibb.co/nshrfWFP/Fly-Dubai-Blue-Logo.png', 'Fly Dubai Fleet Addition', 'Expanding our regional connectivity with Fly Dubai.')">
-              <img src="https://i.ibb.co/nshrfWFP/Fly-Dubai-Blue-Logo.png" class="w-full h-full object-contain p-8 bg-white transition-transform duration-700 group-hover:scale-110" alt="Fly Dubai">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#111827]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <span class="text-[#D71A21] font-bold text-[10px] uppercase tracking-widest mb-1">Fleet</span>
-                  <h3 class="text-white font-bold text-lg leading-tight">Regional Expansion</h3>
-              </div>
+          <div class="col-span-full py-20 text-center text-gray-500 w-full" id="loading-state">
+              <i class="fa-solid fa-circle-notch fa-spin text-4xl mb-4 text-[#D71A21]"></i>
+              <p class="font-bold uppercase tracking-widest text-xs">Syncing Secure Media Vault...</p>
           </div>
 
       </div>
@@ -354,41 +311,13 @@
         }, 400);
     });
 
-    // --- FILTER LOGIC ---
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active state from all
-            filterBtns.forEach(b => {
-                b.classList.remove('bg-[#111827]', 'text-white', 'border-[#111827]', 'active');
-                b.classList.add('text-gray-500', 'border-transparent');
-            });
-            // Add active state to clicked
-            btn.classList.add('bg-[#111827]', 'text-white', 'border-[#111827]', 'active');
-            btn.classList.remove('text-gray-500', 'border-transparent');
-
-            const filterValue = btn.getAttribute('data-filter');
-
-            // Show/Hide Items
-            galleryItems.forEach(item => {
-                if (filterValue === 'all' || item.classList.contains(filterValue)) {
-                    item.classList.remove('gallery-hidden');
-                } else {
-                    item.classList.add('gallery-hidden');
-                }
-            });
-        });
-    });
-
     // --- LIGHTBOX LOGIC ---
     function openLightbox(imgSrc, title, desc) {
         const modal = document.getElementById('lightbox-modal');
         const imgEl = document.getElementById('lightbox-image');
         const noImgEl = document.getElementById('lightbox-no-image');
         
-        if(imgSrc && imgSrc.trim() !== '') {
+        if(imgSrc && imgSrc.trim() !== '' && imgSrc !== 'null') {
             imgEl.src = imgSrc;
             imgEl.classList.remove('hidden');
             noImgEl.classList.add('hidden');
@@ -398,8 +327,9 @@
             noImgEl.classList.remove('hidden');
         }
 
-        document.getElementById('lightbox-title').innerText = title;
-        document.getElementById('lightbox-desc').innerText = desc;
+        // Decode title and description safely
+        document.getElementById('lightbox-title').innerText = decodeURIComponent(title);
+        document.getElementById('lightbox-desc').innerText = decodeURIComponent(desc);
 
         modal.classList.remove('hidden');
         setTimeout(() => { modal.classList.remove('opacity-0'); }, 10);
@@ -423,8 +353,22 @@
         if (e.key === 'Escape' && !document.getElementById('lightbox-modal').classList.contains('hidden')) { closeLightbox(); }
     });
 
+    // --- FILTER LOGIC ---
+    let currentFilter = 'all';
+    
+    function applyCurrentFilter() {
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach(item => {
+            if (currentFilter === 'all' || item.classList.contains(currentFilter)) {
+                item.classList.remove('gallery-hidden');
+            } else {
+                item.classList.add('gallery-hidden');
+            }
+        });
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
-      // Mobile Menu Logic
+      // Mobile Menu
       const mobileBtn = document.getElementById('mobile-menu-btn');
       const mobileClose = document.getElementById('mobile-menu-close');
       const mobileMenu = document.getElementById('mobile-menu-overlay');
@@ -432,6 +376,83 @@
         mobileBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
         mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
       }
+
+      // Filter Button Logic
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      filterBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+              // Toggle styling
+              filterBtns.forEach(b => {
+                  b.classList.remove('bg-[#111827]', 'text-white', 'border-[#111827]', 'active');
+                  b.classList.add('text-gray-500', 'border-transparent');
+              });
+              btn.classList.add('bg-[#111827]', 'text-white', 'border-[#111827]', 'active');
+              btn.classList.remove('text-gray-500', 'border-transparent');
+
+              currentFilter = btn.getAttribute('data-filter');
+              applyCurrentFilter();
+          });
+      });
+
+      // Fetch from Supabase
+      const grid = document.getElementById('gallery-grid');
+      
+      function renderGallery(mediaData) {
+          if (!mediaData || mediaData.length === 0) {
+              grid.innerHTML = `<div class="col-span-full py-20 text-center text-gray-500 w-full"><i class="fa-solid fa-camera-retro text-4xl mb-4 text-gray-300"></i><p class="font-bold uppercase tracking-widest text-xs">Media Vault Empty.</p></div>`;
+              return;
+          }
+
+          let html = '';
+          mediaData.forEach(item => {
+              // Safely handle missing/null data
+              const rawCategory = item.category || 'corporate';
+              const catClass = rawCategory.toLowerCase().replace(/[^a-z0-9]/g, ''); // creates 'fleet', 'ops', 'corporate', etc.
+              const catLabel = rawCategory;
+              const title = item.title || 'Untitled Image';
+              const desc = item.description || '';
+              const img = item.image_url || '';
+
+              // Safely encode text for the onclick function arguments
+              const safeTitle = encodeURIComponent(title);
+              const safeDesc = encodeURIComponent(desc);
+
+              html += `
+              <div class="gallery-item ${catClass} group relative rounded-xl overflow-hidden bg-[#111827] cursor-pointer shadow-sm hover:shadow-xl aspect-square" onclick="openLightbox('${img}', '${safeTitle}', '${safeDesc}')">
+                  ${img ? `<img src="${img}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="${title}">` : `<div class="w-full h-full flex items-center justify-center text-gray-500 font-mono text-xs tracking-widest uppercase">No Image Data</div>`}
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#111827]/95 via-[#111827]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                      <span class="text-[#D71A21] font-bold text-[10px] uppercase tracking-widest mb-1">${catLabel}</span>
+                      <h3 class="text-white font-bold text-lg leading-tight">${title}</h3>
+                  </div>
+              </div>
+              `;
+          });
+          
+          grid.innerHTML = html;
+          applyCurrentFilter(); // Re-apply the active filter to the new items
+      }
+
+      const checkSupabase = setInterval(async () => {
+        if (window.supabase) {
+          clearInterval(checkSupabase); 
+          const supabase = window.supabase.createClient(
+            'https://zboyabxzhptnxnmofvcz.supabase.co', 
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
+          );
+
+          try {
+            // Fetch gallery images
+            const { data } = await supabase.from('egr_media').select('*').order('created_at', { ascending: false });
+            
+            if (data) {
+                renderGallery(data);
+            }
+          } catch(e) {
+              grid.innerHTML = `<div class="col-span-full py-20 text-center text-[#D71A21] w-full"><i class="fa-solid fa-triangle-exclamation text-4xl mb-4"></i><p class="font-bold uppercase tracking-widest text-xs">Error Syncing Media Vault.</p></div>`;
+          }
+        }
+      }, 100);
+
     });
   </script>
 </body>
