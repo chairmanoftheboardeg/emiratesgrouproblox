@@ -48,6 +48,12 @@
     ::-webkit-scrollbar-track { background: #f1f1f1; }
     ::-webkit-scrollbar-thumb { background: #D71A21; border-radius: 5px; }
     ::-webkit-scrollbar-thumb:hover { background: #b5151c; }
+
+    /* Modal Scrollbar */
+    .modal-scroll::-webkit-scrollbar { width: 8px; }
+    .modal-scroll::-webkit-scrollbar-track { background: transparent; }
+    .modal-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    .modal-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
   </style>
 </head>
 <body class="flex flex-col min-h-screen relative">
@@ -217,6 +223,42 @@
 
   </main>
 
+  <div id="article-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/90 backdrop-blur-md transition-opacity duration-300 opacity-0 px-4 md:px-0 py-10 md:py-16">
+      <div id="article-modal-content" class="bg-white w-full h-full md:w-[85%] lg:w-[70%] max-w-5xl rounded-2xl md:rounded-3xl shadow-2xl flex flex-col relative transform translate-y-10 transition-transform duration-500 ease-out overflow-hidden">
+          
+          <button onclick="closeArticle()" class="absolute top-4 right-4 md:top-6 md:right-6 z-20 w-10 h-10 bg-black/60 hover:bg-[#D71A21] text-white rounded-full flex items-center justify-center transition-colors backdrop-blur-sm shadow-lg border border-white/20 cursor-pointer">
+              <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+          
+          <div class="overflow-y-auto flex-grow modal-scroll bg-gray-50 relative w-full rounded-2xl md:rounded-3xl pb-20">
+              
+              <div id="modal-image-container" class="h-64 md:h-[450px] w-full bg-[#111827] relative shrink-0">
+                  <img id="modal-image" src="" class="w-full h-full object-cover opacity-90 hidden border-b border-gray-200">
+                  <div id="modal-no-image" class="w-full h-full flex items-center justify-center text-gray-500 font-mono text-sm tracking-widest uppercase bg-gray-200">Official Press Release</div>
+              </div>
+              
+              <div class="p-8 md:p-16 max-w-4xl mx-auto bg-white relative -mt-16 md:-mt-24 rounded-2xl shadow-xl border border-gray-100 z-10 shrink-0">
+                  
+                  <span id="modal-date" class="text-[#D71A21] font-bold text-xs uppercase tracking-widest mb-4 block"></span>
+                  <h2 id="modal-title" class="text-3xl md:text-5xl font-serif font-bold text-[#111827] leading-tight tracking-tight mb-8"></h2>
+                  
+                  <div class="w-16 h-1.5 bg-[#D71A21] mb-10"></div>
+                  
+                  <div id="modal-body" class="space-y-6 text-gray-700 leading-relaxed text-base md:text-lg mb-16">
+                      </div>
+                  
+                  <div class="border-t-2 border-gray-100 pt-10 mt-12 flex items-center justify-between">
+                      <div>
+                          <p class="font-serif font-bold text-xl md:text-2xl text-[#111827]">Emirates Group Roblox</p>
+                          <p class="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">Corporate Communications & Press</p>
+                      </div>
+                      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" class="h-10 md:h-14 opacity-30 grayscale object-contain">
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
   <footer class="bg-[#111827] text-white py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
       <div class="md:col-span-2">
@@ -265,6 +307,9 @@
   </footer>
 
   <script>
+    // Global variable to store fetched news data for the modal reader
+    let globalNewsData = [];
+
     // --- ANIMATED TEXT LOADER LOGIC ---
     let perc = 0;
     const percEl = document.getElementById('loader-perc');
@@ -293,6 +338,77 @@
         }, 400);
     });
 
+    // --- MODAL READER LOGIC ---
+    function openArticle(id) {
+        const article = globalNewsData.find(a => a.id == id);
+        if(!article) return;
+
+        // Populate Modal Data
+        const dateObj = new Date(article.published_at || article.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+        
+        document.getElementById('modal-date').innerText = dateObj;
+        document.getElementById('modal-title').innerText = article.title;
+        
+        // Convert line breaks to paragraphs for better reading
+        const rawContent = article.content || article.description || 'No detailed content available.';
+        const formattedContent = rawContent.split('\n').filter(p => p.trim() !== '').map(p => `<p>${p}</p>`).join('');
+        document.getElementById('modal-body').innerHTML = formattedContent;
+
+        // Handle Image
+        const imgEl = document.getElementById('modal-image');
+        const noImgEl = document.getElementById('modal-no-image');
+        if(article.image_url) {
+            imgEl.src = article.image_url;
+            imgEl.classList.remove('hidden');
+            noImgEl.classList.add('hidden');
+        } else {
+            imgEl.src = '';
+            imgEl.classList.add('hidden');
+            noImgEl.classList.remove('hidden');
+        }
+
+        // Show Modal with Animation
+        const modal = document.getElementById('article-modal');
+        const modalContent = document.getElementById('article-modal-content');
+        
+        modal.classList.remove('hidden');
+        // Small delay to allow display block to render before animating opacity
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            modalContent.classList.remove('translate-y-10');
+            modalContent.classList.add('translate-y-0');
+        }, 10);
+        
+        // Prevent body scrolling
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeArticle() {
+        const modal = document.getElementById('article-modal');
+        const modalContent = document.getElementById('article-modal-content');
+        
+        // Animate Out
+        modal.classList.add('opacity-0');
+        modalContent.classList.remove('translate-y-0');
+        modalContent.classList.add('translate-y-10');
+        
+        // Hide after animation finishes
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restore body scrolling
+            // Reset scroll position of the modal for the next time it opens
+            modalContent.querySelector('.overflow-y-auto').scrollTop = 0;
+        }, 300);
+    }
+
+    // Close modal on background click or Escape key
+    document.getElementById('article-modal').addEventListener('click', function(e) {
+        if (e.target === this) { closeArticle(); }
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !document.getElementById('article-modal').classList.contains('hidden')) { closeArticle(); }
+    });
+
     document.addEventListener("DOMContentLoaded", () => {
       // Mobile Menu Logic
       const mobileBtn = document.getElementById('mobile-menu-btn');
@@ -303,8 +419,7 @@
         mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
       }
 
-      // Newsroom Logic
-      let allNews = [];
+      // Newsroom Rendering Logic
       const newsGrid = document.getElementById('news-grid');
       const featuredContainer = document.getElementById('featured-article-container');
       const searchInput = document.getElementById('news-search');
@@ -319,7 +434,7 @@
             : `<div class="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400 font-bold uppercase tracking-widest text-[10px]">No Image Provided</div>`;
 
           return `
-          <div class="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col group">
+          <div class="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer" onclick="openArticle('${article.id}')">
               <div class="h-48 overflow-hidden bg-[#111827] relative">
                   ${imgHTML}
               </div>
@@ -328,16 +443,16 @@
                   <h3 class="text-xl font-bold text-[#111827] leading-tight mb-4 tracking-tight">${article.title}</h3>
                   <p class="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-6 flex-grow">${article.content || article.description || 'View the full press release for detailed information regarding this update.'}</p>
                   <div class="mt-auto border-t border-gray-100 pt-4">
-                      <a href="/media/newsroom/article?id=${article.id}" class="inline-flex items-center text-[#111827] font-bold text-xs uppercase tracking-widest hover:text-[#D71A21] transition-colors group-hover:text-[#D71A21]">
+                      <span class="inline-flex items-center text-[#111827] font-bold text-xs uppercase tracking-widest group-hover:text-[#D71A21] transition-colors">
                           Read Full Release <i class="fa-solid fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
-                      </a>
+                      </span>
                   </div>
               </div>
           </div>
           `;
       }
 
-      // Render Logic
+      // Render Function
       function renderNews(newsArray, isSearch = false) {
           countLabel.innerText = `${newsArray.length} Article${newsArray.length !== 1 ? 's' : ''}`;
 
@@ -354,7 +469,7 @@
 
           let gridHTML = '';
 
-          // If searching, show all as grid. If default, show 1st as featured.
+          // If not searching, show 1st article as featured.
           if (!isSearch && newsArray.length > 0) {
               const featured = newsArray[0];
               const dateObj = new Date(featured.published_at || featured.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
@@ -364,19 +479,19 @@
                 : `<div class="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400 font-bold uppercase tracking-widest text-xs">Featured Image</div>`;
 
               featuredContainer.innerHTML = `
-              <div class="bg-white rounded-2xl border border-gray-200 shadow-md overflow-hidden flex flex-col lg:flex-row group">
+              <div class="bg-white rounded-2xl border border-gray-200 shadow-md overflow-hidden flex flex-col lg:flex-row group cursor-pointer" onclick="openArticle('${featured.id}')">
                   <div class="lg:w-1/2 h-64 lg:h-auto overflow-hidden bg-[#111827] relative">
                       ${imgHTML}
                   </div>
                   <div class="lg:w-1/2 p-8 md:p-12 flex flex-col justify-center">
                       <div class="inline-block bg-red-50 text-[#D71A21] px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest mb-4 w-max border border-red-100">Featured Release</div>
                       <span class="text-gray-500 font-bold text-xs uppercase tracking-widest mb-2">${dateObj}</span>
-                      <h2 class="text-3xl md:text-4xl font-bold text-[#111827] leading-tight mb-6 tracking-tight">${featured.title}</h2>
+                      <h2 class="text-3xl md:text-4xl font-bold text-[#111827] leading-tight mb-6 tracking-tight group-hover:text-[#D71A21] transition-colors">${featured.title}</h2>
                       <p class="text-gray-600 text-sm md:text-base leading-relaxed line-clamp-4 mb-8">${featured.content || featured.description || 'View the full press release for detailed information regarding this update.'}</p>
                       <div>
-                          <a href="/media/newsroom/article?id=${featured.id}" class="inline-flex items-center justify-center bg-[#111827] hover:bg-[#D71A21] text-white px-6 py-3 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-sm">
-                              Read Full Release <i class="fa-solid fa-arrow-right ml-2"></i>
-                          </a>
+                          <span class="inline-flex items-center justify-center bg-[#111827] group-hover:bg-[#D71A21] text-white px-6 py-3 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-sm">
+                              Open Article <i class="fa-solid fa-arrow-right ml-2"></i>
+                          </span>
                       </div>
                   </div>
               </div>
@@ -409,12 +524,11 @@
           );
 
           try {
-            // Assume we pull active news, descending by publish date
             const { data } = await supabase.from('egr_news').select('*').eq('is_active', true).order('published_at', { ascending: false });
             
             if (data) {
-                allNews = data;
-                renderNews(allNews, false);
+                globalNewsData = data; // Store globally for the modal
+                renderNews(globalNewsData, false);
             }
           } catch(e) {
               newsGrid.innerHTML = `
@@ -433,7 +547,7 @@
           
           if(query.length > 0) {
               clearSearchBtn.classList.remove('hidden');
-              const filtered = allNews.filter(n => {
+              const filtered = globalNewsData.filter(n => {
                   const title = (n.title || '').toLowerCase();
                   const content = (n.content || n.description || '').toLowerCase();
                   return title.includes(query) || content.includes(query);
@@ -441,7 +555,7 @@
               renderNews(filtered, true); // True means it renders entirely in grid
           } else {
               clearSearchBtn.classList.add('hidden');
-              renderNews(allNews, false); // Resets to featured layout
+              renderNews(globalNewsData, false); // Resets to featured layout
           }
       });
 
@@ -449,7 +563,7 @@
       clearSearchBtn.addEventListener('click', () => {
           searchInput.value = '';
           clearSearchBtn.classList.add('hidden');
-          renderNews(allNews, false);
+          renderNews(globalNewsData, false);
       });
 
     });
