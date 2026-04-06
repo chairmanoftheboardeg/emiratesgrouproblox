@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subsidiaries Overview | Emirates Group Roblox</title>
+  
+  <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" id="favicon" />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+    
+    body { font-family: 'Inter', sans-serif; background-color: #f9fafb; scroll-behavior: smooth; overflow-x: hidden; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+    
+    /* Cinematic Text Fill Loader */
+    #egr-loader {
+        position: fixed; inset: 0; z-index: 9999;
+        background-color: #111827; 
+        display: flex; align-items: center; justify-content: center;
+        transition: opacity 0.8s ease;
+    }
+    .loader-content { display: flex; flex-direction: column; align-items: flex-end; }
+    .loader-text-wrapper {
+        position: relative; font-family: 'Inter', sans-serif; font-weight: 900;
+        letter-spacing: -2px; line-height: 1; text-transform: capitalize;
+    }
+    .loader-base-text { color: #374151; }
+    .loader-fill-text {
+        position: absolute; left: 0; top: 0; color: #ffffff; 
+        overflow: hidden; white-space: nowrap; width: 0%; transition: width 0.1s linear;
+    }
+    .loader-info { color: #9CA3AF; font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-top: 8px; }
+    
+    .zoom-through { animation: zoomOutEffect 1.2s cubic-bezier(0.7, 0, 0.2, 1) forwards; }
+    @keyframes zoomOutEffect {
+        0% { transform: scale(1); opacity: 1; }
+        40% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(40); opacity: 0; filter: blur(5px); }
+    }
+
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #D71A21; border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: #b5151c; }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen relative">
+
+  <div id="egr-loader">
+    <div class="loader-content" id="loader-animate-container">
+      <div class="loader-text-wrapper text-4xl md:text-7xl lg:text-8xl">
+        <div class="loader-base-text">Emirates Group Roblox</div>
+        <div class="loader-fill-text" id="loader-fill">Emirates Group Roblox</div>
+      </div>
+      <div class="loader-info lowercase">loading... <span id="loader-perc">0</span>%</div>
+    </div>
+  </div>
+
+  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-40 border-b-4 border-[#D71A21]">
+    <a href="/" class="flex items-center group">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox Logo" class="h-10 md:h-12 object-contain group-hover:opacity-80 transition-opacity">
+    </a>
+
+    <button id="mobile-menu-btn" class="lg:hidden text-gray-800 text-2xl focus:outline-none">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="hidden lg:flex space-x-6 text-sm font-bold items-center text-gray-700">
+      <a href="/" class="hover:text-[#D71A21] transition-colors">Home</a>
+      
+      <div class="relative group py-2">
+        <button class="text-[#D71A21] transition-colors flex items-center">
+          About EGR <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/about/vision/" class="block px-5 py-3 hover:bg-gray-50 border-b">Vision, Mission & Story</a>
+          <a href="/about/leadership/" class="block px-5 py-3 hover:bg-gray-50 border-b">Executive Leadership</a>
+          <a href="/about/governance/" class="block px-5 py-3 hover:bg-gray-50 border-b">Corporate Governance</a>
+          <a href="/about/innovation/" class="block px-5 py-3 hover:bg-gray-50 border-b">Innovation & Future</a>
+          <a href="/about/affiliates/" class="block px-5 py-3 hover:bg-gray-50">Affiliates & Partners</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="text-[#D71A21] transition-colors flex items-center">
+          Our Network <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="https://directory.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Network Directory</a>
+          <a href="/network/subsidiaries/" class="block px-5 py-2 bg-gray-50 text-[#D71A21] border-b text-sm font-extrabold">Subsidiaries Overview</a>
+          
+          <p class="px-5 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold bg-gray-50">Aviation</p>
+          <a href="https://ek.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Emirates Airline</a>
+          <a href="https://fz.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Fly Dubai</a>
+          <a href="/network/executive/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Emirates Executive</a>
+          
+          <p class="px-5 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold bg-gray-50">Corporate & Leisure</p>
+          <a href="/network/dnata/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">dnata</a>
+          <a href="/network/holidays/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Emirates Holidays</a>
+          
+          <p class="px-5 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold bg-gray-50">Education</p>
+          <a href="https://eau.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 text-sm">EGRAU</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Operations <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/flights/" class="block px-5 py-3 hover:bg-gray-50 border-b">Live Flight Radar</a>
+          <a href="/operations/database/" class="block px-5 py-3 hover:bg-gray-50 text-[#D71A21]">Ban Database</a>
+        </div>
+      </div>
+      
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Media <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/media/newsroom/" class="block px-5 py-3 hover:bg-gray-50 border-b">Newsroom</a>
+          <a href="/media/gallery/" class="block px-5 py-3 hover:bg-gray-50">Media Gallery</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Help Center <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/help/" class="block px-5 py-3 hover:bg-gray-50 border-b">Contact Us</a>
+          <a href="/help/feedback/" class="block px-5 py-3 hover:bg-gray-50 border-b">Passenger Experience</a>
+          <a href="/help/report-issue/" class="block px-5 py-3 hover:bg-gray-50 text-[#D71A21]">Report an Issue</a>
+        </div>
+      </div>
+
+      <a href="https://careers.emiratesgrouproblox.link" target="_blank" class="bg-[#D71A21] hover:bg-red-800 text-white px-5 py-2 rounded transition-colors shadow-md flex items-center uppercase tracking-widest text-xs">
+        Careers <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-[10px]"></i>
+      </a>
+    </div>
+  </nav>
+
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#111827] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col lg:hidden">
+    <div class="p-6 flex justify-between items-center border-b border-gray-800 bg-white">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Logo" class="h-10 object-contain">
+      <button id="mobile-menu-close" class="text-gray-800 text-3xl focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <div class="p-6 overflow-y-auto space-y-8 text-white flex-grow bg-[#111827]">
+      <a href="/" class="block text-xl font-bold hover:text-[#D71A21] transition-colors">Home</a>
+      
+      <div>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Our Network</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
+          <a href="https://directory.emiratesgrouproblox.link" target="_blank" class="block hover:text-white transition-colors">Network Directory</a>
+          <a href="/network/subsidiaries/" class="block text-[#D71A21] font-bold">Subsidiaries Overview</a>
+          <a href="https://ek.emiratesgrouproblox.link" target="_blank" class="block hover:text-white transition-colors mt-2">Emirates Airline</a>
+          <a href="https://fz.emiratesgrouproblox.link" target="_blank" class="block hover:text-white transition-colors">Fly Dubai</a>
+          <a href="/network/executive/" class="block hover:text-white transition-colors">Emirates Executive</a>
+          <a href="/network/dnata/" class="block hover:text-white transition-colors">dnata</a>
+          <a href="/network/holidays/" class="block hover:text-white transition-colors">Emirates Holidays</a>
+          <a href="https://eau.emiratesgrouproblox.link" target="_blank" class="block hover:text-white transition-colors">EGRAU</a>
+        </div>
+      </div>
+
+      <a href="https://careers.emiratesgrouproblox.link" target="_blank" class="block bg-[#D71A21] text-white text-center py-4 rounded font-bold uppercase tracking-widest mt-6 hover:bg-red-800 transition-colors">
+        Careers Portal
+      </a>
+    </div>
+  </div>
+
+  <header class="relative bg-[#111827] text-white py-24 md:py-32 px-6 overflow-hidden border-b-4 border-[#D71A21]">
+    <div class="absolute inset-0 bg-[#111827]/80 z-10"></div>
+    <div class="absolute inset-0 z-0 bg-cover bg-center opacity-30" style="background-image: url('https://i.ibb.co/BVnGQR6m/EGR-Headquarters-Pic.png'); background-attachment: fixed;"></div>
+    
+    <div class="relative z-20 max-w-5xl mx-auto text-center">
+      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Corporate Network</span>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight uppercase tracking-tighter drop-shadow-xl">Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D71A21] to-red-600">Subsidiaries.</span></h1>
+      <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">Explore the specialized divisions, airlines, and operational branches that make up the vast Emirates Group Roblox corporate portfolio.</p>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+
+    <section class="py-24 px-6 md:px-12 bg-gray-50 border-b border-gray-200">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-3 block">The EGR Portfolio</span>
+          <h2 class="text-3xl md:text-5xl font-bold text-[#111827] uppercase tracking-tight">Subsidiaries Overview</h2>
+          <p class="text-gray-500 max-w-2xl mx-auto mt-4 text-sm leading-relaxed">Emirates Group Roblox is more than a virtual airline. We are a massive corporate holding company operating a wide array of specialized services, from luxury charters to ground logistics.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+            
+            <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col p-8 group hover:-translate-y-1 transition-transform duration-300">
+                <div class="h-28 flex items-center justify-center mb-8">
+                    <img src="https://i.ibb.co/84g34ff6/Emirates-banner-logo.jpg" alt="Emirates Logo" class="max-h-full max-w-[150px] object-contain">
+                </div>
+                <div class="text-center flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-[#111827] mb-1 uppercase tracking-widest">Emirates</h3>
+                    <p class="text-xs font-semibold text-[#D71A21] mb-6 uppercase tracking-widest">Flagship Carrier</p>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-8 flex-grow">The flagship airline of Emirates Group Roblox, delivering a premium and immersive flight experience. Focused on realism, professionalism, and high-quality service, Emirates connects the community through well-organized operations, events, and a strong aviation standard within PTFS.</p>
+                    <div class="flex justify-center gap-3">
+                        <a href="https://ek.emiratesgrouproblox.link" target="_blank" class="bg-[#111827] hover:bg-[#D71A21] text-white text-xs font-bold py-3 px-6 rounded-full transition-colors w-full shadow-md uppercase tracking-widest">Access Hub <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col p-8 group hover:-translate-y-1 transition-transform duration-300">
+                <div class="h-28 flex items-center justify-center mb-8">
+                    <img src="https://i.ibb.co/nshrfWFP/Fly-Dubai-Blue-Logo.png" alt="Fly Dubai Logo" class="max-h-full max-w-[150px] object-contain">
+                </div>
+                <div class="text-center flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-[#111827] mb-1 uppercase tracking-widest">Fly Dubai</h3>
+                    <p class="text-xs font-semibold text-[#D71A21] mb-6 uppercase tracking-widest">Regional Airline Partner</p>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-8 flex-grow">A fast-growing low-cost carrier designed to provide efficient, accessible, and frequent flights. Fly Dubai focuses on simplicity and connectivity, allowing more members to engage in aviation while maintaining reliable and structured operations.</p>
+                    <div class="flex justify-center gap-3">
+                        <a href="https://fz.emiratesgrouproblox.link" target="_blank" class="bg-[#111827] hover:bg-[#D71A21] text-white text-xs font-bold py-3 px-6 rounded-full transition-colors w-full shadow-md uppercase tracking-widest">Access Hub <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col p-8 group hover:-translate-y-1 transition-transform duration-300">
+                <div class="h-28 flex items-center justify-center mb-8">
+                    <img src="https://emiratesgrouproblox.link/images/ekclogo.png?v=1" alt="Emirates SkyCargo Logo" class="max-h-full max-w-[150px] object-contain">
+                </div>
+                <div class="text-center flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-[#111827] mb-1 uppercase tracking-widest">Emirates SkyCargo</h3>
+                    <p class="text-xs font-semibold text-[#D71A21] mb-6 uppercase tracking-widest">Global Logistics</p>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-8 flex-grow">The dedicated cargo division of Emirates Group Roblox, specializing in the transportation of goods across the PTFS network. Focused on efficiency, reliability, and realism, Emirates SkyCargo manages freight operations, logistics coordination, and cargo events.</p>
+                    <div class="flex justify-center gap-3">
+                        <a href="https://emiratesgrouproblox.link/network/extra" target="_blank" class="bg-[#111827] hover:bg-[#D71A21] text-white text-xs font-bold py-3 px-6 rounded-full transition-colors w-full shadow-md uppercase tracking-widest">Access Hub <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col p-8 group hover:-translate-y-1 transition-transform duration-300">
+                <div class="h-28 flex items-center justify-center mb-8">
+                    <img src="https://logo-teka.com/wp-content/uploads/2025/11/dnata-logo.png" alt="dnata Logo" class="max-h-full max-w-[150px] object-contain">
+                </div>
+                <div class="text-center flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-[#111827] mb-1 uppercase tracking-widest">dnata</h3>
+                    <p class="text-xs font-semibold text-[#D71A21] mb-6 uppercase tracking-widest">Airport Operations</p>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-8 flex-grow">The core of ground operations within Emirates Group Roblox, ensuring smooth and realistic airport functionality. dnata manages ground handling, logistics, and operational support, playing a vital role in maintaining efficiency across all flights and services.</p>
+                    <div class="flex justify-center gap-3">
+                        <a href="https://emiratesgrouproblox.link/network/dnata" target="_blank" class="bg-[#111827] hover:bg-[#D71A21] text-white text-xs font-bold py-3 px-6 rounded-full transition-colors w-full shadow-md uppercase tracking-widest">Access Hub <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col p-8 group hover:-translate-y-1 transition-transform duration-300">
+                <div class="h-28 flex items-center justify-center mb-8">
+                    <img src="https://s3-eu-west-1.amazonaws.com/tpd/logos/6256c5c00b03012e0f9f9b8d/0x0.png" alt="Emirates Holidays Logo" class="max-h-full max-w-[150px] object-contain">
+                </div>
+                <div class="text-center flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-[#111827] mb-1 uppercase tracking-widest">Emirates Holidays</h3>
+                    <p class="text-xs font-semibold text-[#D71A21] mb-6 uppercase tracking-widest">Travel & Leisure</p>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-8 flex-grow">A virtual travel and experience platform offering curated events, destination-based activities, and engaging community experiences. Emirates Holidays enhances immersion by bringing the concept of travel beyond just flights.</p>
+                    <div class="flex justify-center gap-3">
+                        <a href="https://emiratesgrouproblox.link/network/holidays" target="_blank" class="bg-[#111827] hover:bg-[#D71A21] text-white text-xs font-bold py-3 px-6 rounded-full transition-colors w-full shadow-md uppercase tracking-widest">Access Hub <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col p-8 group hover:-translate-y-1 transition-transform duration-300">
+                <div class="h-28 flex items-center justify-center mb-8">
+                    <img src="https://www.flydubai.com/System/img/EK_en.png" alt="Emirates Skywards Logo" class="max-h-full max-w-[150px] object-contain filter invert">
+                </div>
+                <div class="text-center flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-[#111827] mb-1 uppercase tracking-widest">Emirates Skywards</h3>
+                    <p class="text-xs font-semibold text-[#D71A21] mb-6 uppercase tracking-widest">Loyalty Program</p>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-8 flex-grow">The official loyalty program rewarding members for their activity and engagement. Through points, ranks, and exclusive perks, Emirates Skywards encourages continued participation and strengthens community involvement.</p>
+                    <div class="flex justify-center gap-3">
+                        <a href="https://emiratesgrouproblox.link/network/extra" target="_blank" class="bg-[#111827] hover:bg-[#D71A21] text-white text-xs font-bold py-3 px-6 rounded-full transition-colors w-full shadow-md uppercase tracking-widest">Access Hub <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col p-8 group hover:-translate-y-1 transition-transform duration-300">
+                <div class="h-28 flex items-center justify-center mb-8">
+                    <img src="https://luxurylifestyleawards.com/wp-content/uploads/2019/12/logo_ek.png" alt="Emirates Executive Logo" class="max-h-full max-w-[150px] object-contain filter invert">
+                </div>
+                <div class="text-center flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-[#111827] mb-1 uppercase tracking-widest">Emirates Executive</h3>
+                    <p class="text-xs font-semibold text-[#D71A21] mb-6 uppercase tracking-widest">VIP Charters</p>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-8 flex-grow">A luxury private aviation division offering exclusive and personalized flight experiences. Focused on high-end service and attention to detail, Emirates Executive delivers a more elite and tailored side of virtual aviation.</p>
+                    <div class="flex justify-center gap-3">
+                        <a href="https://emiratesgrouproblox.link/network/executive" target="_blank" class="bg-[#111827] hover:bg-[#D71A21] text-white text-xs font-bold py-3 px-6 rounded-full transition-colors w-full shadow-md uppercase tracking-widest">Access Hub <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col p-8 group hover:-translate-y-1 transition-transform duration-300">
+                <div class="h-28 flex items-center justify-center mb-8">
+                    <img src="https://i.ibb.co/bjwpmKQw/emiratesgroup-security-logo.jpg" alt="Emirates Group Security Logo" class="max-h-full max-w-[150px] object-contain">
+                </div>
+                <div class="text-center flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-[#111827] mb-1 uppercase tracking-widest">Emirates Group Security</h3>
+                    <p class="text-xs font-semibold text-[#D71A21] mb-6 uppercase tracking-widest">Compliance & Safety</p>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-8 flex-grow">Dedicated to maintaining safety, order, and compliance across all platforms. This division enforces rules, protects community members, and ensures a secure and respectful environment within the organization.</p>
+                    <div class="flex justify-center gap-3">
+                        <a href="https://emiratesgrouproblox.link/network/executive" target="_blank" class="bg-[#111827] hover:bg-[#D71A21] text-white text-xs font-bold py-3 px-6 rounded-full transition-colors w-full shadow-md uppercase tracking-widest">Access Hub <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col p-8 group hover:-translate-y-1 transition-transform duration-300">
+                <div class="h-28 flex items-center justify-center mb-8">
+                    <img src="https://i.ibb.co/Q3YPcX5M/j244-19-webamends-logo-resizing-767px-wide-v1-eau-removebg-preview.png" alt="Emirates Aviation University Logo" class="max-h-full max-w-[150px] object-contain filter invert">
+                </div>
+                <div class="text-center flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-[#111827] mb-1 uppercase tracking-widest">Emirates Aviation University</h3>
+                    <p class="text-xs font-semibold text-[#D71A21] mb-6 uppercase tracking-widest">Education & Training</p>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-8 flex-grow">A structured training and development institution focused on educating members in aviation roles. It provides guidance, training programs, and skill development to prepare the next generation of pilots, crew, and staff.</p>
+                    <div class="flex justify-center gap-3">
+                        <a href="https://eau.emiratesgrouproblox.link" target="_blank" class="bg-[#111827] hover:bg-[#D71A21] text-white text-xs font-bold py-3 px-6 rounded-full transition-colors w-full shadow-md uppercase tracking-widest">Access Hub <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col p-8 group hover:-translate-y-1 transition-transform duration-300">
+                <div class="h-28 flex items-center justify-center mb-8">
+                    <img src="https://i.ibb.co/cKYfp5dX/Capture.png" alt="Emirates Airline Foundation Logo" class="max-h-full max-w-[150px] object-contain">
+                </div>
+                <div class="text-center flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-[#111827] mb-1 uppercase tracking-widest">Emirates Airline Foundation</h3>
+                    <p class="text-xs font-semibold text-[#D71A21] mb-6 uppercase tracking-widest">Community Impact</p>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-8 flex-grow">A community-driven initiative focused on giving back and creating positive impact. Through events and projects, the foundation promotes support, inclusivity, and engagement within the virtual environment.</p>
+                    <div class="flex justify-center gap-3">
+                        <a href="https://emiratesgrouproblox.link/network/extra" target="_blank" class="bg-[#111827] hover:bg-[#D71A21] text-white text-xs font-bold py-3 px-6 rounded-full transition-colors w-full shadow-md uppercase tracking-widest">Access Hub <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col p-8 group hover:-translate-y-1 transition-transform duration-300">
+                <div class="h-28 flex items-center justify-center mb-8">
+                    <img src="https://i.ibb.co/W49N89G3/emirates-square-removebg-preview.png" alt="Emirates Investors Logo" class="max-h-full max-w-[150px] object-contain">
+                </div>
+                <div class="text-center flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-[#111827] mb-1 uppercase tracking-widest">Emirates Investors</h3>
+                    <p class="text-xs font-semibold text-[#D71A21] mb-6 uppercase tracking-widest">Strategic Growth</p>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-8 flex-grow">The financial and strategic branch responsible for partnerships, investments, and long-term growth. Emirates Investors supports expansion and innovation across the group’s operations.</p>
+                    <div class="flex justify-center gap-3">
+                        <a href="https://emiratesgrouproblox.link/network/extra" target="_blank" class="bg-[#111827] hover:bg-[#D71A21] text-white text-xs font-bold py-3 px-6 rounded-full transition-colors w-full shadow-md uppercase tracking-widest">Access Hub <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col p-8 group hover:-translate-y-1 transition-transform duration-300">
+                <div class="h-28 flex items-center justify-center mb-8">
+                    <img src="https://i.ibb.co/W4GzT1Zc/Nova-Alliance-Logo.png" alt="Nova Alliance Logo" class="max-h-full max-w-[150px] object-contain">
+                </div>
+                <div class="text-center flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-[#111827] mb-1 uppercase tracking-widest">Nova Alliance</h3>
+                    <p class="text-xs font-semibold text-[#D71A21] mb-6 uppercase tracking-widest">Global Network</p>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-8 flex-grow">A global, multi-industry alliance uniting organizations across Roblox into one powerful and connected network. Built to go beyond traditional partnerships, providing opportunities for cross-organization events and strategic collaborations.</p>
+                    <div class="flex justify-center gap-3">
+                        <a href="https://nova-alliance.emiratesgrouproblox.link" target="_blank" class="bg-[#111827] hover:bg-[#D71A21] text-white text-xs font-bold py-3 px-6 rounded-full transition-colors w-full shadow-md uppercase tracking-widest">Access Hub <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-[#111827] text-white py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
+      <div class="md:col-span-2">
+        <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest">Emirates Group Roblox</h3>
+        <p class="text-sm text-gray-400 max-w-md mb-8 leading-relaxed">The premier virtual aviation organization on the Roblox platform. Setting the standard for structural perfection and digital realism.</p>
+        
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2 inline-block">Connect With Us</h4>
+        <div class="flex flex-wrap items-center gap-5 text-2xl text-gray-400 mt-2">
+          <a href="https://discord.gg/nDAZ3p475V7" target="_blank" class="hover:text-[#5865F2] hover:scale-110 transition-all duration-300" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300 flex items-center" aria-label="Roblox">
+            <svg class="w-[1em] h-[1em] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.445 0L0 20.457l18.555 3.543L24 3.543 5.445 0zm10.125 14.596l-4.102-.782-.782-4.102 4.102.782.782 4.102z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] hover:scale-110 transition-all duration-300" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] hover:scale-110 transition-all duration-300" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] hover:scale-110 transition-all duration-300" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] hover:scale-110 transition-all duration-300" aria-label="Trello"><i class="fa-brands fa-trello"></i></a>
+          <a href="https://www.linkedin.com/company/emirates-group-roblox-vision2026" target="_blank" class="hover:text-[#0A66C2] hover:scale-110 transition-all duration-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">EGR Network</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://ek.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Emirates Airline</a></li>
+          <li><a href="https://fz.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Fly Dubai</a></li>
+          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Careers Portal</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Tyler Nicholas Group</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> TNG Hub</a></li>
+          <li><a href="https://tyler.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> The Founder</a></li>
+          <li><a href="https://payhip.com/FalconLtd" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> Falcon LTD</a></li>
+          <li><a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> BlueWave Digital</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs text-gray-500 font-bold tracking-wider uppercase text-center md:text-left gap-4">
+      <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
+      <p>A proud subsidiary of the <a href="https://tylernicholasgroup.com" class="text-gray-300 hover:text-white transition-colors">Tyler Nicholas Group</a> Network</p>
+    </div>
+  </footer>
+
+  <script>
+    // --- ANIMATED TEXT LOADER LOGIC ---
+    let perc = 0;
+    const percEl = document.getElementById('loader-perc');
+    const fillEl = document.getElementById('loader-fill');
+    const loader = document.getElementById('egr-loader');
+    const animateContainer = document.getElementById('loader-animate-container');
+    
+    const progressInterval = setInterval(() => {
+        perc += Math.floor(Math.random() * 8) + 2; 
+        if (perc >= 99) perc = 99; 
+        percEl.innerText = perc;
+        fillEl.style.width = perc + '%';
+    }, 120);
+
+    window.addEventListener('load', () => {
+        clearInterval(progressInterval);
+        percEl.innerText = '100';
+        fillEl.style.width = '100%';
+        
+        setTimeout(() => {
+            animateContainer.classList.add('zoom-through');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 800);
+            }, 600);
+        }, 400);
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Mobile Menu Logic
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileClose = document.getElementById('mobile-menu-close');
+      const mobileMenu = document.getElementById('mobile-menu-overlay');
+      if(mobileBtn && mobileClose && mobileMenu) {
+        mobileBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+        mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+      }
+    });
+  </script>
+</body>
+</html>
