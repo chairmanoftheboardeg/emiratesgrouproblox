@@ -49,8 +49,9 @@
     ::-webkit-scrollbar-thumb { background: #D71A21; border-radius: 5px; }
     ::-webkit-scrollbar-thumb:hover { background: #b5151c; }
     
+    /* Input Styling - Clean & Professional */
     .input-field {
-        width: 100%; background-color: #f9fafb; border: 2px solid #e5e7eb; border-radius: 0.5rem; padding: 0.75rem 1rem; color: #111827; font-size: 0.875rem; font-weight: 600; transition: all 0.3s;
+        width: 100%; background-color: #f9fafb; border: 2px solid #e5e7eb; border-radius: 0.5rem; padding: 0.875rem 1rem; color: #111827; font-size: 0.875rem; font-weight: 600; transition: all 0.3s;
     }
     .input-field:focus { outline: none; border-color: #111827; background-color: #ffffff; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
     .input-field::placeholder { color: #9CA3AF; font-weight: 400; }
@@ -127,9 +128,6 @@
       <a href="/help/" class="bg-gray-100 hover:bg-gray-200 text-[#111827] px-5 py-2 rounded transition-colors shadow-sm flex items-center uppercase tracking-widest text-xs border border-gray-200 font-bold">
         Sign In <i class="fa-solid fa-arrow-right-to-bracket ml-2 text-[10px]"></i>
       </a>
-      <a href="/myportal/index.html" class="bg-[#111827] hover:bg-[#D71A21] text-white px-5 py-2 rounded transition-colors shadow-md flex items-center uppercase tracking-widest text-xs">
-        My Portal <i class="fa-solid fa-user ml-2 text-[10px]"></i>
-      </a>
     </div>
   </nav>
 
@@ -159,40 +157,36 @@
 
         <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden flex flex-col md:flex-row">
             
-            <div class="w-full md:w-5/12 bg-[#111827] p-8 md:p-12 flex flex-col justify-center relative overflow-hidden">
-                <div class="absolute top-0 right-0 -mr-16 -mt-16 text-white/5 pointer-events-none">
-                    <i class="fa-solid fa-passport text-[250px]"></i>
-                </div>
+            <div class="w-full md:w-5/12 bg-[#111827] p-8 md:p-12 flex flex-col justify-between relative overflow-hidden">
                 <div class="relative z-10">
                     <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Corporate Onboarding</span>
-                    <h2 class="text-3xl font-serif font-bold text-white uppercase tracking-tight mb-4">Member <br>Registration.</h2>
-                    <p class="text-sm text-gray-400 leading-relaxed mb-8">Creating an Emirates Group Roblox account establishes your official identity across our entire corporate network. This single unified profile grants you access to:</p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-white uppercase tracking-tight mb-6 leading-tight">Member <br>Registration.</h2>
+                    <p class="text-sm text-gray-400 leading-relaxed mb-10">Creating an Emirates Group Roblox account establishes your official identity across our entire corporate network. This single unified profile grants you access to core systems.</p>
                     
-                    <ul class="space-y-5 text-sm text-gray-300 font-medium">
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-headset text-[#D71A21] mt-1 mr-4"></i> 
-                            <div><strong class="text-white block mb-0.5">Help & Support Desk</strong> Submit tickets and appeal requests.</div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-plane-up text-[#D71A21] mt-1 mr-4"></i> 
-                            <div><strong class="text-white block mb-0.5">My Portal Dashboard</strong> Track flight attendance and schedules.</div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-star text-[#D71A21] mt-1 mr-4"></i> 
-                            <div><strong class="text-white block mb-0.5">Emirates Skywards</strong> View and manage loyalty points.</div>
-                        </li>
-                    </ul>
+                    <div class="space-y-6 text-sm text-gray-300 font-medium border-t border-gray-800 pt-8">
+                        <div>
+                            <strong class="text-white block mb-1 uppercase tracking-widest text-xs">Help & Support Desk</strong>
+                            Submit tickets and appeal requests directly to staff.
+                        </div>
+                        <div>
+                            <strong class="text-white block mb-1 uppercase tracking-widest text-xs">My Portal Dashboard</strong>
+                            Track your personal flight attendance and schedules.
+                        </div>
+                        <div>
+                            <strong class="text-white block mb-1 uppercase tracking-widest text-xs">Emirates Skywards</strong>
+                            View and manage your loyalty points balance.
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div id="registration-panel" class="w-full md:w-7/12 p-8 md:p-10 lg:p-12 bg-white flex flex-col justify-center relative transition-all duration-500">
-                <div class="mb-8">
-                    <h3 class="text-2xl font-bold text-[#111827] mb-2">Create Your Account</h3>
-                    <p class="text-sm text-gray-500 font-semibold">Please provide accurate details. Discord IDs are required for secure verification.</p>
+                <div class="mb-8 border-b border-gray-100 pb-6">
+                    <h3 class="text-2xl font-bold text-[#111827] mb-2 tracking-tight">Create Your Account</h3>
+                    <p class="text-sm text-gray-500 font-semibold">Please provide accurate details. A numerical Discord ID is required for secure system verification.</p>
                 </div>
                 
-                <div id="auth-alert" class="hidden mb-6 p-4 rounded text-xs font-bold uppercase tracking-widest flex items-start">
-                    <i id="auth-alert-icon" class="fa-solid mr-3 text-lg mt-0.5"></i> 
+                <div id="auth-alert" class="hidden mb-6 p-4 rounded text-xs font-bold uppercase tracking-widest border">
                     <span id="auth-alert-text" class="leading-relaxed"></span>
                 </div>
 
@@ -212,71 +206,49 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
                             <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Roblox Username</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fa-solid fa-cube text-gray-400"></i>
-                                </div>
-                                <input type="text" id="roblox-user" class="input-field pl-9" placeholder="RobloxUser123" required>
-                            </div>
+                            <input type="text" id="roblox-user" class="input-field" placeholder="RobloxUser123" required>
                         </div>
                         <div>
                             <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Password</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fa-solid fa-lock text-gray-400"></i>
-                                </div>
-                                <input type="password" id="password" class="input-field pl-9" placeholder="••••••••" required minlength="6">
-                            </div>
+                            <input type="password" id="password" class="input-field" placeholder="••••••••" required minlength="6">
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 border-t border-gray-100 pt-5 mt-2">
                         <div>
-                            <label class="block text-[10px] font-bold text-[#5865F2] uppercase tracking-widest mb-2">Discord Username</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fa-brands fa-discord text-[#5865F2]"></i>
-                                </div>
-                                <input type="text" id="discord-user" class="input-field pl-9 border-[#5865F2]/20 focus:border-[#5865F2]" placeholder="discordname" required>
-                            </div>
+                            <label class="block text-[10px] font-bold text-[#111827] uppercase tracking-widest mb-2">Discord Username</label>
+                            <input type="text" id="discord-user" class="input-field border-gray-300" placeholder="username" required>
                         </div>
                         <div>
-                            <label class="block text-[10px] font-bold text-[#5865F2] uppercase tracking-widest mb-2 flex justify-between">
+                            <label class="block text-[10px] font-bold text-[#111827] uppercase tracking-widest mb-2 flex justify-between">
                                 <span>Discord ID</span>
-                                <a href="https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-" target="_blank" class="text-gray-400 hover:text-[#5865F2]"><i class="fa-regular fa-circle-question"></i></a>
+                                <a href="https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-" target="_blank" class="text-gray-400 hover:text-[#D71A21] underline">Help</a>
                             </label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fa-solid fa-hashtag text-[#5865F2]"></i>
-                                </div>
-                                <input type="text" id="discord-id" class="input-field pl-9 border-[#5865F2]/20 focus:border-[#5865F2]" placeholder="123456789012345678" required>
-                            </div>
-                            <p class="text-[9px] text-gray-400 mt-1.5 font-semibold">Must be your 17-20 digit numerical Snowflake ID.</p>
+                            <input type="text" id="discord-id" class="input-field border-gray-300" placeholder="123456789012345678" required>
+                            <p class="text-[9px] text-gray-400 mt-1.5 font-bold uppercase tracking-widest">17-20 digit Snowflake ID</p>
                         </div>
                     </div>
 
-                    <div class="pt-4">
-                        <button type="submit" id="signup-btn" class="w-full bg-[#111827] hover:bg-[#D71A21] text-white py-3.5 rounded-lg text-sm font-bold uppercase tracking-widest transition-colors shadow-md flex justify-center items-center">
-                            Register Account <i class="fa-solid fa-arrow-right ml-2"></i>
+                    <div class="pt-6">
+                        <button type="submit" id="signup-btn" class="w-full bg-[#111827] hover:bg-[#D71A21] text-white py-4 rounded-lg text-sm font-bold uppercase tracking-widest transition-colors shadow-sm flex justify-center items-center">
+                            Register Account &rarr;
                         </button>
                     </div>
                 </form>
                 
-                <div class="mt-6 text-center">
-                    <p class="text-xs text-gray-500 font-semibold">
-                        Already have a verified account? <a href="/help/" class="text-[#D71A21] font-bold hover:underline">Sign In Here</a>
+                <div class="mt-8 text-center border-t border-gray-100 pt-6">
+                    <p class="text-xs text-gray-500 font-semibold uppercase tracking-widest">
+                        Already have a profile? <a href="/help/" class="text-[#D71A21] font-bold hover:underline ml-1">Sign In Here</a>
                     </p>
                 </div>
             </div>
 
             <div id="success-panel" class="w-full md:w-7/12 p-8 md:p-12 lg:p-16 bg-white flex flex-col justify-center items-center text-center hidden">
-                <div class="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-6">
-                    <i class="fa-solid fa-envelope-circle-check text-4xl text-green-500"></i>
-                </div>
-                <h3 class="text-3xl font-serif font-bold text-[#111827] mb-4">Check Your Inbox</h3>
-                <p class="text-gray-600 leading-relaxed mb-8 max-w-md">We have securely transmitted a confirmation link to your provided email address. You must verify your email to activate your corporate profile before you can sign in to the portal.</p>
-                <div class="space-y-3 w-full max-w-xs mx-auto">
-                    <a href="/help/" class="block w-full bg-[#111827] hover:bg-gray-800 text-white py-3.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-colors shadow-md">
+                <div class="text-[#D71A21] font-serif text-5xl md:text-7xl font-bold mb-6 block">✓</div>
+                <h3 class="text-3xl md:text-4xl font-serif font-bold text-[#111827] mb-6 tracking-tight">Check Your Inbox.</h3>
+                <p class="text-gray-600 leading-relaxed mb-10 max-w-sm text-sm">We have securely transmitted a confirmation link to your provided email address. You must verify your email to activate your corporate profile before accessing the portal.</p>
+                <div class="w-full max-w-xs mx-auto border-t border-gray-200 pt-8">
+                    <a href="/help/" class="block w-full bg-white hover:bg-gray-50 text-[#111827] border border-gray-300 py-3.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-colors shadow-sm">
                         Return to Sign In
                     </a>
                 </div>
@@ -299,26 +271,38 @@
           <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300 flex items-center" aria-label="Roblox">
             <svg class="w-[1em] h-[1em] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.445 0L0 20.457l18.555 3.543L24 3.543 5.445 0zm10.125 14.596l-4.102-.782-.782-4.102 4.102.782.782 4.102z"/></svg>
           </a>
+          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] hover:scale-110 transition-all duration-300" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] hover:scale-110 transition-all duration-300" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] hover:scale-110 transition-all duration-300" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] hover:scale-110 transition-all duration-300" aria-label="Trello"><i class="fa-brands fa-trello"></i></a>
+          <a href="https://www.linkedin.com/company/emirates-group-roblox-vision2026" target="_blank" class="hover:text-[#0A66C2] hover:scale-110 transition-all duration-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
       </div>
-      
+
       <div>
         <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">EGR Network</h4>
         <ul class="space-y-3 text-sm text-gray-400 font-semibold">
           <li><a href="https://ek.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Emirates Airline</a></li>
           <li><a href="https://fz.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Fly Dubai</a></li>
+          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Careers Portal</a></li>
         </ul>
       </div>
+
       <div>
         <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Tyler Nicholas Group</h4>
         <ul class="space-y-3 text-sm text-gray-400 font-semibold">
           <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> TNG Hub</a></li>
+          <li><a href="https://tyler.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> The Founder</a></li>
+          <li><a href="https://payhip.com/FalconLtd" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> Falcon LTD</a></li>
+          <li><a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> BlueWave Digital</a></li>
         </ul>
       </div>
     </div>
     
-    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 text-[10px] md:text-xs text-gray-500 font-bold tracking-wider uppercase text-center md:text-left">
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs text-gray-500 font-bold tracking-wider uppercase text-center md:text-left gap-4">
       <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
+      <p>A proud subsidiary of the <a href="https://tylernicholasgroup.com" class="text-gray-300 hover:text-white transition-colors">Tyler Nicholas Group</a> Network</p>
     </div>
   </footer>
 
@@ -372,23 +356,20 @@
       const signupBtn = document.getElementById('signup-btn');
       const authAlert = document.getElementById('auth-alert');
       const authAlertText = document.getElementById('auth-alert-text');
-      const authAlertIcon = document.getElementById('auth-alert-icon');
 
       const registrationPanel = document.getElementById('registration-panel');
       const successPanel = document.getElementById('success-panel');
 
       function showAlert(message, type) {
-          authAlert.classList.remove('hidden', 'bg-red-50', 'text-[#D71A21]', 'border-red-200', 'bg-yellow-50', 'text-yellow-700', 'border-yellow-200');
-          authAlert.classList.add('border');
+          authAlert.classList.remove('hidden', 'bg-red-50', 'text-[#D71A21]', 'border-red-200', 'bg-gray-100', 'text-gray-700', 'border-gray-200');
           
           if(type === 'error') {
               authAlert.classList.add('bg-red-50', 'text-[#D71A21]', 'border-red-200');
-              authAlertIcon.className = 'fa-solid fa-triangle-exclamation mr-3 text-lg mt-0.5';
+              authAlertText.innerHTML = `<strong>Error:</strong> ${message}`;
           } else {
-              authAlert.classList.add('bg-yellow-50', 'text-yellow-700', 'border-yellow-200');
-              authAlertIcon.className = 'fa-solid fa-circle-info mr-3 text-lg mt-0.5';
+              authAlert.classList.add('bg-gray-100', 'text-gray-700', 'border-gray-200');
+              authAlertText.innerHTML = `<strong>Notice:</strong> ${message}`;
           }
-          authAlertText.innerText = message;
       }
 
       signupForm.addEventListener('submit', async (e) => {
@@ -409,7 +390,7 @@
               return;
           }
 
-          signupBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
+          signupBtn.innerHTML = 'PROCESSING...';
           signupBtn.disabled = true;
           authAlert.classList.add('hidden');
 
@@ -429,7 +410,7 @@
 
           if (error) {
               showAlert(error.message, "error");
-              signupBtn.innerHTML = 'Register Account <i class="fa-solid fa-arrow-right ml-2"></i>';
+              signupBtn.innerHTML = 'Register Account &rarr;';
               signupBtn.disabled = false;
           } else {
               // Successfully created auth record. Switch to success UI.
