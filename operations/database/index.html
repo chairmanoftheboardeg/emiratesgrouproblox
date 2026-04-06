@@ -171,13 +171,13 @@
   </div>
 
   <header class="relative bg-[#111827] text-white py-24 md:py-32 px-6 overflow-hidden border-b-4 border-[#D71A21]">
-    <div class="absolute inset-0 bg-[#111827]/80 z-10"></div>
+    <div class="absolute inset-0 bg-[#111827]/90 z-10"></div>
     <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
     
     <div class="relative z-20 max-w-5xl mx-auto text-center">
       <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block"><i class="fa-solid fa-shield-halved mr-2"></i> Security & Enforcement</span>
       <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight uppercase tracking-tighter drop-shadow-xl">Global Ban <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D71A21] to-red-600">Database.</span></h1>
-      <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">Search our active enforcement records to verify player status across the Emirates Group Roblox network.</p>
+      <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">Search our active enforcement records to verify player status and Discord infractions across the Emirates Group Roblox network.</p>
     </div>
   </header>
 
@@ -192,13 +192,13 @@
                 
                 <div class="w-full lg:w-1/2">
                     <h2 class="text-xl font-bold text-[#111827] uppercase tracking-tight mb-2">Record Verification</h2>
-                    <p class="text-sm text-gray-500 leading-relaxed mb-6">Enter a Roblox Username or User ID to check for active infractions, blacklists, or network suspensions.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-6">Enter a Discord Username or Discord ID to check for active infractions, blacklists, or network suspensions.</p>
                     
                     <div class="relative group">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                             <i class="fa-solid fa-magnifying-glass text-gray-400 group-focus-within:text-[#D71A21] transition-colors"></i>
                         </div>
-                        <input type="text" id="ban-search" class="w-full bg-gray-50 border-2 border-gray-200 text-[#111827] text-sm font-bold rounded-lg pl-12 pr-12 py-4 focus:outline-none focus:border-[#D71A21] focus:bg-white transition-all placeholder-gray-400" placeholder="Enter Roblox Username or ID...">
+                        <input type="text" id="ban-search" class="w-full bg-gray-50 border-2 border-gray-200 text-[#111827] text-sm font-bold rounded-lg pl-12 pr-12 py-4 focus:outline-none focus:border-[#D71A21] focus:bg-white transition-all placeholder-gray-400" placeholder="Enter Discord Username or ID...">
                         <div class="absolute inset-y-0 right-0 pr-4 flex items-center">
                             <button id="clear-search" class="text-gray-400 hover:text-[#D71A21] hidden"><i class="fa-solid fa-xmark text-lg"></i></button>
                         </div>
@@ -210,9 +210,9 @@
                         <i class="fa-solid fa-scale-balanced text-[#D71A21] text-lg"></i>
                         <h3 class="font-bold text-[#111827] uppercase tracking-widest text-xs">Appeals & Compliance</h3>
                     </div>
-                    <p class="text-xs text-gray-600 leading-relaxed mb-4">If you believe an enforcement action was applied in error, you may file a formal appeal through our support infrastructure in accordance with <a href="/about/governance/" class="text-[#D71A21] font-bold hover:underline">Sec. 16 of the Corporate Governance Framework</a>.</p>
-                    <a href="https://discord.gg/nDAZ3p475V7" target="_blank" class="inline-flex items-center text-xs font-bold text-[#111827] hover:text-[#D71A21] uppercase tracking-widest transition-colors">
-                        Submit Appeal Ticket <i class="fa-solid fa-arrow-right ml-2"></i>
+                    <p class="text-xs text-gray-600 leading-relaxed mb-4">If you believe an enforcement action was applied in error, appeals are submitted to the Report an Issue page in accordance with <a href="/about/governance/" class="text-[#D71A21] font-bold hover:underline">Sec. 16 of the Corporate Governance Framework</a>.</p>
+                    <a href="/help/report-issue/" class="inline-flex items-center text-xs font-bold text-[#111827] hover:text-[#D71A21] uppercase tracking-widest transition-colors">
+                        Go to Report an Issue <i class="fa-solid fa-arrow-right ml-2"></i>
                     </a>
                 </div>
             </div>
@@ -222,11 +222,11 @@
             <table class="w-full text-left border-collapse whitespace-nowrap">
                 <thead>
                     <tr class="bg-gray-50 text-gray-500 text-[10px] md:text-xs uppercase tracking-widest font-bold border-b border-gray-200">
-                        <th class="py-4 px-6 md:px-8">Roblox User</th>
-                        <th class="py-4 px-6 hidden md:table-cell">User ID</th>
-                        <th class="py-4 px-6">Infraction Reason</th>
-                        <th class="py-4 px-6 hidden lg:table-cell">Date Issued</th>
-                        <th class="py-4 px-6 md:px-8 text-right">Status</th>
+                        <th class="py-4 px-6 md:px-8">Discord User</th>
+                        <th class="py-4 px-6 hidden md:table-cell">Discord ID</th>
+                        <th class="py-4 px-6">Section Violated</th>
+                        <th class="py-4 px-6 hidden lg:table-cell">Detailed Reason</th>
+                        <th class="py-4 px-6 md:px-8 text-right">Date Issued</th>
                     </tr>
                 </thead>
                 <tbody id="ban-board-body" class="text-sm text-gray-700 divide-y divide-gray-100">
@@ -343,18 +343,6 @@
       const clearSearchBtn = document.getElementById('clear-search');
       const recordCount = document.getElementById('record-count');
 
-      // Helper for Status Badge
-      function getStatusBadge(status) {
-          const s = (status || 'BANNED').toUpperCase();
-          if(s === 'BANNED' || s === 'PERMANENT') {
-              return `<span class="bg-red-100 text-[#D71A21] px-3 py-1 rounded font-bold text-[10px] tracking-widest uppercase border border-red-200"><i class="fa-solid fa-lock mr-1"></i> Suspended</span>`;
-          }
-          if(s === 'APPEALED' || s === 'UNDER REVIEW') {
-              return `<span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded font-bold text-[10px] tracking-widest uppercase border border-yellow-200"><i class="fa-solid fa-hourglass-half mr-1"></i> Under Review</span>`;
-          }
-          return `<span class="bg-gray-100 text-gray-600 px-3 py-1 rounded font-bold text-[10px] tracking-widest uppercase border border-gray-200">${s}</span>`;
-      }
-
       // Render Table Function
       function renderBans(records) {
           if (records.length === 0) {
@@ -364,22 +352,24 @@
 
           let html = '';
           records.forEach(r => {
-              const dateObj = r.date_banned ? new Date(r.date_banned).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'}) : 'N/A';
+              const dateObj = r.created_at ? new Date(r.created_at).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'}) : 'N/A';
               
               html += `
               <tr class="hover:bg-gray-50 transition-colors">
                   <td class="py-4 px-6 md:px-8">
                     <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 flex-shrink-0">
-                            <i class="fa-solid fa-user text-xs"></i>
+                        <div class="w-8 h-8 rounded-full bg-[#5865F2]/10 flex items-center justify-center text-[#5865F2] flex-shrink-0">
+                            <i class="fa-brands fa-discord text-xs"></i>
                         </div>
-                        <span class="font-bold text-[#111827]">${r.roblox_username || 'Unknown'}</span>
+                        <span class="font-bold text-[#111827]">@${r.discord_username || 'Unknown'}</span>
                     </div>
                   </td>
-                  <td class="py-4 px-6 hidden md:table-cell font-mono text-xs text-gray-500">${r.roblox_id || 'N/A'}</td>
-                  <td class="py-4 px-6 max-w-[200px] truncate text-gray-600" title="${r.reason || 'Violation of Network Guidelines'}">${r.reason || 'Violation of Network Guidelines'}</td>
-                  <td class="py-4 px-6 hidden lg:table-cell text-gray-500 text-sm">${dateObj}</td>
-                  <td class="py-4 px-6 md:px-8 text-right">${getStatusBadge(r.status)}</td>
+                  <td class="py-4 px-6 hidden md:table-cell font-mono text-xs text-gray-500">${r.discord_id || 'N/A'}</td>
+                  <td class="py-4 px-6">
+                      <span class="bg-red-50 text-[#D71A21] px-2 py-1 rounded font-bold text-[10px] tracking-widest uppercase border border-red-100">Sec. ${r.violation_of_section || 'N/A'}</span>
+                  </td>
+                  <td class="py-4 px-6 hidden lg:table-cell max-w-[250px] truncate text-gray-600 text-sm" title="${r.detailed_reason || 'No details provided.'}">${r.detailed_reason || 'No details provided.'}</td>
+                  <td class="py-4 px-6 md:px-8 text-right text-gray-500 text-sm font-mono">${dateObj}</td>
               </tr>`;
           });
           boardBody.innerHTML = html;
@@ -395,8 +385,8 @@
           );
 
           try {
-            // Fetch most recent bans
-            const { data } = await supabase.from('egr_blacklist').select('*').order('date_banned', { ascending: false }).limit(20);
+            // Fetch most recent bans (no RLS, select all)
+            const { data } = await supabase.from('egr_blacklist').select('*').order('created_at', { ascending: false }).limit(30);
             
             if (data && data.length > 0) {
                 allBans = data;
@@ -423,8 +413,8 @@
           }
 
           const filtered = allBans.filter(r => {
-              const username = (r.roblox_username || '').toLowerCase();
-              const id = (r.roblox_id || '').toString().toLowerCase();
+              const username = (r.discord_username || '').toLowerCase();
+              const id = (r.discord_id || '').toString().toLowerCase();
               return username.includes(query) || id.includes(query);
           });
           
