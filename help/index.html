@@ -50,7 +50,7 @@
     ::-webkit-scrollbar-thumb:hover { background: #b5151c; }
     
     .input-field {
-        width: 100%; bg-gray-50; border: 2px solid #e5e7eb; border-radius: 0.5rem; padding: 0.75rem 1rem; color: #111827; font-size: 0.875rem; font-weight: 600; transition: all 0.3s;
+        width: 100%; background-color: #f9fafb; border: 2px solid #e5e7eb; border-radius: 0.5rem; padding: 0.875rem 1rem; color: #111827; font-size: 0.875rem; font-weight: 600; transition: all 0.3s;
     }
     .input-field:focus { outline: none; border-color: #111827; background-color: #ffffff; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
   </style>
@@ -99,18 +99,6 @@
         <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
           <a href="https://directory.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Network Directory</a>
           <a href="/network/subsidiaries/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Subsidiaries Overview</a>
-          
-          <p class="px-5 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold bg-gray-50">Aviation</p>
-          <a href="https://ek.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Emirates Airline</a>
-          <a href="https://fz.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Fly Dubai</a>
-          <a href="/network/executive/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Emirates Executive</a>
-          
-          <p class="px-5 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold bg-gray-50">Corporate & Leisure</p>
-          <a href="/network/dnata/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">dnata</a>
-          <a href="/network/holidays/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Emirates Holidays</a>
-          
-          <p class="px-5 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold bg-gray-50">Education</p>
-          <a href="https://eau.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 text-sm">EGRAU</a>
         </div>
       </div>
 
@@ -125,16 +113,6 @@
       </div>
       
       <div class="relative group py-2">
-        <button class="hover:text-[#D71A21] transition-colors flex items-center">
-          Media <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
-        </button>
-        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
-          <a href="/media/newsroom/" class="block px-5 py-3 hover:bg-gray-50 border-b">Newsroom</a>
-          <a href="/media/gallery/" class="block px-5 py-3 hover:bg-gray-50">Media Gallery</a>
-        </div>
-      </div>
-
-      <div class="relative group py-2">
         <button class="text-[#D71A21] transition-colors flex items-center">
           Help Center <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
         </button>
@@ -145,11 +123,11 @@
         </div>
       </div>
 
-      <a href="/myportal/index.html" id="nav-portal-btn" class="hidden bg-[#111827] hover:bg-gray-800 text-white px-5 py-2 rounded transition-colors shadow-md flex items-center uppercase tracking-widest text-xs">
-        My Portal <i class="fa-solid fa-user ml-2"></i>
+      <a href="/myportal/index.html" id="nav-portal-btn" class="hidden bg-[#111827] hover:bg-[#D71A21] text-white px-5 py-2 rounded transition-colors shadow-md flex items-center uppercase tracking-widest text-xs">
+        My Portal <i class="fa-solid fa-user ml-2 text-[10px]"></i>
       </a>
-      <a href="https://careers.emiratesgrouproblox.link" target="_blank" id="nav-careers-btn" class="bg-[#D71A21] hover:bg-red-800 text-white px-5 py-2 rounded transition-colors shadow-md flex items-center uppercase tracking-widest text-xs">
-        Careers <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-[10px]"></i>
+      <a href="/myportal/login/index.html" id="nav-login-btn" class="bg-gray-100 hover:bg-gray-200 text-[#111827] px-5 py-2 rounded transition-colors shadow-sm flex items-center uppercase tracking-widest text-xs border border-gray-200 font-bold">
+        Sign In <i class="fa-solid fa-arrow-right-to-bracket ml-2 text-[10px]"></i>
       </a>
     </div>
   </nav>
@@ -172,115 +150,112 @@
         </div>
       </div>
 
-      <a href="https://careers.emiratesgrouproblox.link" target="_blank" class="block bg-[#D71A21] text-white text-center py-4 rounded font-bold uppercase tracking-widest mt-6 hover:bg-red-800 transition-colors">
-        Careers Portal
+      <a href="/myportal/login/index.html" class="block bg-white text-[#111827] text-center py-4 rounded font-bold uppercase tracking-widest mt-6 hover:bg-gray-200 transition-colors">
+        Sign In to Portal
       </a>
     </div>
   </div>
 
   <header class="relative bg-[#111827] text-white py-20 md:py-28 px-6 overflow-hidden border-b-4 border-[#D71A21]">
     <div class="absolute inset-0 bg-[#111827]/90 z-10"></div>
-    <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+    <div class="absolute inset-0 z-0 opacity-5" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
     
     <div class="relative z-20 max-w-5xl mx-auto text-center">
-      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block"><i class="fa-solid fa-headset mr-2"></i> Client Services</span>
-      <h1 class="text-4xl md:text-5xl font-serif font-bold mb-6 leading-tight uppercase tracking-tighter drop-shadow-xl">Help & <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D71A21] to-red-600">Support.</span></h1>
+      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Client Services</span>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight uppercase tracking-tighter drop-shadow-xl">Help & <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D71A21] to-red-600">Support.</span></h1>
       <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">To maintain security and operational integrity, all support requests require a verified Emirates Group Roblox Member Account.</p>
     </div>
   </header>
 
-  <main class="flex-grow bg-gray-50 flex items-center justify-center py-16 px-6">
-    <div class="max-w-6xl w-full mx-auto relative">
+  <main class="flex-grow bg-gray-50 flex items-center justify-center py-16 px-4 md:px-6 relative overflow-hidden">
+    
+    <div class="max-w-5xl w-full mx-auto relative z-10">
 
-        <div id="auth-view" class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden flex flex-col md:flex-row transition-opacity duration-500">
+        <div id="auth-gate" class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden flex flex-col md:flex-row transition-opacity duration-500">
             
             <div class="w-full md:w-5/12 bg-[#111827] p-8 md:p-12 flex flex-col justify-center relative overflow-hidden">
-                <div class="absolute top-0 right-0 -mr-16 -mt-16 text-white/5">
-                    <i class="fa-solid fa-shield-halved text-[250px]"></i>
-                </div>
                 <div class="relative z-10">
-                    <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Logo" class="h-10 mb-8 object-contain">
-                    <h2 class="text-2xl font-bold text-white uppercase tracking-tight mb-4">Unified Corporate Access</h2>
-                    <p class="text-sm text-gray-400 leading-relaxed mb-8">Accessing the Support Desk requires a centralized Emirates Group Roblox profile. Your account securely links your Discord, Roblox, and support history across all our subsidiaries.</p>
-                    <ul class="space-y-4 text-sm text-gray-300 font-medium">
-                        <li class="flex items-center"><i class="fa-solid fa-check text-[#D71A21] mr-3"></i> Submit & Track Support Tickets</li>
-                        <li class="flex items-center"><i class="fa-solid fa-check text-[#D71A21] mr-3"></i> View Past Flight Attendance</li>
-                        <li class="flex items-center"><i class="fa-solid fa-check text-[#D71A21] mr-3"></i> Manage Skywards Loyalty Points</li>
-                    </ul>
+                    <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Access Control</span>
+                    <h2 class="text-3xl font-serif font-bold text-white uppercase tracking-tight mb-6 leading-tight">Identity <br>Verification.</h2>
+                    <p class="text-sm text-gray-400 leading-relaxed mb-8">Accessing the Support Desk requires a centralized Emirates Group Roblox profile. Your account securely links your identity across all our subsidiaries.</p>
+                    
+                    <div class="space-y-6 text-sm text-gray-300 font-medium border-t border-gray-800 pt-8">
+                        <div>
+                            <strong class="text-white block mb-1 uppercase tracking-widest text-xs">Secure Tracking</strong>
+                            All support tickets are logged to your central profile for consistent assistance.
+                        </div>
+                        <div>
+                            <strong class="text-white block mb-1 uppercase tracking-widest text-xs">Rate Limiting</strong>
+                            Strict cooldowns are enforced system-wide to ensure rapid response times for all users.
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="w-full md:w-7/12 p-8 md:p-12 lg:px-20 flex flex-col justify-center">
-                <h3 class="text-2xl font-bold text-[#111827] mb-2">Member Sign In</h3>
-                <p class="text-sm text-gray-500 font-semibold mb-8">Enter your credentials to access the support portal.</p>
-                
-                <div id="auth-error" class="hidden mb-6 bg-red-50 border-l-4 border-[#D71A21] text-[#D71A21] p-4 rounded text-xs font-bold uppercase tracking-widest flex items-center">
-                    <i class="fa-solid fa-triangle-exclamation mr-3 text-lg"></i> <span id="auth-error-text">Authentication Failed.</span>
+            <div class="w-full md:w-7/12 p-8 md:p-12 lg:px-16 flex flex-col justify-center bg-white">
+                <div class="mb-10 border-b border-gray-100 pb-6">
+                    <h3 class="text-2xl font-bold text-[#111827] mb-2 tracking-tight">Authentication Required</h3>
+                    <p class="text-sm text-gray-500 font-semibold leading-relaxed">You must be signed in to a verified corporate account to submit, view, or manage support tickets.</p>
                 </div>
-
-                <form id="login-form" class="space-y-5">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Email Address</label>
-                        <input type="email" id="email" class="input-field" placeholder="employee@emiratesgrouproblox.com" required>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Password</label>
-                        <input type="password" id="password" class="input-field" placeholder="••••••••" required>
-                    </div>
-                    <button type="submit" id="login-btn" class="w-full bg-[#111827] hover:bg-[#D71A21] text-white py-3.5 rounded-lg text-sm font-bold uppercase tracking-widest transition-colors shadow-md flex justify-center items-center">
-                        Secure Sign In <i class="fa-solid fa-lock ml-2"></i>
-                    </button>
-                </form>
                 
-                <div class="mt-8 pt-6 border-t border-gray-100 text-center">
-                    <p class="text-sm text-gray-500 font-semibold mb-3">Don't have a Member Account?</p>
-                    <a href="/myportal/signup/" class="inline-block w-full bg-gray-100 hover:bg-gray-200 text-[#111827] border border-gray-200 py-3 rounded-lg text-xs font-bold uppercase tracking-widest transition-colors">
-                        Create an Account
+                <div class="space-y-5">
+                    <a href="/myportal/login/index.html" class="w-full bg-[#111827] hover:bg-[#D71A21] text-white py-4 rounded-lg text-sm font-bold uppercase tracking-widest transition-colors shadow-sm flex justify-center items-center">
+                        Sign In to Portal &rarr;
+                    </a>
+                    
+                    <div class="relative flex items-center py-4">
+                        <div class="flex-grow border-t border-gray-200"></div>
+                        <span class="flex-shrink-0 mx-4 text-gray-400 text-xs font-bold uppercase tracking-widest">Or</span>
+                        <div class="flex-grow border-t border-gray-200"></div>
+                    </div>
+
+                    <a href="/myportal/signup/index.html" class="w-full bg-white hover:bg-gray-50 border-2 border-gray-200 text-[#111827] py-4 rounded-lg text-sm font-bold uppercase tracking-widest transition-colors shadow-sm flex justify-center items-center">
+                        Create a Member Account
                     </a>
                 </div>
             </div>
         </div>
 
-        <div id="ticket-view" class="hidden bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden flex flex-col md:flex-row transition-opacity duration-500">
+        <div id="ticket-desk" class="hidden bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden flex flex-col md:flex-row transition-opacity duration-500">
             
             <div class="w-full md:w-4/12 bg-[#111827] p-8 md:p-10 flex flex-col justify-between">
                 <div>
-                    <h2 class="text-xl font-bold text-white uppercase tracking-tight mb-2">Support Desk</h2>
-                    <p class="text-xs text-[#D71A21] font-bold uppercase tracking-widest mb-8">Authenticated Session</p>
+                    <h2 class="text-2xl font-serif font-bold text-white uppercase tracking-tight mb-2">Support Desk</h2>
+                    <p class="text-[10px] text-[#D71A21] font-bold uppercase tracking-widest mb-10 border-b border-gray-800 pb-4">Authenticated Session</p>
                     
-                    <div class="space-y-6 text-sm text-gray-400 leading-relaxed mb-8">
+                    <div class="space-y-8 text-sm text-gray-400 leading-relaxed mb-8">
                         <div>
-                            <strong class="block text-white mb-1"><i class="fa-regular fa-clock text-[#D71A21] mr-2"></i> Response Time</strong>
+                            <strong class="text-white block mb-1 uppercase tracking-widest text-xs">Response Time</strong>
                             Please allow up to 48 hours for our Corporate Support Staff to review and respond to your inquiry.
                         </div>
                         <div>
-                            <strong class="block text-white mb-1"><i class="fa-solid fa-shield-halved text-[#D71A21] mr-2"></i> Rate Limiting</strong>
+                            <strong class="text-white block mb-1 uppercase tracking-widest text-xs">Rate Limiting</strong>
                             To prevent system abuse, a strict 62-hour cooldown is enforced between ticket submissions.
                         </div>
                     </div>
                 </div>
 
-                <div class="border-t border-gray-800 pt-6 mt-8">
-                    <a href="/myportal/index.html" class="flex items-center justify-center w-full bg-gray-800 hover:bg-gray-700 text-white py-3 rounded text-xs font-bold uppercase tracking-widest transition-colors border border-gray-700">
-                        Go to My Portal <i class="fa-solid fa-arrow-right ml-2"></i>
+                <div class="border-t border-gray-800 pt-8 mt-8">
+                    <a href="/myportal/index.html" class="flex items-center justify-center w-full bg-white text-[#111827] hover:bg-gray-200 py-3 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-sm mb-4">
+                        Go to My Portal &rarr;
                     </a>
-                    <button id="logout-btn" class="mt-3 w-full text-gray-500 hover:text-white text-xs font-bold uppercase tracking-widest transition-colors">
-                        Sign Out
+                    <button id="logout-btn" class="w-full text-gray-500 hover:text-white text-xs font-bold uppercase tracking-widest transition-colors">
+                        Sign Out Session
                     </button>
                 </div>
             </div>
 
             <div class="w-full md:w-8/12 p-8 md:p-12">
-                <h3 class="text-2xl font-bold text-[#111827] mb-2">Submit a Request</h3>
-                <p class="text-sm text-gray-500 font-semibold mb-8 border-b border-gray-100 pb-6">Fill out the details below to open a new support ticket with our team.</p>
+                <h3 class="text-2xl font-bold text-[#111827] mb-2 tracking-tight">Submit a Request</h3>
+                <p class="text-sm text-gray-500 font-semibold mb-8 border-b border-gray-100 pb-6">Fill out the details below to open a new secure support ticket with our team.</p>
 
-                <div id="ticket-alert" class="hidden mb-6 p-4 rounded text-xs font-bold uppercase tracking-widest flex items-center">
-                    <i id="ticket-alert-icon" class="fa-solid mr-3 text-lg"></i> <span id="ticket-alert-text"></span>
+                <div id="ticket-alert" class="hidden mb-6 p-4 rounded text-xs font-bold uppercase tracking-widest border">
+                    <span id="ticket-alert-text"></span>
                 </div>
 
                 <form id="ticket-form" class="space-y-6">
                     <div>
-                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Category</label>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Category</label>
                         <select id="ticket-category" class="input-field appearance-none cursor-pointer" required>
                             <option value="" disabled selected>Select an inquiry type...</option>
                             <option value="General Inquiry">General Inquiry</option>
@@ -293,18 +268,18 @@
                     </div>
                     
                     <div>
-                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Subject</label>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Subject</label>
                         <input type="text" id="ticket-subject" class="input-field" placeholder="Brief summary of your request" required maxlength="100">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Detailed Description</label>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Detailed Description</label>
                         <textarea id="ticket-content" class="input-field resize-none h-40" placeholder="Please provide as much detail as possible to help us resolve your issue quickly..." required></textarea>
                     </div>
 
-                    <div class="pt-4">
-                        <button type="submit" id="ticket-submit-btn" class="w-full bg-[#D71A21] hover:bg-red-800 text-white py-4 rounded-lg text-sm font-bold uppercase tracking-widest transition-colors shadow-md flex justify-center items-center">
-                            Open Support Ticket <i class="fa-solid fa-paper-plane ml-2"></i>
+                    <div class="pt-6">
+                        <button type="submit" id="ticket-submit-btn" class="w-full bg-[#111827] hover:bg-[#D71A21] text-white py-4 rounded-lg text-sm font-bold uppercase tracking-widest transition-colors shadow-md flex justify-center items-center">
+                            Open Support Ticket &rarr;
                         </button>
                     </div>
                 </form>
@@ -326,38 +301,26 @@
           <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300 flex items-center" aria-label="Roblox">
             <svg class="w-[1em] h-[1em] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.445 0L0 20.457l18.555 3.543L24 3.543 5.445 0zm10.125 14.596l-4.102-.782-.782-4.102 4.102.782.782 4.102z"/></svg>
           </a>
-          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] hover:scale-110 transition-all duration-300" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] hover:scale-110 transition-all duration-300" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
-          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] hover:scale-110 transition-all duration-300" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] hover:scale-110 transition-all duration-300" aria-label="Trello"><i class="fa-brands fa-trello"></i></a>
-          <a href="https://www.linkedin.com/company/emirates-group-roblox-vision2026" target="_blank" class="hover:text-[#0A66C2] hover:scale-110 transition-all duration-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
       </div>
-
+      
       <div>
         <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">EGR Network</h4>
         <ul class="space-y-3 text-sm text-gray-400 font-semibold">
           <li><a href="https://ek.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Emirates Airline</a></li>
           <li><a href="https://fz.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Fly Dubai</a></li>
-          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Careers Portal</a></li>
         </ul>
       </div>
-
       <div>
         <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Tyler Nicholas Group</h4>
         <ul class="space-y-3 text-sm text-gray-400 font-semibold">
           <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> TNG Hub</a></li>
-          <li><a href="https://tyler.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> The Founder</a></li>
-          <li><a href="https://payhip.com/FalconLtd" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> Falcon LTD</a></li>
-          <li><a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> BlueWave Digital</a></li>
         </ul>
       </div>
     </div>
     
-    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs text-gray-500 font-bold tracking-wider uppercase text-center md:text-left gap-4">
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 text-[10px] md:text-xs text-gray-500 font-bold tracking-wider uppercase text-center md:text-left">
       <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
-      <p>A proud subsidiary of the <a href="https://tylernicholasgroup.com" class="text-gray-300 hover:text-white transition-colors">Tyler Nicholas Group</a> Network</p>
     </div>
   </footer>
 
@@ -376,10 +339,10 @@
         fillEl.style.width = perc + '%';
     }, 120);
 
-    // --- SUPABASE SETUP & LOGIC ---
+    // --- SUPABASE LOGIC ---
     document.addEventListener("DOMContentLoaded", async () => {
       
-      // Mobile Menu Logic
+      // Mobile Menu
       const mobileBtn = document.getElementById('mobile-menu-btn');
       const mobileClose = document.getElementById('mobile-menu-close');
       const mobileMenu = document.getElementById('mobile-menu-overlay');
@@ -388,46 +351,45 @@
         mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
       }
 
-      // Initialize Supabase (Use your actual keys in production)
+      // Initialize Supabase
       const supabase = window.supabase.createClient(
         'https://zboyabxzhptnxnmofvcz.supabase.co', 
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
       );
 
-      const authView = document.getElementById('auth-view');
-      const ticketView = document.getElementById('ticket-view');
+      const authGate = document.getElementById('auth-gate');
+      const ticketDesk = document.getElementById('ticket-desk');
       const navPortalBtn = document.getElementById('nav-portal-btn');
-      const navCareersBtn = document.getElementById('nav-careers-btn');
+      const navLoginBtn = document.getElementById('nav-login-btn');
       
       let currentUser = null;
 
-      // Function to toggle UI based on session
+      // Toggle UI based on session
       function updateUIForSession(session) {
           if (session) {
               currentUser = session.user;
-              authView.classList.add('hidden');
-              ticketView.classList.remove('hidden');
-              navCareersBtn.classList.add('hidden');
+              authGate.classList.add('hidden');
+              ticketDesk.classList.remove('hidden');
+              navLoginBtn.classList.add('hidden');
               navPortalBtn.classList.remove('hidden');
           } else {
               currentUser = null;
-              authView.classList.remove('hidden');
-              ticketView.classList.add('hidden');
+              authGate.classList.remove('hidden');
+              ticketDesk.classList.add('hidden');
               navPortalBtn.classList.add('hidden');
-              navCareersBtn.classList.remove('hidden');
+              navLoginBtn.classList.remove('hidden');
           }
       }
 
-      // Check initial session
+      // Check session
       const { data: { session } } = await supabase.auth.getSession();
       updateUIForSession(session);
 
-      // Listen for auth changes (login/logout)
       supabase.auth.onAuthStateChange((_event, session) => {
           updateUIForSession(session);
       });
 
-      // Clear Loader after initial auth check
+      // Clear Loader
       clearInterval(progressInterval);
       percEl.innerText = '100';
       fillEl.style.width = '100%';
@@ -439,30 +401,6 @@
           }, 600);
       }, 400);
 
-      // --- LOGIN LOGIC ---
-      const loginForm = document.getElementById('login-form');
-      const loginBtn = document.getElementById('login-btn');
-      const authError = document.getElementById('auth-error');
-      const authErrorText = document.getElementById('auth-error-text');
-
-      loginForm.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          const email = document.getElementById('email').value;
-          const password = document.getElementById('password').value;
-
-          loginBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
-          authError.classList.add('hidden');
-
-          const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-
-          if (error) {
-              authErrorText.innerText = error.message;
-              authError.classList.remove('hidden');
-              loginBtn.innerHTML = 'Secure Sign In <i class="fa-solid fa-lock ml-2"></i>';
-          } 
-          // If successful, onAuthStateChange listener will automatically flip the UI
-      });
-
       // --- LOGOUT LOGIC ---
       document.getElementById('logout-btn').addEventListener('click', async () => {
           await supabase.auth.signOut();
@@ -472,21 +410,18 @@
       const ticketForm = document.getElementById('ticket-form');
       const ticketBtn = document.getElementById('ticket-submit-btn');
       const ticketAlert = document.getElementById('ticket-alert');
-      const ticketAlertIcon = document.getElementById('ticket-alert-icon');
       const ticketAlertText = document.getElementById('ticket-alert-text');
 
       function showTicketAlert(message, type) {
-          ticketAlert.classList.remove('hidden', 'bg-red-50', 'text-[#D71A21]', 'border-red-200', 'bg-green-50', 'text-green-700', 'border-green-200');
-          ticketAlert.classList.add('border');
+          ticketAlert.classList.remove('hidden', 'bg-red-50', 'text-[#D71A21]', 'border-red-200', 'bg-gray-100', 'text-gray-700', 'border-gray-200');
           
           if(type === 'error') {
               ticketAlert.classList.add('bg-red-50', 'text-[#D71A21]', 'border-red-200');
-              ticketAlertIcon.className = 'fa-solid fa-triangle-exclamation mr-3 text-lg';
+              ticketAlertText.innerHTML = `<strong>Error:</strong> ${message}`;
           } else {
-              ticketAlert.classList.add('bg-green-50', 'text-green-700', 'border-green-200');
-              ticketAlertIcon.className = 'fa-solid fa-circle-check mr-3 text-lg';
+              ticketAlert.classList.add('bg-gray-100', 'text-gray-700', 'border-gray-200');
+              ticketAlertText.innerHTML = `<strong>Success:</strong> ${message}`;
           }
-          ticketAlertText.innerText = message;
       }
 
       ticketForm.addEventListener('submit', async (e) => {
@@ -497,7 +432,7 @@
           const subject = document.getElementById('ticket-subject').value;
           const content = document.getElementById('ticket-content').value;
 
-          ticketBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
+          ticketBtn.innerHTML = 'PROCESSING...';
           ticketBtn.disabled = true;
           ticketAlert.classList.add('hidden');
 
@@ -509,18 +444,17 @@
           });
 
           if (error) {
-              // Check if the error is our custom PostgreSQL Trigger Cooldown error
               if (error.message.includes('RATE_LIMIT')) {
                   showTicketAlert("Cooldown Active: You must wait 62 hours between ticket submissions.", "error");
               } else {
                   showTicketAlert("An error occurred while submitting your ticket. Please try again.", "error");
               }
           } else {
-              showTicketAlert("Success! Your support ticket has been submitted for review.", "success");
+              showTicketAlert("Your support ticket has been securely logged and submitted for review.", "success");
               ticketForm.reset();
           }
 
-          ticketBtn.innerHTML = 'Open Support Ticket <i class="fa-solid fa-paper-plane ml-2"></i>';
+          ticketBtn.innerHTML = 'Open Support Ticket &rarr;';
           ticketBtn.disabled = false;
       });
 
