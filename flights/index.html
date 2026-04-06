@@ -9,33 +9,75 @@
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="../style.css"> 
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-    @keyframes loadBar { 0% { width: 0%; } 100% { width: 100%; } }
-    .animate-load-bar { animation: loadBar 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=JetBrains+Mono:wght@400;700&display=swap');
     
-    /* Airport Board Blinking Dot */
-    .blink-dot { animation: blinker 1s linear infinite; }
-    @keyframes blinker { 50% { opacity: 0; } }
+    body { font-family: 'Inter', sans-serif; background-color: #f9fafb; scroll-behavior: smooth; overflow-x: hidden; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; } /* Terminal font for the radar */
+    
+    /* Cinematic Text Fill Loader */
+    #egr-loader {
+        position: fixed; inset: 0; z-index: 9999;
+        background-color: #111827; 
+        display: flex; align-items: center; justify-content: center;
+        transition: opacity 0.8s ease;
+    }
+    .loader-content { display: flex; flex-direction: column; align-items: flex-end; }
+    .loader-text-wrapper {
+        position: relative; font-family: 'Inter', sans-serif; font-weight: 900;
+        letter-spacing: -2px; line-height: 1; text-transform: capitalize;
+    }
+    .loader-base-text { color: #374151; }
+    .loader-fill-text {
+        position: absolute; left: 0; top: 0; color: #ffffff; 
+        overflow: hidden; white-space: nowrap; width: 0%; transition: width 0.1s linear;
+    }
+    .loader-info { color: #9CA3AF; font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-top: 8px; }
+    
+    .zoom-through { animation: zoomOutEffect 1.2s cubic-bezier(0.7, 0, 0.2, 1) forwards; }
+    @keyframes zoomOutEffect {
+        0% { transform: scale(1); opacity: 1; }
+        40% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(40); opacity: 0; filter: blur(5px); }
+    }
 
-    /* FIDS Table Styling for alternating rows like the image */
-    .fids-row:nth-child(even) { background-color: #111827; }
-    .fids-row:nth-child(odd) { background-color: #1E293B; }
+    /* Status Indicators */
+    .status-dot { height: 8px; width: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+    .status-scheduled { background-color: #9CA3AF; box-shadow: 0 0 5px #9CA3AF; }
+    .status-boarding { background-color: #F59E0B; box-shadow: 0 0 8px #F59E0B; animation: pulse 2s infinite; }
+    .status-in-air { background-color: #10B981; box-shadow: 0 0 8px #10B981; }
+    .status-delayed { background-color: #EF4444; box-shadow: 0 0 8px #EF4444; animation: pulse 1s infinite; }
+    .status-arrived { background-color: #3B82F6; box-shadow: 0 0 5px #3B82F6; }
+
+    @keyframes pulse {
+        0% { transform: scale(0.95); opacity: 1; }
+        50% { transform: scale(1.2); opacity: 0.7; }
+        100% { transform: scale(0.95); opacity: 1; }
+    }
+
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #D71A21; border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: #b5151c; }
   </style>
 </head>
-<body class="flex flex-col min-h-screen relative fade-in bg-gray-50">
+<body class="flex flex-col min-h-screen relative">
 
-  <div id="egr-loader" class="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center transition-opacity duration-700">
-    <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox" class="h-20 md:h-28 object-contain mb-8 opacity-90 animate-pulse">
-    <div class="w-48 h-[2px] bg-gray-200 overflow-hidden">
-      <div class="h-full bg-[#D71A21] animate-load-bar"></div>
+  <div id="egr-loader">
+    <div class="loader-content" id="loader-animate-container">
+      <div class="loader-text-wrapper text-4xl md:text-7xl lg:text-8xl">
+        <div class="loader-base-text">Emirates Group Roblox</div>
+        <div class="loader-fill-text" id="loader-fill">Emirates Group Roblox</div>
+      </div>
+      <div class="loader-info lowercase">syncing radar... <span id="loader-perc">0</span>%</div>
     </div>
   </div>
 
-  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-50 border-b-4 border-[#D71A21]">
+  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-40 border-b-4 border-[#D71A21]">
     <a href="/" class="flex items-center group">
       <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox Logo" class="h-10 md:h-12 object-contain group-hover:opacity-80 transition-opacity">
     </a>
@@ -49,20 +91,48 @@
       
       <div class="relative group py-2">
         <button class="hover:text-[#D71A21] transition-colors flex items-center">
-          About Us <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+          About EGR <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
         </button>
         <div class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
           <a href="/about/vision/" class="block px-5 py-3 hover:bg-gray-50 border-b">Vision, Mission & Story</a>
-          <a href="/about/people/" class="block px-5 py-3 hover:bg-gray-50 border-b">Our People</a>
-          <a href="/about/governance/" class="block px-5 py-3 hover:bg-gray-50 border-b">Our Governance</a>
-          <a href="/about/subsidiaries/" class="block px-5 py-3 hover:bg-gray-50 border-b">Our Subsidiaries</a>
-          <a href="/about/partners/" class="block px-5 py-3 hover:bg-gray-50 border-b">Partners & Affiliates</a>
-          <a href="/about/timeline/" class="block px-5 py-3 hover:bg-gray-50 border-b">Timeline</a>
-          <a href="/about/innovation/" class="block px-5 py-3 hover:bg-gray-50">Our Innovation</a>
+          <a href="/about/leadership/" class="block px-5 py-3 hover:bg-gray-50 border-b">Executive Leadership</a>
+          <a href="/about/governance/" class="block px-5 py-3 hover:bg-gray-50 border-b">Corporate Governance</a>
+          <a href="/about/innovation/" class="block px-5 py-3 hover:bg-gray-50 border-b">Innovation & Future</a>
+          <a href="/about/affiliates/" class="block px-5 py-3 hover:bg-gray-50">Affiliates & Partners</a>
         </div>
       </div>
 
-      <a href="/flights/" class="text-[#D71A21] transition-colors">Flights</a>
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Our Network <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="https://directory.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Network Directory</a>
+          <a href="/network/subsidiaries/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Subsidiaries Overview</a>
+          
+          <p class="px-5 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold bg-gray-50">Aviation</p>
+          <a href="https://ek.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Emirates Airline</a>
+          <a href="https://fz.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Fly Dubai</a>
+          <a href="/network/executive/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Emirates Executive</a>
+          
+          <p class="px-5 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold bg-gray-50">Corporate & Leisure</p>
+          <a href="/network/dnata/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">dnata</a>
+          <a href="/network/holidays/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Emirates Holidays</a>
+          
+          <p class="px-5 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold bg-gray-50">Education</p>
+          <a href="https://eau.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 text-sm">EGRAU</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="text-[#D71A21] transition-colors flex items-center">
+          Operations <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/flights/" class="block px-5 py-3 bg-gray-50 text-[#D71A21] border-b">Live Flight Radar</a>
+          <a href="/operations/database/" class="block px-5 py-3 hover:bg-gray-50 text-gray-700">Ban Database</a>
+        </div>
+      </div>
       
       <div class="relative group py-2">
         <button class="hover:text-[#D71A21] transition-colors flex items-center">
@@ -78,9 +148,10 @@
         <button class="hover:text-[#D71A21] transition-colors flex items-center">
           Help Center <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
         </button>
-        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
-          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block px-5 py-3 hover:bg-gray-50 border-b"><i class="fa-brands fa-discord mr-2"></i> Contact Us</a>
-          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block px-5 py-3 hover:bg-gray-50 text-[#D71A21]"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Report an Issue</a>
+        <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/help/" class="block px-5 py-3 hover:bg-gray-50 border-b">Contact Us</a>
+          <a href="/help/feedback/" class="block px-5 py-3 hover:bg-gray-50 border-b">Passenger Experience</a>
+          <a href="/help/report-issue/" class="block px-5 py-3 hover:bg-gray-50 text-[#D71A21]">Report an Issue</a>
         </div>
       </div>
 
@@ -96,242 +167,347 @@
       <button id="mobile-menu-close" class="text-gray-800 text-3xl focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
     </div>
     
-    <div class="p-6 overflow-y-auto space-y-8 text-white flex-grow">
-      <a href="/" class="block text-xl font-bold hover:text-[#D71A21]">Home</a>
+    <div class="p-6 overflow-y-auto space-y-8 text-white flex-grow bg-[#111827]">
+      <a href="/" class="block text-xl font-bold hover:text-[#D71A21] transition-colors">Home</a>
       
       <div>
-        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">About Us</p>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Operations</p>
         <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
-          <a href="/about/vision/" class="block hover:text-white">Vision, Mission & Story</a>
-          <a href="/about/people/" class="block hover:text-white">Our People</a>
-          <a href="/about/governance/" class="block hover:text-white">Our Governance</a>
-          <a href="/about/subsidiaries/" class="block hover:text-white">Our Subsidiaries</a>
-          <a href="/about/partners/" class="block hover:text-white">Partners & Affiliates</a>
-          <a href="/about/timeline/" class="block hover:text-white">Timeline</a>
-          <a href="/about/innovation/" class="block hover:text-white">Our Innovation</a>
+          <a href="/flights/" class="block text-[#D71A21] font-bold">Live Flight Radar</a>
+          <a href="/operations/database/" class="block hover:text-white transition-colors">Ban Database</a>
         </div>
       </div>
 
-      <a href="/flights/" class="block text-xl font-bold text-[#D71A21]">Flights</a>
-
-      <div>
-        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Media</p>
-        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
-          <a href="/media/newsroom/" class="block hover:text-white">Newsroom</a>
-          <a href="/media/gallery/" class="block hover:text-white">Media Gallery</a>
-        </div>
-      </div>
-
-      <div>
-        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Help Center</p>
-        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
-          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block hover:text-white"><i class="fa-brands fa-discord mr-2"></i> Contact Us</a>
-          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="block text-[#D71A21]"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Report an Issue</a>
-        </div>
-      </div>
-
-      <a href="https://careers.emiratesgrouproblox.link" target="_blank" class="block bg-[#D71A21] text-white text-center py-4 rounded font-bold uppercase tracking-widest mt-6">
-        Careers Portal <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
+      <a href="https://careers.emiratesgrouproblox.link" target="_blank" class="block bg-[#D71A21] text-white text-center py-4 rounded font-bold uppercase tracking-widest mt-6 hover:bg-red-800 transition-colors">
+        Careers Portal
       </a>
     </div>
   </div>
 
-  <header class="bg-[#111827] text-white py-24 px-6 relative overflow-hidden">
-    <div class="max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row justify-between items-center">
-      <div class="text-center md:text-left mb-8 md:mb-0">
-        <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block"><i class="fa-solid fa-satellite-dish mr-2 blink-dot"></i> Live Operations</span>
-        <h1 class="text-4xl md:text-5xl font-serif font-bold uppercase tracking-tight">Flight Departures</h1>
-      </div>
-      <div class="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl text-center min-w-[200px]">
-        <p class="text-xs text-gray-400 uppercase tracking-widest mb-1">Local Terminal Time</p>
-        <p class="text-2xl font-mono font-bold text-white" id="live-clock">00:00:00</p>
-      </div>
+  <header class="relative bg-[#111827] text-white py-24 md:py-32 px-6 overflow-hidden border-b-4 border-[#D71A21]">
+    <div class="absolute inset-0 bg-[#111827]/80 z-10"></div>
+    <div class="absolute inset-0 z-0 bg-cover bg-center opacity-40" style="background-image: url('https://i.ibb.co/tTyxcwxP/a350v2.webp'); background-attachment: fixed;"></div>
+    
+    <div class="relative z-20 max-w-5xl mx-auto text-center">
+      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block"><i class="fa-solid fa-plane-departure mr-2"></i> Operations Control</span>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight uppercase tracking-tighter drop-shadow-xl">Live Flight <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D71A21] to-red-600">Radar.</span></h1>
+      <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">Real-time tracking and dispatch information for all active and scheduled routes across the Emirates Group Roblox network.</p>
     </div>
   </header>
 
-  <div class="bg-gray-900 border-b border-gray-800 py-4 px-6 overflow-hidden">
-    <div class="max-w-7xl mx-auto flex flex-wrap justify-center md:justify-between items-center gap-6 text-xs font-mono font-bold uppercase tracking-widest text-gray-400">
-      <div class="flex items-center"><i class="fa-regular fa-clock text-[#D71A21] mr-2"></i> Dubai: <span id="clk-dxb" class="ml-2 text-white">--:--:--</span></div>
-      <div class="flex items-center"><i class="fa-regular fa-clock text-[#D71A21] mr-2"></i> Seychelles: <span id="clk-sez" class="ml-2 text-white">--:--:--</span></div>
-      <div class="flex items-center"><i class="fa-regular fa-clock text-[#D71A21] mr-2"></i> London: <span id="clk-lhr" class="ml-2 text-white">--:--:--</span></div>
-      <div class="flex items-center"><i class="fa-regular fa-clock text-[#D71A21] mr-2"></i> New York: <span id="clk-jfk" class="ml-2 text-white">--:--:--</span></div>
-    </div>
-  </div>
-
-  <main class="flex-grow py-12 px-4 md:px-12 w-full bg-gray-50">
-    <div class="max-w-7xl mx-auto">
+  <main class="flex-grow bg-gray-100">
+    
+    <section class="py-12 px-4 md:px-8 max-w-[1400px] mx-auto relative -mt-16 z-30">
       
-      <div class="bg-[#0a1017] rounded-xl shadow-2xl overflow-hidden border-2 border-[#111827]">
+      <div class="bg-[#111827] rounded-xl shadow-2xl border border-gray-800 overflow-hidden flex flex-col">
         
-        <div class="bg-[#111827] border-b-4 border-[#D71A21] p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div class="flex items-center">
-            <i class="fa-solid fa-plane-departure text-3xl text-white mr-4"></i>
-            <h2 class="text-3xl font-bold text-white tracking-widest uppercase">Departures</h2>
-          </div>
-          <div>
-            <span class="bg-[#D71A21] text-white text-[10px] md:text-xs font-bold px-3 py-1 rounded uppercase tracking-widest border border-red-800 shadow-inner">
-              <i class="fa-solid fa-globe mr-1"></i> All Times Local to Dubai (GST +4)
-            </span>
-          </div>
-        </div>
-
-        <div class="overflow-x-auto">
-          <table class="w-full text-left whitespace-nowrap font-mono text-sm md:text-base">
-            <thead class="bg-[#D71A21] text-white uppercase tracking-widest">
-              <tr>
-                <th class="py-3 px-6 font-bold w-32">Flight</th>
-                <th class="py-3 px-6 font-bold">Destination</th>
-                <th class="py-3 px-6 font-bold">Date & Time</th>
-                <th class="py-3 px-6 font-bold">Aircraft</th>
-                <th class="py-3 px-6 font-bold text-right">Remarks / Status</th>
-              </tr>
-            </thead>
-            <tbody id="full-flight-board" class="text-gray-200">
-              <tr class="fids-row">
-                <td colspan="5" class="py-12 px-6 text-center text-gray-500 font-sans font-bold">
-                  <i class="fa-solid fa-circle-notch fa-spin text-3xl mb-3 text-[#D71A21]"></i><br>
-                  Connecting to Air Traffic Control...
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="bg-[#111827] border-t border-gray-800 p-4 flex justify-between items-center text-white">
-          <p class="font-bold tracking-widest uppercase text-sm md:text-base">Have a Nice Flight – See You Soon!</p>
-          <p class="text-xs text-gray-400 font-mono hidden md:block" id="footer-date">March 2026</p>
-        </div>
-
-      </div>
-
-      <div class="mt-20">
-        <div class="text-center mb-12">
-          <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-xs mb-2 block">Passenger Information</span>
-          <h2 class="text-3xl font-bold text-[#111827] uppercase tracking-tighter">Flight Guidelines & Rules</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          
-          <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 hover:shadow-lg transition-shadow">
-            <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-6">
-              <i class="fa-solid fa-passport text-[#D71A21] text-xl"></i>
+        <div class="p-6 border-b border-gray-800 bg-[#0f172a] flex flex-col lg:flex-row justify-between items-center gap-6">
+            
+            <div class="flex items-center gap-6 w-full lg:w-auto">
+                <div class="hidden sm:flex items-center justify-center w-12 h-12 bg-gray-900 rounded border border-gray-700">
+                    <i class="fa-solid fa-satellite-dish text-[#D71A21] text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-white font-bold tracking-widest uppercase text-sm md:text-base">Global Dispatch Board</h2>
+                    <p class="text-gray-400 font-mono text-[10px] md:text-xs tracking-wider mt-1">
+                        <span class="text-[#10B981]"><i class="fa-solid fa-circle-check text-[8px] mr-1"></i> ONLINE</span> | 
+                        SYS_TIME: <span id="utc-clock" class="text-white">00:00:00 UTC</span>
+                    </p>
+                </div>
             </div>
-            <h3 class="text-xl font-bold text-[#111827] mb-3">Check-In Protocol</h3>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              Passengers must arrive at the designated terminal at least 15 minutes prior to the scheduled departure time. Late arrivals may be denied boarding to ensure on-time performance for the network.
-            </p>
-          </div>
 
-          <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 hover:shadow-lg transition-shadow">
-            <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-6">
-              <i class="fa-solid fa-user-shield text-[#D71A21] text-xl"></i>
+            <div class="relative w-full lg:w-96 group">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <i class="fa-solid fa-magnifying-glass text-gray-500 group-focus-within:text-[#D71A21] transition-colors"></i>
+                </div>
+                <input type="text" id="flight-search" class="w-full bg-gray-900 border border-gray-700 text-white text-sm font-mono rounded-lg pl-12 pr-4 py-3 focus:outline-none focus:border-[#D71A21] focus:ring-1 focus:ring-[#D71A21] transition-all placeholder-gray-600" placeholder="Search FLT #, Airline, or Dest...">
+                <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                    <button id="clear-search" class="text-gray-500 hover:text-white hidden"><i class="fa-solid fa-xmark"></i></button>
+                </div>
             </div>
-            <h3 class="text-xl font-bold text-[#111827] mb-3">Code of Conduct</h3>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              Emirates Group Roblox enforces a strict roleplay standard. Trolling, disrupting staff operations, or ignoring Ground Crew/Cabin Crew directives will result in an immediate removal from the server.
-            </p>
-          </div>
+        </div>
 
-          <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 hover:shadow-lg transition-shadow">
-            <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-6">
-              <i class="fa-solid fa-suitcase-rolling text-[#D71A21] text-xl"></i>
-            </div>
-            <h3 class="text-xl font-bold text-[#111827] mb-3">Baggage & Seating</h3>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              Economy passengers are subject to standard seating. First Class and Business Class bookings (where applicable via gamepasses or rank) receive priority boarding, lounge access, and premium cabin service.
-            </p>
-          </div>
+        <div class="overflow-x-auto w-full">
+            <table class="w-full text-left border-collapse whitespace-nowrap">
+                <thead>
+                    <tr class="bg-gray-900 text-gray-400 text-[10px] md:text-xs uppercase tracking-widest font-bold border-b-2 border-[#D71A21]">
+                        <th class="py-4 px-6">Flight</th>
+                        <th class="py-4 px-6">Operator</th>
+                        <th class="py-4 px-6 hidden md:table-cell">Origin</th>
+                        <th class="py-4 px-6">Destination</th>
+                        <th class="py-4 px-6 hidden lg:table-cell">Aircraft</th>
+                        <th class="py-4 px-6">Dep. Time (UTC)</th>
+                        <th class="py-4 px-6">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="flight-board-body" class="font-mono text-sm text-gray-300 divide-y divide-gray-800">
+                    <tr id="loading-row">
+                        <td colspan="7" class="py-16 text-center text-gray-500">
+                            <i class="fa-solid fa-circle-notch fa-spin text-3xl mb-4 text-[#D71A21]"></i>
+                            <p class="font-bold tracking-widest uppercase text-xs">Uplinking to O.C.C Server...</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
+        <div class="bg-[#0f172a] border-t border-gray-800 p-4 flex justify-between items-center text-[10px] text-gray-500 uppercase tracking-widest font-bold">
+            <span>Powered by Falcon Ltd API</span>
+            <span>Total Active Routes: <span id="route-count" class="text-white">0</span></span>
         </div>
       </div>
 
-    </div>
+    </section>
+
+    <section class="py-20 px-6 md:px-12 max-w-7xl mx-auto">
+        
+        <div class="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden">
+            <div class="bg-red-50 border-b border-red-100 p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div class="flex items-start gap-4">
+                    <div class="bg-[#D71A21] text-white p-3 rounded-lg shadow-sm">
+                        <i class="fa-solid fa-clipboard-list text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px]">Official Advisory Bulletin</span>
+                        <h2 class="text-2xl font-bold text-[#111827] uppercase tracking-tight">Flight Operations Standards</h2>
+                        <p class="text-sm text-gray-600 mt-1">Ref: Legal, Safety & Compliance Framework (Sec. 10)</p>
+                    </div>
+                </div>
+                <a href="/about/governance/" class="shrink-0 bg-[#111827] hover:bg-gray-800 text-white text-xs font-bold py-3 px-6 rounded transition-colors uppercase tracking-widest shadow">
+                    View Full Framework
+                </a>
+            </div>
+
+            <div class="p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                
+                <div class="flex items-start">
+                    <span class="text-[#D71A21] font-black mr-4 text-lg mt-0.5">10.1</span>
+                    <div>
+                        <strong class="block text-[#111827] mb-1 font-bold">Flight Deck Discipline</strong>
+                        <p class="text-sm text-gray-600 leading-relaxed">Pilots must follow published SOPs, briefings, and aircraft limitations at all times.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <span class="text-[#D71A21] font-black mr-4 text-lg mt-0.5">10.2</span>
+                    <div>
+                        <strong class="block text-[#111827] mb-1 font-bold">Clearance Compliance</strong>
+                        <p class="text-sm text-gray-600 leading-relaxed">Follow ATC clearances and OCC dispatch instructions strictly, unless safety requires an immediate deviation.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <span class="text-[#D71A21] font-black mr-4 text-lg mt-0.5">10.3</span>
+                    <div>
+                        <strong class="block text-[#111827] mb-1 font-bold">Runway and Taxi Safety</strong>
+                        <p class="text-sm text-gray-600 leading-relaxed">Unsafe taxiing, runway incursions, or reckless ground maneuvering is strictly prohibited.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <span class="text-[#D71A21] font-black mr-4 text-lg mt-0.5">10.4</span>
+                    <div>
+                        <strong class="block text-[#111827] mb-1 font-bold">Comms Protocols</strong>
+                        <p class="text-sm text-gray-600 leading-relaxed">Use correct channels and concise phraseology; avoid unnecessary chatter during active frequencies.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <span class="text-[#D71A21] font-black mr-4 text-lg mt-0.5">10.5</span>
+                    <div>
+                        <strong class="block text-[#111827] mb-1 font-bold">Professional Interactions</strong>
+                        <p class="text-sm text-gray-600 leading-relaxed">Maintain a professional tone with passengers, crew, ATC, and ground handling teams.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <span class="text-[#D71A21] font-black mr-4 text-lg mt-0.5">10.6</span>
+                    <div>
+                        <strong class="block text-[#111827] mb-1 font-bold">Controlled Emergency Roleplay</strong>
+                        <p class="text-sm text-gray-600 leading-relaxed">Emergency roleplay must remain controlled, authorized, and not be used to harass, derail, or disrupt operations.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <span class="text-[#D71A21] font-black mr-4 text-lg mt-0.5">10.7</span>
+                    <div>
+                        <strong class="block text-[#111827] mb-1 font-bold">Aircraft Handling Integrity</strong>
+                        <p class="text-sm text-gray-600 leading-relaxed">Intentional stalling, crashing, or executing unrealistic maneuvers in official sessions is prohibited.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <span class="text-[#D71A21] font-black mr-4 text-lg mt-0.5">10.8</span>
+                    <div>
+                        <strong class="block text-[#111827] mb-1 font-bold">Crew Coordination</strong>
+                        <p class="text-sm text-gray-600 leading-relaxed">Flight crew must coordinate effectively with cabin leadership (Pursers) when roleplay requires interaction.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <span class="text-[#D71A21] font-black mr-4 text-lg mt-0.5">10.9</span>
+                    <div>
+                        <strong class="block text-[#111827] mb-1 font-bold">Operational Reporting</strong>
+                        <p class="text-sm text-gray-600 leading-relaxed">Personnel must comply with all logging, checklists, and post-flight reporting requirements where currently in effect.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
   </main>
 
-  <footer class="bg-[#111827] text-white py-12 md:py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
+  <footer class="bg-[#111827] text-white py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
       <div class="md:col-span-2">
         <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest">Emirates Group Roblox</h3>
-        <p class="text-sm text-gray-400 max-w-md mb-6 leading-relaxed">The premier virtual aviation organization on the Roblox platform. A proud subsidiary of the Tyler Nicholas Group, committed to structural perfection and digital realism.</p>
+        <p class="text-sm text-gray-400 max-w-md mb-8 leading-relaxed">The premier virtual aviation organization on the Roblox platform. Setting the standard for structural perfection and digital realism.</p>
         
-        <div class="flex flex-wrap gap-4 text-xl text-gray-400">
-          <a href="https://discord.gg/nDAZ3p475V" target="_blank" class="hover:text-[#5865F2] transition-colors"><i class="fa-brands fa-discord"></i></a>
-          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white transition-colors"><i class="fa-solid fa-cube"></i></a>
-          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] transition-colors"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] transition-colors"><i class="fa-brands fa-telegram"></i></a>
-          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] transition-colors"><i class="fa-brands fa-youtube"></i></a>
-          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] transition-colors"><i class="fa-brands fa-trello"></i></a>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2 inline-block">Connect With Us</h4>
+        <div class="flex flex-wrap items-center gap-5 text-2xl text-gray-400 mt-2">
+          <a href="https://discord.gg/nDAZ3p475V7" target="_blank" class="hover:text-[#5865F2] hover:scale-110 transition-all duration-300" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300 flex items-center" aria-label="Roblox">
+            <svg class="w-[1em] h-[1em] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.445 0L0 20.457l18.555 3.543L24 3.543 5.445 0zm10.125 14.596l-4.102-.782-.782-4.102 4.102.782.782 4.102z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] hover:scale-110 transition-all duration-300" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] hover:scale-110 transition-all duration-300" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] hover:scale-110 transition-all duration-300" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] hover:scale-110 transition-all duration-300" aria-label="Trello"><i class="fa-brands fa-trello"></i></a>
+          <a href="https://www.linkedin.com/company/emirates-group-roblox-vision2026" target="_blank" class="hover:text-[#0A66C2] hover:scale-110 transition-all duration-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
       </div>
 
       <div>
-        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Corporate Links</h4>
-        <ul class="space-y-3 text-sm text-gray-400">
-          <li><a href="/about/vision/" class="hover:text-[#D71A21] transition-colors">Our Vision</a></li>
-          <li><a href="/flights/" class="text-[#D71A21] transition-colors">Flight Radar</a></li>
-          <li><a href="/media/newsroom/" class="hover:text-[#D71A21] transition-colors">Newsroom</a></li>
-          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors">Careers Portal</a></li>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">EGR Network</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://ek.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Emirates Airline</a></li>
+          <li><a href="https://fz.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Fly Dubai</a></li>
+          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Careers Portal</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Legal & Support</h4>
-        <ul class="space-y-3 text-sm text-gray-400">
-          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-[#D71A21] transition-colors">Tyler Nicholas Group</a></li>
-          <li><a href="https://discord.gg/nDAZ3p475V" target="_blank" class="hover:text-[#D71A21] transition-colors">Contact Support</a></li>
-          <li><span class="italic text-xs mt-4 block">Disclaimer: EGR is a virtual organization and is not affiliated with the real-world Emirates airline.</span></li>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Tyler Nicholas Group</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> TNG Hub</a></li>
+          <li><a href="https://tyler.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> The Founder</a></li>
+          <li><a href="https://payhip.com/FalconLtd" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> Falcon LTD</a></li>
+          <li><a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> BlueWave Digital</a></li>
         </ul>
       </div>
     </div>
-    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-10 md:mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 text-center md:text-left gap-2">
+    
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs text-gray-500 font-bold tracking-wider uppercase text-center md:text-left gap-4">
       <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
-      <p>Powered by Tyler Nicholas Group Network</p>
+      <p>A proud subsidiary of the <a href="https://tylernicholasgroup.com" class="text-gray-300 hover:text-white transition-colors">Tyler Nicholas Group</a> Network</p>
     </div>
   </footer>
 
   <script>
+    // --- LIVE UTC CLOCK LOGIC ---
+    function updateClock() {
+        const now = new Date();
+        const hrs = now.getUTCHours().toString().padStart(2, '0');
+        const mins = now.getUTCMinutes().toString().padStart(2, '0');
+        const secs = now.getUTCSeconds().toString().padStart(2, '0');
+        document.getElementById('utc-clock').innerText = `${hrs}:${mins}:${secs} UTC`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // --- ANIMATED TEXT LOADER LOGIC ---
+    let perc = 0;
+    const percEl = document.getElementById('loader-perc');
+    const fillEl = document.getElementById('loader-fill');
+    const loader = document.getElementById('egr-loader');
+    const animateContainer = document.getElementById('loader-animate-container');
+    
+    const progressInterval = setInterval(() => {
+        perc += Math.floor(Math.random() * 8) + 2; 
+        if (perc >= 99) perc = 99; 
+        percEl.innerText = perc;
+        fillEl.style.width = perc + '%';
+    }, 120);
+
+    window.addEventListener('load', () => {
+        clearInterval(progressInterval);
+        percEl.innerText = '100';
+        fillEl.style.width = '100%';
+        
+        setTimeout(() => {
+            animateContainer.classList.add('zoom-through');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 800);
+            }, 600);
+        }, 400);
+    });
+
     document.addEventListener("DOMContentLoaded", () => {
       // Mobile Menu Logic
       const mobileBtn = document.getElementById('mobile-menu-btn');
       const mobileClose = document.getElementById('mobile-menu-close');
       const mobileMenu = document.getElementById('mobile-menu-overlay');
-
       if(mobileBtn && mobileClose && mobileMenu) {
         mobileBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
         mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
       }
 
-      // Loader logic
-      setTimeout(() => {
-        const loader = document.getElementById('egr-loader');
-        if(loader) {
-            loader.style.opacity = '0';
-            setTimeout(() => { loader.style.display = 'none'; }, 700);
-        }
-      }, 1000); 
+      // Live Flight Board Logic
+      let allFlights = [];
+      const boardBody = document.getElementById('flight-board-body');
+      const searchInput = document.getElementById('flight-search');
+      const clearSearchBtn = document.getElementById('clear-search');
+      const routeCount = document.getElementById('route-count');
 
-      // Live Clocks Logic
-      function updateClocks() {
-        const now = new Date();
-        
-        // Header Local Computer Time
-        const timeString = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
-        const dateString = now.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
-        document.getElementById('live-clock').innerText = timeString;
-        document.getElementById('footer-date').innerText = dateString;
-
-        // Global Hub Timezones Widget
-        const options = { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
-        document.getElementById('clk-dxb').innerText = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'Asia/Dubai' }).format(now) + ' GST';
-        document.getElementById('clk-sez').innerText = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'Indian/Mahe' }).format(now) + ' SCT';
-        document.getElementById('clk-lhr').innerText = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'Europe/London' }).format(now) + ' UK';
-        document.getElementById('clk-jfk').innerText = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'America/New_York' }).format(now) + ' EST';
+      // Helper function to return correct styling based on status
+      function getStatusHTML(status) {
+          const s = status.toUpperCase();
+          if(s.includes('SCHEDULED')) return `<span class="status-dot status-scheduled"></span><span class="text-gray-400">${s}</span>`;
+          if(s.includes('BOARDING')) return `<span class="status-dot status-boarding"></span><span class="text-yellow-400">${s}</span>`;
+          if(s.includes('IN-AIR') || s.includes('DEPARTED')) return `<span class="status-dot status-in-air"></span><span class="text-green-400">${s}</span>`;
+          if(s.includes('DELAYED')) return `<span class="status-dot status-delayed"></span><span class="text-red-400">${s}</span>`;
+          if(s.includes('ARRIVED')) return `<span class="status-dot status-arrived"></span><span class="text-blue-400">${s}</span>`;
+          return `<span class="text-gray-500">${s}</span>`;
       }
-      setInterval(updateClocks, 1000);
-      updateClocks();
 
-      // SUPABASE FETCH LOGIC FOR FLIGHTS
+      // Render Table Function
+      function renderFlights(flights) {
+          if (flights.length === 0) {
+              boardBody.innerHTML = `<tr><td colspan="7" class="py-12 text-center text-gray-500"><i class="fa-solid fa-plane-slash text-3xl mb-3"></i><br>NO ACTIVE FLIGHTS MATCHING CRITERIA</td></tr>`;
+              return;
+          }
+
+          let html = '';
+          flights.forEach(f => {
+              // Parse date to just time if needed, assuming ISO string
+              const dateObj = new Date(f.departure_time);
+              const timeString = `${dateObj.getUTCHours().toString().padStart(2, '0')}:${dateObj.getUTCMinutes().toString().padStart(2, '0')}`;
+              
+              // Get airline styling
+              const isEK = f.flight_number.toUpperCase().startsWith('EK');
+              const airlineHTML = isEK 
+                ? `<span class="bg-[#D71A21] text-white px-2 py-0.5 rounded text-[10px] font-sans font-bold tracking-wider">EMIRATES</span>`
+                : `<span class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px] font-sans font-bold tracking-wider">FLY DUBAI</span>`;
+
+              html += `
+              <tr class="hover:bg-gray-800 transition-colors border-b border-gray-800 last:border-0">
+                  <td class="py-4 px-6 font-bold text-white">${f.flight_number}</td>
+                  <td class="py-4 px-6">${airlineHTML}</td>
+                  <td class="py-4 px-6 hidden md:table-cell">${f.origin_airport || 'OMDB'}</td>
+                  <td class="py-4 px-6 text-white font-bold">${f.arrival_airport}</td>
+                  <td class="py-4 px-6 hidden lg:table-cell text-gray-400">${f.aircraft_type || 'TBA'}</td>
+                  <td class="py-4 px-6">${timeString}</td>
+                  <td class="py-4 px-6">${getStatusHTML(f.status)}</td>
+              </tr>`;
+          });
+          boardBody.innerHTML = html;
+      }
+
+      // Fetch from Supabase
       const checkSupabase = setInterval(async () => {
         if (window.supabase) {
           clearInterval(checkSupabase); 
@@ -341,77 +517,51 @@
           );
 
           try {
-            const { data: flights, error } = await supabase
-              .from('egr_flights')
-              .select('*')
-              .order('departure_time', { ascending: true })
-              .limit(15); 
-
-            const board = document.getElementById('full-flight-board');
-
-            if (error || !flights || flights.length === 0) {
-              board.innerHTML = `
-                <tr class="fids-row">
-                  <td colspan="5" class="py-12 px-6 text-center text-gray-400 font-sans font-bold">
-                    No active flights registered on the radar.
-                  </td>
-                </tr>`;
+            // Fetch flights, order by time
+            const { data } = await supabase.from('egr_flights').select('*').order('departure_time', { ascending: true });
+            
+            if (data && data.length > 0) {
+                allFlights = data;
+                routeCount.innerText = allFlights.length;
+                renderFlights(allFlights);
             } else {
-              let html = '';
-              flights.forEach(flight => {
-                
-                // Status Color Logic for the Airport Board
-                let statusColor = 'text-gray-300';
-                let remarkText = flight.status;
-                let dot = '';
-                
-                if(flight.status === 'Boarding') { 
-                  statusColor = 'text-yellow-400 font-bold'; 
-                  remarkText = 'BOARDING';
-                  dot = '<i class="fa-solid fa-circle text-[8px] blink-dot mr-2"></i>'; 
-                }
-                if(flight.status === 'In-Air') { 
-                  statusColor = 'text-green-400 font-bold'; 
-                  remarkText = 'DEPARTED';
-                }
-                if(flight.status === 'Delayed') { 
-                  statusColor = 'text-[#D71A21] font-bold'; 
-                  remarkText = 'DELAYED';
-                }
-
-                // FORCE DUBAI TIMEZONE (GST +4) & ADD DATE
-                const dateObj = new Date(flight.departure_time);
-                const timeString = dateObj.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour12: false, hour: '2-digit', minute: '2-digit' });
-                const dateString = dateObj.toLocaleDateString('en-US', { timeZone: 'Asia/Dubai', month: 'short', day: '2-digit' });
-                
-                let operatorIcon = '<span class="bg-gray-800 text-xs px-2 py-1 rounded mr-2 text-gray-300 shadow-inner border border-gray-700">EGR</span>';
-                if(flight.flight_number.startsWith('FZ')) operatorIcon = '<span class="bg-blue-900 text-xs px-2 py-1 rounded mr-2 text-white shadow-inner border border-blue-800">FZ</span>';
-                if(flight.flight_number.startsWith('EKC')) operatorIcon = '<span class="bg-yellow-700 text-xs px-2 py-1 rounded mr-2 text-white shadow-inner border border-yellow-600">CARGO</span>';
-
-                html += `
-                  <tr class="fids-row hover:bg-gray-700 transition-colors border-b border-gray-800/50">
-                    <td class="py-4 px-6 font-bold text-white text-lg">${operatorIcon} ${flight.flight_number}</td>
-                    <td class="py-4 px-6 text-gray-200 text-lg uppercase tracking-wide">${flight.arrival_airport}</td>
-                    <td class="py-4 px-6 font-bold tracking-widest text-gray-400 uppercase text-xs">
-                        ${dateString} <span class="text-yellow-400 text-lg ml-3">${timeString}</span>
-                    </td>
-                    <td class="py-4 px-6 text-gray-400 text-sm">${flight.aircraft_type || '---'}</td>
-                    <td class="py-4 px-6 text-right uppercase tracking-widest text-xs ${statusColor}">${dot} ${remarkText}</td>
-                  </tr>
-                `;
-              });
-              board.innerHTML = html;
+                boardBody.innerHTML = `<tr><td colspan="7" class="py-12 text-center text-gray-500"><i class="fa-solid fa-radar text-3xl mb-3"></i><br>RADAR CLEAR. NO UPCOMING FLIGHTS SCHEDULED.</td></tr>`;
             }
-          } catch (err) {
-            document.getElementById('full-flight-board').innerHTML = `
-              <tr class="fids-row">
-                <td colspan="5" class="py-12 px-6 text-center text-[#D71A21] font-sans font-bold">
-                  Radar Connection Failed. Please contact IT.
-                </td>
-              </tr>`;
+          } catch(e) {
+              boardBody.innerHTML = `<tr><td colspan="7" class="py-12 text-center text-red-500"><i class="fa-solid fa-triangle-exclamation text-3xl mb-3"></i><br>DATABASE CONNECTION FAILED.</td></tr>`;
           }
         }
       }, 100);
+
+      // Search Functionality
+      searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          
+          if(query.length > 0) {
+              clearSearchBtn.classList.remove('hidden');
+          } else {
+              clearSearchBtn.classList.add('hidden');
+          }
+
+          const filtered = allFlights.filter(f => {
+              const flightNo = (f.flight_number || '').toLowerCase();
+              const dest = (f.arrival_airport || '').toLowerCase();
+              const orig = (f.origin_airport || '').toLowerCase();
+              const status = (f.status || '').toLowerCase();
+              
+              return flightNo.includes(query) || dest.includes(query) || orig.includes(query) || status.includes(query) || (query.includes('emirates') && flightNo.startsWith('ek')) || (query.includes('fly dubai') && flightNo.startsWith('fz'));
+          });
+          
+          renderFlights(filtered);
+      });
+
+      // Clear Search
+      clearSearchBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          clearSearchBtn.classList.add('hidden');
+          renderFlights(allFlights);
+      });
+
     });
   </script>
 </body>
