@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Ban Database | Emirates Group Roblox</title>
+  
+  <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" id="favicon" />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=JetBrains+Mono:wght@400;700&display=swap');
+    
+    body { font-family: 'Inter', sans-serif; background-color: #f9fafb; scroll-behavior: smooth; overflow-x: hidden; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    
+    /* Cinematic Text Fill Loader */
+    #egr-loader {
+        position: fixed; inset: 0; z-index: 9999;
+        background-color: #111827; 
+        display: flex; align-items: center; justify-content: center;
+        transition: opacity 0.8s ease;
+    }
+    .loader-content { display: flex; flex-direction: column; align-items: flex-end; }
+    .loader-text-wrapper {
+        position: relative; font-family: 'Inter', sans-serif; font-weight: 900;
+        letter-spacing: -2px; line-height: 1; text-transform: capitalize;
+    }
+    .loader-base-text { color: #374151; }
+    .loader-fill-text {
+        position: absolute; left: 0; top: 0; color: #ffffff; 
+        overflow: hidden; white-space: nowrap; width: 0%; transition: width 0.1s linear;
+    }
+    .loader-info { color: #9CA3AF; font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-top: 8px; }
+    
+    .zoom-through { animation: zoomOutEffect 1.2s cubic-bezier(0.7, 0, 0.2, 1) forwards; }
+    @keyframes zoomOutEffect {
+        0% { transform: scale(1); opacity: 1; }
+        40% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(40); opacity: 0; filter: blur(5px); }
+    }
+
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #D71A21; border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: #b5151c; }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen relative">
+
+  <div id="egr-loader">
+    <div class="loader-content" id="loader-animate-container">
+      <div class="loader-text-wrapper text-4xl md:text-7xl lg:text-8xl">
+        <div class="loader-base-text">Emirates Group Roblox</div>
+        <div class="loader-fill-text" id="loader-fill">Emirates Group Roblox</div>
+      </div>
+      <div class="loader-info lowercase">syncing security records... <span id="loader-perc">0</span>%</div>
+    </div>
+  </div>
+
+  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-40 border-b-4 border-[#D71A21]">
+    <a href="/" class="flex items-center group">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox Logo" class="h-10 md:h-12 object-contain group-hover:opacity-80 transition-opacity">
+    </a>
+
+    <button id="mobile-menu-btn" class="lg:hidden text-gray-800 text-2xl focus:outline-none">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="hidden lg:flex space-x-6 text-sm font-bold items-center text-gray-700">
+      <a href="/" class="hover:text-[#D71A21] transition-colors">Home</a>
+      
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          About EGR <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/about/vision/" class="block px-5 py-3 hover:bg-gray-50 border-b">Vision, Mission & Story</a>
+          <a href="/about/leadership/" class="block px-5 py-3 hover:bg-gray-50 border-b">Executive Leadership</a>
+          <a href="/about/governance/" class="block px-5 py-3 hover:bg-gray-50 border-b">Corporate Governance</a>
+          <a href="/about/innovation/" class="block px-5 py-3 hover:bg-gray-50 border-b">Innovation & Future</a>
+          <a href="/about/affiliates/" class="block px-5 py-3 hover:bg-gray-50">Affiliates & Partners</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Our Network <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="https://directory.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Network Directory</a>
+          <a href="/network/subsidiaries/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Subsidiaries Overview</a>
+          
+          <p class="px-5 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold bg-gray-50">Aviation</p>
+          <a href="https://ek.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Emirates Airline</a>
+          <a href="https://fz.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Fly Dubai</a>
+          <a href="/network/executive/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Emirates Executive</a>
+          
+          <p class="px-5 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold bg-gray-50">Corporate & Leisure</p>
+          <a href="/network/dnata/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">dnata</a>
+          <a href="/network/holidays/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm">Emirates Holidays</a>
+          
+          <p class="px-5 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold bg-gray-50">Education</p>
+          <a href="https://eau.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 text-sm">EGRAU</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="text-[#D71A21] transition-colors flex items-center">
+          Operations <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/flights/" class="block px-5 py-3 hover:bg-gray-50 border-b">Live Flight Radar</a>
+          <a href="/operations/database/" class="block px-5 py-3 bg-gray-50 text-[#D71A21]"><i class="fa-solid fa-shield-halved mr-2"></i> Ban Database</a>
+        </div>
+      </div>
+      
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Media <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/media/newsroom/" class="block px-5 py-3 hover:bg-gray-50 border-b">Newsroom</a>
+          <a href="/media/gallery/" class="block px-5 py-3 hover:bg-gray-50">Media Gallery</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Help Center <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/help/" class="block px-5 py-3 hover:bg-gray-50 border-b">Contact Us</a>
+          <a href="/help/feedback/" class="block px-5 py-3 hover:bg-gray-50 border-b">Passenger Experience</a>
+          <a href="/help/report-issue/" class="block px-5 py-3 hover:bg-gray-50 text-[#D71A21]">Report an Issue</a>
+        </div>
+      </div>
+
+      <a href="https://careers.emiratesgrouproblox.link" target="_blank" class="bg-[#D71A21] hover:bg-red-800 text-white px-5 py-2 rounded transition-colors shadow-md flex items-center uppercase tracking-widest text-xs">
+        Careers <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-[10px]"></i>
+      </a>
+    </div>
+  </nav>
+
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#111827] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col lg:hidden">
+    <div class="p-6 flex justify-between items-center border-b border-gray-800 bg-white">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Logo" class="h-10 object-contain">
+      <button id="mobile-menu-close" class="text-gray-800 text-3xl focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <div class="p-6 overflow-y-auto space-y-8 text-white flex-grow bg-[#111827]">
+      <a href="/" class="block text-xl font-bold hover:text-[#D71A21] transition-colors">Home</a>
+      
+      <div>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Operations</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
+          <a href="/flights/" class="block hover:text-white transition-colors">Live Flight Radar</a>
+          <a href="/operations/database/" class="block text-[#D71A21] font-bold"><i class="fa-solid fa-shield-halved mr-2"></i>Ban Database</a>
+        </div>
+      </div>
+
+      <a href="https://careers.emiratesgrouproblox.link" target="_blank" class="block bg-[#D71A21] text-white text-center py-4 rounded font-bold uppercase tracking-widest mt-6 hover:bg-red-800 transition-colors">
+        Careers Portal
+      </a>
+    </div>
+  </div>
+
+  <header class="relative bg-[#111827] text-white py-24 md:py-32 px-6 overflow-hidden border-b-4 border-[#D71A21]">
+    <div class="absolute inset-0 bg-[#111827]/80 z-10"></div>
+    <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+    
+    <div class="relative z-20 max-w-5xl mx-auto text-center">
+      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block"><i class="fa-solid fa-shield-halved mr-2"></i> Security & Enforcement</span>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight uppercase tracking-tighter drop-shadow-xl">Global Ban <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D71A21] to-red-600">Database.</span></h1>
+      <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">Search our active enforcement records to verify player status across the Emirates Group Roblox network.</p>
+    </div>
+  </header>
+
+  <main class="flex-grow bg-gray-50">
+    
+    <section class="py-16 px-4 md:px-8 max-w-7xl mx-auto relative -mt-16 z-30">
+      
+      <div class="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden flex flex-col">
+        
+        <div class="p-6 md:p-8 border-b border-gray-200 bg-white">
+            <div class="flex flex-col lg:flex-row justify-between gap-6">
+                
+                <div class="w-full lg:w-1/2">
+                    <h2 class="text-xl font-bold text-[#111827] uppercase tracking-tight mb-2">Record Verification</h2>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-6">Enter a Roblox Username or User ID to check for active infractions, blacklists, or network suspensions.</p>
+                    
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-magnifying-glass text-gray-400 group-focus-within:text-[#D71A21] transition-colors"></i>
+                        </div>
+                        <input type="text" id="ban-search" class="w-full bg-gray-50 border-2 border-gray-200 text-[#111827] text-sm font-bold rounded-lg pl-12 pr-12 py-4 focus:outline-none focus:border-[#D71A21] focus:bg-white transition-all placeholder-gray-400" placeholder="Enter Roblox Username or ID...">
+                        <div class="absolute inset-y-0 right-0 pr-4 flex items-center">
+                            <button id="clear-search" class="text-gray-400 hover:text-[#D71A21] hidden"><i class="fa-solid fa-xmark text-lg"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-1/3 bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i class="fa-solid fa-scale-balanced text-[#D71A21] text-lg"></i>
+                        <h3 class="font-bold text-[#111827] uppercase tracking-widest text-xs">Appeals & Compliance</h3>
+                    </div>
+                    <p class="text-xs text-gray-600 leading-relaxed mb-4">If you believe an enforcement action was applied in error, you may file a formal appeal through our support infrastructure in accordance with <a href="/about/governance/" class="text-[#D71A21] font-bold hover:underline">Sec. 16 of the Corporate Governance Framework</a>.</p>
+                    <a href="https://discord.gg/nDAZ3p475V7" target="_blank" class="inline-flex items-center text-xs font-bold text-[#111827] hover:text-[#D71A21] uppercase tracking-widest transition-colors">
+                        Submit Appeal Ticket <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto w-full">
+            <table class="w-full text-left border-collapse whitespace-nowrap">
+                <thead>
+                    <tr class="bg-gray-50 text-gray-500 text-[10px] md:text-xs uppercase tracking-widest font-bold border-b border-gray-200">
+                        <th class="py-4 px-6 md:px-8">Roblox User</th>
+                        <th class="py-4 px-6 hidden md:table-cell">User ID</th>
+                        <th class="py-4 px-6">Infraction Reason</th>
+                        <th class="py-4 px-6 hidden lg:table-cell">Date Issued</th>
+                        <th class="py-4 px-6 md:px-8 text-right">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="ban-board-body" class="text-sm text-gray-700 divide-y divide-gray-100">
+                    <tr id="loading-row">
+                        <td colspan="5" class="py-16 text-center text-gray-500">
+                            <i class="fa-solid fa-circle-notch fa-spin text-3xl mb-4 text-[#D71A21]"></i>
+                            <p class="font-bold tracking-widest uppercase text-xs">Connecting to Secure Database...</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="bg-white border-t border-gray-200 p-4 md:px-8 flex justify-between items-center text-[10px] text-gray-500 uppercase tracking-widest font-bold">
+            <span>Administered by Human Resources & Safety</span>
+            <span>Total Records Displayed: <span id="record-count" class="text-[#111827] font-black">0</span></span>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="bg-[#111827] text-white py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
+      <div class="md:col-span-2">
+        <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest">Emirates Group Roblox</h3>
+        <p class="text-sm text-gray-400 max-w-md mb-8 leading-relaxed">The premier virtual aviation organization on the Roblox platform. Setting the standard for structural perfection and digital realism.</p>
+        
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2 inline-block">Connect With Us</h4>
+        <div class="flex flex-wrap items-center gap-5 text-2xl text-gray-400 mt-2">
+          <a href="https://discord.gg/nDAZ3p475V7" target="_blank" class="hover:text-[#5865F2] hover:scale-110 transition-all duration-300" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300 flex items-center" aria-label="Roblox">
+            <svg class="w-[1em] h-[1em] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.445 0L0 20.457l18.555 3.543L24 3.543 5.445 0zm10.125 14.596l-4.102-.782-.782-4.102 4.102.782.782 4.102z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] hover:scale-110 transition-all duration-300" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] hover:scale-110 transition-all duration-300" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] hover:scale-110 transition-all duration-300" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] hover:scale-110 transition-all duration-300" aria-label="Trello"><i class="fa-brands fa-trello"></i></a>
+          <a href="https://www.linkedin.com/company/emirates-group-roblox-vision2026" target="_blank" class="hover:text-[#0A66C2] hover:scale-110 transition-all duration-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">EGR Network</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://ek.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Emirates Airline</a></li>
+          <li><a href="https://fz.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Fly Dubai</a></li>
+          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Careers Portal</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Tyler Nicholas Group</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> TNG Hub</a></li>
+          <li><a href="https://tyler.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> The Founder</a></li>
+          <li><a href="https://payhip.com/FalconLtd" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> Falcon LTD</a></li>
+          <li><a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> BlueWave Digital</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs text-gray-500 font-bold tracking-wider uppercase text-center md:text-left gap-4">
+      <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
+      <p>A proud subsidiary of the <a href="https://tylernicholasgroup.com" class="text-gray-300 hover:text-white transition-colors">Tyler Nicholas Group</a> Network</p>
+    </div>
+  </footer>
+
+  <script>
+    // --- ANIMATED TEXT LOADER LOGIC ---
+    let perc = 0;
+    const percEl = document.getElementById('loader-perc');
+    const fillEl = document.getElementById('loader-fill');
+    const loader = document.getElementById('egr-loader');
+    const animateContainer = document.getElementById('loader-animate-container');
+    
+    const progressInterval = setInterval(() => {
+        perc += Math.floor(Math.random() * 8) + 2; 
+        if (perc >= 99) perc = 99; 
+        percEl.innerText = perc;
+        fillEl.style.width = perc + '%';
+    }, 120);
+
+    window.addEventListener('load', () => {
+        clearInterval(progressInterval);
+        percEl.innerText = '100';
+        fillEl.style.width = '100%';
+        
+        setTimeout(() => {
+            animateContainer.classList.add('zoom-through');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 800);
+            }, 600);
+        }, 400);
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Mobile Menu Logic
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileClose = document.getElementById('mobile-menu-close');
+      const mobileMenu = document.getElementById('mobile-menu-overlay');
+      if(mobileBtn && mobileClose && mobileMenu) {
+        mobileBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+        mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+      }
+
+      // Ban Database Logic
+      let allBans = [];
+      const boardBody = document.getElementById('ban-board-body');
+      const searchInput = document.getElementById('ban-search');
+      const clearSearchBtn = document.getElementById('clear-search');
+      const recordCount = document.getElementById('record-count');
+
+      // Helper for Status Badge
+      function getStatusBadge(status) {
+          const s = (status || 'BANNED').toUpperCase();
+          if(s === 'BANNED' || s === 'PERMANENT') {
+              return `<span class="bg-red-100 text-[#D71A21] px-3 py-1 rounded font-bold text-[10px] tracking-widest uppercase border border-red-200"><i class="fa-solid fa-lock mr-1"></i> Suspended</span>`;
+          }
+          if(s === 'APPEALED' || s === 'UNDER REVIEW') {
+              return `<span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded font-bold text-[10px] tracking-widest uppercase border border-yellow-200"><i class="fa-solid fa-hourglass-half mr-1"></i> Under Review</span>`;
+          }
+          return `<span class="bg-gray-100 text-gray-600 px-3 py-1 rounded font-bold text-[10px] tracking-widest uppercase border border-gray-200">${s}</span>`;
+      }
+
+      // Render Table Function
+      function renderBans(records) {
+          if (records.length === 0) {
+              boardBody.innerHTML = `<tr><td colspan="5" class="py-16 text-center text-gray-500"><i class="fa-solid fa-user-check text-4xl mb-4 text-green-500"></i><br><span class="font-bold uppercase tracking-widest text-xs">NO INFRACTION RECORDS FOUND MATCHING QUERY</span></td></tr>`;
+              return;
+          }
+
+          let html = '';
+          records.forEach(r => {
+              const dateObj = r.date_banned ? new Date(r.date_banned).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'}) : 'N/A';
+              
+              html += `
+              <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="py-4 px-6 md:px-8">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 flex-shrink-0">
+                            <i class="fa-solid fa-user text-xs"></i>
+                        </div>
+                        <span class="font-bold text-[#111827]">${r.roblox_username || 'Unknown'}</span>
+                    </div>
+                  </td>
+                  <td class="py-4 px-6 hidden md:table-cell font-mono text-xs text-gray-500">${r.roblox_id || 'N/A'}</td>
+                  <td class="py-4 px-6 max-w-[200px] truncate text-gray-600" title="${r.reason || 'Violation of Network Guidelines'}">${r.reason || 'Violation of Network Guidelines'}</td>
+                  <td class="py-4 px-6 hidden lg:table-cell text-gray-500 text-sm">${dateObj}</td>
+                  <td class="py-4 px-6 md:px-8 text-right">${getStatusBadge(r.status)}</td>
+              </tr>`;
+          });
+          boardBody.innerHTML = html;
+      }
+
+      // Fetch from Supabase
+      const checkSupabase = setInterval(async () => {
+        if (window.supabase) {
+          clearInterval(checkSupabase); 
+          const supabase = window.supabase.createClient(
+            'https://zboyabxzhptnxnmofvcz.supabase.co', 
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
+          );
+
+          try {
+            // Fetch most recent bans
+            const { data } = await supabase.from('egr_blacklist').select('*').order('date_banned', { ascending: false }).limit(20);
+            
+            if (data && data.length > 0) {
+                allBans = data;
+                recordCount.innerText = allBans.length;
+                renderBans(allBans);
+            } else {
+                // Empty state if database is clear
+                boardBody.innerHTML = `<tr><td colspan="5" class="py-16 text-center text-gray-500"><i class="fa-solid fa-database text-4xl mb-4 text-gray-300"></i><br><span class="font-bold uppercase tracking-widest text-xs">DATABASE SYNCED. NO ACTIVE RECORDS PRESENT.</span></td></tr>`;
+            }
+          } catch(e) {
+              boardBody.innerHTML = `<tr><td colspan="5" class="py-16 text-center text-[#D71A21]"><i class="fa-solid fa-triangle-exclamation text-4xl mb-4"></i><br><span class="font-bold uppercase tracking-widest text-xs">UNABLE TO ESTABLISH SECURE CONNECTION TO DATABASE</span></td></tr>`;
+          }
+        }
+      }, 100);
+
+      // Search Functionality
+      searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          
+          if(query.length > 0) {
+              clearSearchBtn.classList.remove('hidden');
+          } else {
+              clearSearchBtn.classList.add('hidden');
+          }
+
+          const filtered = allBans.filter(r => {
+              const username = (r.roblox_username || '').toLowerCase();
+              const id = (r.roblox_id || '').toString().toLowerCase();
+              return username.includes(query) || id.includes(query);
+          });
+          
+          recordCount.innerText = filtered.length;
+          renderBans(filtered);
+      });
+
+      // Clear Search
+      clearSearchBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          clearSearchBtn.classList.add('hidden');
+          recordCount.innerText = allBans.length;
+          renderBans(allBans);
+      });
+
+    });
+  </script>
+</body>
+</html>
