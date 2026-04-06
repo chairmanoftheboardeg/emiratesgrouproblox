@@ -125,7 +125,7 @@
         </div>
       </div>
 
-      <a href="/help/" class="bg-gray-100 hover:bg-gray-200 text-[#111827] px-5 py-2 rounded transition-colors shadow-sm flex items-center uppercase tracking-widest text-xs border border-gray-200 font-bold">
+      <a href="/myportal/login/" class="bg-gray-100 hover:bg-gray-200 text-[#111827] px-5 py-2 rounded transition-colors shadow-sm flex items-center uppercase tracking-widest text-xs border border-gray-200 font-bold">
         Sign In <i class="fa-solid fa-arrow-right-to-bracket ml-2 text-[10px]"></i>
       </a>
     </div>
@@ -143,7 +143,7 @@
       <div>
         <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Portal Access</p>
         <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
-          <a href="/help/" class="block hover:text-white transition-colors">Sign In to Portal</a>
+          <a href="/myportal/login/" class="block hover:text-white transition-colors">Sign In to Portal</a>
           <a href="/myportal/signup/" class="block text-[#D71A21] font-bold">Create Account</a>
         </div>
       </div>
@@ -238,7 +238,7 @@
                 
                 <div class="mt-8 text-center border-t border-gray-100 pt-6">
                     <p class="text-xs text-gray-500 font-semibold uppercase tracking-widest">
-                        Already have a profile? <a href="/help/" class="text-[#D71A21] font-bold hover:underline ml-1">Sign In Here</a>
+                        Already have a profile? <a href="/myportal/login/" class="text-[#D71A21] font-bold hover:underline ml-1">Sign In Here</a>
                     </p>
                 </div>
             </div>
@@ -248,7 +248,7 @@
                 <h3 class="text-3xl md:text-4xl font-serif font-bold text-[#111827] mb-6 tracking-tight">Check Your Inbox.</h3>
                 <p class="text-gray-600 leading-relaxed mb-10 max-w-sm text-sm">We have securely transmitted a confirmation link to your provided email address. You must verify your email to activate your corporate profile before accessing the portal.</p>
                 <div class="w-full max-w-xs mx-auto border-t border-gray-200 pt-8">
-                    <a href="/help/" class="block w-full bg-white hover:bg-gray-50 text-[#111827] border border-gray-300 py-3.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-colors shadow-sm">
+                    <a href="/myportal/login/" class="block w-full bg-white hover:bg-gray-50 text-[#111827] border border-gray-300 py-3.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-colors shadow-sm">
                         Return to Sign In
                     </a>
                 </div>
@@ -279,30 +279,24 @@
           <a href="https://www.linkedin.com/company/emirates-group-roblox-vision2026" target="_blank" class="hover:text-[#0A66C2] hover:scale-110 transition-all duration-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
       </div>
-
+      
       <div>
         <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">EGR Network</h4>
         <ul class="space-y-3 text-sm text-gray-400 font-semibold">
           <li><a href="https://ek.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Emirates Airline</a></li>
           <li><a href="https://fz.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Fly Dubai</a></li>
-          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Careers Portal</a></li>
         </ul>
       </div>
-
       <div>
         <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Tyler Nicholas Group</h4>
         <ul class="space-y-3 text-sm text-gray-400 font-semibold">
           <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> TNG Hub</a></li>
-          <li><a href="https://tyler.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> The Founder</a></li>
-          <li><a href="https://payhip.com/FalconLtd" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> Falcon LTD</a></li>
-          <li><a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> BlueWave Digital</a></li>
         </ul>
       </div>
     </div>
     
-    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs text-gray-500 font-bold tracking-wider uppercase text-center md:text-left gap-4">
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 text-[10px] md:text-xs text-gray-500 font-bold tracking-wider uppercase text-center md:text-left">
       <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
-      <p>A proud subsidiary of the <a href="https://tylernicholasgroup.com" class="text-gray-300 hover:text-white transition-colors">Tyler Nicholas Group</a> Network</p>
     </div>
   </footer>
 
@@ -321,21 +315,9 @@
         fillEl.style.width = perc + '%';
     }, 120);
 
-    window.addEventListener('load', () => {
-        clearInterval(progressInterval);
-        percEl.innerText = '100';
-        fillEl.style.width = '100%';
-        
-        setTimeout(() => {
-            animateContainer.classList.add('zoom-through');
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => { loader.style.display = 'none'; }, 800);
-            }, 600);
-        }, 400);
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
+    // --- SUPABASE LOGIC ---
+    document.addEventListener("DOMContentLoaded", async () => {
+      
       // Mobile Menu
       const mobileBtn = document.getElementById('mobile-menu-btn');
       const mobileClose = document.getElementById('mobile-menu-close');
@@ -345,11 +327,30 @@
         mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
       }
 
-      // Supabase Init
+      // Initialize Supabase
       const supabase = window.supabase.createClient(
         'https://zboyabxzhptnxnmofvcz.supabase.co', 
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
       );
+
+      // Security Check: If already logged in, redirect straight to portal
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+          window.location.href = '/myportal/';
+          return;
+      }
+
+      // Hide Loader
+      clearInterval(progressInterval);
+      percEl.innerText = '100';
+      fillEl.style.width = '100%';
+      setTimeout(() => {
+          animateContainer.classList.add('zoom-through');
+          setTimeout(() => {
+              loader.style.opacity = '0';
+              setTimeout(() => { loader.style.display = 'none'; }, 800);
+          }, 600);
+      }, 400);
 
       // Signup Logic
       const signupForm = document.getElementById('signup-form');
