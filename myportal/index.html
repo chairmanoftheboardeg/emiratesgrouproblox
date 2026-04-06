@@ -8,6 +8,7 @@
   <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" id="favicon" />
   
   <script src="https://cdn.tailwindcss.com"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
@@ -104,7 +105,7 @@
 
       <div class="p-6 border-t border-gray-800 bg-[#0a0f18]">
           <div class="flex items-center gap-4 mb-6">
-              <img id="sidebar-avatar" src="" class="w-10 h-10 rounded bg-gray-800 object-cover shadow-md">
+              <img id="sidebar-avatar" src="" class="w-10 h-10 rounded bg-gray-800 object-cover shadow-md opacity-0 transition-opacity duration-300">
               <div class="overflow-hidden">
                   <p id="sidebar-name" class="text-white text-xs font-bold truncate">Loading...</p>
                   <p id="sidebar-tier" class="text-gray-400 text-[9px] uppercase tracking-widest font-mono">-- TIER</p>
@@ -119,17 +120,30 @@
   <div id="mobile-overlay" class="lg:hidden fixed inset-0 bg-black/50 z-30 hidden backdrop-blur-sm transition-opacity"></div>
 
   <main class="flex-1 h-full overflow-y-auto custom-scroll bg-[#f4f5f7] pt-20 lg:pt-0">
+      
+      <div class="bg-white border-b border-gray-200 px-6 md:px-12 py-4 flex justify-between items-center shadow-sm">
+          <div class="flex items-center gap-3">
+              <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400">Secure Connection</span>
+          </div>
+          <a href="/help/" class="text-[10px] font-bold uppercase tracking-widest text-gray-500 hover:text-[#111827] transition-colors">
+              Help Center &rarr;
+          </a>
+      </div>
+
       <div class="max-w-[1400px] mx-auto p-6 md:p-10 lg:p-12">
 
           <div class="bg-white rounded-[2rem] shadow-sm border border-gray-200 p-8 md:p-12 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10 relative overflow-hidden mb-10">
               <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-gray-50 to-gray-100 rounded-full blur-3xl -mr-40 -mt-40 pointer-events-none"></div>
 
               <div class="flex items-center gap-8 relative z-10">
-                  <img id="hero-avatar" src="" class="w-24 h-24 md:w-32 md:h-32 rounded-2xl shadow-lg border border-gray-100 object-cover bg-gray-50">
+                  <div id="avatar-container" class="w-24 h-24 md:w-32 md:h-32 rounded-2xl shadow-lg border border-gray-100 overflow-hidden bg-gray-50 flex items-center justify-center">
+                      <i class="fa-solid fa-circle-notch fa-spin text-gray-300 text-2xl"></i>
+                  </div>
                   <div>
-                      <span id="hero-status" class="inline-block px-2 py-1 bg-green-50 border border-green-200 text-green-700 text-[9px] font-bold uppercase tracking-widest rounded mb-3">ACTIVE</span>
+                      <span id="hero-status" class="inline-block px-2 py-1 bg-gray-100 border border-gray-200 text-gray-500 text-[9px] font-bold uppercase tracking-widest rounded mb-3">SYNCING...</span>
                       <h1 id="hero-name" class="text-4xl md:text-5xl font-serif font-bold text-[#111827] tracking-tight leading-none mb-2">Member</h1>
-                      <p id="hero-roblox" class="text-sm font-mono text-gray-500 uppercase tracking-widest">@ROBLOX_USER</p>
+                      <p id="hero-roblox" class="text-sm font-mono text-gray-500 uppercase tracking-widest">@USER</p>
                   </div>
               </div>
 
@@ -139,12 +153,12 @@
                           <p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1">Skywards Balance</p>
                           <h2 id="hero-miles" class="text-3xl font-serif font-bold text-white tracking-tight">0</h2>
                       </div>
-                      <span id="hero-tier-badge" class="bg-blue-900 text-blue-100 border border-blue-700 px-2 py-1 rounded text-[9px] font-bold uppercase tracking-widest">BLUE</span>
+                      <span id="hero-tier-badge" class="bg-gray-800 text-gray-400 border border-gray-600 px-2 py-1 rounded text-[9px] font-bold uppercase tracking-widest">LOADING</span>
                   </div>
                   
                   <div>
                       <div class="flex justify-between text-[9px] font-mono text-gray-400 uppercase tracking-widest mb-2">
-                          <span id="hero-progress-text">0 / 25,000 MILES</span>
+                          <span id="hero-progress-text">CALCULATING MILES...</span>
                       </div>
                       <div class="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
                           <div id="hero-progress-bar" class="bg-[#D71A21] h-full transition-all duration-1000" style="width: 0%;"></div>
@@ -233,7 +247,7 @@
               <div>
                   <span id="modal-ticket-id" class="text-gray-400 font-mono text-[10px] uppercase tracking-widest mb-3 block">TKT-XXXXXX</span>
                   <h2 id="modal-ticket-subject" class="text-2xl md:text-3xl font-serif font-bold tracking-tight mb-4">Loading Request...</h2>
-                  <span id="modal-ticket-status" class="inline-block px-3 py-1 rounded text-[9px] font-bold uppercase tracking-widest border">STATUS</span>
+                  <span id="modal-ticket-status" class="inline-block px-3 py-1 rounded text-[9px] font-bold uppercase tracking-widest border border-gray-600 bg-gray-800 text-gray-300">STATUS</span>
               </div>
               <button onclick="closeTicketModal()" class="text-gray-400 hover:text-white transition-colors text-[10px] font-bold uppercase tracking-widest p-2 border border-transparent hover:border-gray-600 rounded">
                   CLOSE
@@ -298,7 +312,7 @@
   </div>
 
   <script>
-    // --- UI LOGIC (Loader, Tabs, Mobile Menu) ---
+    // --- SAFE LOADER LOGIC ---
     const progressInterval = setInterval(() => {
         let perc = parseInt(document.getElementById('loader-perc').innerText);
         perc += Math.floor(Math.random() * 8) + 2; 
@@ -320,7 +334,7 @@
         }, 400);
     }
 
-    // Tabs
+    // --- UI EVENT LISTENERS (Tabs & Mobile Menu) ---
     document.querySelectorAll('.nav-link').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
@@ -328,13 +342,11 @@
             btn.classList.add('active');
             document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
             
-            // Close mobile menu if open
             document.getElementById('sidebar').classList.remove('translate-x-0');
             document.getElementById('mobile-overlay').classList.add('hidden');
         });
     });
 
-    // Mobile Menu
     document.getElementById('mobile-menu-btn').addEventListener('click', () => {
         document.getElementById('sidebar').classList.add('translate-x-0');
         document.getElementById('mobile-overlay').classList.remove('hidden');
@@ -344,176 +356,216 @@
         document.getElementById('mobile-overlay').classList.add('hidden');
     });
 
-    // --- SUPABASE & DATA LOGIC ---
+    // --- BULLETPROOF SUPABASE & DATA LOGIC ---
     let currentUser = null;
     let userProfile = null;
 
     document.addEventListener("DOMContentLoaded", async () => {
+      
       const supabase = window.supabase.createClient(
         'https://zboyabxzhptnxnmofvcz.supabase.co', 
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
       );
 
-      // Auth Check
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) { window.location.href = '/myportal/login/'; return; }
-      currentUser = session.user;
-
-      // Load Profile
-      const { data: profile } = await supabase.from('egr_users').select('*').eq('id', currentUser.id).single();
-      if (profile) {
-          userProfile = profile;
-          const name = profile.full_name || 'Member';
-          document.getElementById('profile-name').innerText = name;
-          document.getElementById('hero-name').innerText = name;
-          document.getElementById('sidebar-name').innerText = name;
+      try {
+          // 1. Auth Check
+          const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+          if (sessionError) throw sessionError;
           
-          document.getElementById('profile-roblox').innerText = `@${profile.roblox_username || 'Unknown'}`;
-          document.getElementById('hero-roblox').innerText = `@${profile.roblox_username || 'Unknown'}`;
-          
-          const joined = new Date(profile.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '.');
-          document.getElementById('profile-joined').innerText = joined;
-
-          // Skywards Logic
-          const pts = profile.skywards_points || 0;
-          document.getElementById('skywards-balance').innerText = pts.toLocaleString();
-          document.getElementById('hero-miles').innerText = pts.toLocaleString();
-          
-          let tier = profile.current_tier || 'Blue';
-          let nextTier = 'Silver';
-          let required = 25000;
-          let badgeClass = 'bg-blue-900 text-blue-100 border-blue-700';
-
-          if(tier === 'Blue') { required = 25000; nextTier = 'Silver'; }
-          else if(tier === 'Silver') { required = 50000; nextTier = 'Gold'; badgeClass = 'bg-gray-200 text-gray-700 border-gray-400'; }
-          else if(tier === 'Gold') { required = 150000; nextTier = 'Platinum'; badgeClass = 'bg-yellow-100 text-yellow-800 border-yellow-500'; }
-          else if(tier === 'Platinum') { required = pts; nextTier = 'MAX TIER'; badgeClass = 'bg-[#111827] text-white border-gray-700'; }
-
-          const tBadge = `${tier} TIER`;
-          document.getElementById('sidebar-tier').innerText = tBadge;
-          
-          const heroBadge = document.getElementById('hero-tier-badge');
-          heroBadge.innerText = tBadge;
-          heroBadge.className = `px-3 py-1 rounded text-[9px] font-bold uppercase tracking-widest border ${badgeClass}`;
-          
-          let progress = tier === 'Platinum' ? 100 : Math.min((pts / required) * 100, 100);
-          document.getElementById('hero-progress-text').innerText = tier === 'Platinum' ? 'MAXIMUM TIER REACHED' : `${pts.toLocaleString()} / ${required.toLocaleString()} MILES`;
-          document.getElementById('hero-progress-bar').style.width = `${progress}%`;
-
-          // Analytics
-          document.getElementById('stat-flights').innerText = profile.flights_taken || 0;
-          document.getElementById('stat-exec').innerText = profile.executive_flights_taken || 0;
-          document.getElementById('stat-streak').innerText = profile.engagement_streak || 0;
-
-          // Avatar Logic (Dynamic API Monogram fallback to avoid Discord bot requirement)
-          const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=111827&color=fff&size=256&font-size=0.33`;
-          const avatarUrl = profile.discord_avatar_url || fallbackUrl;
-          
-          document.getElementById('sidebar-avatar').src = avatarUrl;
-          document.getElementById('hero-avatar').src = avatarUrl;
-          
-          document.getElementById('avatar-container').innerHTML = `<img src="${avatarUrl}" class="w-full h-full object-cover">`;
-
-          if(profile.account_status !== 'Active') {
-              const statEl = document.getElementById('profile-status');
-              const heroStat = document.getElementById('hero-status');
-              const stClass = 'text-[9px] font-bold text-[#D71A21] uppercase tracking-widest';
-              statEl.innerText = profile.account_status; statEl.className = stClass;
-              heroStat.innerText = profile.account_status; heroStat.className = `inline-block px-3 py-1 bg-red-50 border border-red-200 text-red-700 text-[9px] font-bold uppercase tracking-widest rounded mb-4`;
+          if (!session) { 
+              window.location.href = '/myportal/login/'; 
+              return; 
           }
-      }
-      hideLoader();
+          currentUser = session.user;
 
-      // Bookings (Tabular)
-      async function loadBookings() {
-          const list = document.getElementById('bookings-list');
-          const { data: bookings } = await supabase.from('egr_bookings').select('*').eq('user_id', currentUser.id).order('booked_at', { ascending: false });
-
-          if (!bookings || bookings.length === 0) {
-              list.innerHTML = `<div class="p-10 text-center text-gray-400 font-mono text-xs uppercase tracking-widest">No Itineraries Found.</div>`;
-              return;
+          // 2. Load Profile (Graceful fail if profile row doesn't exist yet)
+          const { data: profile, error: profileError } = await supabase.from('egr_users').select('*').eq('id', currentUser.id).single();
+          
+          if (profileError && profileError.code !== 'PGRST116') {
+              console.error("Profile Error:", profileError);
           }
 
-          let html = '';
-          bookings.forEach(b => {
-              const d = new Date(b.booked_at).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '.');
-              html += `
-              <div class="grid grid-cols-4 md:grid-cols-5 gap-4 p-6 items-center hover:bg-gray-50 transition-colors">
-                  <div class="col-span-2 md:col-span-2 text-[#111827] font-bold text-sm tracking-tight">${b.ticket_reference}</div>
-                  <div class="hidden md:block text-gray-500 text-xs font-mono">${b.seat_class}</div>
-                  <div><span class="px-2 py-1 rounded border border-gray-200 bg-white text-[9px] font-bold uppercase tracking-widest text-gray-600">${b.status}</span></div>
-                  <div class="text-right text-gray-400 font-mono text-[10px]">${d}</div>
-              </div>`;
-          });
-          list.innerHTML = html;
-      }
-      loadBookings();
-
-      // Support Tickets (Tabular)
-      async function loadTickets() {
-          const list = document.getElementById('tickets-list');
-          const { data: tickets } = await supabase.from('egr_support_tickets').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false });
-
-          if (!tickets || tickets.length === 0) {
-              list.innerHTML = `<div class="p-10 text-center text-gray-400 font-mono text-xs uppercase tracking-widest">No Tickets Found.</div>`;
-              return;
-          }
-
-          let html = '';
-          tickets.forEach(t => {
-              let statColor = 'text-gray-500 border-gray-200 bg-white';
-              if(t.status === 'Open' || t.status === 'In Review') statColor = 'text-blue-600 border-blue-200 bg-blue-50';
-              if(t.status === 'Awaiting User Response') statColor = 'text-yellow-600 border-yellow-200 bg-yellow-50';
+          if (profile) {
+              userProfile = profile;
+              const name = profile.full_name || 'Member';
               
-              const statBadge = `<span class="px-2 py-1 rounded border ${statColor} text-[9px] font-bold uppercase tracking-widest">${t.status}</span>`;
-              let actionBtn = `<button onclick="openTicket('${t.id}', '${t.subject}', '${t.status}')" class="text-[10px] font-bold text-[#111827] hover:text-[#D71A21] uppercase tracking-widest transition-colors w-full text-right">VIEW LOG</button>`;
+              // Text Fields
+              document.getElementById('profile-name').innerText = name;
+              document.getElementById('hero-name').innerText = name;
+              document.getElementById('sidebar-name').innerText = name;
               
-              if(t.status === 'Closed' && !t.feedback_rating) {
-                  actionBtn = `<button onclick="openFeedback('${t.id}')" class="text-[10px] font-bold text-white bg-[#111827] hover:bg-[#D71A21] px-3 py-1.5 rounded uppercase tracking-widest transition-colors w-full text-center">RATE SERVICE</button>`;
+              document.getElementById('profile-roblox').innerText = `@${profile.roblox_username || 'Unknown'}`;
+              document.getElementById('hero-roblox').innerText = `@${profile.roblox_username || 'Unknown'}`;
+              
+              if(profile.created_at) {
+                  const joined = new Date(profile.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '.');
+                  document.getElementById('profile-joined').innerText = joined;
               }
 
-              html += `
-              <div class="grid grid-cols-4 md:grid-cols-6 gap-4 p-6 items-center hover:bg-gray-50 transition-colors">
-                  <div class="col-span-2 md:col-span-3 text-[#111827] font-bold text-sm tracking-tight truncate">${t.subject}</div>
-                  <div class="hidden md:block text-gray-500 text-xs font-mono truncate">${t.category}</div>
-                  <div>${statBadge}</div>
-                  <div class="text-right">${actionBtn}</div>
-              </div>`;
-          });
-          list.innerHTML = html;
-      }
-      loadTickets();
+              // Skywards Logic
+              const pts = profile.skywards_points || 0;
+              document.getElementById('skywards-balance').innerText = pts.toLocaleString();
+              document.getElementById('hero-miles').innerText = pts.toLocaleString();
+              
+              let tier = profile.current_tier || 'Blue';
+              let nextTier = 'Silver';
+              let required = 25000;
+              let badgeClass = 'bg-blue-900 text-blue-100 border-blue-700';
 
-      // Compliance Records (Tabular)
-      async function loadCompliance() {
-          const list = document.getElementById('compliance-list');
-          if(!userProfile || !userProfile.discord_id) return;
-          const { data: infractions } = await supabase.from('egr_blacklist').select('*').eq('discord_id', userProfile.discord_id).order('created_at', { ascending: false });
+              if(tier === 'Blue') { required = 25000; nextTier = 'Silver'; }
+              else if(tier === 'Silver') { required = 50000; nextTier = 'Gold'; badgeClass = 'bg-gray-200 text-gray-700 border-gray-400'; }
+              else if(tier === 'Gold') { required = 150000; nextTier = 'Platinum'; badgeClass = 'bg-yellow-100 text-yellow-800 border-yellow-500'; }
+              else if(tier === 'Platinum') { required = pts; nextTier = 'MAX TIER'; badgeClass = 'bg-[#111827] text-white border-gray-700'; }
 
-          if (!infractions || infractions.length === 0) {
-              list.innerHTML = `<div class="p-16 text-center text-green-600 font-serif text-2xl font-bold tracking-tight">Clear Record.</div>`;
-              return;
+              const tBadge = `${tier} TIER`;
+              document.getElementById('sidebar-tier').innerText = tBadge;
+              
+              const heroBadge = document.getElementById('hero-tier-badge');
+              heroBadge.innerText = tBadge;
+              heroBadge.className = `px-3 py-1 rounded text-[9px] font-bold uppercase tracking-widest border ${badgeClass}`;
+              
+              let progress = tier === 'Platinum' ? 100 : Math.min((pts / required) * 100, 100);
+              document.getElementById('hero-progress-text').innerText = tier === 'Platinum' ? 'MAXIMUM TIER REACHED' : `${pts.toLocaleString()} / ${required.toLocaleString()} MILES`;
+              document.getElementById('hero-progress-bar').style.width = `${progress}%`;
+
+              // Analytics
+              document.getElementById('stat-flights').innerText = profile.flights_taken || 0;
+              document.getElementById('stat-exec').innerText = profile.executive_flights_taken || 0;
+              document.getElementById('stat-streak').innerText = profile.engagement_streak || 0;
+
+              // Avatar (Monogram Fallback)
+              const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=111827&color=fff&size=256&font-size=0.33`;
+              const avatarUrl = profile.discord_avatar_url || fallbackUrl;
+              
+              const sideAvatar = document.getElementById('sidebar-avatar');
+              sideAvatar.src = avatarUrl;
+              sideAvatar.classList.remove('opacity-0');
+
+              document.getElementById('avatar-container').innerHTML = `<img src="${avatarUrl}" class="w-full h-full object-cover">`;
+
+              // Status
+              if(profile.account_status !== 'Active') {
+                  const statEl = document.getElementById('profile-status');
+                  const heroStat = document.getElementById('hero-status');
+                  statEl.innerText = profile.account_status; 
+                  statEl.className = 'text-xs font-bold text-[#D71A21] uppercase tracking-widest';
+                  heroStat.innerText = profile.account_status; 
+                  heroStat.className = `inline-block px-3 py-1 bg-red-50 border border-red-200 text-red-700 text-[9px] font-bold uppercase tracking-widest rounded mb-4`;
+              } else {
+                  document.getElementById('hero-status').innerText = 'ACTIVE';
+              }
           }
 
-          let html = '';
-          infractions.forEach(inf => {
-              const d = new Date(inf.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '.');
-              html += `
-              <div class="p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col md:flex-row justify-between gap-4">
-                  <div>
-                      <span class="bg-red-50 text-[#D71A21] text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded border border-red-200 mb-3 inline-block">${inf.violation_section}</span>
-                      <p class="text-base font-bold text-[#111827] tracking-tight mb-2">${inf.specific_violations ? inf.specific_violations.join(', ') : 'Rule Violation'}</p>
-                      <p class="text-xs text-gray-500 leading-relaxed max-w-2xl">${inf.detailed_reason || 'No detailed reason provided.'}</p>
-                  </div>
-                  <div class="text-left md:text-right shrink-0 flex flex-col justify-center">
-                      <span class="block text-[#111827] font-bold text-xs uppercase tracking-widest mb-1">${inf.status}</span>
-                      <span class="block text-gray-400 font-mono text-[10px]">${d}</span>
-                  </div>
-              </div>`;
-          });
-          list.innerHTML = html;
+      } catch (err) {
+          console.error("Dashboard Init Error:", err);
+          // Failsafe UI updates so it doesn't look broken
+          document.getElementById('hero-name').innerText = "Data Error";
+          document.getElementById('avatar-container').innerHTML = `<div class="font-mono text-xs text-gray-400">ERROR</div>`;
+      } finally {
+          hideLoader(); // GUARANTEED TO RUN
+          
+          // Fire off secondary data fetches safely
+          loadBookings();
+          loadTickets();
+          loadCompliance();
       }
-      loadCompliance();
+
+      // --- SECONDARY FETCH FUNCTIONS (Wrapped in try/catch to prevent cascading failures) ---
+
+      async function loadBookings() {
+          try {
+              const list = document.getElementById('bookings-list');
+              const { data: bookings, error } = await supabase.from('egr_bookings').select('*').eq('user_id', currentUser.id).order('booked_at', { ascending: false });
+              if (error) throw error;
+
+              if (!bookings || bookings.length === 0) {
+                  list.innerHTML = `<div class="p-10 text-center text-gray-400 font-mono text-xs uppercase tracking-widest">No Itineraries Found.</div>`;
+                  return;
+              }
+
+              let html = '';
+              bookings.forEach(b => {
+                  const d = new Date(b.booked_at).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '.');
+                  html += `
+                  <div class="grid grid-cols-4 md:grid-cols-5 gap-4 p-6 items-center hover:bg-gray-50 transition-colors">
+                      <div class="col-span-2 md:col-span-2 text-[#111827] font-bold text-sm tracking-tight">${b.ticket_reference}</div>
+                      <div class="hidden md:block text-gray-500 text-xs font-mono">${b.seat_class}</div>
+                      <div><span class="px-2 py-1 rounded border border-gray-200 bg-white text-[9px] font-bold uppercase tracking-widest text-gray-600">${b.status}</span></div>
+                      <div class="text-right text-gray-400 font-mono text-[10px]">${d}</div>
+                  </div>`;
+              });
+              list.innerHTML = html;
+          } catch(e) { console.error(e); }
+      }
+
+      async function loadTickets() {
+          try {
+              const list = document.getElementById('tickets-list');
+              const { data: tickets, error } = await supabase.from('egr_support_tickets').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false });
+              if (error) throw error;
+
+              if (!tickets || tickets.length === 0) {
+                  list.innerHTML = `<div class="p-10 text-center text-gray-400 font-mono text-xs uppercase tracking-widest">No Tickets Found.</div>`;
+                  return;
+              }
+
+              let html = '';
+              tickets.forEach(t => {
+                  let statColor = 'text-gray-500 border-gray-200 bg-white';
+                  if(t.status === 'Open' || t.status === 'In Review') statColor = 'text-blue-600 border-blue-200 bg-blue-50';
+                  if(t.status === 'Awaiting User Response') statColor = 'text-yellow-600 border-yellow-200 bg-yellow-50';
+                  
+                  const statBadge = `<span class="px-2 py-1 rounded border ${statColor} text-[9px] font-bold uppercase tracking-widest">${t.status}</span>`;
+                  let actionBtn = `<button onclick="openTicket('${t.id}', '${t.subject.replace(/'/g, "\\'")}', '${t.status}')" class="text-[10px] font-bold text-[#111827] hover:text-[#D71A21] uppercase tracking-widest transition-colors w-full text-right">VIEW LOG</button>`;
+                  
+                  if(t.status === 'Closed' && !t.feedback_rating) {
+                      actionBtn = `<button onclick="openFeedback('${t.id}')" class="text-[10px] font-bold text-white bg-[#111827] hover:bg-[#D71A21] px-3 py-1.5 rounded uppercase tracking-widest transition-colors w-full text-center">RATE SERVICE</button>`;
+                  }
+
+                  html += `
+                  <div class="grid grid-cols-4 md:grid-cols-6 gap-4 p-6 items-center hover:bg-gray-50 transition-colors">
+                      <div class="col-span-2 md:col-span-3 text-[#111827] font-bold text-sm tracking-tight truncate">${t.subject}</div>
+                      <div class="hidden md:block text-gray-500 text-xs font-mono truncate">${t.category}</div>
+                      <div>${statBadge}</div>
+                      <div class="text-right">${actionBtn}</div>
+                  </div>`;
+              });
+              list.innerHTML = html;
+          } catch(e) { console.error(e); }
+      }
+
+      async function loadCompliance() {
+          try {
+              const list = document.getElementById('compliance-list');
+              if(!userProfile || !userProfile.discord_id) return;
+              
+              const { data: infractions, error } = await supabase.from('egr_blacklist').select('*').eq('discord_id', userProfile.discord_id).order('created_at', { ascending: false });
+              if (error) throw error;
+
+              if (!infractions || infractions.length === 0) {
+                  list.innerHTML = `<div class="p-16 text-center text-gray-400 font-mono text-xs uppercase tracking-widest border border-dashed border-gray-200 m-6 rounded-xl">Clear Record</div>`;
+                  return;
+              }
+
+              let html = '';
+              infractions.forEach(inf => {
+                  const d = new Date(inf.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '.');
+                  html += `
+                  <div class="p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col md:flex-row justify-between gap-4">
+                      <div>
+                          <span class="bg-red-50 text-[#D71A21] text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded border border-red-200 mb-3 inline-block">${inf.violation_section}</span>
+                          <p class="text-base font-bold text-[#111827] tracking-tight mb-2">${inf.specific_violations ? inf.specific_violations.join(', ') : 'Rule Violation'}</p>
+                          <p class="text-xs text-gray-500 leading-relaxed max-w-2xl">${inf.detailed_reason || 'No detailed reason provided.'}</p>
+                      </div>
+                      <div class="text-left md:text-right shrink-0 flex flex-col justify-center">
+                          <span class="block text-[#111827] font-bold text-xs uppercase tracking-widest mb-1">${inf.status}</span>
+                          <span class="block text-gray-400 font-mono text-[10px]">${d}</span>
+                      </div>
+                  </div>`;
+              });
+              list.innerHTML = html;
+          } catch(e) { console.error(e); }
+      }
 
       // Logout
       document.getElementById('logout-btn').addEventListener('click', async () => {
@@ -523,55 +575,57 @@
 
       // --- MODAL LOGIC (Typographic Chat) ---
       window.openTicket = async function(id, subject, status) {
-          const modal = document.getElementById('ticket-modal');
-          const modalContent = document.getElementById('ticket-modal-content');
-          
-          document.getElementById('modal-ticket-id').innerText = `REF: ${id}`;
-          document.getElementById('modal-ticket-subject').innerText = subject;
-          document.getElementById('reply-ticket-id').value = id;
-          document.getElementById('modal-ticket-status').innerText = `STATUS: ${status}`;
+          try {
+              const modal = document.getElementById('ticket-modal');
+              const modalContent = document.getElementById('ticket-modal-content');
+              
+              document.getElementById('modal-ticket-id').innerText = `REF: ${id.substring(0,8)}`;
+              document.getElementById('modal-ticket-subject').innerText = subject;
+              document.getElementById('reply-ticket-id').value = id;
+              document.getElementById('modal-ticket-status').innerText = `STATUS: ${status}`;
 
-          if(status === 'Closed' || status === 'Resolved') document.getElementById('modal-reply-box').classList.add('hidden');
-          else document.getElementById('modal-reply-box').classList.remove('hidden');
+              if(status === 'Closed' || status === 'Resolved') document.getElementById('modal-reply-box').classList.add('hidden');
+              else document.getElementById('modal-reply-box').classList.remove('hidden');
 
-          const chatBox = document.getElementById('modal-chat-box');
-          chatBox.innerHTML = '<div class="text-center py-20 text-gray-400 font-mono text-xs uppercase tracking-widest">Retrieving logs...</div>';
-          
-          modal.classList.remove('hidden');
-          setTimeout(() => { modal.classList.remove('opacity-0'); modalContent.classList.remove('translate-y-10'); }, 10);
+              const chatBox = document.getElementById('modal-chat-box');
+              chatBox.innerHTML = '<div class="text-center py-20 text-gray-400 font-mono text-xs uppercase tracking-widest">Retrieving logs...</div>';
+              
+              modal.classList.remove('hidden');
+              setTimeout(() => { modal.classList.remove('opacity-0'); modalContent.classList.remove('translate-y-10'); }, 10);
 
-          const { data: ticketRecord } = await supabase.from('egr_support_tickets').select('content, created_at').eq('id', id).single();
-          const { data: messages } = await supabase.from('egr_ticket_messages').select('*').eq('ticket_id', id).order('created_at', { ascending: true });
+              const { data: ticketRecord } = await supabase.from('egr_support_tickets').select('content, created_at').eq('id', id).single();
+              const { data: messages } = await supabase.from('egr_ticket_messages').select('*').eq('ticket_id', id).order('created_at', { ascending: true });
 
-          let chatHTML = '';
-          
-          if(ticketRecord) {
-              const timeStr = new Date(ticketRecord.created_at).toLocaleString();
-              chatHTML += `
-              <div class="mb-10 border-l-2 border-[#111827] pl-5">
-                  <p class="text-[10px] text-[#111827] font-bold uppercase tracking-widest mb-2">INITIAL REQUEST <span class="font-mono text-gray-400 ml-3 normal-case font-normal">${timeStr}</span></p>
-                  <p class="text-sm md:text-base text-gray-700 leading-relaxed">${ticketRecord.content.replace(/\n/g, '<br>')}</p>
-              </div>`;
-          }
-
-          if(messages && messages.length > 0) {
-              messages.forEach(m => {
-                  const isMe = m.sender_id === currentUser.id;
-                  const timeStr = new Date(m.created_at).toLocaleString();
-                  const senderName = isMe ? 'YOU' : 'EGR STAFF';
-                  const borderCol = isMe ? 'border-gray-300' : 'border-[#D71A21]';
-                  const textCol = isMe ? 'text-gray-500' : 'text-[#D71A21]';
-                  
+              let chatHTML = '';
+              
+              if(ticketRecord) {
+                  const timeStr = new Date(ticketRecord.created_at).toLocaleString();
                   chatHTML += `
-                  <div class="mb-10 border-l-2 ${borderCol} pl-5">
-                      <p class="text-[10px] ${textCol} font-bold uppercase tracking-widest mb-2">${senderName} <span class="font-mono text-gray-400 ml-3 normal-case font-normal">${timeStr}</span></p>
-                      <p class="text-sm md:text-base text-gray-700 leading-relaxed">${m.message.replace(/\n/g, '<br>')}</p>
+                  <div class="mb-10 border-l-2 border-[#111827] pl-5">
+                      <p class="text-[10px] text-[#111827] font-bold uppercase tracking-widest mb-2">INITIAL REQUEST <span class="font-mono text-gray-400 ml-3 normal-case font-normal">${timeStr}</span></p>
+                      <p class="text-sm md:text-base text-gray-700 leading-relaxed">${ticketRecord.content.replace(/\n/g, '<br>')}</p>
                   </div>`;
-              });
-          }
+              }
 
-          chatBox.innerHTML = chatHTML;
-          chatBox.scrollTop = chatBox.scrollHeight;
+              if(messages && messages.length > 0) {
+                  messages.forEach(m => {
+                      const isMe = m.sender_id === currentUser.id;
+                      const timeStr = new Date(m.created_at).toLocaleString();
+                      const senderName = isMe ? 'YOU' : 'EGR STAFF';
+                      const borderCol = isMe ? 'border-gray-300' : 'border-[#D71A21]';
+                      const textCol = isMe ? 'text-gray-500' : 'text-[#D71A21]';
+                      
+                      chatHTML += `
+                      <div class="mb-10 border-l-2 ${borderCol} pl-5">
+                          <p class="text-[10px] ${textCol} font-bold uppercase tracking-widest mb-2">${senderName} <span class="font-mono text-gray-400 ml-3 normal-case font-normal">${timeStr}</span></p>
+                          <p class="text-sm md:text-base text-gray-700 leading-relaxed">${m.message.replace(/\n/g, '<br>')}</p>
+                      </div>`;
+                  });
+              }
+
+              chatBox.innerHTML = chatHTML;
+              chatBox.scrollTop = chatBox.scrollHeight;
+          } catch (err) { console.error(err); }
       };
 
       window.closeTicketModal = function() {
