@@ -12,220 +12,240 @@
   
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Manrope:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-
   <style>
-    body { font-family: 'Manrope', sans-serif; background-color: #f8f9fa; color: #0A1128; overflow-x: hidden; }
-    .font-serif { font-family: 'Cormorant Garamond', serif; }
-    .font-mono { font-family: 'Space Mono', monospace; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+    
+    body { font-family: 'Inter', sans-serif; background-color: #f9fafb; scroll-behavior: smooth; overflow-x: hidden; }
+    .font-serif { font-family: 'Playfair Display', serif; }
     
     /* Cinematic Text Fill Loader */
     #egr-loader {
         position: fixed; inset: 0; z-index: 9999;
-        background-color: #0A1128; 
+        background-color: #111827; 
         display: flex; align-items: center; justify-content: center;
-        transition: opacity 0.6s ease;
+        transition: opacity 0.8s ease;
     }
     .loader-content { display: flex; flex-direction: column; align-items: flex-end; }
     .loader-text-wrapper {
-        position: relative; font-weight: 800;
-        letter-spacing: -2px; line-height: 1; text-transform: uppercase;
+        position: relative; font-family: 'Inter', sans-serif; font-weight: 900;
+        letter-spacing: -2px; line-height: 1; text-transform: capitalize;
     }
-    .loader-base-text { color: #1e293b; }
+    .loader-base-text { color: #374151; }
     .loader-fill-text {
         position: absolute; left: 0; top: 0; color: #ffffff; 
         overflow: hidden; white-space: nowrap; width: 0%; transition: width 0.1s linear;
     }
-    .loader-info { color: #94a3b8; font-size: 10px; font-weight: 700; letter-spacing: 2px; margin-top: 12px; text-transform: uppercase; }
+    .loader-info { color: #9CA3AF; font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-top: 8px; }
     
-    .zoom-through { animation: zoomOutEffect 0.8s cubic-bezier(0.7, 0, 0.2, 1) forwards; }
+    .zoom-through { animation: zoomOutEffect 1.2s cubic-bezier(0.7, 0, 0.2, 1) forwards; }
     @keyframes zoomOutEffect {
         0% { transform: scale(1); opacity: 1; }
-        40% { transform: scale(1.05); opacity: 1; }
-        100% { transform: scale(30); opacity: 0; filter: blur(10px); }
+        40% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(40); opacity: 0; filter: blur(5px); }
     }
 
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #D71A21; border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: #b5151c; }
     
-    /* Clean Form Styling */
+    /* Input Styling - Clean & Professional */
     .input-field {
-        width: 100%; background-color: #f8f9fa; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1rem 1.25rem; color: #0A1128; font-size: 0.875rem; font-weight: 600; transition: all 0.3s;
+        width: 100%; background-color: #f9fafb; border: 2px solid #e5e7eb; border-radius: 0.5rem; padding: 0.875rem 1rem; color: #111827; font-size: 0.875rem; font-weight: 600; transition: all 0.3s;
     }
-    .input-field:focus { outline: none; border-color: #0A1128; background-color: #ffffff; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
-    .input-field::placeholder { color: #94a3b8; font-weight: 400; }
+    .input-field:focus { outline: none; border-color: #111827; background-color: #ffffff; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
   </style>
 </head>
 <body class="flex flex-col min-h-screen relative">
 
   <div id="egr-loader">
     <div class="loader-content" id="loader-animate-container">
-      <div class="loader-text-wrapper text-3xl md:text-6xl lg:text-7xl">
+      <div class="loader-text-wrapper text-4xl md:text-7xl lg:text-8xl">
         <div class="loader-base-text">Emirates Group Roblox</div>
         <div class="loader-fill-text" id="loader-fill">Emirates Group Roblox</div>
       </div>
-      <div class="loader-info">Authenticating Network Session... <span id="loader-perc">0</span>%</div>
+      <div class="loader-info lowercase">authenticating network session... <span id="loader-perc">0</span>%</div>
     </div>
   </div>
 
-  <nav class="bg-white border-b border-gray-200 py-4 px-6 md:px-12 flex justify-between items-center shadow-sm sticky top-0 z-40">
-    <a href="/" class="flex items-center gap-4 group">
-      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="EGR Logo" class="h-8 md:h-10 object-contain group-hover:opacity-80 transition-opacity">
+  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-40 border-b-4 border-[#D71A21]">
+    <a href="/" class="flex items-center group">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox Logo" class="h-10 md:h-12 object-contain group-hover:opacity-80 transition-opacity">
     </a>
 
-    <button id="mobile-menu-btn" class="lg:hidden text-[#0A1128] text-xs font-bold uppercase tracking-widest border border-gray-300 px-3 py-1 rounded">
-      MENU
+    <button id="mobile-menu-btn" class="lg:hidden text-gray-800 text-2xl focus:outline-none">
+      <i class="fa-solid fa-bars"></i>
     </button>
 
-    <div class="hidden lg:flex space-x-8 text-[11px] font-bold items-center text-gray-500 uppercase tracking-[0.15em]">
+    <div class="hidden lg:flex space-x-6 text-sm font-bold items-center text-gray-700">
       <a href="/" class="hover:text-[#D71A21] transition-colors">Home</a>
       
       <div class="relative group py-2">
-        <button class="hover:text-[#D71A21] transition-colors flex items-center gap-1">
-          Operations <span class="text-[8px] opacity-50">&#9660;</span>
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          About EGR <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
         </button>
-        <div class="absolute left-0 mt-2 w-48 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
-          <a href="/flights/" class="block px-6 py-4 hover:bg-gray-50 border-b border-gray-50 text-[10px]">Live Radar</a>
-          <a href="/operations/database/" class="block px-6 py-4 hover:bg-gray-50 text-[#D71A21] text-[10px]">Ban Database</a>
+        <div class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/about/vision/" class="block px-5 py-3 hover:bg-gray-50 border-b">Vision, Mission & Story</a>
+          <a href="/about/leadership/" class="block px-5 py-3 hover:bg-gray-50 border-b">Executive Leadership</a>
+          <a href="/about/governance/" class="block px-5 py-3 hover:bg-gray-50 border-b">Corporate Governance</a>
+          <a href="/about/innovation/" class="block px-5 py-3 hover:bg-gray-50 border-b">Innovation & Future</a>
+          <a href="/about/affiliates/" class="block px-5 py-3 hover:bg-gray-50">Affiliates & Partners</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Our Network <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="https://directory.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Network Directory</a>
+          <a href="/network/subsidiaries/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Subsidiaries Overview</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Operations <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/flights/" class="block px-5 py-3 hover:bg-gray-50 border-b">Live Flight Radar</a>
+          <a href="/operations/database/" class="block px-5 py-3 hover:bg-gray-50 text-[#D71A21]">Ban Database</a>
         </div>
       </div>
       
       <div class="relative group py-2">
-        <button class="text-[#D71A21] transition-colors flex items-center gap-1">
-          Help Center <span class="text-[8px] opacity-50">&#9660;</span>
+        <button class="text-[#D71A21] transition-colors flex items-center">
+          Help Center <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
         </button>
-        <div class="absolute left-0 mt-2 w-56 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
-          <a href="/help/" class="block px-6 py-4 hover:bg-gray-50 border-b border-gray-50 text-[10px]">Contact Us</a>
-          <a href="/help/feedback/" class="block px-6 py-4 hover:bg-gray-50 border-b border-gray-50 text-[10px]">Passenger Experience</a>
-          <a href="/help/report-issue/" class="block px-6 py-4 bg-gray-50 text-[#D71A21] text-[10px]">Report an Issue</a>
+        <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/help/" class="block px-5 py-3 hover:bg-gray-50 border-b">Contact Us</a>
+          <a href="/help/feedback/" class="block px-5 py-3 hover:bg-gray-50 border-b">Passenger Experience</a>
+          <a href="/help/report-issue/" class="block px-5 py-3 bg-gray-50 text-[#D71A21]">Report an Issue</a>
         </div>
       </div>
 
-      <div class="flex items-center gap-4 pl-4 border-l border-gray-200">
-          <a href="/myportal/" id="nav-portal-btn" class="hidden bg-[#0A1128] hover:bg-[#D71A21] text-white px-6 py-3 rounded-full transition-colors shadow-sm flex items-center text-[10px]">
-            MY PORTAL &rarr;
-          </a>
-          <a href="/myportal/login/" id="nav-login-btn" class="bg-gray-50 hover:bg-gray-100 text-[#0A1128] border border-gray-200 px-6 py-3 rounded-full transition-colors shadow-sm flex items-center text-[10px]">
-            SIGN IN &rarr;
-          </a>
-      </div>
+      <a href="/myportal/" id="nav-portal-btn" class="hidden bg-[#111827] hover:bg-[#D71A21] text-white px-5 py-2 rounded transition-colors shadow-md flex items-center uppercase tracking-widest text-xs">
+        My Portal <i class="fa-solid fa-user ml-2 text-[10px]"></i>
+      </a>
+      <a href="/myportal/login/" id="nav-login-btn" class="bg-gray-100 hover:bg-gray-200 text-[#111827] px-5 py-2 rounded transition-colors shadow-sm flex items-center uppercase tracking-widest text-xs border border-gray-200 font-bold">
+        Sign In <i class="fa-solid fa-arrow-right-to-bracket ml-2 text-[10px]"></i>
+      </a>
     </div>
   </nav>
 
-  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#0A1128] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col lg:hidden">
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#111827] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col lg:hidden">
     <div class="p-6 flex justify-between items-center border-b border-gray-800 bg-white">
-      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" class="h-8 object-contain">
-      <button id="mobile-menu-close" class="text-xs font-bold uppercase tracking-widest text-[#0A1128]">CLOSE</button>
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Logo" class="h-10 object-contain">
+      <button id="mobile-menu-close" class="text-gray-800 text-3xl focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
     </div>
     
-    <div class="p-8 overflow-y-auto space-y-8 text-white flex-grow bg-[#0A1128]">
-      <a href="/" class="block text-lg font-serif tracking-wide hover:text-[#D71A21] transition-colors">Headquarters</a>
+    <div class="p-6 overflow-y-auto space-y-8 text-white flex-grow bg-[#111827]">
+      <a href="/" class="block text-xl font-bold hover:text-[#D71A21] transition-colors">Home</a>
       
       <div>
-        <p class="text-[#D71A21] uppercase text-[9px] font-bold tracking-[0.2em] mb-4 border-b border-gray-800 pb-2">Help Center</p>
-        <div class="space-y-4 pl-4 text-xs font-bold uppercase tracking-widest text-gray-400">
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Help Center</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
           <a href="/help/" class="block hover:text-white transition-colors">Contact Us</a>
           <a href="/help/feedback/" class="block hover:text-white transition-colors">Passenger Experience</a>
-          <a href="/help/report-issue/" class="block text-white">Report an Issue</a>
+          <a href="/help/report-issue/" class="block text-[#D71A21] font-bold">Report an Issue</a>
         </div>
       </div>
 
-      <a href="/myportal/login/" class="block bg-white text-[#0A1128] text-center py-4 rounded-lg font-bold uppercase tracking-widest mt-8 hover:bg-gray-200 transition-colors text-xs">
+      <a href="/myportal/login/" class="block bg-white text-[#111827] text-center py-4 rounded font-bold uppercase tracking-widest mt-6 hover:bg-gray-200 transition-colors">
         Sign In to Portal
       </a>
     </div>
   </div>
 
-  <header class="relative bg-[#0A1128] text-white py-24 md:py-32 px-6 overflow-hidden border-b-4 border-[#D71A21]">
-    <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+  <header class="relative bg-[#111827] text-white py-20 md:py-28 px-6 overflow-hidden border-b-4 border-[#D71A21]">
+    <div class="absolute inset-0 bg-[#111827]/90 z-10"></div>
+    <div class="absolute inset-0 z-0 opacity-5" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
     
-    <div class="relative z-20 max-w-4xl mx-auto text-center">
-      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-[10px] mb-4 block">Security & Moderation</span>
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-none tracking-tight">Report an <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D71A21] to-red-600">Incident.</span></h1>
-      <p class="text-gray-400 md:text-lg max-w-2xl mx-auto leading-relaxed">Submit security violations, staff misconduct, or critical network failures directly to Corporate Operations for investigation.</p>
+    <div class="relative z-20 max-w-5xl mx-auto text-center">
+      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Security & Moderation</span>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight uppercase tracking-tighter drop-shadow-xl">Report an <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D71A21] to-red-600">Incident.</span></h1>
+      <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">Submit security violations, staff misconduct, or critical network failures directly to Corporate Operations for investigation.</p>
     </div>
   </header>
 
-  <main class="flex-grow flex items-center justify-center py-16 px-4 md:px-8 relative overflow-hidden bg-gray-50">
-    <div class="max-w-[1200px] w-full mx-auto relative z-10">
+  <main class="flex-grow bg-gray-50 flex items-center justify-center py-16 px-4 md:px-6 relative overflow-hidden">
+    
+    <div class="max-w-5xl w-full mx-auto relative z-10">
 
-        <div id="auth-gate" class="bg-white rounded-[2rem] shadow-xl border border-gray-200 overflow-hidden flex flex-col md:flex-row transition-opacity duration-500">
+        <div id="auth-gate" class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden flex flex-col md:flex-row transition-opacity duration-500">
             
-            <div class="w-full md:w-5/12 bg-[#0A1128] p-10 md:p-16 flex flex-col justify-center relative overflow-hidden">
+            <div class="w-full md:w-5/12 bg-[#111827] p-8 md:p-12 flex flex-col justify-center relative overflow-hidden">
                 <div class="relative z-10">
-                    <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Access Control</span>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-white uppercase tracking-tight mb-6 leading-tight">Identity <br>Verification.</h2>
-                    <p class="text-sm text-gray-400 leading-relaxed mb-10">To prevent fraudulent reports and maintain operational integrity, all incident logs must be attached to a verified Corporate Profile.</p>
+                    <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Access Control</span>
+                    <h2 class="text-3xl font-serif font-bold text-white uppercase tracking-tight mb-6 leading-tight">Identity <br>Verification.</h2>
+                    <p class="text-sm text-gray-400 leading-relaxed mb-8">To prevent fraudulent reports and maintain operational integrity, all incident logs must be attached to a verified Corporate Profile.</p>
                     
                     <div class="space-y-6 text-sm text-gray-300 font-medium border-t border-gray-800 pt-8">
                         <div>
-                            <strong class="text-white block mb-1 uppercase tracking-widest text-[10px]">Inbox Notifications</strong>
+                            <strong class="text-white block mb-1 uppercase tracking-widest text-xs">Inbox Notifications</strong>
                             Track the investigation status of your report securely via your MyPortal Inbox.
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="w-full md:w-7/12 p-10 md:p-16 flex flex-col justify-center bg-white">
-                <div class="mb-10 border-b border-gray-100 pb-8">
-                    <h3 class="text-2xl font-bold text-[#0A1128] mb-3 tracking-tight">Authentication Required</h3>
-                    <p class="text-sm text-gray-500 font-medium leading-relaxed">You must be signed in to a verified corporate account to submit moderation or technical reports.</p>
+            <div class="w-full md:w-7/12 p-8 md:p-12 lg:px-16 flex flex-col justify-center bg-white">
+                <div class="mb-10 border-b border-gray-100 pb-6">
+                    <h3 class="text-2xl font-bold text-[#111827] mb-2 tracking-tight">Authentication Required</h3>
+                    <p class="text-sm text-gray-500 font-semibold leading-relaxed">You must be signed in to a verified corporate account to submit moderation or technical reports.</p>
                 </div>
                 
-                <div class="space-y-4">
-                    <a href="/myportal/login/" class="w-full bg-[#0A1128] hover:bg-[#D71A21] text-white py-4 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] transition-colors shadow-sm flex justify-center items-center">
+                <div class="space-y-5">
+                    <a href="/myportal/login/" class="w-full bg-[#111827] hover:bg-[#D71A21] text-white py-4 rounded-lg text-sm font-bold uppercase tracking-widest transition-colors shadow-sm flex justify-center items-center">
                         Sign In to Portal &rarr;
                     </a>
                     
                     <div class="relative flex items-center py-4">
                         <div class="flex-grow border-t border-gray-200"></div>
-                        <span class="flex-shrink-0 mx-4 text-gray-400 text-[10px] font-bold uppercase tracking-widest">OR</span>
+                        <span class="flex-shrink-0 mx-4 text-gray-400 text-xs font-bold uppercase tracking-widest">Or</span>
                         <div class="flex-grow border-t border-gray-200"></div>
                     </div>
 
-                    <a href="/myportal/signup/" class="w-full bg-white hover:bg-gray-50 border border-gray-200 text-[#0A1128] py-4 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] transition-colors shadow-sm flex justify-center items-center">
-                        Create Member Account
+                    <a href="/myportal/signup/" class="w-full bg-white hover:bg-gray-50 border-2 border-gray-200 text-[#111827] py-4 rounded-lg text-sm font-bold uppercase tracking-widest transition-colors shadow-sm flex justify-center items-center">
+                        Create a Member Account
                     </a>
                 </div>
             </div>
         </div>
 
-        <div id="report-desk" class="hidden bg-white rounded-[2.5rem] shadow-sm border border-gray-200 overflow-hidden flex flex-col xl:flex-row transition-opacity duration-500">
+        <div id="report-desk" class="hidden bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden flex flex-col md:flex-row transition-opacity duration-500">
             
-            <div class="w-full xl:w-4/12 bg-[#0A1128] p-10 md:p-14 flex flex-col justify-between">
+            <div class="w-full md:w-4/12 bg-[#111827] p-8 md:p-10 flex flex-col justify-between">
                 <div>
-                    <h2 class="text-3xl font-serif font-bold text-white tracking-tight mb-2">Corporate <br>Moderation.</h2>
-                    <p class="text-[9px] text-[#D71A21] font-bold uppercase tracking-[0.2em] mb-10 border-b border-gray-800 pb-6">Authenticated Profile</p>
+                    <h2 class="text-2xl font-serif font-bold text-white uppercase tracking-tight mb-2">Corporate Moderation</h2>
+                    <p class="text-[10px] text-[#D71A21] font-bold uppercase tracking-widest mb-10 border-b border-gray-800 pb-4">Authenticated Profile</p>
                     
-                    <div class="space-y-8 text-sm text-gray-400 leading-relaxed mb-10">
+                    <div class="space-y-8 text-sm text-gray-400 leading-relaxed mb-8">
                         <div>
-                            <strong class="text-white block mb-1 uppercase tracking-widest text-[10px]">False Reports</strong>
+                            <strong class="text-white block mb-1 uppercase tracking-widest text-xs">False Reports</strong>
                             Submitting falsified evidence or abusing the reporting system will result in corporate suspension.
                         </div>
                         <div>
-                            <strong class="text-white block mb-1 uppercase tracking-widest text-[10px]">Investigation Tracking</strong>
+                            <strong class="text-white block mb-1 uppercase tracking-widest text-xs">Investigation Tracking</strong>
                             Updates regarding your submission will be dispatched directly to your MyPortal Inbox.
                         </div>
                     </div>
                 </div>
 
                 <div class="border-t border-gray-800 pt-8 mt-8">
-                    <a href="/myportal/" class="flex items-center justify-center w-full bg-white text-[#0A1128] hover:bg-gray-200 py-3.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] transition-colors shadow-sm mb-4">
-                        Return to Portal &rarr;
+                    <a href="/myportal/" class="flex items-center justify-center w-full bg-white text-[#111827] hover:bg-gray-200 py-3 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-sm mb-4">
+                        Go to My Portal &rarr;
                     </a>
                 </div>
             </div>
 
-            <div class="w-full xl:w-8/12 p-8 md:p-14">
+            <div class="w-full md:w-8/12 p-8 md:p-12">
                 <div class="mb-10 border-b border-gray-100 pb-6">
-                    <h3 class="text-2xl font-bold text-[#0A1128] mb-2 tracking-tight">Log an Incident</h3>
-                    <p class="text-sm text-gray-500 font-medium">Please provide detailed, accurate information to assist investigators.</p>
+                    <h3 class="text-2xl font-bold text-[#111827] mb-2 tracking-tight">Log an Incident</h3>
+                    <p class="text-sm text-gray-500 font-semibold">Please provide detailed, accurate information to assist investigators.</p>
                 </div>
 
-                <div id="report-alert" class="hidden mb-8 p-5 rounded-xl text-[10px] font-bold uppercase tracking-widest border">
+                <div id="report-alert" class="hidden mb-6 p-4 rounded text-xs font-bold uppercase tracking-widest border">
                     <span id="report-alert-text"></span>
                 </div>
 
@@ -233,7 +253,7 @@
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-[0.1em] mb-2">Classification</label>
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Classification</label>
                             <select id="report-category" class="input-field appearance-none cursor-pointer" required>
                                 <option value="" disabled selected>Select violation type...</option>
                                 <option value="Fellow User Report">Fellow User Report</option>
@@ -243,31 +263,31 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-[0.1em] mb-2">Subject / Title</label>
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Subject / Title</label>
                             <input type="text" id="report-subject" class="input-field" placeholder="Brief summary of incident" required maxlength="100">
                         </div>
                     </div>
 
-                    <div id="reported-user-container" class="hidden opacity-0 transition-all duration-500 bg-gray-50 p-6 rounded-xl border border-gray-100">
-                        <label class="block text-[10px] font-bold text-[#D71A21] uppercase tracking-[0.1em] mb-2">Offending Username</label>
+                    <div id="reported-user-container" class="hidden opacity-0 transition-all duration-500 bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <label class="block text-[10px] font-bold text-[#D71A21] uppercase tracking-widest mb-2">Offending Username</label>
                         <input type="text" id="report-username" class="input-field bg-white" placeholder="Enter exact Roblox Username">
-                        <p class="text-[9px] text-gray-400 mt-2 font-bold uppercase tracking-widest">Required for user or staff moderation reports.</p>
+                        <p class="text-[9px] text-gray-500 mt-2 font-bold uppercase tracking-widest">Required for user or staff moderation reports.</p>
                     </div>
 
                     <div>
-                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-[0.1em] mb-2">Detailed Synopsis</label>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Detailed Synopsis</label>
                         <textarea id="report-description" class="input-field resize-none h-32" placeholder="Describe the incident in full detail. Include timestamps, locations, and actions taken..." required></textarea>
                     </div>
 
                     <div>
-                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-[0.1em] mb-2">Evidence Link (Optional but Recommended)</label>
-                        <input type="url" id="report-evidence" class="input-field font-mono text-sm" placeholder="https://medal.tv/clip/..." pattern="https://.*">
-                        <p class="text-[9px] text-gray-400 mt-2 font-bold uppercase tracking-widest">Acceptable platforms: Gyazo, Imgur, YouTube, Medal.tv</p>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Evidence Link (Optional but Recommended)</label>
+                        <input type="url" id="report-evidence" class="input-field" placeholder="https://medal.tv/clip/..." pattern="https://.*">
+                        <p class="text-[9px] text-gray-500 mt-2 font-bold uppercase tracking-widest">Acceptable platforms: Gyazo, Imgur, YouTube, Medal.tv</p>
                     </div>
 
                     <div class="pt-6">
-                        <button type="submit" id="report-submit-btn" class="w-full bg-[#0A1128] hover:bg-[#D71A21] text-white py-4 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] transition-colors shadow-md">
-                            LODGE REPORT &rarr;
+                        <button type="submit" id="report-submit-btn" class="w-full bg-[#111827] hover:bg-[#D71A21] text-white py-4 rounded-lg text-sm font-bold uppercase tracking-widest transition-colors shadow-sm flex justify-center items-center">
+                            Lodge Report &rarr;
                         </button>
                     </div>
                 </form>
@@ -277,83 +297,65 @@
     </div>
   </main>
 
-  <footer class="bg-[#0A1128] text-white py-16 px-6 md:px-12 border-t-4 border-[#D71A21] relative z-20 mt-auto">
+  <footer class="bg-[#111827] text-white py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
       <div class="md:col-span-2">
-        <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest font-serif">Emirates Group Roblox</h3>
+        <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest">Emirates Group Roblox</h3>
         <p class="text-sm text-gray-400 max-w-md mb-8 leading-relaxed">The premier virtual aviation organization on the Roblox platform. Setting the standard for structural perfection and digital realism.</p>
         
-        <h4 class="font-bold text-white mb-4 uppercase tracking-[0.2em] text-[10px] border-b border-gray-800 pb-2 inline-block">Connect With Us</h4>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2 inline-block">Connect With Us</h4>
         <div class="flex flex-wrap items-center gap-5 text-2xl text-gray-400 mt-2">
-          <a href="https://discord.gg/nDAZ3p475V7" target="_blank" class="hover:text-[#5865F2] transition-colors"><i class="fa-brands fa-discord"></i></a>
-          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white transition-colors flex items-center">
+          <a href="https://discord.gg/nDAZ3p475V7" target="_blank" class="hover:text-[#5865F2] hover:scale-110 transition-all duration-300" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300 flex items-center" aria-label="Roblox">
             <svg class="w-[1em] h-[1em] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.445 0L0 20.457l18.555 3.543L24 3.543 5.445 0zm10.125 14.596l-4.102-.782-.782-4.102 4.102.782.782 4.102z"/></svg>
           </a>
-          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] transition-colors"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] hover:scale-110 transition-all duration-300" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] hover:scale-110 transition-all duration-300" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] hover:scale-110 transition-all duration-300" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] hover:scale-110 transition-all duration-300" aria-label="Trello"><i class="fa-brands fa-trello"></i></a>
+          <a href="https://www.linkedin.com/company/emirates-group-roblox-vision2026" target="_blank" class="hover:text-[#0A66C2] hover:scale-110 transition-all duration-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
       </div>
       
       <div>
-        <h4 class="font-bold text-white mb-4 uppercase tracking-[0.2em] text-[10px] border-b border-gray-800 pb-2">EGR Network</h4>
-        <ul class="space-y-3 text-xs text-gray-400 font-semibold tracking-wide">
-          <li><a href="https://ek.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors">Emirates Airline</a></li>
-          <li><a href="https://fz.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors">Fly Dubai</a></li>
-          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors">Careers Portal</a></li>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">EGR Network</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://ek.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Emirates Airline</a></li>
+          <li><a href="https://fz.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Fly Dubai</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="font-bold text-white mb-4 uppercase tracking-[0.2em] text-[10px] border-b border-gray-800 pb-2">Tyler Nicholas Group</h4>
-        <ul class="space-y-3 text-xs text-gray-400 font-semibold tracking-wide">
-          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors">TNG Hub</a></li>
-          <li><a href="https://tyler.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors">The Founder</a></li>
-          <li><a href="https://payhip.com/FalconLtd" target="_blank" class="hover:text-white transition-colors">Falcon LTD</a></li>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Tyler Nicholas Group</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> TNG Hub</a></li>
+          <li><a href="https://tyler.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> The Founder</a></li>
+          <li><a href="https://payhip.com/FalconLtd" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> Falcon LTD</a></li>
         </ul>
       </div>
     </div>
     
-    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 text-[10px] text-gray-600 font-bold tracking-[0.1em] uppercase text-center md:text-left">
-      <p>&copy; 2026 Emirates Group Roblox. Corporate Infrastructure.</p>
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 text-[10px] md:text-xs text-gray-500 font-bold tracking-wider uppercase text-center md:text-left">
+      <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
-    // --- SAFE LOADER LOGIC ---
-    let loaderHidden = false;
+    // --- ANIMATED TEXT LOADER LOGIC ---
+    let perc = 0;
+    const percEl = document.getElementById('loader-perc');
+    const fillEl = document.getElementById('loader-fill');
+    const loader = document.getElementById('egr-loader');
+    const animateContainer = document.getElementById('loader-animate-container');
     
-    function hideLoader() {
-        if(loaderHidden) return;
-        loaderHidden = true;
-        
-        clearInterval(progressInterval);
-        document.getElementById('loader-perc').innerText = '100';
-        document.getElementById('loader-fill').style.width = '100%';
-        
-        setTimeout(() => {
-            const container = document.getElementById('loader-animate-container');
-            if(container) container.classList.add('zoom-through');
-            setTimeout(() => {
-                const loader = document.getElementById('egr-loader');
-                if(loader) loader.style.display = 'none'; 
-            }, 600);
-        }, 300);
-    }
-
-    setTimeout(hideLoader, 3000); // 3 Second Failsafe
-
     const progressInterval = setInterval(() => {
-        if(loaderHidden) return;
-        const el = document.getElementById('loader-perc');
-        if(!el) return;
-        let perc = parseInt(el.innerText) || 0;
-        perc += Math.floor(Math.random() * 15) + 5; 
+        perc += Math.floor(Math.random() * 8) + 2; 
         if (perc >= 99) perc = 99; 
-        el.innerText = perc;
-        document.getElementById('loader-fill').style.width = perc + '%';
-    }, 80);
+        percEl.innerText = perc;
+        fillEl.style.width = perc + '%';
+    }, 120);
 
-    // --- UI & SUPABASE LOGIC ---
-    let currentUser = null;
-
+    // --- SUPABASE & UI LOGIC ---
     document.addEventListener("DOMContentLoaded", async () => {
       
       // Mobile Menu
@@ -366,12 +368,6 @@
       }
 
       // Initialize Supabase
-      if (!window.supabase) {
-          console.error("Supabase CDN failed to load.");
-          hideLoader();
-          return;
-      }
-
       const supabase = window.supabase.createClient(
         'https://zboyabxzhptnxnmofvcz.supabase.co', 
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
@@ -382,6 +378,8 @@
       const navPortalBtn = document.getElementById('nav-portal-btn');
       const navLoginBtn = document.getElementById('nav-login-btn');
       
+      let currentUser = null;
+
       // Toggle UI based on session
       function updateUIForSession(session) {
           if (session) {
@@ -399,19 +397,25 @@
           }
       }
 
-      try {
-          const { data: { session }, error } = await supabase.auth.getSession();
-          if (error) throw error;
-          updateUIForSession(session);
-      } catch (err) {
-          console.error(err);
-      } finally {
-          hideLoader();
-      }
+      // Check session
+      const { data: { session } } = await supabase.auth.getSession();
+      updateUIForSession(session);
 
       supabase.auth.onAuthStateChange((_event, session) => {
           updateUIForSession(session);
       });
+
+      // Clear Loader
+      clearInterval(progressInterval);
+      percEl.innerText = '100';
+      fillEl.style.width = '100%';
+      setTimeout(() => {
+          animateContainer.classList.add('zoom-through');
+          setTimeout(() => {
+              loader.style.opacity = '0';
+              setTimeout(() => { loader.style.display = 'none'; }, 800);
+          }, 600);
+      }, 400);
 
       // --- DYNAMIC FORM UI (Hide/Show Username Field) ---
       const categorySelect = document.getElementById('report-category');
@@ -428,7 +432,7 @@
               userContainer.classList.add('opacity-0');
               setTimeout(() => userContainer.classList.add('hidden'), 500);
               userInput.required = false;
-              userInput.value = ''; // clear it
+              userInput.value = ''; 
           }
       });
 
@@ -439,13 +443,13 @@
       const alertText = document.getElementById('report-alert-text');
 
       function showAlert(message, type) {
-          alertBox.classList.remove('hidden', 'bg-red-50', 'text-[#D71A21]', 'border-red-200', 'bg-green-50', 'text-green-700', 'border-green-200');
+          alertBox.classList.remove('hidden', 'bg-red-50', 'text-[#D71A21]', 'border-red-200', 'bg-gray-100', 'text-gray-700', 'border-gray-200');
           
           if(type === 'error') {
               alertBox.classList.add('bg-red-50', 'text-[#D71A21]', 'border-red-200');
               alertText.innerHTML = `<strong>Error:</strong> ${message}`;
           } else {
-              alertBox.classList.add('bg-green-50', 'text-green-700', 'border-green-200');
+              alertBox.classList.add('bg-gray-100', 'text-gray-700', 'border-gray-200');
               alertText.innerHTML = `<strong>Success:</strong> ${message}`;
           }
       }
@@ -460,7 +464,7 @@
           const description = document.getElementById('report-description').value.trim();
           const evidence_url = document.getElementById('report-evidence').value.trim() || null;
 
-          submitBtn.innerHTML = 'UPLOADING DATA...';
+          submitBtn.innerHTML = 'PROCESSING...';
           submitBtn.disabled = true;
           alertBox.classList.add('hidden');
 
@@ -474,18 +478,16 @@
           });
 
           if (error) {
-              console.error(error);
-              showAlert("An error occurred while uploading your report to the database.", "error");
+              showAlert("An error occurred while logging your report. Please try again.", "error");
           } else {
-              showAlert("Incident logged successfully. You will receive tracking updates in your MyPortal Inbox.", "success");
+              showAlert("Incident logged securely. You will receive updates in your MyPortal Inbox.", "success");
               reportForm.reset();
-              // Reset dynamic field
               userContainer.classList.add('opacity-0');
               setTimeout(() => userContainer.classList.add('hidden'), 500);
               userInput.required = false;
           }
 
-          submitBtn.innerHTML = 'LODGE REPORT &rarr;';
+          submitBtn.innerHTML = 'Lodge Report &rarr;';
           submitBtn.disabled = false;
       });
 
