@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emirates Holidays | Emirates Group Roblox</title>
+  
+  <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" id="favicon" />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+    
+    body { font-family: 'Inter', sans-serif; background-color: #f9fafb; scroll-behavior: smooth; overflow-x: hidden; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+    
+    /* Cinematic Text Fill Loader */
+    #egr-loader {
+        position: fixed; inset: 0; z-index: 9999;
+        background-color: #111827; 
+        display: flex; align-items: center; justify-content: center;
+        transition: opacity 0.8s ease;
+    }
+    .loader-content { display: flex; flex-direction: column; align-items: flex-end; }
+    .loader-text-wrapper {
+        position: relative; font-family: 'Inter', sans-serif; font-weight: 900;
+        letter-spacing: -2px; line-height: 1; text-transform: capitalize;
+    }
+    .loader-base-text { color: #374151; }
+    .loader-fill-text {
+        position: absolute; left: 0; top: 0; color: #ffffff; 
+        overflow: hidden; white-space: nowrap; width: 0%; transition: width 0.1s linear;
+    }
+    .loader-info { color: #9CA3AF; font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-top: 8px; }
+    
+    .zoom-through { animation: zoomOutEffect 1.2s cubic-bezier(0.7, 0, 0.2, 1) forwards; }
+    @keyframes zoomOutEffect {
+        0% { transform: scale(1); opacity: 1; }
+        40% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(40); opacity: 0; filter: blur(5px); }
+    }
+
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #D71A21; border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: #b5151c; }
+    
+    /* Editorial Card Hover */
+    .division-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .division-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); border-color: #D71A21; }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen relative">
+
+  <div id="egr-loader">
+    <div class="loader-content" id="loader-animate-container">
+      <div class="loader-text-wrapper text-4xl md:text-7xl lg:text-8xl">
+        <div class="loader-base-text">Emirates Group Roblox</div>
+        <div class="loader-fill-text" id="loader-fill">Emirates Group Roblox</div>
+      </div>
+      <div class="loader-info lowercase">initializing hospitality network... <span id="loader-perc">0</span>%</div>
+    </div>
+  </div>
+
+  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-40 border-b-4 border-[#D71A21]">
+    <a href="/" class="flex items-center group">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox Logo" class="h-10 md:h-12 object-contain group-hover:opacity-80 transition-opacity">
+    </a>
+
+    <button id="mobile-menu-btn" class="lg:hidden text-gray-800 text-2xl focus:outline-none">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="hidden lg:flex space-x-6 text-sm font-bold items-center text-gray-700">
+      <a href="/" class="hover:text-[#D71A21] transition-colors">Home</a>
+      
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          About EGR <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/about/vision/" class="block px-5 py-3 hover:bg-gray-50 border-b">Vision, Mission & Story</a>
+          <a href="/about/leadership/" class="block px-5 py-3 hover:bg-gray-50 border-b">Executive Leadership</a>
+          <a href="/about/governance/" class="block px-5 py-3 hover:bg-gray-50 border-b">Corporate Governance</a>
+          <a href="/about/innovation/" class="block px-5 py-3 hover:bg-gray-50 border-b">Innovation & Future</a>
+          <a href="/about/affiliates/" class="block px-5 py-3 hover:bg-gray-50">Affiliates & Partners</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="text-[#D71A21] transition-colors flex items-center">
+          Our Network <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="https://directory.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Network Directory</a>
+          <a href="/network/subsidiaries/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Subsidiaries Overview</a>
+          <a href="/holidays/" class="block px-5 py-2 bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Emirates Holidays</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Operations <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/flights/" class="block px-5 py-3 hover:bg-gray-50 border-b">Live Flight Radar</a>
+          <a href="/network/skywards/" class="block px-5 py-3 hover:bg-gray-50 border-b">Skywards</a>
+          <a href="/operations/database/" class="block px-5 py-3 hover:bg-gray-50 text-gray-700 hover:text-[#D71A21]">Ban Database</a>
+        </div>
+      </div>
+      
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Help Center <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/help/" class="block px-5 py-3 hover:bg-gray-50 border-b">Contact Us</a>
+          <a href="/help/feedback/" class="block px-5 py-3 hover:bg-gray-50 border-b">Passenger Experience</a>
+          <a href="/help/report-issue/" class="block px-5 py-3 hover:bg-gray-50">Report an Issue</a>
+        </div>
+      </div>
+
+      <a href="/myportal/" id="nav-portal-btn" class="hidden bg-[#111827] hover:bg-[#D71A21] text-white px-5 py-2 rounded transition-colors shadow-md flex items-center uppercase tracking-widest text-xs">
+        My Portal <i class="fa-solid fa-user ml-2 text-[10px]"></i>
+      </a>
+      <a href="/myportal/login/" id="nav-login-btn" class="bg-gray-100 hover:bg-gray-200 text-[#111827] px-5 py-2 rounded transition-colors shadow-sm flex items-center uppercase tracking-widest text-xs border border-gray-200 font-bold">
+        Sign In <i class="fa-solid fa-arrow-right-to-bracket ml-2 text-[10px]"></i>
+      </a>
+    </div>
+  </nav>
+
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#111827] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col lg:hidden">
+    <div class="p-6 flex justify-between items-center border-b border-gray-800 bg-white">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Logo" class="h-10 object-contain">
+      <button id="mobile-menu-close" class="text-gray-800 text-3xl focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <div class="p-6 overflow-y-auto space-y-8 text-white flex-grow bg-[#111827]">
+      <a href="/" class="block text-xl font-bold hover:text-[#D71A21] transition-colors">Home</a>
+      
+      <div>
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Our Network</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
+          <a href="https://directory.emiratesgrouproblox.link" target="_blank" class="block hover:text-white transition-colors">Network Directory</a>
+          <a href="/network/subsidiaries/" class="block hover:text-white transition-colors">Subsidiaries</a>
+          <a href="/holidays/" class="block text-[#D71A21] font-bold">Emirates Holidays</a>
+        </div>
+      </div>
+
+      <a href="/myportal/login/" class="block bg-white text-[#111827] text-center py-4 rounded font-bold uppercase tracking-widest mt-6 hover:bg-gray-200 transition-colors">
+        Sign In to Portal
+      </a>
+    </div>
+  </div>
+
+  <header class="relative bg-[#111827] text-white py-24 md:py-32 px-6 overflow-hidden border-b-4 border-[#D71A21]">
+    <div class="absolute inset-0 bg-[#111827]/90 z-10"></div>
+    <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+    
+    <div class="relative z-20 max-w-4xl mx-auto text-center flex flex-col items-center">
+      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Lifestyle & Hospitality</span>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight tracking-tighter drop-shadow-xl uppercase">
+        Emirates <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D71A21] to-red-600">Holidays.</span>
+      </h1>
+      <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">The journey continues after landing. Emirates Holidays is the premier lifestyle, hospitality, and experience division of the Emirates Group Roblox network.</p>
+    </div>
+  </header>
+
+  <main class="flex-grow py-20 px-6 md:px-12 bg-gray-50 relative overflow-hidden">
+    
+    <div class="max-w-4xl mx-auto text-center mb-20">
+        <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#111827] mb-6 tracking-tight uppercase">Beyond the Flight</h2>
+        <p class="text-gray-500 leading-relaxed font-semibold md:text-lg">We are not just a virtual airline. We are building a comprehensive digital travel ecosystem. Discover our expanding portfolio of world-class hotels, exclusive resorts, private villas, and high-end VIP experiences.</p>
+    </div>
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-10 division-card flex flex-col">
+            <div class="w-12 h-12 bg-[#111827] text-white rounded-full flex items-center justify-center text-xl font-serif font-bold mb-6 shadow-md border-2 border-white">H</div>
+            <h3 class="text-2xl font-bold text-[#111827] tracking-tight mb-4 uppercase">Hotels & Resorts</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-8 flex-grow">Our signature hospitality division offering fully immersive stays, from check-in roleplay to room service and exclusive VIP suites.</p>
+            <div class="border-t border-gray-100 pt-6">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Portfolio Brands</p>
+                <ul class="text-sm font-bold text-[#111827] space-y-2">
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-3"></span> Emirates Grand Hotels (5⭐)</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#111827] rounded-full mr-3"></span> Emirates Stay</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3"></span> Emirates Airport Hotel</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-10 division-card flex flex-col">
+            <div class="w-12 h-12 bg-[#111827] text-white rounded-full flex items-center justify-center text-xl font-serif font-bold mb-6 shadow-md border-2 border-white">D</div>
+            <h3 class="text-2xl font-bold text-[#111827] tracking-tight mb-4 uppercase">Destinations</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-8 flex-grow">Breathtaking virtual locales designed for relaxation and exploration, featuring beach maps, water activities, and exclusive access sessions.</p>
+            <div class="border-t border-gray-100 pt-6">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Featured Locations</p>
+                <ul class="text-sm font-bold text-[#111827] space-y-2">
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-3"></span> Maldives Resort</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#111827] rounded-full mr-3"></span> Dubai Island</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3"></span> Emirates Private Island</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-10 division-card flex flex-col">
+            <div class="w-12 h-12 bg-[#111827] text-white rounded-full flex items-center justify-center text-xl font-serif font-bold mb-6 shadow-md border-2 border-white">C</div>
+            <h3 class="text-2xl font-bold text-[#111827] tracking-tight mb-4 uppercase">Emirates Cruises</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-8 flex-grow">Take to the seas with our upcoming dedicated cruise line. Featuring massive explorable ships, bookable cabins, and scheduled ocean journeys.</p>
+            <div class="border-t border-gray-100 pt-6">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Key Features</p>
+                <ul class="text-sm font-bold text-[#111827] space-y-2">
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-3"></span> Scheduled Cruise Journeys</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#111827] rounded-full mr-3"></span> Bookable Cabin RP</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3"></span> Onboard Events & Dining</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-10 division-card flex flex-col">
+            <div class="w-12 h-12 bg-[#111827] text-white rounded-full flex items-center justify-center text-xl font-serif font-bold mb-6 shadow-md border-2 border-white">V</div>
+            <h3 class="text-2xl font-bold text-[#111827] tracking-tight mb-4 uppercase">Villas & Houses</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-8 flex-grow">Intimate, private experiences designed for smaller groups. Perfect for premium bookings and exclusive gatherings.</p>
+            <div class="border-t border-gray-100 pt-6">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Accommodation Types</p>
+                <ul class="text-sm font-bold text-[#111827] space-y-2">
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-3"></span> Private Coastal Villas</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#111827] rounded-full mr-3"></span> Luxury City Apartments</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3"></span> Group Stay Houses</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-[#111827] rounded-2xl shadow-xl border border-gray-800 p-10 division-card flex flex-col relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-40 h-40 bg-[#D71A21]/10 rounded-full blur-2xl"></div>
+            <div class="w-12 h-12 bg-[#D71A21] text-white rounded-full flex items-center justify-center text-xl font-serif font-bold mb-6 shadow-md relative z-10">E</div>
+            <h3 class="text-2xl font-bold text-white tracking-tight mb-4 uppercase relative z-10">Emirates Experiences</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow relative z-10">The heart of our event system. Highly curated, limited-time experiences designed for our most dedicated corporate members and high-tier flyers.</p>
+            <div class="border-t border-gray-700 pt-6 relative z-10">
+                <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Curated Events</p>
+                <ul class="text-sm font-bold text-white space-y-2">
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-3"></span> VIP Travel Events</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3"></span> Holiday Specials (NYE, Summer)</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-white rounded-full mr-3"></span> Private Jet Experiences</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-10 division-card flex flex-col">
+            <div class="w-12 h-12 bg-[#111827] text-white rounded-full flex items-center justify-center text-xl font-serif font-bold mb-6 shadow-md border-2 border-white">L</div>
+            <h3 class="text-2xl font-bold text-[#111827] tracking-tight mb-4 uppercase">Lifestyle Services</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-8 flex-grow">Bridging the gap between the terminal and the destination. Realistic, highly-coordinated logistical roleplay services.</p>
+            <div class="border-t border-gray-100 pt-6">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Concierge Logistics</p>
+                <ul class="text-sm font-bold text-[#111827] space-y-2">
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-3"></span> Chauffeur RP System</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#111827] rounded-full mr-3"></span> VIP Arrival & Departure Logistics</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3"></span> Private Terminal Access</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-lg border border-gray-200 p-10 md:p-16">
+        <div class="text-center mb-12">
+            <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Development Strategy</span>
+            <h2 class="text-3xl font-serif font-bold text-[#111827] uppercase tracking-tight">The Horizon Roadmap</h2>
+            <p class="text-gray-500 text-sm mt-4 max-w-2xl mx-auto font-medium">To ensure the highest quality of structural integrity and digital realism, Emirates Holidays is being deployed in carefully managed, strategic phases.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="bg-gray-50 p-6 rounded-xl border-l-4 border-[#D71A21] relative">
+                <span class="absolute top-4 right-4 bg-[#D71A21] text-white text-[8px] font-bold uppercase tracking-widest px-2 py-1 rounded">Current</span>
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Phase 1</p>
+                <h4 class="text-lg font-bold text-[#111827] mb-2">Hospitality</h4>
+                <p class="text-xs text-gray-600 font-semibold leading-relaxed">Establishment of the core Emirates Grand Hotel and initial Holidays branding.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm opacity-80">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Phase 2</p>
+                <h4 class="text-lg font-bold text-[#111827] mb-2">Destinations</h4>
+                <p class="text-xs text-gray-600 font-semibold leading-relaxed">Deployment of the first dedicated Resort & Beach Destination maps.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm opacity-60">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Phase 3</p>
+                <h4 class="text-lg font-bold text-[#111827] mb-2">Experiences</h4>
+                <p class="text-xs text-gray-600 font-semibold leading-relaxed">Launch of the internal event system for VIP travel and holiday specials.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm opacity-40">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Phase 4</p>
+                <h4 class="text-lg font-bold text-[#111827] mb-2">Oceanic</h4>
+                <p class="text-xs text-gray-600 font-semibold leading-relaxed">Inaugural launch of the Emirates Cruise Line and maritime roleplay systems.</p>
+            </div>
+        </div>
+    </div>
+
+  </main>
+
+  <footer class="bg-[#111827] text-white py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
+      <div class="md:col-span-2">
+        <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest font-serif">Emirates Group Roblox</h3>
+        <p class="text-sm text-gray-400 max-w-md mb-8 leading-relaxed">The premier virtual aviation organization on the Roblox platform. Setting the standard for structural perfection and digital realism.</p>
+        
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2 inline-block">Connect With Us</h4>
+        <div class="flex flex-wrap items-center gap-5 text-2xl text-gray-400 mt-2">
+          <a href="https://discord.gg/nDAZ3p475V7" target="_blank" class="hover:text-[#5865F2] hover:scale-110 transition-all duration-300" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300 flex items-center" aria-label="Roblox">
+            <svg class="w-[1em] h-[1em] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.445 0L0 20.457l18.555 3.543L24 3.543 5.445 0zm10.125 14.596l-4.102-.782-.782-4.102 4.102.782.782 4.102z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] hover:scale-110 transition-all duration-300" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] hover:scale-110 transition-all duration-300" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] hover:scale-110 transition-all duration-300" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] hover:scale-110 transition-all duration-300" aria-label="Trello"><i class="fa-brands fa-trello"></i></a>
+          <a href="https://www.linkedin.com/company/emirates-group-roblox-vision2026" target="_blank" class="hover:text-[#0A66C2] hover:scale-110 transition-all duration-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">EGR Network</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://ek.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Emirates Airline</a></li>
+          <li><a href="https://fz.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Fly Dubai</a></li>
+          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Careers Portal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Tyler Nicholas Group</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> TNG Hub</a></li>
+          <li><a href="https://tyler.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> The Founder</a></li>
+          <li><a href="https://payhip.com/FalconLtd" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> Falcon LTD</a></li>
+          <li><a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> BlueWave Digital</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs text-gray-500 font-bold tracking-wider uppercase text-center md:text-left gap-4">
+      <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
+      <p>A proud subsidiary of the <a href="https://tylernicholasgroup.com" class="text-gray-300 hover:text-white transition-colors">Tyler Nicholas Group</a> Network</p>
+    </div>
+  </footer>
+
+  <script>
+    // --- ANIMATED TEXT LOADER LOGIC ---
+    let perc = 0;
+    const percEl = document.getElementById('loader-perc');
+    const fillEl = document.getElementById('loader-fill');
+    const loader = document.getElementById('egr-loader');
+    const animateContainer = document.getElementById('loader-animate-container');
+    
+    const progressInterval = setInterval(() => {
+        perc += Math.floor(Math.random() * 8) + 2; 
+        if (perc >= 99) perc = 99; 
+        percEl.innerText = perc;
+        fillEl.style.width = perc + '%';
+    }, 120);
+
+    window.addEventListener('load', () => {
+        clearInterval(progressInterval);
+        percEl.innerText = '100';
+        fillEl.style.width = '100%';
+        
+        setTimeout(() => {
+            animateContainer.classList.add('zoom-through');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 800);
+            }, 600);
+        }, 400);
+    });
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      // Mobile Menu
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileClose = document.getElementById('mobile-menu-close');
+      const mobileMenu = document.getElementById('mobile-menu-overlay');
+      if(mobileBtn && mobileClose && mobileMenu) {
+        mobileBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+        mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+      }
+
+      // Initialize Supabase for Auth state in Nav
+      if(window.supabase) {
+          const supabase = window.supabase.createClient(
+            'https://zboyabxzhptnxnmofvcz.supabase.co', 
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
+          );
+
+          const navPortalBtn = document.getElementById('nav-portal-btn');
+          const navLoginBtn = document.getElementById('nav-login-btn');
+          
+          function updateUIForSession(session) {
+              if (session) {
+                  navLoginBtn.classList.add('hidden');
+                  navPortalBtn.classList.remove('hidden');
+              } else {
+                  navPortalBtn.classList.add('hidden');
+                  navLoginBtn.classList.remove('hidden');
+              }
+          }
+
+          try {
+              const { data: { session } } = await supabase.auth.getSession();
+              updateUIForSession(session);
+
+              supabase.auth.onAuthStateChange((_event, session) => {
+                  updateUIForSession(session);
+              });
+          } catch(e) { console.error(e); }
+      }
+    });
+  </script>
+</body>
+</html>
