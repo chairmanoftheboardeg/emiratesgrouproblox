@@ -13,7 +13,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
     
     body { font-family: 'Inter', sans-serif; background-color: #f9fafb; scroll-behavior: smooth; overflow-x: hidden; }
     .font-serif { font-family: 'Playfair Display', serif; }
@@ -49,12 +49,12 @@
     ::-webkit-scrollbar-thumb { background: #D71A21; border-radius: 5px; }
     ::-webkit-scrollbar-thumb:hover { background: #b5151c; }
     
-    /* Custom Lists */
+    /* Luxury Benefit Lists */
     .benefit-list li {
         position: relative;
-        padding-left: 1.5rem;
+        padding-left: 1.75rem;
         margin-bottom: 0.75rem;
-        color: #4B5563; /* text-gray-600 */
+        color: #4B5563; 
         line-height: 1.6;
         font-weight: 500;
     }
@@ -65,9 +65,8 @@
         color: #111827;
         font-weight: 700;
     }
-    .benefit-list.premium li::before {
-        color: #D71A21;
-    }
+    .benefit-list.premium li { color: #e5e7eb; } /* gray-200 for dark mode */
+    .benefit-list.premium li::before { color: #D71A21; }
   </style>
 </head>
 <body class="flex flex-col min-h-screen relative">
@@ -108,12 +107,13 @@
       </div>
 
       <div class="relative group py-2">
-        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+        <button class="text-[#D71A21] transition-colors flex items-center">
           Our Network <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
         </button>
         <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
           <a href="https://directory.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Network Directory</a>
           <a href="/network/subsidiaries/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Subsidiaries Overview</a>
+          <a href="/holidays/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Emirates Holidays</a>
         </div>
       </div>
 
@@ -171,197 +171,188 @@
     </div>
   </div>
 
-  <header class="relative bg-[#111827] text-white py-24 md:py-32 px-6 overflow-hidden border-b-4 border-[#D71A21]">
-    <div class="absolute inset-0 bg-[#111827]/90 z-10"></div>
-    <div class="absolute inset-0 z-0 opacity-5" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+  <header class="relative bg-[#111827] text-white py-28 md:py-36 px-6 overflow-hidden border-b-4 border-[#D71A21]">
+    <div class="absolute inset-0 z-0 opacity-10" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d0/Emirates_logo.svg'); background-size: contain; background-position: center; background-repeat: no-repeat;"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#111827] via-[#111827]/90 to-[#111827]/70 z-10"></div>
     
-    <div class="relative z-20 max-w-4xl mx-auto text-center flex flex-col items-center">
-      <img src="https://www.flydubai.com/System/img/EK_en.png" class="h-10 md:h-14 mb-10 brightness-0 invert opacity-90" alt="Emirates Skywards">
+    <div class="relative z-20 max-w-5xl mx-auto text-center flex flex-col items-center">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Emirates_logo.svg" class="h-12 md:h-16 mb-10 filter brightness-0 invert opacity-90" alt="Emirates Skywards">
       
       <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Loyalty & Rewards</span>
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight uppercase tracking-tighter drop-shadow-xl">Elevate Your <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D71A21] to-red-600">Journey.</span></h1>
-      <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">In the Emirates Group Roblox network, economy travel is completely free. We use tier points to elevate your status, unlocking premium features, priority access, and VIP treatment.</p>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight uppercase tracking-tighter drop-shadow-xl text-white">
+        Elevate Your <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D71A21] to-red-600">Journey.</span>
+      </h1>
+      <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">In the Emirates Group Roblox network, economy travel is completely free. We use tier points to reward our most dedicated flyers, unlocking premium features, priority access, and VIP treatment.</p>
     </div>
   </header>
 
-  <main class="flex-grow py-20 px-6 md:px-12 bg-gray-50 relative overflow-hidden">
+  <main class="flex-grow bg-white relative overflow-hidden">
     
-    <div class="max-w-4xl mx-auto text-center mb-20">
-        <h2 class="text-3xl font-serif font-bold text-[#111827] mb-6 uppercase tracking-tight">Progress Through the Tiers</h2>
-        <p class="text-gray-500 leading-relaxed font-medium">As you fly with us and participate in the corporate network, you accumulate Skywards Miles and Tier Miles. Elevate your status to unlock everything from priority boarding to infinite business class luxury.</p>
-    </div>
+    <section class="py-24 px-6 md:px-12 max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#111827] mb-8 tracking-tight uppercase">Progress Through the Tiers</h2>
+        <p class="text-gray-500 leading-relaxed text-lg font-medium">As you fly with us and participate in the corporate network, you accumulate Skywards Miles and Tier Miles. Elevate your status across our distinct membership tiers to unlock everything from priority boarding to unlimited Business Class luxury.</p>
+    </section>
 
-    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+    <section class="py-16 md:py-24 px-6 md:px-12 bg-gray-50 border-y border-gray-100">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+            
+            <div class="bg-white p-10 md:p-12 rounded-2xl shadow-sm border border-gray-100 flex flex-col">
+                <div class="flex items-center gap-6 mb-8 border-b border-gray-100 pb-8">
+                    <img src="https://c.ekstatic.net/ecl/skywards/common/tier-icon-blue.png?h=v2BZveIqgh9w5tGrTd0j3Q" class="w-20 h-20 object-contain" alt="Blue Tier Icon">
+                    <div>
+                        <h3 class="text-3xl font-serif font-bold text-[#111827] tracking-tight uppercase">Blue Tier</h3>
+                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">Standard Membership</p>
+                    </div>
+                </div>
+                <div class="flex-grow">
+                    <p class="text-gray-600 leading-relaxed mb-6 font-medium text-sm">Blue Tier is automatically granted to all members upon registering an Emirates account on our platform. This serves as the foundation of your loyalty journey.</p>
+                    <ul class="benefit-list text-sm">
+                        <li>Full access to book standard Economy flights across the network.</li>
+                        <li>Participate in the overarching Emirates Group experience.</li>
+                        <li>Begin earning Skywards Points and Tier Miles as you progress.</li>
+                    </ul>
+                </div>
+            </div>
 
-        <div class="bg-white rounded-2xl shadow-md border border-gray-200 p-8 md:p-12 relative overflow-hidden flex flex-col h-full">
-            <div class="flex items-center gap-6 mb-8 border-b border-gray-100 pb-8">
-                <img src="https://c.ekstatic.net/ecl/skywards/common/tier-icon-blue.png?h=v2BZveIqgh9w5tGrTd0j3Q" class="w-16 h-16 object-contain" alt="Blue Tier">
-                <div>
-                    <h3 class="text-3xl font-serif font-bold text-[#111827] tracking-tight uppercase">Blue Tier</h3>
-                    <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">Standard Membership</p>
+            <div class="bg-white p-10 md:p-12 rounded-2xl shadow-sm border border-gray-100 flex flex-col">
+                <div class="flex items-center gap-6 mb-8 border-b border-gray-100 pb-8">
+                    <img src="https://c.ekstatic.net/ecl/skywards/common/tier-icon-silver.png?h=cKHkJJuf-MbhuLMMIivfoA" class="w-20 h-20 object-contain" alt="Silver Tier Icon">
+                    <div>
+                        <h3 class="text-3xl font-serif font-bold text-[#111827] tracking-tight uppercase">Silver Tier</h3>
+                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">Priority Travel</p>
+                    </div>
+                </div>
+                <div class="flex-grow">
+                    <p class="text-gray-600 leading-relaxed mb-6 font-medium text-sm">Silver Tier marks your entry into priority travel and enhanced recognition. Members experience a more refined journey with early access to premium opportunities.</p>
+                    <ul class="benefit-list text-sm">
+                        <li><strong>Priority Silver Boarding Call</strong>, granting earlier boarding access.</li>
+                        <li><strong>2 complimentary Business Class flights</strong> per month.</li>
+                        <li>Ability to select one flight of your choice per month (route/aircraft).</li>
+                        <li>Official Silver Role on Discord & Exclusive Website Profile Badge.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 px-6 md:px-12 bg-white">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+            <div class="w-full md:w-4/12 flex justify-center md:justify-end">
+                <div class="p-10 rounded-full border-4 border-dashed border-[#D71A21]/30">
+                    <img src="https://c.ekstatic.net/ecl/skywards/common/tier-icon-gold.png?h=vDdEOvz5mMcYc-lQdD5JmQ" class="w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-2xl" alt="Gold Tier Icon">
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 gap-4 mb-8 text-center bg-gray-50 p-4 rounded border border-gray-100">
-                <div><p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Points</p><p class="font-mono text-sm font-bold text-[#111827]">0</p></div>
-                <div><p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Miles</p><p class="font-mono text-sm font-bold text-[#111827]">0</p></div>
-                <div><p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Flights</p><p class="font-mono text-sm font-bold text-[#111827]">0</p></div>
-            </div>
-
-            <div class="flex-grow">
-                <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium">Blue Tier is automatically granted to all members upon registering an Emirates account on our platform. This serves as the foundation of your journey.</p>
-                <ul class="benefit-list text-sm">
-                    <li>Full access to book standard Economy flights across the network.</li>
-                    <li>Participate in the overarching Emirates experience.</li>
-                    <li>Begin earning Skywards Points and Tier Miles as you progress.</li>
-                </ul>
+            <div class="w-full md:w-8/12 p-10 md:p-12 rounded-2xl border-l-8 border-[#D71A21] bg-white shadow-xl">
+                <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Division III</span>
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-[#111827] mb-6 leading-tight uppercase tracking-tight">Gold Tier</h2>
+                <p class="text-gray-600 leading-relaxed mb-8 font-medium">Gold Tier represents a significant step into premium travel, combining efficiency, luxury, and priority recognition across nearly all touchpoints within the Emirates Group.</p>
+                
+                <div class="mb-10">
+                    <p class="text-xs font-bold text-gray-900 uppercase tracking-widest mb-4 border-b border-gray-200 pb-2">Enhanced Privileges (Includes Silver Benefits)</p>
+                    <ul class="benefit-list text-sm">
+                        <li><strong>10 complimentary Business Class flights</strong> per month.</li>
+                        <li><strong>1 complimentary First Class flight</strong> per month.</li>
+                        <li>Access to a <strong>Personal Airport Butler</strong> service.</li>
+                        <li>Immediate response to all inquiries with priority support.</li>
+                        <li>Official Gold Role on Discord & Distinguished Gold Profile Badge.</li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="bg-white rounded-2xl shadow-md border border-gray-200 p-8 md:p-12 relative overflow-hidden flex flex-col h-full">
-            <div class="flex items-center gap-6 mb-8 border-b border-gray-100 pb-8">
-                <img src="https://c.ekstatic.net/ecl/skywards/common/tier-icon-silver.png?h=cKHkJJuf-MbhuLMMIivfoA" class="w-16 h-16 object-contain" alt="Silver Tier">
-                <div>
-                    <h3 class="text-3xl font-serif font-bold text-[#111827] tracking-tight uppercase">Silver Tier</h3>
-                    <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">Priority Travel</p>
+    <section class="py-16 md:py-24 px-6 md:px-12 bg-[#111827] text-white">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-20">
+            <div class="w-full md:w-4/12 flex justify-center md:justify-start">
+                <div class="p-10 rounded-full border-4 border-dashed border-gray-700">
+                    <img src="https://c.ekstatic.net/ecl/skywards/common/tier-icon-platinum.png?h=VGWylTTpok6YXPSzcfmQUA" class="w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-2xl" alt="Platinum Tier Icon">
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 gap-4 mb-8 text-center bg-gray-50 p-4 rounded border border-gray-100">
-                <div><p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Points</p><p class="font-mono text-sm font-bold text-[#111827]">25K</p></div>
-                <div><p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Miles</p><p class="font-mono text-sm font-bold text-[#111827]">25K</p></div>
-                <div><p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Flights</p><p class="font-mono text-sm font-bold text-[#111827]">25</p></div>
-            </div>
-
-            <div class="flex-grow">
-                <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium">Silver Tier marks your entry into priority travel and enhanced recognition within the Emirates Group. Members experience a more refined journey with early access to premium opportunities.</p>
-                <ul class="benefit-list text-sm">
-                    <li><strong>Priority Silver Boarding Call</strong>, granting earlier boarding access.</li>
-                    <li><strong>2 complimentary Business Class flights</strong> per month.</li>
-                    <li>Select one flight of your choice per month (preferred route and aircraft).</li>
-                    <li>Official Silver Role on Discord, showcasing your community status.</li>
-                    <li>Exclusive Silver Badge displayed on your portal profile.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="bg-white rounded-2xl shadow-xl border-t-4 border-t-[#D71A21] p-8 md:p-12 relative overflow-hidden flex flex-col h-full">
-            <div class="flex items-center gap-6 mb-8 border-b border-gray-100 pb-8">
-                <img src="https://c.ekstatic.net/ecl/skywards/common/tier-icon-gold.png?h=vDdEOvz5mMcYc-lQdD5JmQ" class="w-16 h-16 object-contain" alt="Gold Tier">
-                <div>
-                    <h3 class="text-3xl font-serif font-bold text-[#111827] tracking-tight uppercase">Gold Tier</h3>
-                    <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest mt-1">Premium Service</p>
+            <div class="w-full md:w-8/12 p-10 md:p-12 rounded-2xl border-l-8 border-gray-600 bg-white/5 shadow-2xl backdrop-blur-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+                
+                <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block relative z-10">Division IV • Ultimate Elite</span>
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-white mb-6 leading-tight uppercase tracking-tight relative z-10">Platinum Tier</h2>
+                <p class="text-gray-300 leading-relaxed mb-8 font-medium text-sm relative z-10">The highest level of Emirates Skywards membership, reserved strictly for our most dedicated and elite members. Platinum flyers experience the Emirates journey without limitation—defined by exclusivity and prestige.</p>
+                
+                <div class="mb-10 relative z-10">
+                    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4 border-b border-gray-700 pb-2">The Ultimate Privileges (Includes Gold Benefits)</p>
+                    <ul class="benefit-list premium text-sm">
+                        <li><strong>Unlimited Business Class flights</strong> per month.</li>
+                        <li><strong>3 complimentary First Class flights</strong> per month.</li>
+                        <li><strong>Private Chauffeur Drive service</strong> to and from the airport.</li>
+                        <li>VIP Boarding via private stairs.</li>
+                        <li>Exclusive Platinum Role on Discord & Premium Platinum Profile Badge.</li>
+                    </ul>
                 </div>
             </div>
-            
-            <div class="grid grid-cols-3 gap-4 mb-8 text-center bg-red-50 p-4 rounded border border-red-100">
-                <div><p class="text-[9px] font-bold text-red-800 uppercase tracking-widest">Points</p><p class="font-mono text-sm font-bold text-[#D71A21]">50K</p></div>
-                <div><p class="text-[9px] font-bold text-red-800 uppercase tracking-widest">Miles</p><p class="font-mono text-sm font-bold text-[#D71A21]">50K</p></div>
-                <div><p class="text-[9px] font-bold text-red-800 uppercase tracking-widest">Flights</p><p class="font-mono text-sm font-bold text-[#D71A21]">50</p></div>
-            </div>
-
-            <div class="flex-grow">
-                <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium">Gold Tier represents a significant step into premium travel, combining efficiency, luxury, and priority recognition across nearly all touchpoints.</p>
-                <ul class="benefit-list premium text-sm">
-                    <li>Includes all Silver Tier benefits.</li>
-                    <li><strong>10 complimentary Business Class flights</strong> per month.</li>
-                    <li><strong>1 complimentary First Class flight</strong> per month.</li>
-                    <li>Access to a <strong>Personal Airport Butler</strong>.</li>
-                    <li>Immediate response to all inquiries with priority corporate support.</li>
-                    <li>Official Gold Role on Discord & Distinguished Gold Profile Badge.</li>
-                </ul>
-            </div>
         </div>
+    </section>
 
-        <div class="bg-[#111827] rounded-2xl shadow-xl border border-gray-800 p-8 md:p-12 relative overflow-hidden flex flex-col h-full text-white">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
+    <section class="bg-[#111827] py-24 px-6 md:px-12 relative overflow-hidden border-t-4 border-[#D71A21]">
+        <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-[#D71A21] rounded-full blur-[100px] -mr-80 -mt-80 opacity-10 pointer-events-none"></div>
 
-            <div class="flex items-center gap-6 mb-8 border-b border-gray-700 pb-8 relative z-10">
-                <img src="https://c.ekstatic.net/ecl/skywards/common/tier-icon-platinum.png?h=VGWylTTpok6YXPSzcfmQUA" class="w-16 h-16 object-contain" alt="Platinum Tier">
+        <div class="max-w-6xl mx-auto relative z-10 flex flex-col lg:flex-row items-center gap-16">
+            
+            <div class="w-full lg:w-1/2">
+                <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-[10px] mb-4 block">Premium Subscription</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight uppercase tracking-tight">Emirates <br>Skywards<span class="text-[#D71A21]">+</span></h2>
+                <p class="text-gray-300 leading-relaxed mb-8 font-medium">Elevate every journey with Skywards+, the premium membership designed for those who expect more from their experience. Unlock a higher class of travel with exclusive privileges and unmatched access across the Emirates Group.</p>
+                
+                <div class="bg-black/40 border border-gray-800 rounded p-6 mb-8 inline-block shadow-inner flex items-center gap-4">
+                    <i class="fa-solid fa-gem text-4xl text-[#D71A21]"></i>
+                    <div>
+                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Subscription Price</p>
+                        <p class="text-3xl font-mono font-bold text-white tracking-tighter">350 <span class="text-sm font-sans font-bold text-gray-400">ROBUX</span></p>
+                    </div>
+                </div>
+
                 <div>
-                    <h3 class="text-3xl font-serif font-bold text-white tracking-tight uppercase">Platinum Tier</h3>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Ultimate Exclusivity</p>
+                    <a href="https://www.roblox.com/games/85410611756192/Emirates-Group-Roblox-Headquarters#!/store?subscription=EXP-4152243563058561535" target="_blank" class="inline-flex items-center justify-center bg-[#111827] hover:bg-[#D71A21] text-white px-8 py-4 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-lg border border-gray-700">
+                        Purchase Subscription &rarr;
+                    </a>
+                    <p class="text-[10px] text-gray-400 mt-4 leading-relaxed font-medium">
+                        <strong class="text-white">Important:</strong> Once you have purchased Skywards+, please contact us at the <a href="/help/" class="text-[#D71A21] hover:text-white font-bold underline transition-colors">Help Desk</a> so our staff can securely verify your purchase and instantly activate your benefits.
+                    </p>
                 </div>
             </div>
-            
-            <div class="grid grid-cols-3 gap-4 mb-8 text-center bg-white/5 p-4 rounded border border-white/10 relative z-10">
-                <div><p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Points</p><p class="font-mono text-sm font-bold text-white">150K</p></div>
-                <div><p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Miles</p><p class="font-mono text-sm font-bold text-white">150K</p></div>
-                <div><p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Flights</p><p class="font-mono text-sm font-bold text-white">140 + 5 EX</p></div>
-            </div>
 
-            <div class="flex-grow relative z-10">
-                <p class="text-gray-300 text-sm leading-relaxed mb-6 font-medium">Platinum Tier is the highest level of Emirates Skywards membership, reserved for the most dedicated and elite members. Experience the journey without limitation.</p>
-                <ul class="benefit-list text-sm text-gray-300">
-                    <li>Includes all Gold Tier benefits.</li>
-                    <li><strong>Unlimited Business Class flights</strong> per month.</li>
-                    <li><strong>3 complimentary First Class flights</strong> per month.</li>
-                    <li><strong>Private Chauffeur Drive service</strong> to and from the airport.</li>
-                    <li>VIP Boarding via private stairs.</li>
-                    <li>Exclusive Platinum Role on Discord & Premium Platinum Profile Badge.</li>
+            <div class="w-full lg:w-1/2 bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8 md:p-12 shadow-2xl">
+                <h3 class="text-xl font-bold text-white tracking-tight mb-8 border-b border-gray-700 pb-4 uppercase">Exclusive Benefits</h3>
+                <ul class="space-y-6 text-sm text-gray-300">
+                    <li class="flex items-start gap-4">
+                        <span class="text-[#D71A21] text-lg leading-none mt-0.5 font-bold">✓</span>
+                        <div><strong class="text-white block mb-1">First Class Upgrades</strong> Complimentary upgrade on every standard flight.</div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <span class="text-[#D71A21] text-lg leading-none mt-0.5 font-bold">✓</span>
+                        <div><strong class="text-white block mb-1">Executive Charters</strong> 1 free Emirates Executive flight of your choice every month.</div>
+                  </li>
+                  <li class="flex items-start gap-4">
+                        <span class="text-[#D71A21] text-lg leading-none mt-0.5 font-bold">✓</span>
+                        <div><strong class="text-white block mb-1">Investor Privileges</strong> Full access to Investor Benefits for the duration of the subscription.See website for details.</div>
+                  </li>
+                  <li class="flex items-start gap-4">
+                        <span class="text-[#D71A21] text-lg leading-none mt-0.5 font-bold">✓</span>
+                        <div><strong class="text-white block mb-1">Accelerated Progression</strong> Bonus Skyward Points on every flight to tier up faster.</div>
+                  </li>
+                  <li class="flex items-start gap-4">
+                        <span class="text-[#D71A21] text-lg leading-none mt-0.5 font-bold">✓</span>
+                        <div><strong class="text-white block mb-1">Priority Access</strong> Select bookings, premium experiences, and exclusive profile badges.</div>
+                  </li>
                 </ul>
             </div>
-        </div>
 
-    </div>
+        </div>
+    </section>
+
   </main>
 
-  <section class="bg-[#111827] py-24 px-6 relative overflow-hidden border-t-4 border-[#D71A21]">
-      <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
-      <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-[#D71A21] rounded-full blur-[100px] -mr-80 -mt-80 opacity-10 pointer-events-none"></div>
-
-      <div class="max-w-6xl mx-auto relative z-10 flex flex-col lg:flex-row items-center gap-16">
-          
-          <div class="w-full lg:w-1/2">
-              <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-[10px] mb-4 block">Premium Subscription</span>
-              <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight uppercase tracking-tight">Emirates <br>Skywards<span class="text-[#D71A21]">+</span></h2>
-              <p class="text-gray-300 leading-relaxed mb-8 font-medium">Elevate every journey with Skywards+, the premium membership designed for those who expect more from their experience. Unlock a higher class of travel with exclusive privileges and unmatched access across the Emirates Group.</p>
-              
-              <div class="bg-black/40 border border-gray-800 rounded p-6 mb-8 inline-block shadow-inner">
-                  <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Subscription Price</p>
-                  <p class="text-3xl font-mono font-bold text-white tracking-tighter">350 <span class="text-sm font-sans font-bold text-gray-400">ROBUX</span></p>
-              </div>
-
-              <div>
-                  <a href="https://www.roblox.com/games/85410611756192/Emirates-Group-Roblox-Headquarters#!/store?subscription=EXP-4152243563058561535" target="_blank" class="inline-flex items-center justify-center bg-[#D71A21] hover:bg-red-700 text-white px-8 py-4 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-lg">
-                      Purchase Subscription &rarr;
-                  </a>
-                  <p class="text-[10px] text-gray-400 mt-4 leading-relaxed font-medium">
-                      <strong class="text-white">Important:</strong> Once you have purchased Skywards+, please contact us at the <a href="/help/" class="text-[#D71A21] hover:text-white font-bold underline transition-colors">Help Desk</a> so our staff can securely verify your purchase and instantly activate your benefits.
-                  </p>
-              </div>
-          </div>
-
-          <div class="w-full lg:w-1/2 bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8 md:p-12 shadow-2xl">
-              <h3 class="text-xl font-bold text-white tracking-tight mb-8 border-b border-gray-700 pb-4 uppercase">Exclusive Benefits</h3>
-              <ul class="space-y-6 text-sm text-gray-300">
-                  <li class="flex items-start gap-4">
-                      <span class="text-[#D71A21] text-lg leading-none mt-0.5 font-bold">✓</span>
-                      <div><strong class="text-white block mb-1">First Class Upgrades</strong> Complimentary upgrade on every standard flight.</div>
-                  </li>
-                  <li class="flex items-start gap-4">
-                      <span class="text-[#D71A21] text-lg leading-none mt-0.5 font-bold">✓</span>
-                      <div><strong class="text-white block mb-1">Executive Charters</strong> 1 free Emirates Executive flight of your choice every month.</div>
-                  </li>
-                  <li class="flex items-start gap-4">
-                      <span class="text-[#D71A21] text-lg leading-none mt-0.5 font-bold">✓</span>
-                      <div><strong class="text-white block mb-1">Investor Privileges</strong> Full access to Investor Benefits for the duration of the subscription.</div>
-                  </li>
-                  <li class="flex items-start gap-4">
-                      <span class="text-[#D71A21] text-lg leading-none mt-0.5 font-bold">✓</span>
-                      <div><strong class="text-white block mb-1">Accelerated Progression</strong> Bonus Skyward Points on every flight to tier up faster.</div>
-                  </li>
-                  <li class="flex items-start gap-4">
-                      <span class="text-[#D71A21] text-lg leading-none mt-0.5 font-bold">✓</span>
-                      <div><strong class="text-white block mb-1">Priority Access</strong> Select bookings, premium experiences, and exclusive profile badges.</div>
-                  </li>
-              </ul>
-          </div>
-
-      </div>
-  </section>
-
-  <footer class="bg-[#111827] text-white py-16 px-6 md:px-12 border-t-4 border-[#D71A21]">
+  <footer class="bg-[#111827] text-white py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
       <div class="md:col-span-2">
         <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest font-serif">Emirates Group Roblox</h3>
