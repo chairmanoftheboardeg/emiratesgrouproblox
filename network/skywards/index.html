@@ -12,58 +12,57 @@
   
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Manrope:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-
   <style>
-    body { font-family: 'Manrope', sans-serif; background-color: #f8f9fa; color: #0A1128; overflow-x: hidden; }
-    .font-serif { font-family: 'Cormorant Garamond', serif; }
-    .font-mono { font-family: 'Space Mono', monospace; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+    
+    body { font-family: 'Inter', sans-serif; background-color: #f9fafb; scroll-behavior: smooth; overflow-x: hidden; }
+    .font-serif { font-family: 'Playfair Display', serif; }
     
     /* Cinematic Text Fill Loader */
     #egr-loader {
         position: fixed; inset: 0; z-index: 9999;
-        background-color: #0A1128; 
+        background-color: #111827; 
         display: flex; align-items: center; justify-content: center;
-        transition: opacity 0.6s ease;
+        transition: opacity 0.8s ease;
     }
     .loader-content { display: flex; flex-direction: column; align-items: flex-end; }
     .loader-text-wrapper {
-        position: relative; font-weight: 800;
-        letter-spacing: -2px; line-height: 1; text-transform: uppercase;
+        position: relative; font-family: 'Inter', sans-serif; font-weight: 900;
+        letter-spacing: -2px; line-height: 1; text-transform: capitalize;
     }
-    .loader-base-text { color: #1e293b; }
+    .loader-base-text { color: #374151; }
     .loader-fill-text {
         position: absolute; left: 0; top: 0; color: #ffffff; 
         overflow: hidden; white-space: nowrap; width: 0%; transition: width 0.1s linear;
     }
-    .loader-info { color: #94a3b8; font-size: 10px; font-weight: 700; letter-spacing: 2px; margin-top: 12px; text-transform: uppercase; }
+    .loader-info { color: #9CA3AF; font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-top: 8px; }
     
-    .zoom-through { animation: zoomOutEffect 0.8s cubic-bezier(0.7, 0, 0.2, 1) forwards; }
+    .zoom-through { animation: zoomOutEffect 1.2s cubic-bezier(0.7, 0, 0.2, 1) forwards; }
     @keyframes zoomOutEffect {
         0% { transform: scale(1); opacity: 1; }
-        40% { transform: scale(1.05); opacity: 1; }
-        100% { transform: scale(30); opacity: 0; filter: blur(10px); }
+        40% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(40); opacity: 0; filter: blur(5px); }
     }
 
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #D71A21; border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: #b5151c; }
     
     /* Custom Lists */
     .benefit-list li {
         position: relative;
         padding-left: 1.5rem;
         margin-bottom: 0.75rem;
-        color: #475569;
+        color: #4B5563; /* text-gray-600 */
         line-height: 1.6;
+        font-weight: 500;
     }
     .benefit-list li::before {
         content: '—';
         position: absolute;
         left: 0;
-        color: #0A1128;
+        color: #111827;
         font-weight: 700;
     }
     .benefit-list.premium li::before {
@@ -75,120 +74,142 @@
 
   <div id="egr-loader">
     <div class="loader-content" id="loader-animate-container">
-      <div class="loader-text-wrapper text-3xl md:text-6xl lg:text-7xl">
+      <div class="loader-text-wrapper text-4xl md:text-7xl lg:text-8xl">
         <div class="loader-base-text">Emirates Group Roblox</div>
         <div class="loader-fill-text" id="loader-fill">Emirates Group Roblox</div>
       </div>
-      <div class="loader-info">Accessing Loyalty Systems... <span id="loader-perc">0</span>%</div>
+      <div class="loader-info lowercase">accessing loyalty systems... <span id="loader-perc">0</span>%</div>
     </div>
   </div>
 
-  <nav class="bg-white border-b border-gray-200 py-4 px-6 md:px-12 flex justify-between items-center shadow-sm sticky top-0 z-40">
-    <a href="/" class="flex items-center gap-4 group">
-      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="EGR Logo" class="h-8 md:h-10 object-contain group-hover:opacity-80 transition-opacity">
+  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md sticky top-0 z-40 border-b-4 border-[#D71A21]">
+    <a href="/" class="flex items-center group">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox Logo" class="h-10 md:h-12 object-contain group-hover:opacity-80 transition-opacity">
     </a>
 
-    <button id="mobile-menu-btn" class="lg:hidden text-[#0A1128] text-xs font-bold uppercase tracking-widest border border-gray-300 px-3 py-1 rounded">
-      MENU
+    <button id="mobile-menu-btn" class="lg:hidden text-gray-800 text-2xl focus:outline-none">
+      <i class="fa-solid fa-bars"></i>
     </button>
 
-    <div class="hidden lg:flex space-x-8 text-[11px] font-bold items-center text-gray-500 uppercase tracking-[0.15em]">
+    <div class="hidden lg:flex space-x-6 text-sm font-bold items-center text-gray-700">
       <a href="/" class="hover:text-[#D71A21] transition-colors">Home</a>
       
       <div class="relative group py-2">
-        <button class="text-[#D71A21] transition-colors flex items-center gap-1">
-          Operations <span class="text-[8px] opacity-50">&#9660;</span>
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          About EGR <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
         </button>
-        <div class="absolute left-0 mt-2 w-48 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
-          <a href="/flights/" class="block px-6 py-4 hover:bg-gray-50 border-b border-gray-50 text-[10px]">Live Radar</a>
-          <a href="/network/skywards/" class="block px-6 py-4 bg-gray-50 text-[#D71A21] text-[10px] border-b border-gray-50">Skywards</a>
-          <a href="/operations/database/" class="block px-6 py-4 hover:bg-gray-50 text-[10px] text-gray-500 hover:text-[#D71A21]">Ban Database</a>
+        <div class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/about/vision/" class="block px-5 py-3 hover:bg-gray-50 border-b">Vision, Mission & Story</a>
+          <a href="/about/leadership/" class="block px-5 py-3 hover:bg-gray-50 border-b">Executive Leadership</a>
+          <a href="/about/governance/" class="block px-5 py-3 hover:bg-gray-50 border-b">Corporate Governance</a>
+          <a href="/about/innovation/" class="block px-5 py-3 hover:bg-gray-50 border-b">Innovation & Future</a>
+          <a href="/about/affiliates/" class="block px-5 py-3 hover:bg-gray-50">Affiliates & Partners</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Our Network <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="https://directory.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Network Directory</a>
+          <a href="/network/subsidiaries/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Subsidiaries Overview</a>
+        </div>
+      </div>
+
+      <div class="relative group py-2">
+        <button class="text-[#D71A21] transition-colors flex items-center">
+          Operations <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/flights/" class="block px-5 py-3 hover:bg-gray-50 border-b">Live Flight Radar</a>
+          <a href="/network/skywards/" class="block px-5 py-3 bg-gray-50 text-[#D71A21] border-b">Skywards</a>
+          <a href="/operations/database/" class="block px-5 py-3 hover:bg-gray-50 text-gray-700 hover:text-[#D71A21]">Ban Database</a>
         </div>
       </div>
       
       <div class="relative group py-2">
-        <button class="hover:text-[#D71A21] transition-colors flex items-center gap-1">
-          Help Center <span class="text-[8px] opacity-50">&#9660;</span>
+        <button class="hover:text-[#D71A21] transition-colors flex items-center">
+          Help Center <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
         </button>
-        <div class="absolute left-0 mt-2 w-56 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
-          <a href="/help/" class="block px-6 py-4 hover:bg-gray-50 border-b border-gray-50 text-[10px]">Contact Us</a>
-          <a href="/help/feedback/" class="block px-6 py-4 hover:bg-gray-50 border-b border-gray-50 text-[10px]">Passenger Experience</a>
-          <a href="/help/report-issue/" class="block px-6 py-4 hover:bg-gray-50 text-[10px]">Report an Issue</a>
+        <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+          <a href="/help/" class="block px-5 py-3 hover:bg-gray-50 border-b">Contact Us</a>
+          <a href="/help/feedback/" class="block px-5 py-3 hover:bg-gray-50 border-b">Passenger Experience</a>
+          <a href="/help/report-issue/" class="block px-5 py-3 hover:bg-gray-50 text-[#D71A21]">Report an Issue</a>
         </div>
       </div>
 
-      <div class="flex items-center gap-4 pl-4 border-l border-gray-200">
-          <a href="/myportal/" id="nav-portal-btn" class="hidden bg-[#0A1128] hover:bg-[#D71A21] text-white px-6 py-3 rounded-full transition-colors shadow-sm flex items-center text-[10px]">
-            MY PORTAL &rarr;
-          </a>
-          <a href="/myportal/login/" id="nav-login-btn" class="bg-gray-50 hover:bg-gray-100 text-[#0A1128] border border-gray-200 px-6 py-3 rounded-full transition-colors shadow-sm flex items-center text-[10px]">
-            SIGN IN &rarr;
-          </a>
-      </div>
+      <a href="/myportal/" id="nav-portal-btn" class="hidden bg-[#111827] hover:bg-[#D71A21] text-white px-5 py-2 rounded transition-colors shadow-md flex items-center uppercase tracking-widest text-xs">
+        My Portal <i class="fa-solid fa-user ml-2 text-[10px]"></i>
+      </a>
+      <a href="/myportal/login/" id="nav-login-btn" class="bg-gray-100 hover:bg-gray-200 text-[#111827] px-5 py-2 rounded transition-colors shadow-sm flex items-center uppercase tracking-widest text-xs border border-gray-200 font-bold">
+        Sign In <i class="fa-solid fa-arrow-right-to-bracket ml-2 text-[10px]"></i>
+      </a>
     </div>
   </nav>
 
-  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#0A1128] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col lg:hidden">
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#111827] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col lg:hidden">
     <div class="p-6 flex justify-between items-center border-b border-gray-800 bg-white">
-      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" class="h-8 object-contain">
-      <button id="mobile-menu-close" class="text-xs font-bold uppercase tracking-widest text-[#0A1128]">CLOSE</button>
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Logo" class="h-10 object-contain">
+      <button id="mobile-menu-close" class="text-gray-800 text-3xl focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
     </div>
     
-    <div class="p-8 overflow-y-auto space-y-8 text-white flex-grow bg-[#0A1128]">
-      <a href="/" class="block text-lg font-serif tracking-wide hover:text-[#D71A21] transition-colors">Headquarters</a>
+    <div class="p-6 overflow-y-auto space-y-8 text-white flex-grow bg-[#111827]">
+      <a href="/" class="block text-xl font-bold hover:text-[#D71A21] transition-colors">Home</a>
       
       <div>
-        <p class="text-[#D71A21] uppercase text-[9px] font-bold tracking-[0.2em] mb-4 border-b border-gray-800 pb-2">Operations</p>
-        <div class="space-y-4 pl-4 text-xs font-bold uppercase tracking-widest text-gray-400">
+        <p class="text-[#D71A21] uppercase text-xs font-bold tracking-widest mb-3 border-b border-gray-800 pb-1">Operations</p>
+        <div class="space-y-3 pl-2 text-sm font-semibold text-gray-300">
           <a href="/flights/" class="block hover:text-white transition-colors">Live Radar</a>
-          <a href="/network/skywards/" class="block text-white">Emirates Skywards</a>
+          <a href="/network/skywards/" class="block text-[#D71A21] font-bold">Emirates Skywards</a>
         </div>
       </div>
 
-      <a href="/myportal/login/" class="block bg-white text-[#0A1128] text-center py-4 rounded-lg font-bold uppercase tracking-widest mt-8 hover:bg-gray-200 transition-colors text-xs">
+      <a href="/myportal/login/" class="block bg-white text-[#111827] text-center py-4 rounded font-bold uppercase tracking-widest mt-6 hover:bg-gray-200 transition-colors">
         Sign In to Portal
       </a>
     </div>
   </div>
 
-  <header class="relative bg-[#0A1128] text-white py-24 md:py-32 px-6 overflow-hidden border-b-4 border-[#D71A21]">
-    <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+  <header class="relative bg-[#111827] text-white py-24 md:py-32 px-6 overflow-hidden border-b-4 border-[#D71A21]">
+    <div class="absolute inset-0 bg-[#111827]/90 z-10"></div>
+    <div class="absolute inset-0 z-0 opacity-5" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
     
     <div class="relative z-20 max-w-4xl mx-auto text-center flex flex-col items-center">
-      <img src="https://www.flydubai.com/System/img/EK_en.png" class="h-10 md:h-14 mb-10 filter invert opacity-90" alt="Emirates Skywards">
+      <img src="https://www.flydubai.com/System/img/EK_en.png" class="h-10 md:h-14 mb-10 brightness-0 invert opacity-90" alt="Emirates Skywards">
       
-      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-[10px] mb-4 block">Loyalty & Rewards</span>
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-none tracking-tight">Elevate Your <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D71A21] to-red-600">Journey.</span></h1>
-      <p class="text-gray-400 md:text-lg max-w-2xl mx-auto leading-relaxed">In the Emirates Group Roblox network, economy travel is completely free. We use tier points to elevate your status, unlocking premium features, priority access, and VIP treatment.</p>
+      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Loyalty & Rewards</span>
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight uppercase tracking-tighter drop-shadow-xl">Elevate Your <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D71A21] to-red-600">Journey.</span></h1>
+      <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">In the Emirates Group Roblox network, economy travel is completely free. We use tier points to elevate your status, unlocking premium features, priority access, and VIP treatment.</p>
     </div>
   </header>
 
   <main class="flex-grow py-20 px-6 md:px-12 bg-gray-50 relative overflow-hidden">
     
     <div class="max-w-4xl mx-auto text-center mb-20">
-        <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#0A1128] mb-6">Progress Through the Tiers</h2>
-        <p class="text-gray-500 leading-relaxed">As you fly with us and participate in the corporate network, you accumulate Skywards Miles and Tier Miles. Elevate your status to unlock everything from priority boarding to infinite business class luxury.</p>
+        <h2 class="text-3xl font-serif font-bold text-[#111827] mb-6 uppercase tracking-tight">Progress Through the Tiers</h2>
+        <p class="text-gray-500 leading-relaxed font-medium">As you fly with us and participate in the corporate network, you accumulate Skywards Miles and Tier Miles. Elevate your status to unlock everything from priority boarding to infinite business class luxury.</p>
     </div>
 
-    <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
 
-        <div class="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 md:p-12 relative overflow-hidden flex flex-col h-full">
+        <div class="bg-white rounded-2xl shadow-md border border-gray-200 p-8 md:p-12 relative overflow-hidden flex flex-col h-full">
             <div class="flex items-center gap-6 mb-8 border-b border-gray-100 pb-8">
                 <img src="https://c.ekstatic.net/ecl/skywards/common/tier-icon-blue.png?h=v2BZveIqgh9w5tGrTd0j3Q" class="w-16 h-16 object-contain" alt="Blue Tier">
                 <div>
-                    <h3 class="text-3xl font-serif font-bold text-[#0A1128] tracking-tight">Blue Tier</h3>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mt-1">Standard Membership</p>
+                    <h3 class="text-3xl font-serif font-bold text-[#111827] tracking-tight uppercase">Blue Tier</h3>
+                    <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">Standard Membership</p>
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 gap-4 mb-8 text-center bg-gray-50 p-4 rounded-xl border border-gray-100">
-                <div><p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Points</p><p class="font-mono text-sm font-bold text-[#0A1128]">0</p></div>
-                <div><p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Miles</p><p class="font-mono text-sm font-bold text-[#0A1128]">0</p></div>
-                <div><p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Flights</p><p class="font-mono text-sm font-bold text-[#0A1128]">0</p></div>
+            <div class="grid grid-cols-3 gap-4 mb-8 text-center bg-gray-50 p-4 rounded border border-gray-100">
+                <div><p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Points</p><p class="font-mono text-sm font-bold text-[#111827]">0</p></div>
+                <div><p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Miles</p><p class="font-mono text-sm font-bold text-[#111827]">0</p></div>
+                <div><p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Flights</p><p class="font-mono text-sm font-bold text-[#111827]">0</p></div>
             </div>
 
             <div class="flex-grow">
-                <p class="text-gray-600 text-sm leading-relaxed mb-6">Blue Tier is automatically granted to all members upon registering an Emirates account on our platform. This serves as the foundation of your journey.</p>
+                <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium">Blue Tier is automatically granted to all members upon registering an Emirates account on our platform. This serves as the foundation of your journey.</p>
                 <ul class="benefit-list text-sm">
                     <li>Full access to book standard Economy flights across the network.</li>
                     <li>Participate in the overarching Emirates experience.</li>
@@ -197,23 +218,23 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 md:p-12 relative overflow-hidden flex flex-col h-full">
+        <div class="bg-white rounded-2xl shadow-md border border-gray-200 p-8 md:p-12 relative overflow-hidden flex flex-col h-full">
             <div class="flex items-center gap-6 mb-8 border-b border-gray-100 pb-8">
                 <img src="https://c.ekstatic.net/ecl/skywards/common/tier-icon-silver.png?h=cKHkJJuf-MbhuLMMIivfoA" class="w-16 h-16 object-contain" alt="Silver Tier">
                 <div>
-                    <h3 class="text-3xl font-serif font-bold text-[#0A1128] tracking-tight">Silver Tier</h3>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mt-1">Priority Travel</p>
+                    <h3 class="text-3xl font-serif font-bold text-[#111827] tracking-tight uppercase">Silver Tier</h3>
+                    <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">Priority Travel</p>
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 gap-4 mb-8 text-center bg-gray-50 p-4 rounded-xl border border-gray-100">
-                <div><p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Points</p><p class="font-mono text-sm font-bold text-[#0A1128]">25K</p></div>
-                <div><p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Miles</p><p class="font-mono text-sm font-bold text-[#0A1128]">25K</p></div>
-                <div><p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Flights</p><p class="font-mono text-sm font-bold text-[#0A1128]">25</p></div>
+            <div class="grid grid-cols-3 gap-4 mb-8 text-center bg-gray-50 p-4 rounded border border-gray-100">
+                <div><p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Points</p><p class="font-mono text-sm font-bold text-[#111827]">25K</p></div>
+                <div><p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Miles</p><p class="font-mono text-sm font-bold text-[#111827]">25K</p></div>
+                <div><p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Flights</p><p class="font-mono text-sm font-bold text-[#111827]">25</p></div>
             </div>
 
             <div class="flex-grow">
-                <p class="text-gray-600 text-sm leading-relaxed mb-6">Silver Tier marks your entry into priority travel and enhanced recognition within the Emirates Group. Members experience a more refined journey with early access to premium opportunities.</p>
+                <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium">Silver Tier marks your entry into priority travel and enhanced recognition within the Emirates Group. Members experience a more refined journey with early access to premium opportunities.</p>
                 <ul class="benefit-list text-sm">
                     <li><strong>Priority Silver Boarding Call</strong>, granting earlier boarding access.</li>
                     <li><strong>2 complimentary Business Class flights</strong> per month.</li>
@@ -224,23 +245,23 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-3xl shadow-sm border border-[#D71A21]/20 p-8 md:p-12 relative overflow-hidden flex flex-col h-full">
+        <div class="bg-white rounded-2xl shadow-xl border-t-4 border-t-[#D71A21] p-8 md:p-12 relative overflow-hidden flex flex-col h-full">
             <div class="flex items-center gap-6 mb-8 border-b border-gray-100 pb-8">
                 <img src="https://c.ekstatic.net/ecl/skywards/common/tier-icon-gold.png?h=vDdEOvz5mMcYc-lQdD5JmQ" class="w-16 h-16 object-contain" alt="Gold Tier">
                 <div>
-                    <h3 class="text-3xl font-serif font-bold text-[#0A1128] tracking-tight">Gold Tier</h3>
-                    <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-[0.2em] mt-1">Premium Service</p>
+                    <h3 class="text-3xl font-serif font-bold text-[#111827] tracking-tight uppercase">Gold Tier</h3>
+                    <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest mt-1">Premium Service</p>
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 gap-4 mb-8 text-center bg-red-50 p-4 rounded-xl border border-red-100">
+            <div class="grid grid-cols-3 gap-4 mb-8 text-center bg-red-50 p-4 rounded border border-red-100">
                 <div><p class="text-[9px] font-bold text-red-800 uppercase tracking-widest">Points</p><p class="font-mono text-sm font-bold text-[#D71A21]">50K</p></div>
                 <div><p class="text-[9px] font-bold text-red-800 uppercase tracking-widest">Miles</p><p class="font-mono text-sm font-bold text-[#D71A21]">50K</p></div>
                 <div><p class="text-[9px] font-bold text-red-800 uppercase tracking-widest">Flights</p><p class="font-mono text-sm font-bold text-[#D71A21]">50</p></div>
             </div>
 
             <div class="flex-grow">
-                <p class="text-gray-600 text-sm leading-relaxed mb-6">Gold Tier represents a significant step into premium travel, combining efficiency, luxury, and priority recognition across nearly all touchpoints.</p>
+                <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium">Gold Tier represents a significant step into premium travel, combining efficiency, luxury, and priority recognition across nearly all touchpoints.</p>
                 <ul class="benefit-list premium text-sm">
                     <li>Includes all Silver Tier benefits.</li>
                     <li><strong>10 complimentary Business Class flights</strong> per month.</li>
@@ -252,32 +273,32 @@
             </div>
         </div>
 
-        <div class="bg-[#0A1128] rounded-3xl shadow-xl border border-gray-800 p-8 md:p-12 relative overflow-hidden flex flex-col h-full text-white">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
+        <div class="bg-[#111827] rounded-2xl shadow-xl border border-gray-800 p-8 md:p-12 relative overflow-hidden flex flex-col h-full text-white">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
 
             <div class="flex items-center gap-6 mb-8 border-b border-gray-700 pb-8 relative z-10">
                 <img src="https://c.ekstatic.net/ecl/skywards/common/tier-icon-platinum.png?h=VGWylTTpok6YXPSzcfmQUA" class="w-16 h-16 object-contain" alt="Platinum Tier">
                 <div>
-                    <h3 class="text-3xl font-serif font-bold text-white tracking-tight">Platinum Tier</h3>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mt-1">Ultimate Exclusivity</p>
+                    <h3 class="text-3xl font-serif font-bold text-white tracking-tight uppercase">Platinum Tier</h3>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Ultimate Exclusivity</p>
                 </div>
             </div>
             
-            <div class="grid grid-cols-3 gap-4 mb-8 text-center bg-white/5 p-4 rounded-xl border border-white/10 relative z-10">
+            <div class="grid grid-cols-3 gap-4 mb-8 text-center bg-white/5 p-4 rounded border border-white/10 relative z-10">
                 <div><p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Points</p><p class="font-mono text-sm font-bold text-white">150K</p></div>
                 <div><p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Miles</p><p class="font-mono text-sm font-bold text-white">150K</p></div>
                 <div><p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Flights</p><p class="font-mono text-sm font-bold text-white">140 + 5 EX</p></div>
             </div>
 
             <div class="flex-grow relative z-10">
-                <p class="text-gray-300 text-sm leading-relaxed mb-6">Platinum Tier is the highest level of Emirates Skywards membership, reserved for the most dedicated and elite members. Experience the journey without limitation.</p>
-                <ul class="benefit-list text-sm text-gray-200">
-                    <li style="color: #e2e8f0;">Includes all Gold Tier benefits.</li>
-                    <li style="color: #e2e8f0;"><strong>Unlimited Business Class flights</strong> per month.</li>
-                    <li style="color: #e2e8f0;"><strong>3 complimentary First Class flights</strong> per month.</li>
-                    <li style="color: #e2e8f0;"><strong>Private Chauffeur Drive service</strong> to and from the airport.</li>
-                    <li style="color: #e2e8f0;">VIP Boarding via private stairs.</li>
-                    <li style="color: #e2e8f0;">Exclusive Platinum Role on Discord & Premium Platinum Profile Badge.</li>
+                <p class="text-gray-300 text-sm leading-relaxed mb-6 font-medium">Platinum Tier is the highest level of Emirates Skywards membership, reserved for the most dedicated and elite members. Experience the journey without limitation.</p>
+                <ul class="benefit-list text-sm text-gray-300">
+                    <li>Includes all Gold Tier benefits.</li>
+                    <li><strong>Unlimited Business Class flights</strong> per month.</li>
+                    <li><strong>3 complimentary First Class flights</strong> per month.</li>
+                    <li><strong>Private Chauffeur Drive service</strong> to and from the airport.</li>
+                    <li>VIP Boarding via private stairs.</li>
+                    <li>Exclusive Platinum Role on Discord & Premium Platinum Profile Badge.</li>
                 </ul>
             </div>
         </div>
@@ -285,33 +306,35 @@
     </div>
   </main>
 
-  <section class="bg-[#111827] py-24 px-6 relative overflow-hidden border-t border-gray-800">
-      <div class="absolute inset-0 z-0 opacity-20" style="background-image: radial-gradient(#D71A21 1px, transparent 1px); background-size: 40px 40px;"></div>
-      <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-[#D71A21] rounded-full blur-[120px] -mr-96 -mt-96 opacity-10 pointer-events-none"></div>
+  <section class="bg-[#111827] py-24 px-6 relative overflow-hidden border-t-4 border-[#D71A21]">
+      <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+      <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-[#D71A21] rounded-full blur-[100px] -mr-80 -mt-80 opacity-10 pointer-events-none"></div>
 
-      <div class="max-w-[1200px] mx-auto relative z-10 flex flex-col lg:flex-row items-center gap-16">
+      <div class="max-w-6xl mx-auto relative z-10 flex flex-col lg:flex-row items-center gap-16">
           
           <div class="w-full lg:w-1/2">
               <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-[10px] mb-4 block">Premium Subscription</span>
-              <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">Emirates Skywards<span class="text-[#D71A21]">+</span></h2>
-              <p class="text-gray-300 leading-relaxed mb-8">Elevate every journey with Skywards+, the premium membership designed for those who expect more from their experience. Unlock a higher class of travel with exclusive privileges and unmatched access across the Emirates Group.</p>
+              <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight uppercase tracking-tight">Emirates <br>Skywards<span class="text-[#D71A21]">+</span></h2>
+              <p class="text-gray-300 leading-relaxed mb-8 font-medium">Elevate every journey with Skywards+, the premium membership designed for those who expect more from their experience. Unlock a higher class of travel with exclusive privileges and unmatched access across the Emirates Group.</p>
               
-              <div class="bg-black/40 border border-gray-800 rounded-2xl p-6 mb-8 inline-block">
+              <div class="bg-black/40 border border-gray-800 rounded p-6 mb-8 inline-block shadow-inner">
                   <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Subscription Price</p>
                   <p class="text-3xl font-mono font-bold text-white tracking-tighter">350 <span class="text-sm font-sans font-bold text-gray-400">ROBUX</span></p>
               </div>
 
               <div>
-                  <a href="/help/" class="inline-flex items-center justify-center bg-[#D71A21] hover:bg-red-800 text-white px-8 py-4 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] transition-colors shadow-lg">
-                      Purchase & Process Account &rarr;
+                  <a href="https://www.roblox.com/games/85410611756192/Emirates-Group-Roblox-Headquarters#!/store?subscription=EXP-4152243563058561535" target="_blank" class="inline-flex items-center justify-center bg-[#D71A21] hover:bg-red-700 text-white px-8 py-4 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-lg">
+                      Purchase Subscription &rarr;
                   </a>
-                  <p class="text-[9px] text-gray-500 mt-4 uppercase tracking-widest font-bold">Once purchased, contact us via the Help Desk to activate your benefits.</p>
+                  <p class="text-[10px] text-gray-400 mt-4 leading-relaxed font-medium">
+                      <strong class="text-white">Important:</strong> Once you have purchased Skywards+, please contact us at the <a href="/help/" class="text-[#D71A21] hover:text-white font-bold underline transition-colors">Help Desk</a> so our staff can securely verify your purchase and instantly activate your benefits.
+                  </p>
               </div>
           </div>
 
-          <div class="w-full lg:w-1/2 bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-8 md:p-12">
-              <h3 class="text-xl font-bold text-white tracking-tight mb-8 border-b border-gray-700 pb-4">Skywards+ Exclusive Benefits</h3>
-              <ul class="space-y-5 text-sm text-gray-300">
+          <div class="w-full lg:w-1/2 bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8 md:p-12 shadow-2xl">
+              <h3 class="text-xl font-bold text-white tracking-tight mb-8 border-b border-gray-700 pb-4 uppercase">Exclusive Benefits</h3>
+              <ul class="space-y-6 text-sm text-gray-300">
                   <li class="flex items-start gap-4">
                       <span class="text-[#D71A21] text-lg leading-none mt-0.5 font-bold">✓</span>
                       <div><strong class="text-white block mb-1">First Class Upgrades</strong> Complimentary upgrade on every standard flight.</div>
@@ -330,7 +353,7 @@
                   </li>
                   <li class="flex items-start gap-4">
                       <span class="text-[#D71A21] text-lg leading-none mt-0.5 font-bold">✓</span>
-                      <div><strong class="text-white block mb-1">Priority Access</strong> Select bookings, premium experiences, and exclusive badges.</div>
+                      <div><strong class="text-white block mb-1">Priority Access</strong> Select bookings, premium experiences, and exclusive profile badges.</div>
                   </li>
               </ul>
           </div>
@@ -338,84 +361,82 @@
       </div>
   </section>
 
-  <footer class="bg-[#0A1128] text-white py-16 px-6 md:px-12 border-t border-gray-800 relative z-20">
+  <footer class="bg-[#111827] text-white py-16 px-6 md:px-12 border-t-4 border-[#D71A21]">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
       <div class="md:col-span-2">
         <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest font-serif">Emirates Group Roblox</h3>
         <p class="text-sm text-gray-400 max-w-md mb-8 leading-relaxed">The premier virtual aviation organization on the Roblox platform. Setting the standard for structural perfection and digital realism.</p>
         
-        <h4 class="font-bold text-white mb-4 uppercase tracking-[0.2em] text-[10px] border-b border-gray-800 pb-2 inline-block">Connect With Us</h4>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2 inline-block">Connect With Us</h4>
         <div class="flex flex-wrap items-center gap-5 text-2xl text-gray-400 mt-2">
-          <a href="https://discord.gg/nDAZ3p475V7" target="_blank" class="hover:text-[#5865F2] transition-colors"><i class="fa-brands fa-discord"></i></a>
-          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white transition-colors flex items-center">
+          <a href="https://discord.gg/nDAZ3p475V7" target="_blank" class="hover:text-[#5865F2] hover:scale-110 transition-all duration-300" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300 flex items-center" aria-label="Roblox">
             <svg class="w-[1em] h-[1em] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.445 0L0 20.457l18.555 3.543L24 3.543 5.445 0zm10.125 14.596l-4.102-.782-.782-4.102 4.102.782.782 4.102z"/></svg>
           </a>
-          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] transition-colors"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] hover:scale-110 transition-all duration-300" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] hover:scale-110 transition-all duration-300" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] hover:scale-110 transition-all duration-300" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] hover:scale-110 transition-all duration-300" aria-label="Trello"><i class="fa-brands fa-trello"></i></a>
+          <a href="https://www.linkedin.com/company/emirates-group-roblox-vision2026" target="_blank" class="hover:text-[#0A66C2] hover:scale-110 transition-all duration-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
       </div>
       
       <div>
-        <h4 class="font-bold text-white mb-4 uppercase tracking-[0.2em] text-[10px] border-b border-gray-800 pb-2">EGR Network</h4>
-        <ul class="space-y-3 text-xs text-gray-400 font-semibold tracking-wide">
-          <li><a href="/flights/" class="hover:text-[#D71A21] transition-colors">Flight Radar</a></li>
-          <li><a href="https://ek.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors">Emirates Airline</a></li>
-          <li><a href="https://fz.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors">Fly Dubai</a></li>
-          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors">Careers Portal</a></li>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">EGR Network</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://ek.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Emirates Airline</a></li>
+          <li><a href="https://fz.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Fly Dubai</a></li>
+          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Careers Portal</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="font-bold text-white mb-4 uppercase tracking-[0.2em] text-[10px] border-b border-gray-800 pb-2">Tyler Nicholas Group</h4>
-        <ul class="space-y-3 text-xs text-gray-400 font-semibold tracking-wide">
-          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors">TNG Hub</a></li>
-          <li><a href="https://tyler.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors">The Founder</a></li>
-          <li><a href="https://payhip.com/FalconLtd" target="_blank" class="hover:text-white transition-colors">Falcon LTD</a></li>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Tyler Nicholas Group</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> TNG Hub</a></li>
+          <li><a href="https://tyler.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> The Founder</a></li>
+          <li><a href="https://payhip.com/FalconLtd" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> Falcon LTD</a></li>
+          <li><a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> BlueWave Digital</a></li>
         </ul>
       </div>
     </div>
     
-    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 text-[10px] text-gray-600 font-bold tracking-[0.1em] uppercase text-center md:text-left">
-      <p>&copy; 2026 Emirates Group Roblox. Corporate Infrastructure.</p>
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs text-gray-500 font-bold tracking-wider uppercase text-center md:text-left gap-4">
+      <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
+      <p>A proud subsidiary of the <a href="https://tylernicholasgroup.com" class="text-gray-300 hover:text-white transition-colors">Tyler Nicholas Group</a> Network</p>
     </div>
   </footer>
 
   <script>
-    // --- SAFE LOADER LOGIC ---
-    let loaderHidden = false;
+    // --- ANIMATED TEXT LOADER LOGIC ---
+    let perc = 0;
+    const percEl = document.getElementById('loader-perc');
+    const fillEl = document.getElementById('loader-fill');
+    const loader = document.getElementById('egr-loader');
+    const animateContainer = document.getElementById('loader-animate-container');
     
-    function hideLoader() {
-        if(loaderHidden) return;
-        loaderHidden = true;
-        
+    const progressInterval = setInterval(() => {
+        perc += Math.floor(Math.random() * 8) + 2; 
+        if (perc >= 99) perc = 99; 
+        percEl.innerText = perc;
+        fillEl.style.width = perc + '%';
+    }, 120);
+
+    window.addEventListener('load', () => {
         clearInterval(progressInterval);
-        document.getElementById('loader-perc').innerText = '100';
-        document.getElementById('loader-fill').style.width = '100%';
+        percEl.innerText = '100';
+        fillEl.style.width = '100%';
         
         setTimeout(() => {
-            const container = document.getElementById('loader-animate-container');
-            if(container) container.classList.add('zoom-through');
+            animateContainer.classList.add('zoom-through');
             setTimeout(() => {
-                const loader = document.getElementById('egr-loader');
-                if(loader) loader.style.display = 'none'; 
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 800);
             }, 600);
-        }, 300);
-    }
+        }, 400);
+    });
 
-    setTimeout(hideLoader, 3000);
-
-    const progressInterval = setInterval(() => {
-        if(loaderHidden) return;
-        const el = document.getElementById('loader-perc');
-        if(!el) return;
-        let perc = parseInt(el.innerText) || 0;
-        perc += Math.floor(Math.random() * 15) + 5; 
-        if (perc >= 99) perc = 99; 
-        el.innerText = perc;
-        document.getElementById('loader-fill').style.width = perc + '%';
-    }, 80);
-
-    // --- UI & SUPABASE LOGIC ---
     document.addEventListener("DOMContentLoaded", async () => {
-      
       // Mobile Menu
       const mobileBtn = document.getElementById('mobile-menu-btn');
       const mobileClose = document.getElementById('mobile-menu-close');
@@ -425,43 +446,35 @@
         mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
       }
 
-      // Initialize Supabase
-      if (!window.supabase) {
-          console.error("Supabase CDN failed to load.");
-          hideLoader();
-          return;
-      }
+      // Initialize Supabase for Auth state in Nav
+      if(window.supabase) {
+          const supabase = window.supabase.createClient(
+            'https://zboyabxzhptnxnmofvcz.supabase.co', 
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
+          );
 
-      const supabase = window.supabase.createClient(
-        'https://zboyabxzhptnxnmofvcz.supabase.co', 
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
-      );
-
-      const navPortalBtn = document.getElementById('nav-portal-btn');
-      const navLoginBtn = document.getElementById('nav-login-btn');
-      
-      function updateUIForSession(session) {
-          if (session) {
-              navLoginBtn.classList.add('hidden');
-              navPortalBtn.classList.remove('hidden');
-          } else {
-              navPortalBtn.classList.add('hidden');
-              navLoginBtn.classList.remove('hidden');
+          const navPortalBtn = document.getElementById('nav-portal-btn');
+          const navLoginBtn = document.getElementById('nav-login-btn');
+          
+          function updateUIForSession(session) {
+              if (session) {
+                  navLoginBtn.classList.add('hidden');
+                  navPortalBtn.classList.remove('hidden');
+              } else {
+                  navPortalBtn.classList.add('hidden');
+                  navLoginBtn.classList.remove('hidden');
+              }
           }
-      }
 
-      try {
-          const { data: { session } } = await supabase.auth.getSession();
-          updateUIForSession(session);
-      } catch (err) {
-          console.error(err);
-      } finally {
-          hideLoader();
-      }
+          try {
+              const { data: { session } } = await supabase.auth.getSession();
+              updateUIForSession(session);
 
-      supabase.auth.onAuthStateChange((_event, session) => {
-          updateUIForSession(session);
-      });
+              supabase.auth.onAuthStateChange((_event, session) => {
+                  updateUIForSession(session);
+              });
+          } catch(e) { console.error(e); }
+      }
     });
   </script>
 </body>
