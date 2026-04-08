@@ -241,7 +241,7 @@
                 <p class="text-gray-500 font-medium">Secure your private itinerary. Operations are exclusive to PTFS.</p>
             </div>
 
-            <div id="auth-gate" class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden flex flex-col md:flex-row transition-opacity duration-500">
+            <div id="auth-gate" class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden flex flex-col md:flex-row">
                 <div class="w-full md:w-5/12 bg-[#111827] p-10 md:p-16 flex flex-col justify-center">
                     <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Secure Portal</span>
                     <h2 class="text-3xl font-serif font-bold text-white uppercase tracking-tight mb-6 leading-tight">Identity <br>Verification.</h2>
@@ -270,7 +270,7 @@
                 </div>
             </div>
 
-            <div id="request-desk" class="hidden bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden transition-opacity duration-500">
+            <div id="request-desk" class="hidden bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
                 
                 <div class="bg-[#111827] text-white p-8 md:px-12 md:py-8 flex justify-between items-center">
                     <div>
@@ -556,19 +556,29 @@
       const authGate = document.getElementById('auth-gate');
       const requestDesk = document.getElementById('request-desk');
       
+      // BULLETPROOF AUTH UI TOGGLE (Overriding Tailwind flex conflicts)
       function updateUIForSession(session) {
           if (session) {
               currentUser = session.user;
-              authGate.classList.add('hidden');
-              requestDesk.classList.remove('hidden');
               
-              if(currentUser.email) {
-                  document.getElementById('req-email').value = currentUser.email;
+              authGate.classList.add('hidden');
+              authGate.style.display = 'none';
+              
+              requestDesk.classList.remove('hidden');
+              requestDesk.style.display = 'block';
+              
+              const emailInput = document.getElementById('req-email');
+              if(emailInput && currentUser.email) {
+                  emailInput.value = currentUser.email;
               }
           } else {
               currentUser = null;
+              
               authGate.classList.remove('hidden');
+              authGate.style.display = 'flex';
+              
               requestDesk.classList.add('hidden');
+              requestDesk.style.display = 'none';
           }
       }
 
