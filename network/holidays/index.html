@@ -50,11 +50,11 @@
     ::-webkit-scrollbar-thumb:hover { background: #b5151c; }
     
     /* Luxury Hover Effects */
-    .portfolio-card { transition: all 0.5s ease; border-bottom: 2px solid transparent; }
-    .portfolio-card:hover { border-bottom: 2px solid #D71A21; background-color: #ffffff; transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); }
-    
-    .img-zoom { transition: transform 0.8s ease; }
+    .img-zoom { transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
     .group:hover .img-zoom { transform: scale(1.05); }
+
+    /* Partner Logo Blend */
+    .partner-logo { mix-blend-mode: multiply; }
   </style>
 </head>
 <body class="flex flex-col min-h-screen relative">
@@ -98,10 +98,16 @@
         <button class="text-[#D71A21] transition-colors flex items-center">
           Our Network <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i>
         </button>
-        <div class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
+        <div class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">
           <a href="https://directory.emiratesgrouproblox.link" target="_blank" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Network Directory</a>
           <a href="/network/subsidiaries/" class="block px-5 py-2 hover:bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Subsidiaries Overview</a>
+          
           <a href="/holidays/" class="block px-5 py-2 bg-gray-50 border-b text-sm font-extrabold text-[#D71A21]">Emirates Holidays</a>
+          <a href="https://hilton.emiratesgrouproblox.link" target="_blank" class="block px-5 py-1.5 hover:bg-gray-50 text-xs font-bold text-gray-500 pl-8">↳ Hotels By Hilton</a>
+          <a href="https://carnival.emiratesgrouproblox.link" target="_blank" class="block px-5 py-1.5 hover:bg-gray-50 text-xs font-bold text-gray-500 pl-8">↳ Carnival Cruises</a>
+          <a href="https://oyo.emiratesgrouproblox.link" target="_blank" class="block px-5 py-1.5 hover:bg-gray-50 border-b text-xs font-bold text-gray-500 pl-8">↳ OYO Hotels & Homes</a>
+          
+          <a href="/network/ekskycargo/" class="block px-5 py-2 hover:bg-gray-50 text-sm font-extrabold text-[#D71A21]">Emirates SkyCargo</a>
         </div>
       </div>
 
@@ -151,6 +157,10 @@
           <a href="https://directory.emiratesgrouproblox.link" target="_blank" class="block hover:text-white transition-colors">Network Directory</a>
           <a href="/network/subsidiaries/" class="block hover:text-white transition-colors">Subsidiaries</a>
           <a href="/holidays/" class="block text-[#D71A21] font-bold">Emirates Holidays</a>
+          <a href="https://hilton.emiratesgrouproblox.link" target="_blank" class="block text-gray-400 pl-4 hover:text-white">↳ Hotels By Hilton</a>
+          <a href="https://carnival.emiratesgrouproblox.link" target="_blank" class="block text-gray-400 pl-4 hover:text-white">↳ Carnival Cruises</a>
+          <a href="https://oyo.emiratesgrouproblox.link" target="_blank" class="block text-gray-400 pl-4 hover:text-white">↳ OYO Hotels</a>
+          <a href="/network/ekskycargo/" class="block hover:text-white transition-colors mt-2">Emirates SkyCargo</a>
         </div>
       </div>
 
@@ -169,41 +179,36 @@
       
       <p class="text-gray-200 md:text-xl max-w-2xl leading-relaxed font-serif italic tracking-wide">"The journey continues after landing."</p>
       <div class="w-12 h-1 bg-[#D71A21] mt-8 mb-6"></div>
-      <p class="text-xs uppercase tracking-[0.2em] font-bold text-gray-300">The premier lifestyle & hospitality division of the Emirates Group</p>
+      <p class="text-xs uppercase tracking-[0.2em] font-bold text-gray-300">The lifestyle, hospitality, and experience division of the Emirates Group</p>
     </div>
   </header>
 
   <main class="flex-grow bg-white relative overflow-hidden">
     
     <section class="py-24 px-6 md:px-12 max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl md:text-5xl font-serif font-bold text-[#111827] mb-8 tracking-tight">A Full Digital Travel Ecosystem</h2>
-        <p class="text-gray-500 leading-relaxed text-lg font-medium">Flights bring you into the network, but Emirates Holidays ensures you never want to leave. Discover our expanding portfolio of world-class hotels, exclusive destinations, luxury cruises, and curated VIP experiences.</p>
+        <h2 class="text-3xl md:text-5xl font-serif font-bold text-[#111827] mb-8 tracking-tight">A Global Travel Ecosystem</h2>
+        <p class="text-gray-500 leading-relaxed text-lg font-medium">Flights bring you into the network; Emirates Holidays ensures you never want to leave. Through strategic partnerships and dedicated corporate divisions, we manage a massive portfolio of world-class hotels, luxury cruises, private villas, and high-end VIP experiences.</p>
     </section>
 
     <section class="py-16 md:py-24 px-6 md:px-12 bg-gray-50 border-y border-gray-100">
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            <div class="w-full lg:w-1/2 group overflow-hidden rounded-xl shadow-xl border border-gray-200">
-                <div class="relative h-[400px] lg:h-[500px] overflow-hidden">
-                    <img src="https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/d/c/5/dc5c568badae7b7239d6d5520fb461de3485b8ba.jpeg" alt="Emirates Hotels" class="w-full h-full object-cover img-zoom">
+            <div class="w-full lg:w-1/2 group overflow-hidden rounded-2xl shadow-xl border border-gray-200 relative">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500 z-10"></div>
+                <img src="https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/5X/6/0/6/1/6061023097d5453a3ae156e755d0f2f95926ee90.jpeg" alt="Emirates Hotels" class="w-full h-[400px] lg:h-[500px] object-cover img-zoom">
+                
+                <div class="absolute bottom-6 left-6 z-20 bg-white p-4 rounded-xl shadow-lg flex items-center gap-4 pr-6">
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">In Partnership With</span>
+                    <img src="https://1000logos.net/wp-content/uploads/2017/02/Hilton-logo.png" class="h-6 object-contain partner-logo" alt="Hilton">
                 </div>
             </div>
             
             <div class="w-full lg:w-1/2">
                 <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Division I</span>
                 <h2 class="text-4xl lg:text-5xl font-serif font-bold text-[#111827] mb-6 leading-tight">Emirates Hotels <br>& Resorts</h2>
-                <p class="text-gray-600 leading-relaxed mb-8">Experience our signature hospitality division. From highly-coordinated check-in roleplays to dedicated room service and opulent VIP suites reserved for our highest-tier flyers.</p>
+                <p class="text-gray-600 leading-relaxed mb-8 text-lg font-medium">Our signature hospitality division operates exclusively in partnership with <strong>Hotels By Hilton Roblox</strong>. Experience fully immersive 5-star stays, high-fidelity check-in roleplays, and opulent VIP suites reserved for our highest-tier flyers.</p>
                 
-                <div class="mb-10">
-                    <p class="text-xs font-bold text-gray-900 uppercase tracking-widest mb-4 border-b border-gray-200 pb-2">The Portfolio</p>
-                    <ul class="space-y-3 text-sm text-gray-600 font-medium">
-                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-3"></span> Emirates Grand Hotels (Luxury 5⭐)</li>
-                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#111827] rounded-full mr-3"></span> Emirates Stay (Standard Accomm.)</li>
-                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3"></span> Emirates Airport Hotel (Connected)</li>
-                    </ul>
-                </div>
-
-                <a href="https://hotels.emiratesgrouproblox.link" target="_blank" class="inline-flex items-center justify-center bg-[#111827] hover:bg-[#D71A21] text-white px-8 py-4 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-md">
-                    Access Booking System &rarr;
+                <a href="https://hilton.emiratesgrouproblox.link" target="_blank" class="inline-flex items-center justify-center bg-[#111827] hover:bg-[#D71A21] text-white px-8 py-4 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-md">
+                    Access Hilton Portal &rarr;
                 </a>
             </div>
         </div>
@@ -211,84 +216,82 @@
 
     <section class="py-16 md:py-24 px-6 md:px-12 bg-white">
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
-            <div class="w-full lg:w-1/2 group overflow-hidden rounded-xl shadow-xl border border-gray-200">
-                <div class="relative h-[400px] lg:h-[500px] overflow-hidden bg-[#111827]">
-                    <img src="https://tr.rbxcdn.com/180DAY-39c6af90a91c3dfc890f246ff9ba872e/768/432/Image/Webp/noFilter" alt="Emirates Cruises" class="w-full h-full object-cover img-zoom opacity-90">
+            <div class="w-full lg:w-1/2 group overflow-hidden rounded-2xl shadow-xl border border-gray-200 relative">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500 z-10"></div>
+                <img src="https://tr.rbxcdn.com/180DAY-4a6abad2d3e17c1ce0147d45100d0e3c/768/432/Image/Webp/noFilter" alt="Emirates Cruises" class="w-full h-[400px] lg:h-[500px] object-cover img-zoom">
+                
+                <div class="absolute bottom-6 right-6 z-20 bg-white p-4 rounded-xl shadow-lg flex items-center gap-4 pl-6">
+                    <img src="https://iprsoftwaremedia.com/412/files/albumcovers/52e60915-03fe-4a70-86e1-be5dc0f733fc_thmb.jpg" class="h-8 object-contain partner-logo" alt="Carnival">
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest text-right">In Partnership With</span>
                 </div>
             </div>
             
             <div class="w-full lg:w-1/2">
                 <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Division II</span>
                 <h2 class="text-4xl lg:text-5xl font-serif font-bold text-[#111827] mb-6 leading-tight">Emirates <br>Cruises</h2>
-                <p class="text-gray-600 leading-relaxed mb-8">Take to the seas with our dedicated maritime division. Featuring massive explorable ships, bookable cabins, and highly scheduled ocean journeys designed for long-form roleplay.</p>
+                <p class="text-gray-600 leading-relaxed mb-8 text-lg font-medium">Take to the seas with our dedicated maritime division, operated in partnership with <strong>Carnival Cruise Lines Roblox</strong>. Featuring massive explorable ships, bookable cabins, and highly scheduled ocean journeys designed for long-form roleplay.</p>
                 
-                <div class="mb-10">
-                    <p class="text-xs font-bold text-gray-900 uppercase tracking-widest mb-4 border-b border-gray-200 pb-2">Onboard Experience</p>
-                    <ul class="space-y-3 text-sm text-gray-600 font-medium">
-                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-3"></span> Fully explorable cruise ship maps</li>
-                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#111827] rounded-full mr-3"></span> Bookable Cabins and Staterooms</li>
-                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3"></span> Scheduled maritime events and dining</li>
-                    </ul>
-                </div>
-
-                <a href="https://cruiseliners.emiratesgrouproblox.link" target="_blank" class="inline-flex items-center justify-center bg-[#111827] hover:bg-[#D71A21] text-white px-8 py-4 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-md">
-                    View Fleet Details &rarr;
+                <a href="https://carnival.emiratesgrouproblox.link" target="_blank" class="inline-flex items-center justify-center bg-[#111827] hover:bg-[#D71A21] text-white px-8 py-4 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-md">
+                    View Cruise Itineraries &rarr;
                 </a>
             </div>
         </div>
     </section>
 
-    <section class="py-24 px-6 md:px-12 bg-gray-50 border-t border-gray-200">
+    <section class="py-16 md:py-24 px-6 md:px-12 bg-gray-50 border-y border-gray-100">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            <div class="w-full lg:w-1/2 group overflow-hidden rounded-2xl shadow-xl border border-gray-200 relative bg-[#111827]">
+                <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500 z-10"></div>
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Guest Houses" class="w-full h-[400px] lg:h-[500px] object-cover img-zoom opacity-90">
+                
+                <div class="absolute bottom-6 left-6 z-20 bg-white p-4 rounded-xl shadow-lg flex items-center gap-4 pr-6">
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">In Partnership With</span>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBa1nDbQQOSJaOzUy1WcaxP8AMTvMBA93NsQ&s" class="h-8 object-contain partner-logo" alt="OYO">
+                </div>
+            </div>
+            
+            <div class="w-full lg:w-1/2">
+                <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Division III</span>
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-[#111827] mb-6 leading-tight">Guest Houses <br>& Villas</h2>
+                <p class="text-gray-600 leading-relaxed mb-8 text-lg font-medium">Intimate, private experiences designed for smaller groups. Operated in partnership with <strong>OYO Hotels & Homes Roblox</strong>, this division focuses on premium, secluded bookings and highly exclusive corporate gatherings away from the public eye.</p>
+                
+                <a href="https://oyo.emiratesgrouproblox.link" target="_blank" class="inline-flex items-center justify-center bg-[#111827] hover:bg-[#D71A21] text-white px-8 py-4 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-md">
+                    Browse Properties &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 md:px-12 bg-white">
         <div class="max-w-7xl mx-auto">
             
-            <div class="mb-16">
-                <h2 class="text-3xl font-serif font-bold text-[#111827] mb-4 tracking-tight">The Extended Portfolio</h2>
-                <p class="text-gray-500 max-w-2xl font-medium leading-relaxed">Beyond hotels and ships, Emirates Holidays curates highly specific, immersive experiences ranging from private island retreats to dedicated chauffeur logistics.</p>
+            <div class="mb-16 text-center">
+                <h2 class="text-3xl font-serif font-bold text-[#111827] mb-4 tracking-tight">Corporate Services</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto font-medium leading-relaxed">Beyond accommodations and maritime travel, Emirates Holidays curates highly specific, immersive roleplay services to ensure a seamless journey from terminal to destination.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                 
-                <div class="bg-white p-10 rounded-xl border border-gray-100 portfolio-card">
-                    <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Division III</span>
-                    <h3 class="text-2xl font-serif font-bold text-[#111827] mb-4">Emirates Resorts & Destinations</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Breathtaking virtual locales designed for pure relaxation. Features expansive beach maps, water activities, and exclusive access sessions for high-tier members.</p>
-                    <ul class="text-sm font-bold text-[#111827] space-y-2 pt-4 border-t border-gray-50">
-                        <li class="flex items-center"><span class="text-[#D71A21] mr-2 text-xs">◆</span> Emirates Maldives Resort</li>
-                        <li class="flex items-center"><span class="text-[#D71A21] mr-2 text-xs">◆</span> Emirates Dubai Island</li>
-                        <li class="flex items-center"><span class="text-[#D71A21] mr-2 text-xs">◆</span> Emirates Private Island</li>
+                <div class="bg-[#111827] p-12 rounded-2xl shadow-xl border border-gray-800 relative overflow-hidden flex flex-col text-white group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-[#D71A21]/10 rounded-full blur-3xl transition-all duration-700 group-hover:bg-[#D71A21]/20"></div>
+                    <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block relative z-10">Division IV</span>
+                    <h3 class="text-3xl font-serif font-bold mb-6 relative z-10">Emirates Experiences</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8 flex-grow relative z-10">The heart of our event system. Highly curated, limited-time experiences designed to reward our most dedicated corporate members and investors.</p>
+                    <ul class="text-sm font-bold text-gray-300 space-y-3 pt-6 border-t border-gray-800 relative z-10">
+                        <li class="flex items-center"><span class="text-[#D71A21] mr-3 text-sm">◆</span> VIP Travel Events & Galas</li>
+                        <li class="flex items-center"><span class="text-[#D71A21] mr-3 text-sm">◆</span> Holiday Specials (New Year, Summer)</li>
+                        <li class="flex items-center"><span class="text-[#D71A21] mr-3 text-sm">◆</span> Private Jet Excursions</li>
                     </ul>
                 </div>
 
-                <div class="bg-white p-10 rounded-xl border border-gray-100 portfolio-card">
-                    <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Division IV</span>
-                    <h3 class="text-2xl font-serif font-bold text-[#111827] mb-4">Emirates Guest Houses / Villas</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Intimate, private experiences designed for smaller groups. Perfect for premium, secluded bookings and highly exclusive corporate gatherings.</p>
-                    <ul class="text-sm font-bold text-[#111827] space-y-2 pt-4 border-t border-gray-50">
-                        <li class="flex items-center"><span class="text-[#D71A21] mr-2 text-xs">◆</span> Private Coastal Villas</li>
-                        <li class="flex items-center"><span class="text-[#D71A21] mr-2 text-xs">◆</span> Luxury City Apartments</li>
-                        <li class="flex items-center"><span class="text-[#D71A21] mr-2 text-xs">◆</span> Group Stay Houses</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-10 rounded-xl border border-gray-100 portfolio-card">
-                    <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Division V</span>
-                    <h3 class="text-2xl font-serif font-bold text-[#111827] mb-4">Emirates Experiences</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6">The heart of our event system. Highly curated, limited-time experiences designed to reward our most dedicated corporate members and investors.</p>
-                    <ul class="text-sm font-bold text-[#111827] space-y-2 pt-4 border-t border-gray-50">
-                        <li class="flex items-center"><span class="text-[#D71A21] mr-2 text-xs">◆</span> VIP Travel Events & Galas</li>
-                        <li class="flex items-center"><span class="text-[#D71A21] mr-2 text-xs">◆</span> Holiday Specials (New Year, Summer)</li>
-                        <li class="flex items-center"><span class="text-[#D71A21] mr-2 text-xs">◆</span> Private Jet Excursions</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-10 rounded-xl border border-gray-100 portfolio-card">
-                    <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Division VI</span>
-                    <h3 class="text-2xl font-serif font-bold text-[#111827] mb-4">Emirates Lifestyle Services</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Bridging the gap between the terminal and the destination. Providing realistic, highly-coordinated logistical services for seamless travel.</p>
-                    <ul class="text-sm font-bold text-[#111827] space-y-2 pt-4 border-t border-gray-50">
-                        <li class="flex items-center"><span class="text-[#D71A21] mr-2 text-xs">◆</span> Chauffeur RP System</li>
-                        <li class="flex items-center"><span class="text-[#D71A21] mr-2 text-xs">◆</span> VIP Arrival/Departure Coordination</li>
-                        <li class="flex items-center"><span class="text-[#D71A21] mr-2 text-xs">◆</span> Private Terminal Access Logistics</li>
+                <div class="bg-gray-50 p-12 rounded-2xl shadow-sm border border-gray-200 relative overflow-hidden flex flex-col group hover:border-[#D71A21] transition-colors duration-300">
+                    <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Division V</span>
+                    <h3 class="text-3xl font-serif font-bold text-[#111827] mb-6">Emirates Lifestyle Services</h3>
+                    <p class="text-gray-600 text-lg font-medium leading-relaxed mb-8 flex-grow">Bridging the gap between the terminal and the destination. Providing realistic, highly-coordinated logistical roleplay services for seamless travel.</p>
+                    <ul class="text-sm font-bold text-[#111827] space-y-3 pt-6 border-t border-gray-200">
+                        <li class="flex items-center"><span class="text-[#D71A21] mr-3 text-sm">◆</span> Chauffeur RP System</li>
+                        <li class="flex items-center"><span class="text-[#D71A21] mr-3 text-sm">◆</span> VIP Arrival/Departure Coordination</li>
+                        <li class="flex items-center"><span class="text-[#D71A21] mr-3 text-sm">◆</span> Private Terminal Access Logistics</li>
                     </ul>
                 </div>
 
@@ -345,34 +348,47 @@
   </footer>
 
   <script>
-    // --- ANIMATED TEXT LOADER LOGIC ---
-    let perc = 0;
-    const percEl = document.getElementById('loader-perc');
-    const fillEl = document.getElementById('loader-fill');
-    const loader = document.getElementById('egr-loader');
-    const animateContainer = document.getElementById('loader-animate-container');
+    // --- ABSOLUTE FAILSAFE LOADER LOGIC ---
+    let loaderHidden = false;
     
-    const progressInterval = setInterval(() => {
-        perc += Math.floor(Math.random() * 8) + 2; 
-        if (perc >= 99) perc = 99; 
-        percEl.innerText = perc;
-        fillEl.style.width = perc + '%';
-    }, 120);
-
-    window.addEventListener('load', () => {
-        clearInterval(progressInterval);
-        percEl.innerText = '100';
-        fillEl.style.width = '100%';
+    function hideLoader() {
+        if(loaderHidden) return;
+        loaderHidden = true;
+        
+        if (typeof progressInterval !== 'undefined') clearInterval(progressInterval);
+        const percEl = document.getElementById('loader-perc');
+        const fillEl = document.getElementById('loader-fill');
+        if(percEl) percEl.innerText = '100';
+        if(fillEl) fillEl.style.width = '100%';
         
         setTimeout(() => {
-            animateContainer.classList.add('zoom-through');
+            const container = document.getElementById('loader-animate-container');
+            if(container) container.classList.add('zoom-through');
             setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => { loader.style.display = 'none'; }, 800);
+                const loader = document.getElementById('egr-loader');
+                if(loader) loader.style.display = 'none'; 
             }, 600);
-        }, 400);
-    });
+        }, 300);
+    }
 
+    // Force loader to hide after 2.5 seconds MAXIMUM
+    setTimeout(hideLoader, 2500);
+
+    const progressInterval = setInterval(() => {
+        if(loaderHidden) return;
+        const el = document.getElementById('loader-perc');
+        const fill = document.getElementById('loader-fill');
+        if(!el || !fill) return;
+        let perc = parseInt(el.innerText) || 0;
+        perc += Math.floor(Math.random() * 15) + 5; 
+        if (perc >= 99) perc = 99; 
+        el.innerText = perc;
+        fill.style.width = perc + '%';
+    }, 80);
+
+    window.addEventListener('load', hideLoader);
+
+    // --- SUPABASE & UI LOGIC ---
     document.addEventListener("DOMContentLoaded", async () => {
       // Mobile Menu
       const mobileBtn = document.getElementById('mobile-menu-btn');
@@ -395,11 +411,11 @@
           
           function updateUIForSession(session) {
               if (session) {
-                  navLoginBtn.classList.add('hidden');
-                  navPortalBtn.classList.remove('hidden');
+                  if(navLoginBtn) navLoginBtn.classList.add('hidden');
+                  if(navPortalBtn) navPortalBtn.classList.remove('hidden');
               } else {
-                  navPortalBtn.classList.add('hidden');
-                  navLoginBtn.classList.remove('hidden');
+                  if(navPortalBtn) navPortalBtn.classList.add('hidden');
+                  if(navLoginBtn) navLoginBtn.classList.remove('hidden');
               }
           }
 
