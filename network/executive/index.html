@@ -20,10 +20,10 @@
     body { font-family: 'Inter', sans-serif; background-color: #ffffff; scroll-behavior: smooth; overflow-x: hidden; }
     .font-serif { font-family: 'Playfair Display', serif; }
     
-    /* Cinematic Text Fill Loader */
+    /* Absolute Failsafe Loader */
     #egr-loader {
         position: fixed; inset: 0; z-index: 9999;
-        background-color: #111827; 
+        background-color: #0A0A0A; 
         display: flex; align-items: center; justify-content: center;
         transition: opacity 0.8s ease;
     }
@@ -32,7 +32,7 @@
         position: relative; font-family: 'Inter', sans-serif; font-weight: 900;
         letter-spacing: -2px; line-height: 1; text-transform: capitalize;
     }
-    .loader-base-text { color: #374151; }
+    .loader-base-text { color: #1f2937; }
     .loader-fill-text {
         position: absolute; left: 0; top: 0; color: #ffffff; 
         overflow: hidden; white-space: nowrap; width: 0%; transition: width 0.1s linear;
@@ -46,30 +46,32 @@
         100% { transform: scale(40); opacity: 0; filter: blur(10px); }
     }
 
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #f9fafb; }
-    ::-webkit-scrollbar-thumb { background: #D71A21; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb { background: #111827; }
 
-    /* Luxury Light Inputs */
+    /* Concierge Input Styling */
     .executive-input {
-        width: 100%; background-color: transparent; border: none; border-bottom: 2px solid #e5e7eb; padding: 0.75rem 0; color: #111827; font-size: 1rem; font-weight: 500; transition: all 0.3s; border-radius: 0;
+        width: 100%; background-color: transparent; border: none; border-bottom: 1px solid #d1d5db; padding: 0.75rem 0; color: #111827; font-size: 1.1rem; font-weight: 400; transition: all 0.4s ease; border-radius: 0; font-family: 'Playfair Display', serif;
     }
-    .executive-input:focus { outline: none; border-bottom-color: #D71A21; background-color: rgba(0,0,0,0.02); }
-    .executive-input::placeholder { color: #9ca3af; font-weight: 400; }
+    .executive-input:focus { outline: none; border-bottom-color: #D71A21; box-shadow: 0 1px 0 0 #D71A21; }
+    .executive-input::placeholder { color: #9ca3af; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.1em; }
     
-    /* Remove number arrows */
     input[type=number]::-webkit-inner-spin-button, 
     input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 
-    /* Custom Checkbox */
+    /* Minimalist Custom Checkbox */
     .custom-checkbox {
-        appearance: none; background-color: #fff; margin: 0; font: inherit; color: currentColor; width: 1.15em; height: 1.15em; border: 2px solid #d1d5db; border-radius: 0.15em; display: grid; place-content: center; cursor: pointer; transition: all 0.2s ease-in-out;
+        appearance: none; background-color: transparent; margin: 0; color: currentColor; width: 1.25em; height: 1.25em; border: 1px solid #9ca3af; display: grid; place-content: center; cursor: pointer; transition: all 0.3s ease; border-radius: 2px;
     }
     .custom-checkbox::before {
-        content: ""; width: 0.65em; height: 0.65em; transform: scale(0); transition: 120ms transform ease-in-out; box-shadow: inset 1em 1em white; background-color: white; transform-origin: center; clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        content: ""; width: 0.65em; height: 0.65em; transform: scale(0); transition: 120ms transform ease-in-out; background-color: #ffffff; clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
     }
     .custom-checkbox:checked { background-color: #D71A21; border-color: #D71A21; }
     .custom-checkbox:checked::before { transform: scale(1); }
+
+    /* Elegant Section Fade Line */
+    .section-divider { height: 1px; background: linear-gradient(to right, transparent, #e5e7eb, transparent); margin: 0 auto; width: 100%; max-w: 800px; }
   </style>
 </head>
 <body class="flex flex-col min-h-screen relative bg-white text-gray-900">
@@ -84,340 +86,313 @@
     </div>
   </div>
 
-  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-sm relative z-50 border-b-4 border-[#D71A21]">
-    <a href="/" class="flex items-center group">
-      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox Logo" class="h-10 md:h-12 object-contain group-hover:opacity-80 transition-opacity">
+  <nav class="bg-white py-5 px-6 md:px-12 flex justify-between items-center border-b border-gray-100 sticky top-0 z-50">
+    <a href="/" class="flex items-center">
+      <img src="https://www.emirates-executive.com/media/e2mfkjgy/eej-logo.svg" class="h-8 md:h-10 object-contain filter brightness-0 hover:opacity-70 transition-opacity" alt="Emirates Executive">
     </a>
 
-    <a href="/network/subsidiaries/" class="bg-[#111827] hover:bg-[#D71A21] text-white px-5 py-2.5 rounded transition-colors shadow-sm flex items-center uppercase tracking-widest text-[10px] font-bold">
-      <i class="fa-solid fa-arrow-left mr-2"></i> Back to Subsidiaries
+    <a href="/network/subsidiaries/" class="text-[#111827] hover:text-[#D71A21] transition-colors flex items-center uppercase tracking-[0.2em] text-[10px] font-bold">
+      <i class="fa-solid fa-arrow-left mr-3"></i> Back to Subsidiaries
     </a>
   </nav>
 
-  <header class="relative text-white py-32 md:py-56 px-6 overflow-hidden border-b border-gray-200">
-    <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://i.ibb.co/GQBzWgPW/a350-900.jpg');"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/60 to-transparent z-10"></div>
+  <header class="relative flex flex-col lg:flex-row min-h-[85vh] bg-[#0A0A0A]">
+    <div class="w-full lg:w-1/2 flex flex-col justify-center px-8 md:px-16 lg:px-24 py-24 z-10">
+        <span class="text-[#D71A21] tracking-[0.3em] text-[10px] font-bold uppercase mb-6 flex items-center">
+            <div class="w-8 h-px bg-[#D71A21] mr-4"></div> Bespoke Aviation
+        </span>
+        <h1 class="text-white font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-8">
+            Unparalleled<br>Luxury.
+        </h1>
+        <p class="text-gray-400 text-lg font-light leading-relaxed max-w-md mb-12">
+            Experience the ultimate in private jet travel. Designed for your comfort, engineered for absolute exclusivity within the PTFS airspace.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-6">
+            <a href="#booking" class="inline-flex justify-center items-center bg-[#D71A21] text-white hover:bg-red-800 transition-colors px-10 py-5 text-[10px] tracking-[0.2em] uppercase font-bold w-max">
+                Request a Flight
+            </a>
+        </div>
+    </div>
     
-    <div class="relative z-20 max-w-5xl mx-auto flex flex-col items-center text-center mt-12">
-      <img src="https://www.emirates-executive.com/media/e2mfkjgy/eej-logo.svg" class="h-12 md:h-16 mb-8 object-contain filter brightness-0 invert drop-shadow-2xl" alt="Emirates Executive">
-      
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight tracking-tight uppercase drop-shadow-lg text-white">
-        Experience the ultimate <br>in private jet travel.
-      </h1>
-      <div class="w-16 h-1 bg-[#D71A21] mb-6"></div>
-      
-      <div class="mt-4 inline-block bg-black/40 border border-white/20 backdrop-blur-md px-6 py-2 rounded-full">
-          <span class="text-[10px] font-mono text-gray-300 uppercase tracking-widest"><i class="fa-solid fa-plane-lock text-[#D71A21] mr-2"></i> PTFS Exclusive Operations</span>
-      </div>
+    <div class="w-full lg:w-1/2 relative min-h-[50vh] lg:min-h-full">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] to-transparent w-32 z-10 hidden lg:block"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] to-transparent h-32 bottom-0 top-auto z-10 lg:hidden"></div>
+        <img src="https://i.ibb.co/GQBzWgPW/a350-900.jpg" class="absolute inset-0 w-full h-full object-cover grayscale-[20%]">
     </div>
   </header>
 
   <main class="flex-grow relative overflow-hidden">
     
-    <section class="py-24 px-6 md:px-12 bg-white text-center">
+    <section class="py-32 px-6 md:px-12 bg-white text-center">
         <div class="max-w-4xl mx-auto">
-            <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Luxury All The Way</span>
-            <h2 class="text-3xl md:text-5xl font-serif font-bold text-[#111827] mb-8 leading-tight">Welcome to our most <br>exclusive travel experience.</h2>
-            <p class="text-gray-600 text-lg leading-relaxed font-medium">Whether you're travelling with colleagues or family, enjoy our exceptional service as we fly you privately around the world. Designed for your comfort.</p>
+            <span class="text-gray-400 font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block">Exclusive Travel Experience</span>
+            <h2 class="text-4xl md:text-5xl font-serif text-[#111827] mb-10 leading-tight">Welcome to our most exclusive<br>travel experience.</h2>
+            <p class="text-gray-500 text-lg font-light leading-relaxed max-w-2xl mx-auto">Whether you're travelling with colleagues or family, enjoy our exceptional service as we fly you privately around the world. Every detail is meticulously designed for your comfort and tailored to your needs.</p>
         </div>
     </section>
 
-    <section class="py-20 px-6 md:px-12 bg-gray-50 border-y border-gray-100">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
+    <div class="section-divider"></div>
+
+    <section class="py-32 px-6 md:px-12 bg-white">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20">
+            
+            <div class="group">
+                <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block transition-colors">Culinary Excellence</span>
+                <h3 class="text-3xl font-serif text-[#111827] mb-6">Personalised Fine Dining</h3>
+                <p class="text-gray-500 font-light leading-relaxed mb-4">Our lounge converts into your personal restaurant in the sky. Whether you'd like a formal sit-down meal, banquet-style buffet, simple cocktails and canapés or to enjoy light snacks as you sit back to watch the latest blockbuster movie.</p>
+                <p class="text-gray-500 font-light leading-relaxed">Choose when you want to dine and have a menu tailored to your personal taste. Prepared by master chefs and served at your absolute convenience.</p>
+            </div>
+
+            <div class="group">
+                <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block transition-colors">In-Flight Rejuvenation</span>
+                <h3 class="text-3xl font-serif text-[#111827] mb-6">Rejuvenating Shower Spa</h3>
+                <p class="text-gray-500 font-light leading-relaxed mb-4">Refresh mid-flight in the luxury Shower Spa or separate powder room. A temperature-controlled shower with luxury bathrobes, towels, and exclusive organic spa products provide a welcome opportunity to unwind in style.</p>
+                <p class="text-gray-500 font-light leading-relaxed">Finished in classic walnut and marble, take some time to slow down the pace and indulge yourself before arrival.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-32 px-6 md:px-12 bg-[#fafafa]">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             
             <div>
-                <div class="w-12 h-12 bg-[#D71A21] text-white rounded-full flex items-center justify-center text-xl mb-6 shadow-md"><i class="fa-solid fa-utensils"></i></div>
-                <h3 class="text-2xl font-serif font-bold text-[#111827] mb-4">Personalised Fine Dining</h3>
-                <p class="text-gray-600 leading-relaxed font-medium mb-4">Our lounge converts into your personal restaurant in the sky. Whether you'd like a formal sit-down meal, banquet-style buffet, simple cocktails and canapés or to enjoy light snacks as you sit back to watch the latest blockbuster movie.</p>
-                <p class="text-gray-600 leading-relaxed font-medium">You can choose when you want to dine and have a menu tailored to your personal taste. Only the finest, freshest locally sourced ingredients are used by master chefs, served at your convenience.</p>
-            </div>
-
-            <div>
-                <div class="w-12 h-12 bg-[#111827] text-white rounded-full flex items-center justify-center text-xl mb-6 shadow-md"><i class="fa-solid fa-shower"></i></div>
-                <h3 class="text-2xl font-serif font-bold text-[#111827] mb-4">Rejuvenating Shower Spa</h3>
-                <p class="text-gray-600 leading-relaxed font-medium mb-4">Refresh mid-flight in the luxury Shower Spa or separate powder room. Finished in classic walnut and marble, take some time to slow down the pace and indulge yourself.</p>
-                <p class="text-gray-600 leading-relaxed font-medium">A temperature-controlled shower with luxury bathrobes, fine linens, and exclusive organic spa products provide a welcome opportunity to unwind in style. Arrive refreshed and ready to take on the day.</p>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="py-24 px-6 md:px-12 bg-white">
-        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16">
-            <div class="w-full lg:w-5/12">
-                <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Ultimate Comfort</span>
-                <h2 class="text-4xl md:text-5xl font-serif font-bold text-[#111827] mb-8 leading-tight">Travel the world <br>your way.</h2>
-                <div class="w-12 h-1 bg-[#D71A21] mb-8"></div>
-                <p class="text-gray-600 text-lg leading-relaxed font-medium mb-6">Explore all the possibilities the world has to offer with the flexibility of private jet travel. Choose when you’d like to fly and select your departure and destination airports within or outside the Emirates network.</p>
-                <p class="text-gray-600 leading-relaxed font-medium mb-8">From Private Suites that let you retreat into your own world to a lounge that can be rearranged to your needs, Emirates Executive is a fully personalised experience.</p>
-            </div>
-
-            <div class="w-full lg:w-7/12 grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-gray-50 p-8 rounded-xl border border-gray-100">
-                    <h4 class="text-lg font-bold text-[#111827] mb-3">Your Own Private Suite</h4>
-                    <p class="text-sm text-gray-600 font-medium">Sliding privacy doors let you retreat into your own world, with a fully flat-bed seat, memory foam mattress, feather down duvets, ambient lighting, and a personal mini-bar.</p>
-                </div>
-                <div class="bg-gray-50 p-8 rounded-xl border border-gray-100">
-                    <h4 class="text-lg font-bold text-[#111827] mb-3">Cabin Configuration</h4>
-                    <p class="text-sm text-gray-600 font-medium">We can arrange the cabin to suit your travel requirements. The aircraft carries up to 19 guests in the seated configuration and sleeps up to 15.</p>
-                </div>
-                <div class="bg-gray-50 p-8 rounded-xl border border-gray-100">
-                    <h4 class="text-lg font-bold text-[#111827] mb-3">Dedicated Cabin Crew</h4>
-                    <p class="text-sm text-gray-600 font-medium">Our specialist, multilingual Emirates Executive cabin crew offer you the highest level of our personalised service. Your comfort is our top priority.</p>
-                </div>
-                <div class="bg-gray-50 p-8 rounded-xl border border-gray-100">
-                    <h4 class="text-lg font-bold text-[#111827] mb-3">Award-Winning Entertainment</h4>
-                    <p class="text-sm text-gray-600 font-medium">Relax and enjoy up to 3,000 channels of on-demand entertainment on our award-winning system, ice. Watch from your 32-inch screen in every Private Suite.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 md:px-12 bg-[#111827] text-white relative">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 relative z-10">
-            
-            <div>
-                <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Your Office In The Sky</span>
-                <h2 class="text-3xl font-serif font-bold text-white mb-6 leading-tight">When business <br>can't wait.</h2>
-                <p class="text-gray-400 leading-relaxed font-medium mb-6">Arrange your flight to meet the needs of your busy schedule. Convert your living area into your own board room. The cabin is equipped with the latest technology and a conference table can be arranged for your business meetings at 40,000ft.</p>
-                <ul class="space-y-3 text-sm text-gray-300 font-bold tracking-wide">
-                    <li class="flex items-center"><span class="text-[#D71A21] mr-3">◆</span> Wi-Fi and mobile phone connectivity</li>
-                    <li class="flex items-center"><span class="text-[#D71A21] mr-3">◆</span> State-of-the-art Video Conferencing</li>
-                    <li class="flex items-center"><span class="text-[#D71A21] mr-3">◆</span> Live TV, News, and Sport</li>
-                </ul>
-            </div>
-
-            <div>
-                <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Ground Logistics</span>
-                <h2 class="text-3xl font-serif font-bold text-white mb-6 leading-tight">Breeze through <br>the airport.</h2>
-                <p class="text-gray-400 leading-relaxed font-medium mb-6">Experience a smooth and relaxing journey on your departure and arrival. Save valuable time with a fast track through dedicated check-in, security, and immigration counters. An Executive team member will escort you through to boarding.</p>
-                <ul class="space-y-3 text-sm text-gray-300 font-bold tracking-wide">
-                    <li class="flex items-center"><span class="text-[#D71A21] mr-3">◆</span> Discreet Boarding & Private Terminal</li>
-                    <li class="flex items-center"><span class="text-[#D71A21] mr-3">◆</span> Exclusive Lounge Access</li>
-                    <li class="flex items-center"><span class="text-[#D71A21] mr-3">◆</span> Chauffeur-drive vehicle transfers</li>
-                </ul>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="py-24 px-6 md:px-12 bg-gray-50 border-b border-gray-200">
-        <div class="max-w-5xl mx-auto text-center">
-            <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">The Executive Fleet</span>
-            <h2 class="text-4xl font-serif font-bold text-[#111827] mb-6">Available Aircraft</h2>
-            
-            <div class="bg-white border border-gray-200 p-6 rounded-xl inline-block shadow-sm mb-12 max-w-2xl mx-auto">
-                <p class="text-xs text-gray-500 font-bold uppercase tracking-widest"><i class="fa-solid fa-circle-info text-[#D71A21] mr-2"></i> Corporate Advisory</p>
-                <p class="text-sm text-gray-600 mt-2 font-medium">Please be advised that not all luxury features listed above are available on every aircraft. Consult with Corporate Dispatch upon booking regarding specific airframe capabilities.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm flex flex-col items-center justify-center">
-                    <h4 class="text-lg font-bold text-[#111827] mb-2">Learjet 45</h4>
-                    <p class="text-2xl font-serif font-bold text-[#D71A21]">85 <span class="text-xs font-sans text-gray-400 font-bold tracking-widest">R$ / Flight</span></p>
-                </div>
-                <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm flex flex-col items-center justify-center">
-                    <h4 class="text-lg font-bold text-[#111827] mb-2">Lineage 1000</h4>
-                    <p class="text-2xl font-serif font-bold text-[#D71A21]">160 <span class="text-xs font-sans text-gray-400 font-bold tracking-widest">R$ / Flight</span></p>
-                </div>
-                <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm flex flex-col items-center justify-center">
-                    <h4 class="text-lg font-bold text-[#111827] mb-2">BBJ 787</h4>
-                    <p class="text-2xl font-serif font-bold text-[#D71A21]">360 <span class="text-xs font-sans text-gray-400 font-bold tracking-widest">R$ / Flight</span></p>
-                </div>
-                <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm flex flex-col items-center justify-center border-b-4 border-b-[#111827]">
-                    <h4 class="text-lg font-bold text-[#111827] mb-2">ACJ350</h4>
-                    <p class="text-2xl font-serif font-bold text-[#D71A21]">760 <span class="text-xs font-sans text-gray-400 font-bold tracking-widest">R$ / Flight</span></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-4 md:px-6 bg-white relative z-10" id="booking">
-        <div class="max-w-5xl w-full mx-auto">
-            
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-serif font-bold text-[#111827] mb-4">Flight Requisition</h2>
-                <p class="text-gray-500 font-medium">Secure your private itinerary below.</p>
-            </div>
-
-            <div id="auth-gate" class="bg-gray-50 rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col md:flex-row transition-opacity duration-500">
-                <div class="w-full md:w-5/12 bg-[#111827] p-10 md:p-16 flex flex-col justify-center">
-                    <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Secure Portal</span>
-                    <h2 class="text-3xl font-serif font-bold text-white uppercase tracking-tight mb-6 leading-tight">Identity <br>Verification.</h2>
-                    <p class="text-sm text-gray-400 leading-relaxed font-medium">To protect the privacy of our clients and maintain strict operational security, executive flight requests require an authenticated corporate profile.</p>
-                </div>
-
-                <div class="w-full md:w-7/12 p-10 md:p-16 flex flex-col justify-center bg-white">
-                    <div class="mb-10 border-b border-gray-100 pb-8">
-                        <h3 class="text-2xl font-bold text-[#111827] mb-2 tracking-tight">Authentication Required</h3>
-                        <p class="text-sm text-gray-500 font-medium">Sign in to your Emirates Group account to access the requisition terminal.</p>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <a href="/myportal/login/" class="w-full bg-[#111827] hover:bg-[#D71A21] text-white py-4 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-sm flex justify-center items-center">
-                            Sign In to Portal &rarr;
-                        </a>
-                        <div class="relative flex items-center py-4">
-                            <div class="flex-grow border-t border-gray-200"></div>
-                            <span class="flex-shrink-0 mx-4 text-gray-400 text-[10px] font-bold uppercase tracking-widest">Or</span>
-                            <div class="flex-grow border-t border-gray-200"></div>
-                        </div>
-                        <a href="/myportal/signup/" class="w-full bg-white border border-gray-300 hover:border-[#111827] text-gray-600 hover:text-[#111827] py-4 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-sm flex justify-center items-center">
-                            Create a Member Account
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="request-desk" class="hidden bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden transition-opacity duration-500">
-                
-                <div class="bg-gray-50 border-b border-gray-200 p-8 md:px-16 md:py-10 flex flex-col md:flex-row justify-between items-center gap-6">
+                <span class="text-gray-400 font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block">Retreat into your own world</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-[#111827] mb-10 leading-tight">Travel the world <br>your way.</h2>
+                <div class="space-y-12">
                     <div>
-                        <h3 class="text-2xl font-serif font-bold text-[#111827] tracking-tight">Manifest & Routing</h3>
-                        <p class="text-sm text-gray-500 mt-1 font-medium">Please provide accurate logistical data for Corporate Dispatch.</p>
+                        <h4 class="text-lg font-bold text-[#111827] uppercase tracking-widest mb-2">Private Suites & Beds</h4>
+                        <p class="text-gray-500 font-light leading-relaxed">Slide the privacy doors closed to your own Private Suite. Up to 15 guests can sleep on the aircraft in converted full-sized beds, featuring memory foam mattresses and feather down duvets.</p>
                     </div>
-                    <div class="text-right">
-                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Authenticated</p>
-                        <a href="/myportal/" class="text-xs font-bold text-[#D71A21] hover:text-[#111827] flex items-center transition-colors"><i class="fa-solid fa-user mr-2"></i> Return to Portal</a>
+                    <div>
+                        <h4 class="text-lg font-bold text-[#111827] uppercase tracking-widest mb-2">Dedicated Cabin Crew</h4>
+                        <p class="text-gray-500 font-light leading-relaxed">Our specialist, multilingual Emirates Executive cabin crew offer you the highest level of our personalised service. Your ultimate comfort is our top priority.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-12 lg:p-16 border border-gray-100 shadow-2xl relative">
+                <div class="absolute top-0 right-0 w-2 h-full bg-[#D71A21]"></div>
+                <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block">Your Office in the Sky</span>
+                <h3 class="text-3xl font-serif text-[#111827] mb-6">When business can't wait.</h3>
+                <p class="text-gray-500 font-light leading-relaxed mb-10">On Emirates Executive, you can catch up on work, conduct meetings and convert your private office into a lounge to socialise over drinks and canapés.</p>
+                <ul class="space-y-4 text-sm font-bold text-[#111827] tracking-wider uppercase">
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></span> Wi-Fi & Mobile Connectivity</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></span> Video Conferencing Systems</li>
+                    <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></span> Live News and Sports</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-32 px-6 md:px-12 bg-white text-center">
+        <div class="max-w-4xl mx-auto">
+            <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block">Ground Logistics</span>
+            <h2 class="text-4xl md:text-5xl font-serif text-[#111827] mb-10 leading-tight">Breeze through the airport.</h2>
+            <p class="text-gray-500 text-lg font-light leading-relaxed max-w-2xl mx-auto mb-12">Experience a smooth and relaxing journey through the airport on your departure and arrival. Save valuable time and avoid the queues with a fast track through dedicated check-in, security, and immigration counters.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 md:gap-8 text-xs font-bold text-[#111827] uppercase tracking-widest">
+                <span class="px-6 py-3 border border-gray-200">Discreet Boarding</span>
+                <span class="px-6 py-3 border border-gray-200">Private Terminal</span>
+                <span class="px-6 py-3 border border-gray-200">Exclusive Lounge</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section class="py-32 px-6 md:px-12 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-20">
+                <span class="text-gray-400 font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block">Configuration & Capacity</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-[#111827] mb-8">The Executive Fleet</h2>
+                <p class="text-[#D71A21] text-xs font-bold uppercase tracking-widest">Pricing Matrix per Flight Requisition</p>
+            </div>
+
+            <div class="space-y-12">
+                
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b border-gray-200 pb-6 group">
+                    <div class="mb-4 sm:mb-0">
+                        <h4 class="text-3xl font-serif text-[#111827] group-hover:text-[#D71A21] transition-colors">Learjet 45</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-[0.2em] mt-2 font-bold">Light Jet • Express Regional</p>
+                    </div>
+                    <div class="text-3xl font-serif text-[#111827]">
+                        85 <span class="text-sm font-sans text-gray-400 font-bold tracking-widest uppercase">Robux</span>
                     </div>
                 </div>
 
-                <div class="p-8 md:p-16">
-                    <div id="request-alert" class="hidden mb-8 p-5 rounded text-[11px] font-bold uppercase tracking-widest border">
-                        <span id="request-alert-text"></span>
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b border-gray-200 pb-6 group">
+                    <div class="mb-4 sm:mb-0">
+                        <h4 class="text-3xl font-serif text-[#111827] group-hover:text-[#D71A21] transition-colors">Lineage 1000</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-[0.2em] mt-2 font-bold">Ultra-Large Corporate Jet</p>
+                    </div>
+                    <div class="text-3xl font-serif text-[#111827]">
+                        160 <span class="text-sm font-sans text-gray-400 font-bold tracking-widest uppercase">Robux</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b border-gray-200 pb-6 group">
+                    <div class="mb-4 sm:mb-0">
+                        <h4 class="text-3xl font-serif text-[#111827] group-hover:text-[#D71A21] transition-colors">BBJ 787</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-[0.2em] mt-2 font-bold">Boeing Business Jet • Long-Haul</p>
+                    </div>
+                    <div class="text-3xl font-serif text-[#111827]">
+                        360 <span class="text-sm font-sans text-gray-400 font-bold tracking-widest uppercase">Robux</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#111827] pb-6 group">
+                    <div class="mb-4 sm:mb-0">
+                        <h4 class="text-3xl font-serif text-[#111827] group-hover:text-[#D71A21] transition-colors">ACJ350</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-[0.2em] mt-2 font-bold">Airbus Corporate Jet • Flagship</p>
+                    </div>
+                    <div class="text-3xl font-serif text-[#111827]">
+                        760 <span class="text-sm font-sans text-gray-400 font-bold tracking-widest uppercase">Robux</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="text-center text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-16 italic">
+                * Be advised that not all features (e.g. Shower Spa) are available on all aircraft configurations.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-32 px-4 md:px-6 bg-[#0A0A0A] relative z-10 text-white" id="booking">
+        <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 40px 40px;"></div>
+        
+        <div class="max-w-4xl w-full mx-auto relative z-10">
+            
+            <div class="text-center mb-20">
+                <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block">Concierge Desk</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-white mb-6">Flight Requisition</h2>
+                <p class="text-gray-400 font-light text-lg">Secure your private itinerary. Operations are exclusive to PTFS.</p>
+            </div>
+
+            <div id="auth-gate" class="text-center py-20 border border-white/10 bg-white/5 backdrop-blur-md transition-opacity duration-500">
+                <i class="fa-solid fa-lock text-4xl text-[#D71A21] mb-6"></i>
+                <h3 class="text-2xl font-serif mb-4">Identity Verification Required</h3>
+                <p class="text-gray-400 font-light mb-10 max-w-md mx-auto">To protect the privacy of our clients, flight requisition requires an authenticated corporate profile.</p>
+                <div class="flex justify-center gap-6">
+                    <a href="/myportal/login/" class="bg-[#D71A21] hover:bg-red-800 text-white px-8 py-4 text-[10px] tracking-[0.2em] uppercase font-bold transition-colors">Sign In</a>
+                    <a href="/myportal/signup/" class="border border-gray-600 hover:border-white text-gray-300 hover:text-white px-8 py-4 text-[10px] tracking-[0.2em] uppercase font-bold transition-colors">Create Account</a>
+                </div>
+            </div>
+
+            <div id="request-desk" class="hidden transition-opacity duration-500">
+                
+                <div id="request-alert" class="hidden mb-10 p-6 text-xs font-bold uppercase tracking-widest border text-center">
+                    <span id="request-alert-text"></span>
+                </div>
+
+                <form id="executive-form" class="space-y-16">
+                    
+                    <div>
+                        <h4 class="text-xs text-gray-400 uppercase tracking-[0.2em] font-bold border-b border-gray-800 pb-4 mb-8">01. Airframe Selection</h4>
+                        <div class="flex flex-col md:flex-row gap-8 items-end">
+                            <div class="w-full md:w-2/3">
+                                <select id="req-aircraft" class="executive-input text-white appearance-none cursor-pointer" required>
+                                    <option value="" disabled selected class="text-gray-900">Select your aircraft...</option>
+                                    <option value="Learjet 45" class="text-gray-900">Learjet 45 (Light Jet)</option>
+                                    <option value="Lineage 1000" class="text-gray-900">Lineage 1000 (Corporate Jet)</option>
+                                    <option value="BBJ 787" class="text-gray-900">BBJ 787 (Long-Haul)</option>
+                                    <option value="ACJ350" class="text-gray-900">ACJ350 (Flagship)</option>
+                                </select>
+                            </div>
+                            <div class="w-full md:w-1/3 border-l border-gray-800 pl-8">
+                                <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-2">Estimated Rate</p>
+                                <p id="price-display" class="text-4xl font-serif text-[#D71A21]" data-price="0">-- R$</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <form id="executive-form" class="space-y-10">
+                    <div>
+                        <h4 class="text-xs text-gray-400 uppercase tracking-[0.2em] font-bold border-b border-gray-800 pb-4 mb-8">02. Principal Passenger</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                            <input type="text" id="req-firstname" class="executive-input text-white" placeholder="FIRST NAME" required>
+                            <input type="text" id="req-lastname" class="executive-input text-white" placeholder="LAST NAME" required>
+                            <input type="email" id="req-email" class="executive-input text-white md:col-span-2" placeholder="EMAIL ADDRESS" required>
+                            <input type="text" id="req-discord-user" class="executive-input text-white" placeholder="DISCORD USERNAME" required>
+                            <input type="text" id="req-discord-id" class="executive-input text-white" placeholder="DISCORD ID (NUMERICAL)" required pattern="[0-9]+">
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs text-gray-400 uppercase tracking-[0.2em] font-bold border-b border-gray-800 pb-4 mb-8">03. Logistics & Routing</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mb-8">
+                            <input type="text" id="req-departure" class="executive-input text-white" placeholder="DEPARTURE AIRPORT (PTFS)" required>
+                            <input type="text" id="req-arrival" class="executive-input text-white" placeholder="ARRIVAL AIRPORT (PTFS)" required>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-8">
+                            <div class="relative">
+                                <label class="absolute top-0 text-[9px] text-gray-600 uppercase tracking-widest">Departure Time</label>
+                                <input type="time" id="req-time" class="executive-input text-white pt-6" required>
+                            </div>
+                            <div class="relative">
+                                <label class="absolute top-0 text-[9px] text-gray-600 uppercase tracking-widest">Timezone</label>
+                                <select id="req-timezone" class="executive-input text-white pt-6 appearance-none cursor-pointer" required>
+                                    <option value="" disabled selected class="text-gray-900">Select...</option>
+                                    <option value="EST" class="text-gray-900">EST</option>
+                                    <option value="CST" class="text-gray-900">CST</option>
+                                    <option value="PST" class="text-gray-900">PST</option>
+                                    <option value="GMT" class="text-gray-900">GMT / UTC</option>
+                                    <option value="CET" class="text-gray-900">CET</option>
+                                    <option value="GST" class="text-gray-900">GST</option>
+                                </select>
+                            </div>
+                            <div class="relative">
+                                <label class="absolute top-0 text-[9px] text-gray-600 uppercase tracking-widest">Passenger Count</label>
+                                <input type="number" id="req-pax" class="executive-input text-white pt-6" min="1" max="19" placeholder="MAX 19" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs text-gray-400 uppercase tracking-[0.2em] font-bold border-b border-gray-800 pb-4 mb-8">04. Bespoke Amenities & Transfers</h4>
                         
-                        <div class="bg-gray-50 p-8 rounded-xl border border-gray-100">
-                            <h4 class="text-sm font-bold text-[#111827] uppercase tracking-widest mb-6">1. Fleet Selection</h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Select Aircraft</label>
-                                    <select id="req-aircraft" class="executive-input appearance-none cursor-pointer bg-white border border-gray-300 rounded px-4" required>
-                                        <option value="" disabled selected>Choose Airframe...</option>
-                                        <option value="Learjet 45">Learjet 45 (85 R$)</option>
-                                        <option value="Lineage 1000">Lineage 1000 (160 R$)</option>
-                                        <option value="BBJ 787">BBJ 787 (360 R$)</option>
-                                        <option value="ACJ350">ACJ350 (760 R$)</option>
-                                    </select>
-                                </div>
-                                <div class="bg-white border border-gray-200 p-4 rounded text-center shadow-sm">
-                                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Estimated Base Price</p>
-                                    <p id="price-display" class="text-2xl font-serif font-bold text-[#D71A21]">-- R$</p>
-                                </div>
-                            </div>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-4">Complimentary Transfers</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                            <label class="flex items-center gap-4 cursor-pointer group">
+                                <input type="checkbox" class="custom-checkbox" id="req-heli">
+                                <span class="text-sm text-gray-300 font-light group-hover:text-white transition-colors">Helicopter Transfer (To/From Airport)</span>
+                            </label>
+                            <label class="flex items-center gap-4 cursor-pointer group">
+                                <input type="checkbox" class="custom-checkbox" id="req-chauffeur">
+                                <span class="text-sm text-gray-300 font-light group-hover:text-white transition-colors">Chauffeur Drive Service</span>
+                            </label>
                         </div>
 
-                        <div>
-                            <h4 class="text-sm font-bold text-[#111827] uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">2. Client Details</h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">First Name</label>
-                                    <input type="text" id="req-firstname" class="executive-input" placeholder="e.g. John" required>
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Last Name</label>
-                                    <input type="text" id="req-lastname" class="executive-input" placeholder="e.g. Doe" required>
-                                </div>
-                            </div>
-                            <div class="mb-8">
-                                <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Email Address</label>
-                                <input type="email" id="req-email" class="executive-input" placeholder="johndoe@example.com" required>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div>
-                                    <label class="block text-[10px] font-bold text-indigo-600 uppercase tracking-widest mb-1">Discord Username</label>
-                                    <input type="text" id="req-discord-user" class="executive-input" placeholder="e.g. johndoe" required>
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-indigo-600 uppercase tracking-widest mb-1">Discord ID</label>
-                                    <input type="text" id="req-discord-id" class="executive-input font-mono" placeholder="Numerical ID" required pattern="[0-9]+">
-                                </div>
-                            </div>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-4">In-Flight Requisitions</p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input type="checkbox" class="custom-checkbox" id="req-dietary"> <span class="text-xs text-gray-400 group-hover:text-white transition-colors">Dietary Menu</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input type="checkbox" class="custom-checkbox" id="req-boardroom"> <span class="text-xs text-gray-400 group-hover:text-white transition-colors">Boardroom Setup</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input type="checkbox" class="custom-checkbox" id="req-pet"> <span class="text-xs text-gray-400 group-hover:text-white transition-colors">Pet Onboard</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input type="checkbox" class="custom-checkbox" id="req-beds"> <span class="text-xs text-gray-400 group-hover:text-white transition-colors">Full Beds Prep</span>
+                            </label>
                         </div>
 
-                        <div>
-                            <h4 class="text-sm font-bold text-[#111827] uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">3. Flight Routing</h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Departure Airport</label>
-                                    <input type="text" id="req-departure" class="executive-input uppercase" placeholder="e.g. Greater Rockford (GRF)" required>
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Arrival Airport</label>
-                                    <input type="text" id="req-arrival" class="executive-input uppercase" placeholder="e.g. Tokyo (DXB)" required>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Time of Departure</label>
-                                    <input type="time" id="req-time" class="executive-input" required>
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Timezone</label>
-                                    <select id="req-timezone" class="executive-input appearance-none cursor-pointer" required>
-                                        <option value="" disabled selected>Select...</option>
-                                        <option value="EST">EST</option>
-                                        <option value="CST">CST</option>
-                                        <option value="PST">PST</option>
-                                        <option value="GMT">GMT / UTC</option>
-                                        <option value="CET">CET</option>
-                                        <option value="GST">GST</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Total Passengers</label>
-                                    <input type="number" id="req-pax" class="executive-input" min="1" max="19" placeholder="Max 19" required>
-                                </div>
-                            </div>
+                        <div class="relative mt-8">
+                            <label class="absolute top-0 text-[9px] text-gray-600 uppercase tracking-widest">Further Specific Requests</label>
+                            <textarea id="req-notes" class="executive-input text-white pt-6 resize-none h-24" placeholder="Detail any specific dining preferences, transfer destinations, or cabin configurations..."></textarea>
                         </div>
+                    </div>
 
-                        <div>
-                            <h4 class="text-sm font-bold text-[#111827] uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">4. Ground Logistics (Included)</h4>
-                            <p class="text-xs text-gray-500 mb-6 font-medium">Select any complimentary ground or air transfers required for your journey.</p>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <label class="flex items-center gap-4 p-4 border border-gray-200 rounded cursor-pointer hover:bg-gray-50 transition-colors">
-                                    <input type="checkbox" class="custom-checkbox shrink-0" id="req-heli">
-                                    <span class="text-sm font-bold text-[#111827]">Helicopter Transfer</span>
-                                </label>
-                                <label class="flex items-center gap-4 p-4 border border-gray-200 rounded cursor-pointer hover:bg-gray-50 transition-colors">
-                                    <input type="checkbox" class="custom-checkbox shrink-0" id="req-chauffeur">
-                                    <span class="text-sm font-bold text-[#111827]">Chauffeur Drive Service</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h4 class="text-sm font-bold text-[#111827] uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">5. Bespoke Requests</h4>
-                            
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                                <label class="flex items-center gap-3 cursor-pointer">
-                                    <input type="checkbox" class="custom-checkbox"> <span class="text-xs font-bold text-gray-600">Dietary Menu</span>
-                                </label>
-                                <label class="flex items-center gap-3 cursor-pointer">
-                                    <input type="checkbox" class="custom-checkbox"> <span class="text-xs font-bold text-gray-600">Boardroom Setup</span>
-                                </label>
-                                <label class="flex items-center gap-3 cursor-pointer">
-                                    <input type="checkbox" class="custom-checkbox"> <span class="text-xs font-bold text-gray-600">Pet Onboard</span>
-                                </label>
-                                <label class="flex items-center gap-3 cursor-pointer">
-                                    <input type="checkbox" class="custom-checkbox"> <span class="text-xs font-bold text-gray-600">Full Beds Prep</span>
-                                </label>
-                            </div>
-
-                            <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2 mt-6">Further Specific Requests</label>
-                            <textarea id="req-notes" class="w-full bg-gray-50 border border-gray-200 p-4 rounded text-sm text-gray-800 focus:outline-none focus:border-[#D71A21] transition-colors" rows="3" placeholder="Please detail any specific dining preferences, transfer destinations (hotel/home), or cabin configurations..."></textarea>
-                        </div>
-
-                        <div class="pt-8 border-t border-gray-200">
-                            <button type="submit" id="req-submit-btn" class="w-full bg-[#111827] hover:bg-[#D71A21] text-white py-5 rounded text-xs font-bold uppercase tracking-[0.2em] transition-colors shadow-lg">
-                                Submit Requisition to Dispatch &rarr;
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                    <div class="pt-8 text-center">
+                        <button type="submit" id="req-submit-btn" class="w-full md:w-auto px-16 bg-[#D71A21] hover:bg-red-800 text-white py-5 text-[10px] font-bold uppercase tracking-[0.3em] transition-all">
+                            Submit Requisition to Dispatch
+                        </button>
+                        <p class="text-[9px] text-gray-600 uppercase tracking-widest mt-6">You will be able to track your dispatch status in the MyPortal Dashboard.</p>
+                    </div>
+                </form>
             </div>
 
         </div>
@@ -425,7 +400,7 @@
 
   </main>
 
-  <footer class="bg-[#111827] text-white py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
+  <footer class="bg-[#111827] text-white py-16 px-6 md:px-12 mt-auto border-t border-gray-800">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
       <div class="md:col-span-2">
         <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest font-serif">Emirates Group Roblox</h3>
@@ -527,8 +502,10 @@
             const price = aircraftPrices[e.target.value];
             if(price) {
                 priceDisplay.innerText = price + ' R$';
+                priceDisplay.setAttribute('data-price', price);
             } else {
                 priceDisplay.innerText = '-- R$';
+                priceDisplay.setAttribute('data-price', '0');
             }
         });
     }
@@ -587,14 +564,14 @@
       const alertText = document.getElementById('request-alert-text');
 
       function showAlert(message, type) {
-          alertBox.classList.remove('hidden', 'bg-red-50', 'text-red-600', 'border-red-200', 'bg-green-50', 'text-green-700', 'border-green-200');
+          alertBox.classList.remove('hidden', 'bg-red-900/50', 'text-red-400', 'border-red-900', 'bg-green-900/50', 'text-green-400', 'border-green-900');
           
           if(type === 'error') {
-              alertBox.classList.add('bg-red-50', 'text-red-600', 'border-red-200');
-              alertText.innerHTML = `<strong>Encryption Error:</strong> ${message}`;
+              alertBox.classList.add('bg-red-900/50', 'text-red-400', 'border-red-900');
+              alertText.innerHTML = message;
           } else {
-              alertBox.classList.add('bg-green-50', 'text-green-700', 'border-green-200');
-              alertText.innerHTML = `<strong>Transmission Success:</strong> ${message}`;
+              alertBox.classList.add('bg-green-900/50', 'text-green-400', 'border-green-900');
+              alertText.innerHTML = message;
           }
       }
 
@@ -602,11 +579,7 @@
           e.preventDefault();
           if(!currentUser) return;
 
-          // Note: Aircraft and extra details are built into the UI but the SQL schema provided earlier 
-          // only accepts the base 10 fields. In a real environment, you would update the Supabase schema 
-          // to accept 'aircraft', 'helicopter_transfer', and 'special_notes'. For this build, we submit 
-          // the core fields so the DB doesn't reject the payload, while simulating the full luxury experience.
-
+          // Full Payload matching the updated backend schema
           const payload = {
               user_id: currentUser.id,
               first_name: document.getElementById('req-firstname').value.trim(),
@@ -618,10 +591,21 @@
               arrival_airport: document.getElementById('req-arrival').value.trim(),
               time_of_departure: document.getElementById('req-time').value.trim(),
               timezone: document.getElementById('req-timezone').value.trim(),
-              number_of_passengers: parseInt(document.getElementById('req-pax').value)
+              number_of_passengers: parseInt(document.getElementById('req-pax').value),
+              
+              // New Database Fields
+              aircraft: document.getElementById('req-aircraft').value,
+              estimated_price: parseInt(document.getElementById('price-display').getAttribute('data-price') || 0),
+              helicopter_transfer: document.getElementById('req-heli').checked,
+              chauffeur_service: document.getElementById('req-chauffeur').checked,
+              dietary_menu: document.getElementById('req-dietary').checked,
+              boardroom_setup: document.getElementById('req-boardroom').checked,
+              pet_onboard: document.getElementById('req-pet').checked,
+              full_beds_prep: document.getElementById('req-beds').checked,
+              special_notes: document.getElementById('req-notes').value.trim()
           };
 
-          submitBtn.innerHTML = 'TRANSMITTING TO DISPATCH...';
+          submitBtn.innerHTML = 'TRANSMITTING...';
           submitBtn.disabled = true;
           alertBox.classList.add('hidden');
 
@@ -629,15 +613,16 @@
 
           if (error) {
               console.error(error);
-              showAlert("An error occurred while logging your request to the secure database. Please try again.", "error");
+              showAlert("An error occurred during secure transmission. Please verify your connection.", "error");
           } else {
-              showAlert("Your bespoke flight request has been securely submitted to Corporate Dispatch. You may track its status via your MyPortal Dashboard.", "success");
+              showAlert("Requisition securely transmitted to Corporate Dispatch. Status available in MyPortal.", "success");
               execForm.reset();
               priceDisplay.innerText = '-- R$';
+              priceDisplay.setAttribute('data-price', '0');
               if(currentUser.email) document.getElementById('req-email').value = currentUser.email;
           }
 
-          submitBtn.innerHTML = 'Submit Requisition to Dispatch &rarr;';
+          submitBtn.innerHTML = 'Submit Requisition to Dispatch';
           submitBtn.disabled = false;
       });
 
