@@ -241,184 +241,188 @@
                 <p class="text-gray-500 font-medium">Secure your private itinerary. Operations are exclusive to PTFS.</p>
             </div>
 
-            <div id="auth-gate" class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden flex flex-col md:flex-row">
-                <div class="w-full md:w-5/12 bg-[#111827] p-10 md:p-16 flex flex-col justify-center">
-                    <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Secure Portal</span>
-                    <h2 class="text-3xl font-serif font-bold text-white uppercase tracking-tight mb-6 leading-tight">Identity <br>Verification.</h2>
-                    <p class="text-sm text-gray-400 leading-relaxed font-medium">To protect the privacy of our clients and maintain strict operational security, executive flight requests require an authenticated corporate profile.</p>
-                </div>
-
-                <div class="w-full md:w-7/12 p-10 md:p-16 flex flex-col justify-center">
-                    <div class="mb-10 border-b border-gray-100 pb-8">
-                        <h3 class="text-2xl font-bold text-[#111827] mb-2 tracking-tight">Authentication Required</h3>
-                        <p class="text-sm text-gray-500 font-medium">Sign in to your Emirates Group account to access the requisition terminal.</p>
+            <div id="auth-gate-wrapper">
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden flex flex-col md:flex-row">
+                    <div class="w-full md:w-5/12 bg-[#111827] p-10 md:p-16 flex flex-col justify-center">
+                        <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Secure Portal</span>
+                        <h2 class="text-3xl font-serif font-bold text-white uppercase tracking-tight mb-6 leading-tight">Identity <br>Verification.</h2>
+                        <p class="text-sm text-gray-400 leading-relaxed font-medium">To protect the privacy of our clients and maintain strict operational security, executive flight requests require an authenticated corporate profile.</p>
                     </div>
-                    
-                    <div class="space-y-4">
-                        <a href="/myportal/login/" class="w-full bg-[#111827] hover:bg-[#D71A21] text-white py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-colors shadow-sm flex justify-center items-center">
-                            Sign In to Portal &rarr;
-                        </a>
-                        <div class="relative flex items-center py-4">
-                            <div class="flex-grow border-t border-gray-200"></div>
-                            <span class="flex-shrink-0 mx-4 text-gray-400 text-[10px] font-bold uppercase tracking-widest">Or</span>
-                            <div class="flex-grow border-t border-gray-200"></div>
+
+                    <div class="w-full md:w-7/12 p-10 md:p-16 flex flex-col justify-center">
+                        <div class="mb-10 border-b border-gray-100 pb-8">
+                            <h3 class="text-2xl font-bold text-[#111827] mb-2 tracking-tight">Authentication Required</h3>
+                            <p class="text-sm text-gray-500 font-medium">Sign in to your Emirates Group account to access the requisition terminal.</p>
                         </div>
-                        <a href="/myportal/signup/" class="w-full bg-white border border-gray-300 hover:border-[#111827] text-gray-600 hover:text-[#111827] py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-colors shadow-sm flex justify-center items-center">
-                            Create a Member Account
-                        </a>
+                        
+                        <div class="space-y-4">
+                            <a href="/myportal/login/" class="w-full bg-[#111827] hover:bg-[#D71A21] text-white py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-colors shadow-sm flex justify-center items-center">
+                                Sign In to Portal &rarr;
+                            </a>
+                            <div class="relative flex items-center py-4">
+                                <div class="flex-grow border-t border-gray-200"></div>
+                                <span class="flex-shrink-0 mx-4 text-gray-400 text-[10px] font-bold uppercase tracking-widest">Or</span>
+                                <div class="flex-grow border-t border-gray-200"></div>
+                            </div>
+                            <a href="/myportal/signup/" class="w-full bg-white border border-gray-300 hover:border-[#111827] text-gray-600 hover:text-[#111827] py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-colors shadow-sm flex justify-center items-center">
+                                Create a Member Account
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div id="request-desk" class="hidden bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
-                
-                <div class="bg-[#111827] text-white p-8 md:px-12 md:py-8 flex justify-between items-center">
-                    <div>
-                        <h3 class="text-2xl font-serif font-bold tracking-tight">Manifest & Routing</h3>
-                        <p class="text-sm text-gray-400 mt-1 font-medium">Official Dispatch Requisition</p>
-                    </div>
-                    <div class="text-right hidden sm:block">
-                        <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest mb-1">Authenticated</p>
-                        <p class="text-xs text-gray-300 flex items-center"><i class="fa-solid fa-user-check mr-2"></i> Identity Verified</p>
-                    </div>
-                </div>
-
-                <div class="p-8 md:p-12">
-                    <div id="request-alert" class="hidden mb-8 p-5 rounded-lg text-[11px] font-bold uppercase tracking-widest border">
-                        <span id="request-alert-text"></span>
+            <div id="request-desk-wrapper" style="display: none;">
+                <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+                    
+                    <div class="bg-[#111827] text-white p-8 md:px-12 md:py-8 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-2xl font-serif font-bold tracking-tight">Manifest & Routing</h3>
+                            <p class="text-sm text-gray-400 mt-1 font-medium">Official Dispatch Requisition</p>
+                        </div>
+                        <div class="text-right hidden sm:block">
+                            <p class="text-[10px] font-bold text-[#D71A21] uppercase tracking-widest mb-1">Authenticated</p>
+                            <p class="text-xs text-gray-300 flex items-center"><i class="fa-solid fa-user-check mr-2"></i> Identity Verified</p>
+                        </div>
                     </div>
 
-                    <form id="executive-form" class="space-y-12">
-                        
-                        <div>
-                            <h4 class="text-sm font-bold text-[#111827] uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">1. Fleet Selection</h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end bg-gray-50 p-6 rounded-xl border border-gray-100">
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Select Aircraft</label>
-                                    <select id="req-aircraft" class="executive-input appearance-none cursor-pointer" required>
-                                        <option value="" disabled selected>Choose Airframe...</option>
-                                        <option value="Learjet 45">Learjet 45 (85 R$)</option>
-                                        <option value="Lineage 1000">Lineage 1000 (160 R$)</option>
-                                        <option value="BBJ 787">BBJ 787 (360 R$)</option>
-                                        <option value="ACJ350">ACJ350 (760 R$)</option>
-                                    </select>
-                                </div>
-                                <div class="bg-white border border-gray-200 p-4 rounded-lg text-center shadow-sm">
-                                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Estimated Base Price</p>
-                                    <p id="price-display" class="text-2xl font-serif font-bold text-[#D71A21]" data-price="0">-- R$</p>
-                                </div>
-                            </div>
+                    <div class="p-8 md:p-12">
+                        <div id="request-alert" class="hidden mb-8 p-5 rounded-lg text-[11px] font-bold uppercase tracking-widest border">
+                            <span id="request-alert-text"></span>
                         </div>
 
-                        <div>
-                            <h4 class="text-sm font-bold text-[#111827] uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">2. Client Details</h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">First Name</label>
-                                    <input type="text" id="req-firstname" class="executive-input" placeholder="e.g. John" required>
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Last Name</label>
-                                    <input type="text" id="req-lastname" class="executive-input" placeholder="e.g. Doe" required>
-                                </div>
-                            </div>
-                            <div class="mb-6">
-                                <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Email Address</label>
-                                <input type="email" id="req-email" class="executive-input" placeholder="johndoe@example.com" required>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div>
-                                    <label class="block text-[10px] font-bold text-[#5865F2] uppercase tracking-widest mb-1">Discord Username</label>
-                                    <input type="text" id="req-discord-user" class="executive-input" placeholder="e.g. johndoe" required>
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-[#5865F2] uppercase tracking-widest mb-1">Discord ID</label>
-                                    <input type="text" id="req-discord-id" class="executive-input font-mono" placeholder="Numerical ID" required pattern="[0-9]+">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h4 class="text-sm font-bold text-[#111827] uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">3. Flight Routing</h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Departure Airport (PTFS)</label>
-                                    <input type="text" id="req-departure" class="executive-input uppercase" placeholder="e.g. Greater Rockford (GRF)" required>
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Arrival Airport (PTFS)</label>
-                                    <input type="text" id="req-arrival" class="executive-input uppercase" placeholder="e.g. Tokyo (DXB)" required>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Time of Departure</label>
-                                    <input type="time" id="req-time" class="executive-input" required>
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Timezone</label>
-                                    <select id="req-timezone" class="executive-input appearance-none cursor-pointer" required>
-                                        <option value="" disabled selected>Select...</option>
-                                        <option value="EST">EST</option>
-                                        <option value="CST">CST</option>
-                                        <option value="PST">PST</option>
-                                        <option value="GMT">GMT / UTC</option>
-                                        <option value="CET">CET</option>
-                                        <option value="GST">GST</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Total Passengers</label>
-                                    <input type="number" id="req-pax" class="executive-input" min="1" max="19" placeholder="Max 19" required>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h4 class="text-sm font-bold text-[#111827] uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">4. Ground Logistics (Included)</h4>
-                            <p class="text-xs text-gray-500 mb-4 font-medium">Select any complimentary transfers required for your journey.</p>
+                        <form id="executive-form" class="space-y-12">
                             
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <label class="flex items-center gap-4 p-4 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-colors">
-                                    <input type="checkbox" class="custom-checkbox shrink-0" id="req-heli">
-                                    <span class="text-sm font-bold text-[#111827]">Helicopter Transfer</span>
-                                </label>
-                                <label class="flex items-center gap-4 p-4 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-colors">
-                                    <input type="checkbox" class="custom-checkbox shrink-0" id="req-chauffeur">
-                                    <span class="text-sm font-bold text-[#111827]">Chauffeur Drive Service</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h4 class="text-sm font-bold text-[#111827] uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">5. Bespoke Requests</h4>
-                            
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                                <label class="flex items-center gap-3 cursor-pointer">
-                                    <input type="checkbox" class="custom-checkbox" id="req-dietary"> <span class="text-xs font-bold text-gray-600">Dietary Menu</span>
-                                </label>
-                                <label class="flex items-center gap-3 cursor-pointer">
-                                    <input type="checkbox" class="custom-checkbox" id="req-boardroom"> <span class="text-xs font-bold text-gray-600">Boardroom Setup</span>
-                                </label>
-                                <label class="flex items-center gap-3 cursor-pointer">
-                                    <input type="checkbox" class="custom-checkbox" id="req-pet"> <span class="text-xs font-bold text-gray-600">Pet Onboard</span>
-                                </label>
-                                <label class="flex items-center gap-3 cursor-pointer">
-                                    <input type="checkbox" class="custom-checkbox" id="req-beds"> <span class="text-xs font-bold text-gray-600">Full Beds Prep</span>
-                                </label>
+                            <div>
+                                <h4 class="text-sm font-bold text-[#111827] uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">1. Fleet Selection</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end bg-gray-50 p-6 rounded-xl border border-gray-100">
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Select Aircraft</label>
+                                        <select id="req-aircraft" class="executive-input appearance-none cursor-pointer" required>
+                                            <option value="" disabled selected>Choose Airframe...</option>
+                                            <option value="Learjet 45">Learjet 45 (85 R$)</option>
+                                            <option value="Lineage 1000">Lineage 1000 (160 R$)</option>
+                                            <option value="BBJ 787">BBJ 787 (360 R$)</option>
+                                            <option value="ACJ350">ACJ350 (760 R$)</option>
+                                        </select>
+                                    </div>
+                                    <div class="bg-white border border-gray-200 p-4 rounded-lg text-center shadow-sm">
+                                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Estimated Base Price</p>
+                                        <p id="price-display" class="text-2xl font-serif font-bold text-[#D71A21]" data-price="0">-- R$</p>
+                                    </div>
+                                </div>
                             </div>
 
-                            <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2 mt-6">Further Specific Requests</label>
-                            <textarea id="req-notes" class="executive-input resize-none h-24" placeholder="Detail any specific dining preferences, transfer destinations, or cabin configurations..."></textarea>
-                        </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-[#111827] uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">2. Client Details</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">First Name</label>
+                                        <input type="text" id="req-firstname" class="executive-input" placeholder="e.g. John" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Last Name</label>
+                                        <input type="text" id="req-lastname" class="executive-input" placeholder="e.g. Doe" required>
+                                    </div>
+                                </div>
+                                <div class="mb-6">
+                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Email Address</label>
+                                    <input type="email" id="req-email" class="executive-input" placeholder="johndoe@example.com" required>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-[#5865F2] uppercase tracking-widest mb-1">Discord Username</label>
+                                        <input type="text" id="req-discord-user" class="executive-input" placeholder="e.g. johndoe" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-[#5865F2] uppercase tracking-widest mb-1">Discord ID</label>
+                                        <input type="text" id="req-discord-id" class="executive-input font-mono" placeholder="Numerical ID" required pattern="[0-9]+">
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div class="pt-8 text-center border-t border-gray-100">
-                            <button type="submit" id="req-submit-btn" class="w-full md:w-auto px-16 bg-[#111827] hover:bg-[#D71A21] text-white py-5 rounded-xl text-xs font-bold uppercase tracking-[0.2em] transition-colors shadow-lg">
-                                Submit Requisition to Dispatch
-                            </button>
-                            <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-4 font-bold">Track approval status in MyPortal Dashboard</p>
-                        </div>
-                    </form>
+                            <div>
+                                <h4 class="text-sm font-bold text-[#111827] uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">3. Flight Routing</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Departure Airport (PTFS)</label>
+                                        <input type="text" id="req-departure" class="executive-input uppercase" placeholder="e.g. Greater Rockford (GRF)" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Arrival Airport (PTFS)</label>
+                                        <input type="text" id="req-arrival" class="executive-input uppercase" placeholder="e.g. Tokyo (DXB)" required>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Time of Departure</label>
+                                        <input type="time" id="req-time" class="executive-input" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Timezone</label>
+                                        <select id="req-timezone" class="executive-input appearance-none cursor-pointer" required>
+                                            <option value="" disabled selected>Select...</option>
+                                            <option value="EST">EST</option>
+                                            <option value="CST">CST</option>
+                                            <option value="PST">PST</option>
+                                            <option value="GMT">GMT / UTC</option>
+                                            <option value="CET">CET</option>
+                                            <option value="GST">GST</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Total Passengers</label>
+                                        <input type="number" id="req-pax" class="executive-input" min="1" max="19" placeholder="Max 19" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="text-sm font-bold text-[#111827] uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">4. Ground Logistics (Included)</h4>
+                                <p class="text-xs text-gray-500 mb-4 font-medium">Select any complimentary transfers required for your journey.</p>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <label class="flex items-center gap-4 p-4 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-colors">
+                                        <input type="checkbox" class="custom-checkbox shrink-0" id="req-heli">
+                                        <span class="text-sm font-bold text-[#111827]">Helicopter Transfer</span>
+                                    </label>
+                                    <label class="flex items-center gap-4 p-4 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-colors">
+                                        <input type="checkbox" class="custom-checkbox shrink-0" id="req-chauffeur">
+                                        <span class="text-sm font-bold text-[#111827]">Chauffeur Drive Service</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="text-sm font-bold text-[#111827] uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">5. Bespoke Requests</h4>
+                                
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="custom-checkbox" id="req-dietary"> <span class="text-xs font-bold text-gray-600">Dietary Menu</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="custom-checkbox" id="req-boardroom"> <span class="text-xs font-bold text-gray-600">Boardroom Setup</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="custom-checkbox" id="req-pet"> <span class="text-xs font-bold text-gray-600">Pet Onboard</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="custom-checkbox" id="req-beds"> <span class="text-xs font-bold text-gray-600">Full Beds Prep</span>
+                                    </label>
+                                </div>
+
+                                <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2 mt-6">Further Specific Requests</label>
+                                <textarea id="req-notes" class="executive-input resize-none h-24" placeholder="Detail any specific dining preferences, transfer destinations, or cabin configurations..."></textarea>
+                            </div>
+
+                            <div class="pt-8 text-center border-t border-gray-100">
+                                <button type="submit" id="req-submit-btn" class="w-full md:w-auto px-16 bg-[#111827] hover:bg-[#D71A21] text-white py-5 rounded-xl text-xs font-bold uppercase tracking-[0.2em] transition-colors shadow-lg">
+                                    Submit Requisition to Dispatch
+                                </button>
+                                <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-4 font-bold">Track approval status in MyPortal Dashboard</p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -553,19 +557,19 @@
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
       );
 
-      const authGate = document.getElementById('auth-gate');
-      const requestDesk = document.getElementById('request-desk');
+      const authGate = document.getElementById('auth-gate-wrapper');
+      const requestDesk = document.getElementById('request-desk-wrapper');
       
-      // BULLETPROOF AUTH UI TOGGLE (Overriding Tailwind flex conflicts)
+      // BULLETPROOF AUTH UI TOGGLE
       function updateUIForSession(session) {
           if (session) {
               currentUser = session.user;
               
-              authGate.classList.add('hidden');
-              authGate.style.display = 'none';
+              // Forcefully turn off the wrapper container for the auth gate
+              if(authGate) authGate.style.display = 'none';
               
-              requestDesk.classList.remove('hidden');
-              requestDesk.style.display = 'block';
+              // Forcefully turn on the wrapper container for the request desk
+              if(requestDesk) requestDesk.style.display = 'block';
               
               const emailInput = document.getElementById('req-email');
               if(emailInput && currentUser.email) {
@@ -574,21 +578,22 @@
           } else {
               currentUser = null;
               
-              authGate.classList.remove('hidden');
-              authGate.style.display = 'flex';
-              
-              requestDesk.classList.add('hidden');
-              requestDesk.style.display = 'none';
+              if(authGate) authGate.style.display = 'block';
+              if(requestDesk) requestDesk.style.display = 'none';
           }
       }
 
-      try {
-          const { data: { session }, error } = await supabase.auth.getSession();
-          if (error) throw error;
-          updateUIForSession(session);
-      } catch (err) {
-          console.error(err);
-      }
+      // Initial check with slight delay to ensure smooth transition
+      setTimeout(async () => {
+          try {
+              const { data: { session }, error } = await supabase.auth.getSession();
+              if (error) throw error;
+              updateUIForSession(session);
+          } catch (err) {
+              console.error(err);
+              updateUIForSession(null); // Fallback to logged out state
+          }
+      }, 50);
 
       supabase.auth.onAuthStateChange((_event, session) => {
           updateUIForSession(session);
@@ -612,54 +617,56 @@
           }
       }
 
-      execForm.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          if(!currentUser) return;
+      if(execForm) {
+          execForm.addEventListener('submit', async (e) => {
+              e.preventDefault();
+              if(!currentUser) return;
 
-          const payload = {
-              user_id: currentUser.id,
-              first_name: document.getElementById('req-firstname').value.trim(),
-              last_name: document.getElementById('req-lastname').value.trim(),
-              email: document.getElementById('req-email').value.trim(),
-              discord_username: document.getElementById('req-discord-user').value.trim(),
-              discord_id: document.getElementById('req-discord-id').value.trim(),
-              departure_airport: document.getElementById('req-departure').value.trim(),
-              arrival_airport: document.getElementById('req-arrival').value.trim(),
-              time_of_departure: document.getElementById('req-time').value.trim(),
-              timezone: document.getElementById('req-timezone').value.trim(),
-              number_of_passengers: parseInt(document.getElementById('req-pax').value),
-              
-              aircraft: document.getElementById('req-aircraft').value,
-              estimated_price: parseInt(document.getElementById('price-display').getAttribute('data-price') || 0),
-              helicopter_transfer: document.getElementById('req-heli').checked,
-              chauffeur_service: document.getElementById('req-chauffeur').checked,
-              dietary_menu: document.getElementById('req-dietary').checked,
-              boardroom_setup: document.getElementById('req-boardroom').checked,
-              pet_onboard: document.getElementById('req-pet').checked,
-              full_beds_prep: document.getElementById('req-beds').checked,
-              special_notes: document.getElementById('req-notes').value.trim()
-          };
+              const payload = {
+                  user_id: currentUser.id,
+                  first_name: document.getElementById('req-firstname').value.trim(),
+                  last_name: document.getElementById('req-lastname').value.trim(),
+                  email: document.getElementById('req-email').value.trim(),
+                  discord_username: document.getElementById('req-discord-user').value.trim(),
+                  discord_id: document.getElementById('req-discord-id').value.trim(),
+                  departure_airport: document.getElementById('req-departure').value.trim(),
+                  arrival_airport: document.getElementById('req-arrival').value.trim(),
+                  time_of_departure: document.getElementById('req-time').value.trim(),
+                  timezone: document.getElementById('req-timezone').value.trim(),
+                  number_of_passengers: parseInt(document.getElementById('req-pax').value),
+                  
+                  aircraft: document.getElementById('req-aircraft').value,
+                  estimated_price: parseInt(document.getElementById('price-display').getAttribute('data-price') || 0),
+                  helicopter_transfer: document.getElementById('req-heli').checked,
+                  chauffeur_service: document.getElementById('req-chauffeur').checked,
+                  dietary_menu: document.getElementById('req-dietary').checked,
+                  boardroom_setup: document.getElementById('req-boardroom').checked,
+                  pet_onboard: document.getElementById('req-pet').checked,
+                  full_beds_prep: document.getElementById('req-beds').checked,
+                  special_notes: document.getElementById('req-notes').value.trim()
+              };
 
-          submitBtn.innerHTML = 'TRANSMITTING...';
-          submitBtn.disabled = true;
-          alertBox.classList.add('hidden');
+              submitBtn.innerHTML = 'TRANSMITTING...';
+              submitBtn.disabled = true;
+              alertBox.classList.add('hidden');
 
-          const { error } = await supabase.from('egr_executive_flight_requests').insert([payload]);
+              const { error } = await supabase.from('egr_executive_flight_requests').insert([payload]);
 
-          if (error) {
-              console.error(error);
-              showAlert("An error occurred during secure transmission. Please verify your connection.", "error");
-          } else {
-              showAlert("Requisition securely transmitted to Corporate Dispatch. Status available in MyPortal.", "success");
-              execForm.reset();
-              priceDisplay.innerText = '-- R$';
-              priceDisplay.setAttribute('data-price', '0');
-              if(currentUser.email) document.getElementById('req-email').value = currentUser.email;
-          }
+              if (error) {
+                  console.error(error);
+                  showAlert("An error occurred during secure transmission. Please verify your connection.", "error");
+              } else {
+                  showAlert("Requisition securely transmitted to Corporate Dispatch. Status available in MyPortal.", "success");
+                  execForm.reset();
+                  priceDisplay.innerText = '-- R$';
+                  priceDisplay.setAttribute('data-price', '0');
+                  if(currentUser.email) document.getElementById('req-email').value = currentUser.email;
+              }
 
-          submitBtn.innerHTML = 'Submit Requisition to Dispatch';
-          submitBtn.disabled = false;
-      });
+              submitBtn.innerHTML = 'Submit Requisition to Dispatch';
+              submitBtn.disabled = false;
+          });
+      }
 
     });
   </script>
