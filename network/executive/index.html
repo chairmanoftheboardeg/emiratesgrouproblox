@@ -117,7 +117,6 @@
 
     <section class="py-24 px-6 md:px-12 bg-white relative border-b border-gray-100">
         <div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-            
             <div class="w-full lg:w-1/2 relative h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl group">
                 <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
                 <img src="https://i.ibb.co/GQ6K5YFC/Screenshot-2026-02-28-194600.png" alt="Private Jet Exterior" class="w-full h-full object-cover img-zoom">
@@ -142,7 +141,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -155,7 +153,6 @@
             </div>
 
             <div class="space-y-16">
-                
                 <div class="flex flex-col lg:flex-row items-center gap-12 group">
                     <div class="w-full lg:w-1/2 h-[350px] lg:h-[450px] rounded-2xl overflow-hidden shadow-lg relative">
                         <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
@@ -197,7 +194,6 @@
                         <p class="text-gray-600 leading-relaxed font-medium">Experience a smooth journey on your departure and arrival. Save valuable time with discreet boarding, private terminal access, and chauffeur-drive vehicle transfers.</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -241,8 +237,14 @@
                 <p class="text-gray-500 font-medium">Secure your private itinerary. Operations are exclusive to PTFS.</p>
             </div>
 
-            <div id="auth-gate-wrapper">
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden flex flex-col md:flex-row">
+            <div id="auth-container" class="min-h-[400px] flex items-center justify-center relative">
+                
+                <div id="auth-loading" class="text-center">
+                    <i class="fa-solid fa-circle-notch fa-spin text-4xl text-[#D71A21] mb-4"></i>
+                    <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Verifying Credentials...</p>
+                </div>
+
+                <div id="auth-gate" style="display: none;" class="w-full bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden flex-col md:flex-row">
                     <div class="w-full md:w-5/12 bg-[#111827] p-10 md:p-16 flex flex-col justify-center">
                         <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Secure Portal</span>
                         <h2 class="text-3xl font-serif font-bold text-white uppercase tracking-tight mb-6 leading-tight">Identity <br>Verification.</h2>
@@ -270,10 +272,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div id="request-desk-wrapper" style="display: none;">
-                <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+                <div id="request-desk" style="display: none;" class="w-full bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
                     
                     <div class="bg-[#111827] text-white p-8 md:px-12 md:py-8 flex justify-between items-center">
                         <div>
@@ -287,7 +287,7 @@
                     </div>
 
                     <div class="p-8 md:p-12">
-                        <div id="request-alert" class="hidden mb-8 p-5 rounded-lg text-[11px] font-bold uppercase tracking-widest border">
+                        <div id="request-alert" style="display: none;" class="mb-8 p-5 rounded-lg text-[11px] font-bold uppercase tracking-widest border">
                             <span id="request-alert-text"></span>
                         </div>
 
@@ -541,13 +541,19 @@
         });
     }
 
-    // --- SUPABASE & UI LOGIC ---
+    // --- BULLETPROOF SUPABASE AUTH LOGIC ---
     let currentUser = null;
 
-    document.addEventListener("DOMContentLoaded", async () => {
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      const authLoading = document.getElementById('auth-loading');
+      const authGate = document.getElementById('auth-gate');
+      const requestDesk = document.getElementById('request-desk');
 
       if (!window.supabase) {
           console.error("Supabase CDN failed to load.");
+          if(authLoading) authLoading.style.display = 'none';
+          if(authGate) authGate.style.display = 'flex';
           hideLoader();
           return;
       }
@@ -557,18 +563,13 @@
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
       );
 
-      const authGate = document.getElementById('auth-gate-wrapper');
-      const requestDesk = document.getElementById('request-desk-wrapper');
-      
-      // BULLETPROOF AUTH UI TOGGLE
-      function updateUIForSession(session) {
+      // Force UI updates via inline styles to break Tailwind constraints
+      function renderUI(session) {
+          if(authLoading) authLoading.style.display = 'none';
+
           if (session) {
               currentUser = session.user;
-              
-              // Forcefully turn off the wrapper container for the auth gate
               if(authGate) authGate.style.display = 'none';
-              
-              // Forcefully turn on the wrapper container for the request desk
               if(requestDesk) requestDesk.style.display = 'block';
               
               const emailInput = document.getElementById('req-email');
@@ -577,26 +578,27 @@
               }
           } else {
               currentUser = null;
-              
-              if(authGate) authGate.style.display = 'block';
               if(requestDesk) requestDesk.style.display = 'none';
+              if(authGate) authGate.style.display = 'flex'; 
           }
       }
 
-      // Initial check with slight delay to ensure smooth transition
-      setTimeout(async () => {
-          try {
-              const { data: { session }, error } = await supabase.auth.getSession();
-              if (error) throw error;
-              updateUIForSession(session);
-          } catch (err) {
-              console.error(err);
-              updateUIForSession(null); // Fallback to logged out state
+      // Initial Fetch
+      supabase.auth.getSession().then(({ data: { session }, error }) => {
+          if (error) {
+              console.error("Session error:", error);
+              renderUI(null);
+          } else {
+              renderUI(session);
           }
-      }, 50);
+      }).catch(err => {
+          console.error(err);
+          renderUI(null);
+      });
 
+      // Listen for changes
       supabase.auth.onAuthStateChange((_event, session) => {
-          updateUIForSession(session);
+          renderUI(session);
       });
 
       // --- FORM SUBMISSION ---
@@ -606,7 +608,8 @@
       const alertText = document.getElementById('request-alert-text');
 
       function showAlert(message, type) {
-          alertBox.classList.remove('hidden', 'bg-red-50', 'text-red-600', 'border-red-200', 'bg-green-50', 'text-green-700', 'border-green-200');
+          alertBox.style.display = 'block';
+          alertBox.classList.remove('bg-red-50', 'text-red-600', 'border-red-200', 'bg-green-50', 'text-green-700', 'border-green-200');
           
           if(type === 'error') {
               alertBox.classList.add('bg-red-50', 'text-red-600', 'border-red-200');
@@ -648,7 +651,7 @@
 
               submitBtn.innerHTML = 'TRANSMITTING...';
               submitBtn.disabled = true;
-              alertBox.classList.add('hidden');
+              alertBox.style.display = 'none';
 
               const { error } = await supabase.from('egr_executive_flight_requests').insert([payload]);
 
@@ -667,7 +670,6 @@
               submitBtn.disabled = false;
           });
       }
-
     });
   </script>
 </body>
