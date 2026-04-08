@@ -12,11 +12,12 @@
   
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
-    
     body { font-family: 'Inter', sans-serif; background-color: #f9fafb; scroll-behavior: smooth; overflow-x: hidden; }
-    .font-serif { font-family: 'Playfair Display', serif; }
     
     /* Cinematic Text Fill Loader */
     #egr-loader {
@@ -27,7 +28,7 @@
     }
     .loader-content { display: flex; flex-direction: column; align-items: flex-end; }
     .loader-text-wrapper {
-        position: relative; font-family: 'Inter', sans-serif; font-weight: 900;
+        position: relative; font-weight: 900;
         letter-spacing: -2px; line-height: 1; text-transform: capitalize;
     }
     .loader-base-text { color: #374151; }
@@ -35,7 +36,7 @@
         position: absolute; left: 0; top: 0; color: #ffffff; 
         overflow: hidden; white-space: nowrap; width: 0%; transition: width 0.1s linear;
     }
-    .loader-info { color: #9CA3AF; font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-top: 8px; }
+    .loader-info { color: #9CA3AF; font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-top: 8px; text-transform: uppercase; }
     
     .zoom-through { animation: zoomOutEffect 1s cubic-bezier(0.7, 0, 0.2, 1) forwards; }
     @keyframes zoomOutEffect {
@@ -48,10 +49,13 @@
     ::-webkit-scrollbar-track { background: #f1f1f1; }
     ::-webkit-scrollbar-thumb { background: #D71A21; border-radius: 5px; }
     ::-webkit-scrollbar-thumb:hover { background: #b5151c; }
+
+    /* Modern Hover Effects */
+    .service-card { transition: all 0.3s ease; border-top: 4px solid transparent; }
+    .service-card:hover { border-top-color: #D71A21; transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
     
-    /* Fleet Image Hover */
     .fleet-card img { transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
-    .fleet-card:hover img { transform: scale(1.05); }
+    .fleet-card:hover img { transform: scale(1.03); }
   </style>
 </head>
 <body class="flex flex-col min-h-screen relative">
@@ -62,7 +66,7 @@
         <div class="loader-base-text">Emirates Group Roblox</div>
         <div class="loader-fill-text" id="loader-fill">Emirates Group Roblox</div>
       </div>
-      <div class="loader-info lowercase">initializing logistics network... <span id="loader-perc">0</span>%</div>
+      <div class="loader-info">Accessing SkyCargo Systems... <span id="loader-perc">0</span>%</div>
     </div>
   </div>
 
@@ -161,108 +165,180 @@
 
   <div class="bg-[#111827] text-white border-b border-gray-800 sticky top-[72px] md:top-[80px] z-40 shadow-md overflow-x-auto whitespace-nowrap">
       <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center space-x-8">
-          <a href="/network/ekskycargo/" class="text-[#D71A21] border-b-2 border-[#D71A21] py-4 text-[11px] font-bold uppercase tracking-[0.15em] transition-colors">Home</a>
-          <a href="/network/ekskycargo/fleet/" class="text-gray-400 border-b-2 border-transparent hover:text-white hover:border-gray-500 py-4 text-[11px] font-bold uppercase tracking-[0.15em] transition-colors">Our Fleet</a>
-          <a href="/network/ekskycargo/services/" class="text-gray-400 border-b-2 border-transparent hover:text-white hover:border-gray-500 py-4 text-[11px] font-bold uppercase tracking-[0.15em] transition-colors">Our Services</a>
-          <a href="/network/ekskycargo/about/" class="text-gray-400 border-b-2 border-transparent hover:text-white hover:border-gray-500 py-4 text-[11px] font-bold uppercase tracking-[0.15em] transition-colors">Who We Are</a>
+          <a href="#top" class="text-[#D71A21] border-b-2 border-[#D71A21] py-4 text-xs font-bold uppercase tracking-widest transition-colors">Home</a>
+          <a href="#about" class="text-gray-400 border-b-2 border-transparent hover:text-white hover:border-gray-500 py-4 text-xs font-bold uppercase tracking-widest transition-colors">Who We Are</a>
+          <a href="#services" class="text-gray-400 border-b-2 border-transparent hover:text-white hover:border-gray-500 py-4 text-xs font-bold uppercase tracking-widest transition-colors">Our Services</a>
+          <a href="#fleet" class="text-gray-400 border-b-2 border-transparent hover:text-white hover:border-gray-500 py-4 text-xs font-bold uppercase tracking-widest transition-colors">Our Fleet</a>
       </div>
   </div>
 
-  <header class="relative text-white py-32 md:py-48 px-6 overflow-hidden">
+  <header id="top" class="relative text-white py-32 md:py-48 px-6 overflow-hidden">
     <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://i.ibb.co/mCZ0SxPm/Screenshot-2026-03-08-191357.png'); background-position: center 30%;"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/80 to-[#111827]/40 z-10"></div>
     
-    <div class="relative z-20 max-w-7xl mx-auto flex flex-col items-start text-left">
-      <div class="flex items-center gap-3 mb-6">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Emirates_logo.svg" class="h-8 md:h-10 filter brightness-0 invert opacity-90" alt="Emirates">
-          <span class="font-serif text-3xl md:text-4xl tracking-wide font-bold text-white mt-1 border-l-2 border-[#D71A21] pl-3">SkyCargo</span>
-      </div>
+    <div class="relative z-20 max-w-7xl mx-auto flex flex-col items-center text-center">
+      <img src="https://emiratesgrouproblox.link/images/ekclogo.png?v=1" class="h-16 md:h-24 mb-8 object-contain drop-shadow-2xl" alt="Emirates SkyCargo">
       
-      <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 leading-none tracking-tighter drop-shadow-xl uppercase text-white">
-        Global Logistics. <br><span class="text-[#D71A21]">Elite Training.</span>
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight tracking-tight uppercase text-white drop-shadow-lg">
+        Global Logistics.<br><span class="text-[#D71A21]">Elite Training.</span>
       </h1>
-      <p class="text-gray-300 md:text-xl max-w-2xl leading-relaxed font-medium">The backbone of the Emirates Group Roblox network. Operating exclusively within PTFS, SkyCargo is where vital roleplay assets are delivered and our newest aviators are forged.</p>
+      <p class="text-gray-300 md:text-xl max-w-3xl leading-relaxed font-medium">The backbone of the Emirates Group Roblox network. Operating exclusively within PTFS, SkyCargo is where vital roleplay assets are delivered and our newest aviators are forged.</p>
     </div>
   </header>
 
-  <main class="flex-grow bg-[#111827] relative overflow-hidden text-white">
+  <main class="flex-grow bg-white relative overflow-hidden">
     
-    <section class="py-24 px-6 md:px-12 border-b border-gray-800 relative">
-        <div class="absolute inset-0 z-0 opacity-5" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
-        
-        <div class="max-w-7xl mx-auto relative z-10 flex flex-col lg:flex-row items-center gap-16">
+    <section id="about" class="py-24 px-6 md:px-12 bg-white relative border-b border-gray-100">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
             <div class="w-full lg:w-1/2">
-                <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">PTFS Operations Division</span>
-                <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-8 leading-tight">The Ultimate <br>Proving Ground.</h2>
+                <span class="text-[#D71A21] font-bold tracking-widest uppercase text-xs mb-4 block">PTFS Operations Division</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-[#111827] mb-8 leading-tight tracking-tight">The Ultimate <br>Proving Ground.</h2>
                 <div class="w-16 h-1 bg-[#D71A21] mb-8"></div>
-                <p class="text-gray-400 leading-relaxed mb-6 font-medium">In the Emirates Group Roblox network, SkyCargo serves a critical dual purpose. Operating exclusively in <strong>Pilot Training Flight Simulator (PTFS)</strong>, we manage the heavy logistics and roleplay cargo required to keep the global network functioning.</p>
-                <p class="text-gray-400 leading-relaxed mb-8 font-medium">More importantly, SkyCargo is the crucible for our new pilots. Before touching a passenger flight, rookies are assigned to cargo routes. Under the strict supervision of our Training Officers—who track and monitor flights like commercial dispatchers—pilots must prove their navigation, handling, and adherence to protocol.</p>
-                
-                <div class="flex gap-4">
-                    <a href="/network/ekskycargo/about/" class="inline-flex items-center justify-center bg-[#D71A21] hover:bg-red-800 text-white px-8 py-4 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-lg">
-                        Learn Who We Are &rarr;
-                    </a>
-                </div>
+                <p class="text-gray-600 leading-relaxed mb-6 font-medium text-lg">In the Emirates Group Roblox network, SkyCargo serves a critical dual purpose. Operating exclusively in <strong>Pilot Training Flight Simulator (PTFS)</strong>, we manage the heavy logistics and roleplay cargo required to keep the global network functioning.</p>
+                <p class="text-gray-600 leading-relaxed mb-8 font-medium text-lg">More importantly, SkyCargo is the crucible for our new pilots. Before touching a passenger flight, rookies are assigned to cargo routes. Under the strict supervision of our Training Officers, pilots must prove their navigation, handling, and adherence to protocol.</p>
             </div>
             
-            <div class="w-full lg:w-1/2 relative">
-                <div class="absolute inset-0 bg-gradient-to-r from-[#111827] to-transparent z-10 w-24"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-[#111827] to-transparent z-10 h-24 bottom-0 top-auto"></div>
-                <img src="https://i.ibb.co/Zzpt6G5k/Screenshot-2026-03-08-191326.png" class="w-full rounded-xl shadow-2xl border border-gray-800" alt="Boeing 747 Cargo PTFS">
+            <div class="w-full lg:w-1/2">
+                <img src="https://i.ibb.co/Zzpt6G5k/Screenshot-2026-03-08-191326.png" class="w-full rounded-2xl shadow-2xl" alt="Boeing 747 Cargo PTFS">
             </div>
         </div>
     </section>
 
-    <section class="py-24 px-6 md:px-12 bg-black relative">
+    <section id="services" class="py-24 px-6 md:px-12 bg-gray-50 border-b border-gray-100">
         <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-                <div>
-                    <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Heavy Lift Division</span>
-                    <h2 class="text-4xl md:text-5xl font-serif font-bold text-white tracking-tight">The PTFS Fleet</h2>
-                </div>
-                <a href="/network/ekskycargo/fleet/" class="text-[10px] font-bold text-gray-400 hover:text-white uppercase tracking-widest border border-gray-700 hover:border-gray-500 px-6 py-3 rounded transition-colors">
-                    View Full Fleet Specifications
-                </a>
+            <div class="text-center mb-16 max-w-3xl mx-auto">
+                <span class="text-[#D71A21] font-bold tracking-widest uppercase text-xs mb-4 block">Our Services</span>
+                <h2 class="text-4xl font-extrabold text-[#111827] mb-6 tracking-tight uppercase">Vital Logistics</h2>
+                <p class="text-gray-600 leading-relaxed font-medium text-lg">Every cargo flight is a mission. Under the watchful eyes of Corporate Training Officers, rookie and senior pilots alike must execute specific roleplay scenarios to supply the network.</p>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <div class="col-span-1 md:col-span-2 lg:col-span-2 bg-[#111827] rounded-xl overflow-hidden relative fleet-card border border-gray-800 group h-80">
-                    <div class="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                    <img src="https://i.ibb.co/mCZ0SxPm/Screenshot-2026-03-08-191357.png" class="absolute inset-0 w-full h-full object-cover opacity-80" alt="Boeing 747 and 777 Cargo">
-                    <div class="absolute bottom-8 left-8 z-20">
-                        <span class="bg-[#D71A21] text-white text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded mb-3 inline-block">Primary Haulers</span>
-                        <h3 class="text-3xl font-serif font-bold text-white">Boeing 747 & 777F</h3>
-                        <p class="text-gray-400 font-mono text-xs mt-2 uppercase tracking-widest">Backbone of the PTFS Logistics Route</p>
+                <div class="bg-white p-10 rounded-xl border border-gray-200 shadow-sm service-card relative overflow-hidden">
+                    <div class="w-14 h-14 bg-red-50 text-[#D71A21] rounded-full flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-weight-hanging"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-[#111827] mb-4 tracking-tight">Heavy Machinery</h3>
+                    <p class="text-gray-500 leading-relaxed">Hauling massive, oversized roleplay assets required for corporate construction projects and heavy industry operations within the PTFS map.</p>
                 </div>
 
-                <div class="col-span-1 bg-[#111827] rounded-xl overflow-hidden relative fleet-card border border-gray-800 group h-80">
-                    <div class="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                    <img src="https://i.ibb.co/0ygv58Sc/Screenshot-2026-02-28-162628.png" class="absolute inset-0 w-full h-full object-cover opacity-80" alt="Airbus A350-900">
-                    <div class="absolute bottom-8 left-8 z-20">
-                        <span class="bg-gray-800 text-gray-300 border border-gray-600 text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded mb-3 inline-block">Long Haul Cargo</span>
-                        <h3 class="text-2xl font-serif font-bold text-white">Airbus A350-900</h3>
+                <div class="bg-white p-10 rounded-xl border border-gray-200 shadow-sm service-card relative overflow-hidden">
+                    <div class="w-14 h-14 bg-gray-100 text-[#111827] rounded-full flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-car-side"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-[#111827] mb-4 tracking-tight">Luxury Automotive</h3>
+                    <p class="text-gray-500 leading-relaxed">Secure transport of high-value VIP vehicles, executive fleet cars, and ground assets required by Emirates Holidays resorts.</p>
                 </div>
 
-                <div class="col-span-1 md:col-span-2 lg:col-span-3 bg-[#111827] rounded-xl overflow-hidden relative fleet-card border border-gray-800 group h-96">
-                    <div class="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                    <img src="https://i.ibb.co/8SSLMk4/Screenshot-2026-02-28-191613.png" class="absolute inset-0 w-full h-full object-cover opacity-70" alt="Airbus A380-800" style="object-position: center 70%;">
-                    <div class="absolute bottom-10 left-10 z-20 max-w-xl">
-                        <span class="bg-gray-800 text-gray-300 border border-gray-600 text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded mb-3 inline-block">Superjumbo Transport</span>
-                        <h3 class="text-4xl font-serif font-bold text-white mb-3">Airbus A380-800</h3>
-                        <p class="text-gray-400 text-sm font-medium leading-relaxed">Utilized exclusively for massive-scale logistics roleplay. The ultimate test of handling and precision for senior trainees operating within the PTFS airspace.</p>
+                <div class="bg-white p-10 rounded-xl border border-gray-200 shadow-sm service-card relative overflow-hidden">
+                    <div class="w-14 h-14 bg-red-50 text-[#D71A21] rounded-full flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-kit-medical"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-[#111827] mb-4 tracking-tight">Medical & Relief</h3>
+                    <p class="text-gray-500 leading-relaxed">High-stakes, time-sensitive roleplay scenarios. Pilots must swiftly deliver medical supplies and humanitarian aid during crisis events.</p>
+                </div>
+
+                <div class="bg-white p-10 rounded-xl border border-gray-200 shadow-sm service-card relative overflow-hidden">
+                    <div class="w-14 h-14 bg-gray-100 text-[#111827] rounded-full flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-boxes-packing"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#111827] mb-4 tracking-tight">Express Courier</h3>
+                    <p class="text-gray-500 leading-relaxed">Fast-paced, multi-stop routes delivering general commercial goods. Tests a pilot's efficiency and ability to maintain strict timetables.</p>
+                </div>
+
+                <div class="bg-white p-10 rounded-xl border border-gray-200 shadow-sm service-card relative overflow-hidden">
+                    <div class="w-14 h-14 bg-red-50 text-[#D71A21] rounded-full flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-plane-departure"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#111827] mb-4 tracking-tight">Parts Relocation</h3>
+                    <p class="text-gray-500 leading-relaxed">Critical corporate logistics. Transporting engines, fuselage components, and maintenance gear to stranded aircraft or active repair hangars.</p>
+                </div>
+
+                <div class="bg-[#111827] p-10 rounded-xl border border-gray-800 shadow-xl service-card relative overflow-hidden text-white">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-[#D71A21]/20 rounded-full blur-2xl"></div>
+                    <div class="w-14 h-14 bg-[#D71A21] text-white rounded-full flex items-center justify-center text-2xl mb-6 relative z-10">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 tracking-tight relative z-10">Pilot Evaluation Runs</h3>
+                    <p class="text-gray-400 leading-relaxed relative z-10">The most important service we offer. Dispatch runs actively monitored by Training Officers to evaluate a rookie's readiness for commercial flights.</p>
                 </div>
 
             </div>
         </div>
+    </section>
+
+    <section id="fleet" class="py-24 px-6 md:px-12 bg-white relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-[#D71A21] font-bold tracking-widest uppercase text-xs mb-4 block">Heavy Lift Division</span>
+                <h2 class="text-4xl font-extrabold text-[#111827] tracking-tight uppercase">The PTFS Fleet</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto font-medium text-lg">These are the aircraft that forge our newest aviators and manage the high-capacity logistics of the network.</p>
+            </div>
+
+            <div class="space-y-16">
+                <div class="flex flex-col lg:flex-row items-center gap-10 fleet-card">
+                    <div class="w-full lg:w-1/2 fleet-img-container rounded-2xl shadow-xl overflow-hidden">
+                        <img src="https://i.ibb.co/mCZ0SxPm/Screenshot-2026-03-08-191357.png" alt="Boeing 777 and 747" class="w-full h-[400px] object-cover">
+                    </div>
+                    <div class="w-full lg:w-1/2 lg:pl-8">
+                        <span class="bg-[#D71A21] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded mb-4 inline-block">Primary Haulers</span>
+                        <h3 class="text-3xl font-extrabold text-[#111827] mb-4">Boeing 747 & 777F</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6 font-medium">The absolute backbone of our PTFS cargo operations. Providing the perfect balance of range and payload capacity, these aircraft are the standard proving ground for pilots advancing into wide-body operations.</p>
+                        <ul class="text-sm font-bold text-[#111827] space-y-2">
+                            <li class="flex items-center"><span class="text-[#D71A21] mr-3">✔</span> Intermediate to Advanced Training Level</li>
+                            <li class="flex items-center"><span class="text-[#D71A21] mr-3">✔</span> Global / Intercontinental Route Profile</li>
+                            <li class="flex items-center"><span class="text-[#D71A21] mr-3">✔</span> Heavy Logistics & Oversized Freight</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row-reverse items-center gap-10 fleet-card">
+                    <div class="w-full lg:w-1/2 fleet-img-container rounded-2xl shadow-xl overflow-hidden">
+                        <img src="https://i.ibb.co/0ygv58Sc/Screenshot-2026-02-28-162628.png" alt="Airbus A350" class="w-full h-[400px] object-cover">
+                    </div>
+                    <div class="w-full lg:w-1/2 lg:pr-8">
+                        <span class="bg-gray-800 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded mb-4 inline-block">Modern Fleet</span>
+                        <h3 class="text-3xl font-extrabold text-[#111827] mb-4">Airbus A350-900</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6 font-medium">A state-of-the-art addition to the cargo rotation. The A350 is highly efficient and is utilized by Training Officers to evaluate a pilot's proficiency with modern, computerized flight systems.</p>
+                        <ul class="text-sm font-bold text-[#111827] space-y-2">
+                            <li class="flex items-center"><span class="text-[#D71A21] mr-3">✔</span> Intermediate Training Level</li>
+                            <li class="flex items-center"><span class="text-[#D71A21] mr-3">✔</span> Ultra Long-Haul Route Profile</li>
+                            <li class="flex items-center"><span class="text-[#D71A21] mr-3">✔</span> Express Courier & Medical Logistics</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row items-center gap-10 fleet-card">
+                    <div class="w-full lg:w-1/2 fleet-img-container rounded-2xl shadow-xl overflow-hidden">
+                        <img src="https://i.ibb.co/8SSLMk4/Screenshot-2026-02-28-191613.png" alt="Airbus A380" class="w-full h-[400px] object-cover" style="object-position: center 60%;">
+                    </div>
+                    <div class="w-full lg:w-1/2 lg:pl-8">
+                        <span class="bg-[#111827] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded mb-4 inline-block">Superjumbo Transport</span>
+                        <h3 class="text-3xl font-extrabold text-[#111827] mb-4">Airbus A380-800</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6 font-medium">Utilized exclusively for massive-scale logistics roleplay. Piloting this behemoth is the ultimate test of handling and precision, acting as the final crucible for senior trainees before graduation.</p>
+                        <ul class="text-sm font-bold text-[#111827] space-y-2">
+                            <li class="flex items-center"><span class="text-[#D71A21] mr-3">✔</span> Expert Training Level</li>
+                            <li class="flex items-center"><span class="text-[#D71A21] mr-3">✔</span> Hub-to-Hub Route Profile</li>
+                            <li class="flex items-center"><span class="text-[#D71A21] mr-3">✔</span> Maximum Capacity Payload</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="bg-[#111827] text-white py-20 px-6 text-center border-t-4 border-[#D71A21]">
+        <h2 class="text-3xl font-extrabold mb-6 tracking-tight uppercase">Ready to Take the Yoke?</h2>
+        <p class="text-gray-400 mb-8 max-w-xl mx-auto font-medium text-lg">SkyCargo is actively recruiting trainee pilots. Join our communications server to begin your career and get certified on the PTFS fleet.</p>
+        <a href="https://discord.gg/nDAZ3p475V7" target="_blank" class="inline-block bg-[#D71A21] hover:bg-red-800 text-white px-10 py-5 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-lg">
+            Apply For Pilot Training &rarr;
+        </a>
     </section>
 
   </main>
 
-  <footer class="bg-[#111827] text-white py-16 px-6 md:px-12 mt-auto border-t-4 border-[#D71A21]">
+  <footer class="bg-[#111827] text-white py-16 px-6 md:px-12 mt-auto border-t border-gray-800">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
       <div class="md:col-span-2">
         <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest font-serif">Emirates Group Roblox</h3>
@@ -332,7 +408,6 @@
         }, 300);
     }
 
-    // Force loader to hide after 2.5 seconds MAXIMUM
     setTimeout(hideLoader, 2500);
 
     const progressInterval = setInterval(() => {
@@ -359,6 +434,25 @@
         mobileBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
         mobileClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
       }
+
+      // Smooth Scroll offset for sticky sub-nav
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+              const targetId = this.getAttribute('href');
+              if (targetId === '#') return;
+              const targetEl = document.querySelector(targetId);
+              if (targetEl) {
+                  const headerOffset = 130; 
+                  const elementPosition = targetEl.getBoundingClientRect().top;
+                  const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                  window.scrollTo({
+                      top: offsetPosition,
+                      behavior: "smooth"
+                  });
+              }
+          });
+      });
 
       // Initialize Supabase for Auth state in Nav
       if(window.supabase) {
