@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emirates Executive | Emirates Group Roblox</title>
+  
+  <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" id="favicon" />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f9fafb; scroll-behavior: smooth; overflow-x: hidden; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+    
+    /* Cinematic Text Fill Loader */
+    #egr-loader {
+        position: fixed; inset: 0; z-index: 9999;
+        background-color: #0A0A0A; 
+        display: flex; align-items: center; justify-content: center;
+        transition: opacity 0.8s ease;
+    }
+    .loader-content { display: flex; flex-direction: column; align-items: flex-end; }
+    .loader-text-wrapper {
+        position: relative; font-family: 'Inter', sans-serif; font-weight: 900;
+        letter-spacing: -2px; line-height: 1; text-transform: capitalize;
+    }
+    .loader-base-text { color: #1f2937; }
+    .loader-fill-text {
+        position: absolute; left: 0; top: 0; color: #ffffff; 
+        overflow: hidden; white-space: nowrap; width: 0%; transition: width 0.1s linear;
+    }
+    .loader-info { color: #9CA3AF; font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-top: 8px; text-transform: uppercase; }
+    
+    .zoom-through { animation: zoomOutEffect 0.8s cubic-bezier(0.7, 0, 0.2, 1) forwards; }
+    @keyframes zoomOutEffect {
+        0% { transform: scale(1); opacity: 1; }
+        40% { transform: scale(1.05); opacity: 1; }
+        100% { transform: scale(40); opacity: 0; filter: blur(10px); }
+    }
+
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #111827; }
+    ::-webkit-scrollbar-thumb { background: #D71A21; border-radius: 4px; }
+
+    /* Luxury Input Fields */
+    .executive-input {
+        width: 100%; background-color: transparent; border: none; border-bottom: 2px solid #374151; padding: 1rem 0; color: #ffffff; font-size: 1rem; font-weight: 500; transition: all 0.3s; border-radius: 0;
+    }
+    .executive-input:focus { outline: none; border-bottom-color: #D71A21; background-color: rgba(255,255,255,0.02); }
+    .executive-input::placeholder { color: #6b7280; font-weight: 400; }
+    
+    /* Remove number arrows */
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen relative bg-[#0A0A0A]">
+
+  <div id="egr-loader">
+    <div class="loader-content" id="loader-animate-container">
+      <div class="loader-text-wrapper text-4xl md:text-7xl lg:text-8xl">
+        <div class="loader-base-text">Emirates Executive</div>
+        <div class="loader-fill-text" id="loader-fill">Emirates Executive</div>
+      </div>
+      <div class="loader-info">Securing Encrypted Channel... <span id="loader-perc">0</span>%</div>
+    </div>
+  </div>
+
+  <nav class="bg-white text-gray-900 py-4 px-6 md:px-12 flex justify-between items-center shadow-md relative z-50 border-b-4 border-[#D71A21]">
+    <a href="/" class="flex items-center group">
+      <img src="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" alt="Emirates Group Roblox Logo" class="h-10 md:h-12 object-contain group-hover:opacity-80 transition-opacity">
+    </a>
+
+    <a href="/network/subsidiaries/" class="bg-[#111827] hover:bg-[#D71A21] text-white px-5 py-2.5 rounded transition-colors shadow-sm flex items-center uppercase tracking-widest text-[10px] font-bold">
+      <i class="fa-solid fa-arrow-left mr-2"></i> Back to Subsidiaries
+    </a>
+  </nav>
+
+  <header class="relative text-white py-32 md:py-48 px-6 overflow-hidden border-b border-gray-800">
+    <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1540962222474-1084aa3d73f5?q=80&w=2500');"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/90 to-[#0A0A0A]/40 z-10"></div>
+    
+    <div class="relative z-20 max-w-5xl mx-auto flex flex-col items-center text-center">
+      <img src="https://www.emirates-executive.com/media/e2mfkjgy/eej-logo.svg" class="h-12 md:h-16 mb-12 object-contain filter brightness-0 invert drop-shadow-2xl opacity-90" alt="Emirates Executive">
+      
+      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-xs mb-4 block border-b border-[#D71A21] pb-2">Bespoke Aviation</span>
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight tracking-tight uppercase drop-shadow-lg text-white">
+        Unparalleled <br>Luxury.
+      </h1>
+      <p class="text-gray-300 md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">Experience the ultimate in private air travel. Submit your bespoke flight requisition below to be reviewed by Corporate Dispatch.</p>
+      
+      <div class="mt-8 inline-block bg-white/5 border border-white/10 backdrop-blur-sm px-6 py-2 rounded-full">
+          <span class="text-[10px] font-mono text-gray-400 uppercase tracking-widest"><i class="fa-solid fa-plane-lock text-[#D71A21] mr-2"></i> PTFS Exclusive Operations</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow bg-[#0A0A0A] relative overflow-hidden">
+    
+    <div class="max-w-6xl w-full mx-auto py-24 px-4 md:px-6 relative z-10">
+
+        <div id="auth-gate" class="bg-[#111827] rounded-2xl shadow-2xl border border-gray-800 overflow-hidden flex flex-col md:flex-row transition-opacity duration-500">
+            
+            <div class="w-full md:w-5/12 bg-black p-10 md:p-16 flex flex-col justify-center relative overflow-hidden">
+                <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
+                <div class="relative z-10">
+                    <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Secure Portal</span>
+                    <h2 class="text-3xl font-serif font-bold text-white uppercase tracking-tight mb-6 leading-tight">Identity <br>Verification.</h2>
+                    <p class="text-sm text-gray-400 leading-relaxed mb-8 font-medium">To protect the privacy of our clients and maintain strict operational security, executive flight requests require an authenticated corporate profile.</p>
+                    
+                    <div class="space-y-6 text-sm text-gray-300 border-t border-gray-800 pt-8">
+                        <div>
+                            <strong class="text-white block mb-1 uppercase tracking-widest text-[10px]">Live Tracking</strong>
+                            You will be able to monitor the approval status of your bespoke flight directly via your MyPortal Dashboard.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full md:w-7/12 p-10 md:p-16 flex flex-col justify-center bg-[#111827]">
+                <div class="mb-10 border-b border-gray-800 pb-8">
+                    <h3 class="text-2xl font-bold text-white mb-2 tracking-tight">Authentication Required</h3>
+                    <p class="text-sm text-gray-400 font-medium leading-relaxed">Sign in to your Emirates Group account to access the requisition terminal.</p>
+                </div>
+                
+                <div class="space-y-4">
+                    <a href="/myportal/login/" class="w-full bg-[#D71A21] hover:bg-red-800 text-white py-4 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-sm flex justify-center items-center">
+                        Sign In to Portal &rarr;
+                    </a>
+                    
+                    <div class="relative flex items-center py-4">
+                        <div class="flex-grow border-t border-gray-800"></div>
+                        <span class="flex-shrink-0 mx-4 text-gray-500 text-[10px] font-bold uppercase tracking-widest">Or</span>
+                        <div class="flex-grow border-t border-gray-800"></div>
+                    </div>
+
+                    <a href="/myportal/signup/" class="w-full bg-transparent border border-gray-600 hover:border-white text-gray-300 hover:text-white py-4 rounded text-xs font-bold uppercase tracking-widest transition-colors shadow-sm flex justify-center items-center">
+                        Create a Member Account
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="request-desk" class="hidden bg-[#111827] rounded-2xl shadow-2xl border border-gray-800 overflow-hidden flex flex-col lg:flex-row transition-opacity duration-500">
+            
+            <div class="w-full lg:w-4/12 bg-black p-10 md:p-14 flex flex-col justify-between relative">
+                <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#D71A21 1px, transparent 1px); background-size: 30px 30px;"></div>
+                
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-serif font-bold text-white uppercase tracking-tight mb-2">Flight <br>Requisition.</h2>
+                    <p class="text-[10px] text-[#D71A21] font-bold uppercase tracking-widest mb-10 border-b border-gray-800 pb-4">Authenticated Profile</p>
+                    
+                    <div class="space-y-8 text-sm text-gray-400 leading-relaxed mb-8 font-medium">
+                        <div>
+                            <strong class="text-white block mb-1 uppercase tracking-widest text-[10px]">PTFS Exclusivity</strong>
+                            Emirates Executive flights currently operate strictly within Pilot Training Flight Simulator.
+                        </div>
+                        <div>
+                            <strong class="text-white block mb-1 uppercase tracking-widest text-[10px]">Dispatch Review</strong>
+                            All requests are manually reviewed. You can track your flight's "Pending", "Approved", or "Denied" status in your MyPortal Dashboard.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-800 pt-8 mt-8 relative z-10">
+                    <a href="/myportal/" class="flex items-center justify-center w-full bg-white/10 hover:bg-white/20 text-white border border-white/20 py-3.5 rounded text-[10px] font-bold uppercase tracking-widest transition-colors shadow-sm mb-4">
+                        Go to My Portal &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-8/12 p-8 md:p-16 relative">
+                <div class="mb-12 border-b border-gray-800 pb-8">
+                    <h3 class="text-2xl font-bold text-white mb-2 tracking-tight">Passenger Manifest & Routing</h3>
+                    <p class="text-sm text-gray-400 font-medium">Please provide accurate logistical data for Corporate Dispatch.</p>
+                </div>
+
+                <div id="request-alert" class="hidden mb-8 p-5 rounded text-[10px] font-bold uppercase tracking-widest border">
+                    <span id="request-alert-text"></span>
+                </div>
+
+                <form id="executive-form" class="space-y-8">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">First Name</label>
+                            <input type="text" id="req-firstname" class="executive-input" placeholder="e.g. John" required>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Last Name</label>
+                            <input type="text" id="req-lastname" class="executive-input" placeholder="e.g. Doe" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Email Address</label>
+                        <input type="email" id="req-email" class="executive-input" placeholder="johndoe@example.com" required>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block text-[10px] font-bold text-[#5865F2] uppercase tracking-widest mb-1">Discord Username</label>
+                            <input type="text" id="req-discord-user" class="executive-input" placeholder="e.g. johndoe#1234 or johndoe" required>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-[#5865F2] uppercase tracking-widest mb-1">Discord ID</label>
+                            <input type="text" id="req-discord-id" class="executive-input font-mono" placeholder="18 Digit Numerical ID" required pattern="[0-9]+">
+                        </div>
+                    </div>
+
+                    <div class="w-full h-px bg-gray-800 my-8"></div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Departure Airport</label>
+                            <input type="text" id="req-departure" class="executive-input uppercase" placeholder="e.g. Greater Rockford (GRF)" required>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Arrival Airport</label>
+                            <input type="text" id="req-arrival" class="executive-input uppercase" placeholder="e.g. Tokyo (DXB)" required>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Time of Departure</label>
+                            <input type="time" id="req-time" class="executive-input" required>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Timezone</label>
+                            <select id="req-timezone" class="executive-input appearance-none cursor-pointer" required>
+                                <option value="" disabled selected>Select...</option>
+                                <option value="EST">EST (Eastern)</option>
+                                <option value="CST">CST (Central)</option>
+                                <option value="PST">PST (Pacific)</option>
+                                <option value="GMT">GMT / UTC</option>
+                                <option value="CET">CET (Central Europe)</option>
+                                <option value="GST">GST (Gulf Standard)</option>
+                                <option value="Other">Other (Specify in notes)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Total Passengers</label>
+                            <input type="number" id="req-pax" class="executive-input" min="1" max="19" placeholder="Max 19" required>
+                        </div>
+                    </div>
+
+                    <div class="pt-8">
+                        <button type="submit" id="req-submit-btn" class="w-full bg-[#D71A21] hover:bg-red-800 text-white py-5 rounded text-[11px] font-bold uppercase tracking-[0.2em] transition-colors shadow-lg">
+                            Submit Requisition &rarr;
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-[#111827] text-white py-16 px-6 md:px-12 mt-auto border-t border-gray-800">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
+      <div class="md:col-span-2">
+        <h3 class="font-bold text-xl md:text-2xl mb-3 uppercase tracking-widest font-serif">Emirates Group Roblox</h3>
+        <p class="text-sm text-gray-400 max-w-md mb-8 leading-relaxed">The premier virtual aviation organization on the Roblox platform. Setting the standard for structural perfection and digital realism.</p>
+        
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2 inline-block">Connect With Us</h4>
+        <div class="flex flex-wrap items-center gap-5 text-2xl text-gray-400 mt-2">
+          <a href="https://discord.gg/nDAZ3p475V7" target="_blank" class="hover:text-[#5865F2] hover:scale-110 transition-all duration-300" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.roblox.com/communities/34795673/Emirates-Group-Roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300 flex items-center" aria-label="Roblox">
+            <svg class="w-[1em] h-[1em] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.445 0L0 20.457l18.555 3.543L24 3.543 5.445 0zm10.125 14.596l-4.102-.782-.782-4.102 4.102.782.782 4.102z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/emiratesgrouproblox/" target="_blank" class="hover:text-[#E1306C] hover:scale-110 transition-all duration-300" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://t.me/+QGw6jrQaFn45OGE8" target="_blank" class="hover:text-[#229ED9] hover:scale-110 transition-all duration-300" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-ec2thID4Fl5ZrXqvoJMog" target="_blank" class="hover:text-[#FF0000] hover:scale-110 transition-all duration-300" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@emirates.group.roblox" target="_blank" class="hover:text-white hover:scale-110 transition-all duration-300" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://trello.com/invite/b/6924057b5f69cfd3900039e5/ATTI687f45aae16291ea7b7bb4aad286254097D7A3DF/emirates-group-roblox" target="_blank" class="hover:text-[#0052CC] hover:scale-110 transition-all duration-300" aria-label="Trello"><i class="fa-brands fa-trello"></i></a>
+          <a href="https://www.linkedin.com/company/emirates-group-roblox-vision2026" target="_blank" class="hover:text-[#0A66C2] hover:scale-110 transition-all duration-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">EGR Network</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://ek.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Emirates Airline</a></li>
+          <li><a href="https://fz.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Fly Dubai</a></li>
+          <li><a href="https://careers.emiratesgrouproblox.link" target="_blank" class="hover:text-[#D71A21] transition-colors"><span class="text-[#D71A21] mr-2">></span> Careers Portal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs border-b border-gray-700 pb-2">Tyler Nicholas Group</h4>
+        <ul class="space-y-3 text-sm text-gray-400 font-semibold">
+          <li><a href="https://tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> TNG Hub</a></li>
+          <li><a href="https://tyler.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> The Founder</a></li>
+          <li><a href="https://payhip.com/FalconLtd" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> Falcon LTD</a></li>
+          <li><a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" class="hover:text-white transition-colors"><span class="text-[#D71A21] mr-2">></span> BlueWave Digital</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs text-gray-500 font-bold tracking-wider uppercase text-center md:text-left gap-4">
+      <p>&copy; 2026 Emirates Group Roblox. All rights reserved.</p>
+      <p>A proud subsidiary of the <a href="https://tylernicholasgroup.com" class="text-gray-300 hover:text-white transition-colors">Tyler Nicholas Group</a> Network</p>
+    </div>
+  </footer>
+
+  <script>
+    // --- ABSOLUTE FAILSAFE LOADER LOGIC ---
+    let loaderHidden = false;
+    
+    function hideLoader() {
+        if(loaderHidden) return;
+        loaderHidden = true;
+        
+        if (typeof progressInterval !== 'undefined') clearInterval(progressInterval);
+        const percEl = document.getElementById('loader-perc');
+        const fillEl = document.getElementById('loader-fill');
+        if(percEl) percEl.innerText = '100';
+        if(fillEl) fillEl.style.width = '100%';
+        
+        setTimeout(() => {
+            const container = document.getElementById('loader-animate-container');
+            if(container) container.classList.add('zoom-through');
+            setTimeout(() => {
+                const loader = document.getElementById('egr-loader');
+                if(loader) loader.style.display = 'none'; 
+            }, 600);
+        }, 300);
+    }
+
+    setTimeout(hideLoader, 2500);
+
+    const progressInterval = setInterval(() => {
+        if(loaderHidden) return;
+        const el = document.getElementById('loader-perc');
+        const fill = document.getElementById('loader-fill');
+        if(!el || !fill) return;
+        let perc = parseInt(el.innerText) || 0;
+        perc += Math.floor(Math.random() * 15) + 5; 
+        if (perc >= 99) perc = 99; 
+        el.innerText = perc;
+        fill.style.width = perc + '%';
+    }, 80);
+
+    window.addEventListener('load', hideLoader);
+
+    // --- SUPABASE & UI LOGIC ---
+    let currentUser = null;
+
+    document.addEventListener("DOMContentLoaded", async () => {
+
+      // Initialize Supabase
+      if (!window.supabase) {
+          console.error("Supabase CDN failed to load.");
+          hideLoader();
+          return;
+      }
+
+      const supabase = window.supabase.createClient(
+        'https://zboyabxzhptnxnmofvcz.supabase.co', 
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
+      );
+
+      const authGate = document.getElementById('auth-gate');
+      const requestDesk = document.getElementById('request-desk');
+      
+      // Toggle UI based on session
+      function updateUIForSession(session) {
+          if (session) {
+              currentUser = session.user;
+              authGate.classList.add('hidden');
+              requestDesk.classList.remove('hidden');
+              
+              // Auto-fill email if possible
+              if(currentUser.email) {
+                  document.getElementById('req-email').value = currentUser.email;
+              }
+          } else {
+              currentUser = null;
+              authGate.classList.remove('hidden');
+              requestDesk.classList.add('hidden');
+          }
+      }
+
+      try {
+          const { data: { session }, error } = await supabase.auth.getSession();
+          if (error) throw error;
+          updateUIForSession(session);
+      } catch (err) {
+          console.error(err);
+      }
+
+      supabase.auth.onAuthStateChange((_event, session) => {
+          updateUIForSession(session);
+      });
+
+      // --- FORM SUBMISSION ---
+      const execForm = document.getElementById('executive-form');
+      const submitBtn = document.getElementById('req-submit-btn');
+      const alertBox = document.getElementById('request-alert');
+      const alertText = document.getElementById('request-alert-text');
+
+      function showAlert(message, type) {
+          alertBox.classList.remove('hidden', 'bg-red-900/50', 'text-red-400', 'border-red-900', 'bg-green-900/50', 'text-green-400', 'border-green-900');
+          
+          if(type === 'error') {
+              alertBox.classList.add('bg-red-900/50', 'text-red-400', 'border-red-900');
+              alertText.innerHTML = `<strong>Encryption Error:</strong> ${message}`;
+          } else {
+              alertBox.classList.add('bg-green-900/50', 'text-green-400', 'border-green-900');
+              alertText.innerHTML = `<strong>Transmission Success:</strong> ${message}`;
+          }
+      }
+
+      execForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          if(!currentUser) return;
+
+          // Capture Data
+          const payload = {
+              user_id: currentUser.id,
+              first_name: document.getElementById('req-firstname').value.trim(),
+              last_name: document.getElementById('req-lastname').value.trim(),
+              email: document.getElementById('req-email').value.trim(),
+              discord_username: document.getElementById('req-discord-user').value.trim(),
+              discord_id: document.getElementById('req-discord-id').value.trim(),
+              departure_airport: document.getElementById('req-departure').value.trim(),
+              arrival_airport: document.getElementById('req-arrival').value.trim(),
+              time_of_departure: document.getElementById('req-time').value.trim(),
+              timezone: document.getElementById('req-timezone').value.trim(),
+              number_of_passengers: parseInt(document.getElementById('req-pax').value)
+          };
+
+          submitBtn.innerHTML = 'TRANSMITTING TO DISPATCH...';
+          submitBtn.disabled = true;
+          alertBox.classList.add('hidden');
+
+          const { error } = await supabase.from('egr_executive_flight_requests').insert([payload]);
+
+          if (error) {
+              console.error(error);
+              showAlert("An error occurred while logging your request to the secure database. Please try again.", "error");
+          } else {
+              showAlert("Your bespoke flight request has been securely submitted to Corporate Dispatch. You may track its status via your MyPortal Dashboard.", "success");
+              execForm.reset();
+              // Re-fill email
+              if(currentUser.email) document.getElementById('req-email').value = currentUser.email;
+          }
+
+          submitBtn.innerHTML = 'Submit Requisition &rarr;';
+          submitBtn.disabled = false;
+      });
+
+    });
+  </script>
+</body>
+</html>
