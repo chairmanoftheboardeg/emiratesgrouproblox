@@ -243,6 +243,7 @@
 
             <div id="auth-gate-wrapper">
                 <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden flex flex-col md:flex-row">
+                    
                     <div class="w-full md:w-5/12 bg-[#111827] p-10 md:p-16 flex flex-col justify-center">
                         <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Level 4 Security</span>
                         <h2 class="text-3xl font-serif font-bold text-white uppercase tracking-tight mb-6 leading-tight">Identity <br>Verification.</h2>
@@ -259,7 +260,7 @@
                             <span id="exec-login-alert-text"></span>
                         </div>
 
-                        <form id="exec-login-form" class="space-y-6">
+                        <form id="exec-login-form" class="space-y-6" onsubmit="handleExecLogin(event)">
                             <div>
                                 <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Corporate Email</label>
                                 <input type="email" id="exec-login-email" class="executive-input" placeholder="Enter your email" required>
@@ -300,14 +301,14 @@
                             <span id="request-alert-text"></span>
                         </div>
 
-                        <form id="executive-form" class="space-y-12">
+                        <form id="executive-form" class="space-y-12" onsubmit="handleExecSubmit(event)">
                             
                             <div>
                                 <h4 class="text-sm font-bold text-[#111827] uppercase tracking-widest mb-6 border-b border-gray-100 pb-2">1. Fleet Selection</h4>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end bg-gray-50 p-6 rounded-xl border border-gray-100">
                                     <div>
                                         <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Select Aircraft</label>
-                                        <select id="req-aircraft" class="executive-input appearance-none cursor-pointer" required>
+                                        <select id="req-aircraft" class="executive-input appearance-none cursor-pointer" required onchange="updatePrice()">
                                             <option value="" disabled selected>Choose Airframe...</option>
                                             <option value="Learjet 45">Learjet 45 (85 R$)</option>
                                             <option value="Lineage 1000">Lineage 1000 (160 R$)</option>
@@ -529,9 +530,6 @@
     window.addEventListener('load', hideLoader);
 
     // --- DYNAMIC AIRCRAFT PRICING ---
-    const aircraftSelect = document.getElementById('req-aircraft');
-    const priceDisplay = document.getElementById('price-display');
-    
     const aircraftPrices = {
         'Learjet 45': 85,
         'Lineage 1000': 160,
@@ -539,9 +537,11 @@
         'ACJ350': 760
     };
 
-    if(aircraftSelect) {
-        aircraftSelect.addEventListener('change', (e) => {
-            const price = aircraftPrices[e.target.value];
+    function updatePrice() {
+        const select = document.getElementById('req-aircraft');
+        const priceDisplay = document.getElementById('price-display');
+        if(select && priceDisplay) {
+            const price = aircraftPrices[select.value];
             if(price) {
                 priceDisplay.innerText = price + ' R$';
                 priceDisplay.setAttribute('data-price', price);
@@ -549,30 +549,30 @@
                 priceDisplay.innerText = '-- R$';
                 priceDisplay.setAttribute('data-price', '0');
             }
-        });
+        }
     }
 
-    // --- BULLETPROOF SUPABASE AUTH & LIVE LOGIN LOGIC ---
+    // --- BULLETPROOF SUPABASE AUTH LOGIC (Global Functions to stop ? reload) ---
     let currentUser = null;
+    let supabase = null;
 
     document.addEventListener("DOMContentLoaded", () => {
-
       if (!window.supabase) {
           console.error("Supabase CDN failed to load.");
           hideLoader();
           return;
       }
 
-      const supabase = window.supabase.createClient(
+      supabase = window.supabase.createClient(
         'https://zboyabxzhptnxnmofvcz.supabase.co', 
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
       );
 
-      const authGateWrapper = document.getElementById('auth-gate-wrapper');
-      const requestDeskWrapper = document.getElementById('request-desk-wrapper');
-      
       // Force UI updates via strictly overriding display styles
       function updateUIForSession(session) {
+          const authGateWrapper = document.getElementById('auth-gate-wrapper');
+          const requestDeskWrapper = document.getElementById('request-desk-wrapper');
+
           if (session) {
               currentUser = session.user;
               
@@ -591,7 +591,6 @@
           }
       }
 
-      // Check existing session
       supabase.auth.getSession().then(({ data: { session }, error }) => {
           if (error) console.error("Session error:", error);
           updateUIForSession(session);
@@ -600,112 +599,108 @@
       supabase.auth.onAuthStateChange((_event, session) => {
           updateUIForSession(session);
       });
-
-      // --- LIVE LOGIN FORM LOGIC ---
-      const execLoginForm = document.getElementById('exec-login-form');
-      const execLoginBtn = document.getElementById('exec-login-btn');
-      const execLoginAlert = document.getElementById('exec-login-alert');
-      const execLoginAlertText = document.getElementById('exec-login-alert-text');
-
-      if(execLoginForm) {
-          execLoginForm.addEventListener('submit', async (e) => {
-              e.preventDefault();
-              const email = document.getElementById('exec-login-email').value.trim();
-              const password = document.getElementById('exec-login-password').value;
-
-              execLoginBtn.innerHTML = 'VERIFYING...';
-              execLoginBtn.disabled = true;
-              execLoginAlert.style.display = 'none';
-
-              const { error } = await supabase.auth.signInWithPassword({
-                  email: email,
-                  password: password,
-              });
-
-              if (error) {
-                  execLoginAlert.style.display = 'block';
-                  execLoginAlertText.innerText = "Authentication Failed: " + error.message;
-                  execLoginBtn.innerHTML = 'Verify Identity &rarr;';
-                  execLoginBtn.disabled = false;
-              } else {
-                  // Success! The onAuthStateChange listener will automatically flip the UI.
-                  execLoginForm.reset();
-                  execLoginBtn.innerHTML = 'Verify Identity &rarr;';
-                  execLoginBtn.disabled = false;
-              }
-          });
-      }
-
-      // --- FLIGHT REQUISITION FORM SUBMISSION ---
-      const execForm = document.getElementById('executive-form');
-      const submitBtn = document.getElementById('req-submit-btn');
-      const alertBox = document.getElementById('request-alert');
-      const alertText = document.getElementById('request-alert-text');
-
-      function showAlert(message, type) {
-          alertBox.style.display = 'block';
-          alertBox.classList.remove('bg-red-50', 'text-red-600', 'border-red-200', 'bg-green-50', 'text-green-700', 'border-green-200');
-          
-          if(type === 'error') {
-              alertBox.classList.add('bg-red-50', 'text-red-600', 'border-red-200');
-              alertText.innerHTML = message;
-          } else {
-              alertBox.classList.add('bg-green-50', 'text-green-700', 'border-green-200');
-              alertText.innerHTML = message;
-          }
-      }
-
-      if(execForm) {
-          execForm.addEventListener('submit', async (e) => {
-              e.preventDefault();
-              if(!currentUser) return;
-
-              const payload = {
-                  user_id: currentUser.id,
-                  first_name: document.getElementById('req-firstname').value.trim(),
-                  last_name: document.getElementById('req-lastname').value.trim(),
-                  email: document.getElementById('req-email').value.trim(),
-                  discord_username: document.getElementById('req-discord-user').value.trim(),
-                  discord_id: document.getElementById('req-discord-id').value.trim(),
-                  departure_airport: document.getElementById('req-departure').value.trim(),
-                  arrival_airport: document.getElementById('req-arrival').value.trim(),
-                  time_of_departure: document.getElementById('req-time').value.trim(),
-                  timezone: document.getElementById('req-timezone').value.trim(),
-                  number_of_passengers: parseInt(document.getElementById('req-pax').value),
-                  
-                  aircraft: document.getElementById('req-aircraft').value,
-                  estimated_price: parseInt(document.getElementById('price-display').getAttribute('data-price') || 0),
-                  helicopter_transfer: document.getElementById('req-heli').checked,
-                  chauffeur_service: document.getElementById('req-chauffeur').checked,
-                  dietary_menu: document.getElementById('req-dietary').checked,
-                  boardroom_setup: document.getElementById('req-boardroom').checked,
-                  pet_onboard: document.getElementById('req-pet').checked,
-                  full_beds_prep: document.getElementById('req-beds').checked,
-                  special_notes: document.getElementById('req-notes').value.trim()
-              };
-
-              submitBtn.innerHTML = 'TRANSMITTING...';
-              submitBtn.disabled = true;
-              alertBox.style.display = 'none';
-
-              const { error } = await supabase.from('egr_executive_flight_requests').insert([payload]);
-
-              if (error) {
-                  console.error(error);
-                  showAlert("An error occurred during secure transmission. Please verify your connection.", "error");
-              } else {
-                  showAlert("Requisition securely transmitted to Corporate Dispatch. Status available in MyPortal.", "success");
-                  execForm.reset();
-                  priceDisplay.innerText = '-- R$';
-                  priceDisplay.setAttribute('data-price', '0');
-                  if(currentUser.email) document.getElementById('req-email').value = currentUser.email;
-              }
-
-              submitBtn.innerHTML = 'Submit Requisition to Dispatch';
-              submitBtn.disabled = false;
-          });
-      }
     });
+
+    // --- GLOBAL LOGIN HANDLER (Hardcoded into HTML onsubmit) ---
+    window.handleExecLogin = async function(event) {
+        event.preventDefault(); // KILLS THE ? RELOAD
+        
+        const execLoginBtn = document.getElementById('exec-login-btn');
+        const execLoginAlert = document.getElementById('exec-login-alert');
+        const execLoginAlertText = document.getElementById('exec-login-alert-text');
+        
+        const email = document.getElementById('exec-login-email').value.trim();
+        const password = document.getElementById('exec-login-password').value;
+
+        execLoginBtn.innerHTML = 'VERIFYING...';
+        execLoginBtn.disabled = true;
+        execLoginAlert.style.display = 'none';
+
+        const { error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password,
+        });
+
+        if (error) {
+            execLoginAlert.style.display = 'block';
+            execLoginAlertText.innerText = "Authentication Failed: " + error.message;
+            execLoginBtn.innerHTML = 'Verify Identity &rarr;';
+            execLoginBtn.disabled = false;
+        } else {
+            // Success! The onAuthStateChange listener will automatically flip the UI.
+            document.getElementById('exec-login-form').reset();
+            execLoginBtn.innerHTML = 'Verify Identity &rarr;';
+            execLoginBtn.disabled = false;
+        }
+    };
+
+    // --- GLOBAL FORM SUBMIT HANDLER (Hardcoded into HTML onsubmit) ---
+    window.handleExecSubmit = async function(event) {
+        event.preventDefault(); // KILLS THE ? RELOAD
+        
+        if(!currentUser || !supabase) return;
+
+        const submitBtn = document.getElementById('req-submit-btn');
+        const alertBox = document.getElementById('request-alert');
+        const alertText = document.getElementById('request-alert-text');
+
+        function showAlert(message, type) {
+            alertBox.style.display = 'block';
+            alertBox.classList.remove('bg-red-50', 'text-red-600', 'border-red-200', 'bg-green-50', 'text-green-700', 'border-green-200');
+            
+            if(type === 'error') {
+                alertBox.classList.add('bg-red-50', 'text-red-600', 'border-red-200');
+                alertText.innerHTML = message;
+            } else {
+                alertBox.classList.add('bg-green-50', 'text-green-700', 'border-green-200');
+                alertText.innerHTML = message;
+            }
+        }
+
+        const payload = {
+            user_id: currentUser.id,
+            first_name: document.getElementById('req-firstname').value.trim(),
+            last_name: document.getElementById('req-lastname').value.trim(),
+            email: document.getElementById('req-email').value.trim(),
+            discord_username: document.getElementById('req-discord-user').value.trim(),
+            discord_id: document.getElementById('req-discord-id').value.trim(),
+            departure_airport: document.getElementById('req-departure').value.trim(),
+            arrival_airport: document.getElementById('req-arrival').value.trim(),
+            time_of_departure: document.getElementById('req-time').value.trim(),
+            timezone: document.getElementById('req-timezone').value.trim(),
+            number_of_passengers: parseInt(document.getElementById('req-pax').value),
+            
+            aircraft: document.getElementById('req-aircraft').value,
+            estimated_price: parseInt(document.getElementById('price-display').getAttribute('data-price') || 0),
+            helicopter_transfer: document.getElementById('req-heli').checked,
+            chauffeur_service: document.getElementById('req-chauffeur').checked,
+            dietary_menu: document.getElementById('req-dietary').checked,
+            boardroom_setup: document.getElementById('req-boardroom').checked,
+            pet_onboard: document.getElementById('req-pet').checked,
+            full_beds_prep: document.getElementById('req-beds').checked,
+            special_notes: document.getElementById('req-notes').value.trim()
+        };
+
+        submitBtn.innerHTML = 'TRANSMITTING...';
+        submitBtn.disabled = true;
+        alertBox.style.display = 'none';
+
+        const { error } = await supabase.from('egr_executive_flight_requests').insert([payload]);
+
+        if (error) {
+            console.error(error);
+            showAlert("An error occurred during secure transmission. Please verify your connection.", "error");
+        } else {
+            showAlert("Requisition securely transmitted to Corporate Dispatch. Status available in MyPortal.", "success");
+            document.getElementById('executive-form').reset();
+            document.getElementById('price-display').innerText = '-- R$';
+            document.getElementById('price-display').setAttribute('data-price', '0');
+            if(currentUser.email) document.getElementById('req-email').value = currentUser.email;
+        }
+
+        submitBtn.innerHTML = 'Submit Requisition to Dispatch';
+        submitBtn.disabled = false;
+    };
   </script>
 </body>
 </html>
