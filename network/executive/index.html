@@ -117,6 +117,7 @@
 
     <section class="py-24 px-6 md:px-12 bg-white relative border-b border-gray-100">
         <div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+            
             <div class="w-full lg:w-1/2 relative h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl group">
                 <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
                 <img src="https://i.ibb.co/GQ6K5YFC/Screenshot-2026-02-28-194600.png" alt="Private Jet Exterior" class="w-full h-full object-cover img-zoom">
@@ -141,6 +142,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -153,6 +155,7 @@
             </div>
 
             <div class="space-y-16">
+                
                 <div class="flex flex-col lg:flex-row items-center gap-12 group">
                     <div class="w-full lg:w-1/2 h-[350px] lg:h-[450px] rounded-2xl overflow-hidden shadow-lg relative">
                         <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
@@ -194,6 +197,7 @@
                         <p class="text-gray-600 leading-relaxed font-medium">Experience a smooth journey on your departure and arrival. Save valuable time with discreet boarding, private terminal access, and chauffeur-drive vehicle transfers.</p>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -237,43 +241,48 @@
                 <p class="text-gray-500 font-medium">Secure your private itinerary. Operations are exclusive to PTFS.</p>
             </div>
 
-            <div id="auth-container" class="min-h-[400px] flex items-center justify-center relative">
-                
-                <div id="auth-loading" class="text-center">
-                    <i class="fa-solid fa-circle-notch fa-spin text-4xl text-[#D71A21] mb-4"></i>
-                    <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Verifying Credentials...</p>
-                </div>
-
-                <div id="auth-gate" style="display: none;" class="w-full bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden flex-col md:flex-row">
+            <div id="auth-gate-wrapper">
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden flex flex-col md:flex-row">
                     <div class="w-full md:w-5/12 bg-[#111827] p-10 md:p-16 flex flex-col justify-center">
-                        <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Secure Portal</span>
+                        <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">Level 4 Security</span>
                         <h2 class="text-3xl font-serif font-bold text-white uppercase tracking-tight mb-6 leading-tight">Identity <br>Verification.</h2>
-                        <p class="text-sm text-gray-400 leading-relaxed font-medium">To protect the privacy of our clients and maintain strict operational security, executive flight requests require an authenticated corporate profile.</p>
+                        <p class="text-sm text-gray-400 leading-relaxed font-medium">For the security and privacy of our executive clients, accessing the requisition terminal requires strict secondary authentication. Please verify your identity to continue.</p>
                     </div>
 
                     <div class="w-full md:w-7/12 p-10 md:p-16 flex flex-col justify-center">
-                        <div class="mb-10 border-b border-gray-100 pb-8">
-                            <h3 class="text-2xl font-bold text-[#111827] mb-2 tracking-tight">Authentication Required</h3>
-                            <p class="text-sm text-gray-500 font-medium">Sign in to your Emirates Group account to access the requisition terminal.</p>
+                        <div class="mb-8 border-b border-gray-100 pb-6">
+                            <h3 class="text-2xl font-bold text-[#111827] mb-2 tracking-tight">Secure Login</h3>
+                            <p class="text-sm text-gray-500 font-medium">Re-authenticate your Emirates Group account to proceed.</p>
                         </div>
                         
-                        <div class="space-y-4">
-                            <a href="/myportal/login/" class="w-full bg-[#111827] hover:bg-[#D71A21] text-white py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-colors shadow-sm flex justify-center items-center">
-                                Sign In to Portal &rarr;
-                            </a>
-                            <div class="relative flex items-center py-4">
-                                <div class="flex-grow border-t border-gray-200"></div>
-                                <span class="flex-shrink-0 mx-4 text-gray-400 text-[10px] font-bold uppercase tracking-widest">Or</span>
-                                <div class="flex-grow border-t border-gray-200"></div>
-                            </div>
-                            <a href="/myportal/signup/" class="w-full bg-white border border-gray-300 hover:border-[#111827] text-gray-600 hover:text-[#111827] py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-colors shadow-sm flex justify-center items-center">
-                                Create a Member Account
-                            </a>
+                        <div id="exec-login-alert" style="display: none;" class="mb-6 p-4 rounded text-[10px] font-bold uppercase tracking-widest border bg-red-50 text-red-600 border-red-200">
+                            <span id="exec-login-alert-text"></span>
                         </div>
+
+                        <form id="exec-login-form" class="space-y-6">
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Corporate Email</label>
+                                <input type="email" id="exec-login-email" class="executive-input" placeholder="Enter your email" required>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Password</label>
+                                <input type="password" id="exec-login-password" class="executive-input" placeholder="••••••••" required>
+                            </div>
+                            <div class="pt-4">
+                                <button type="submit" id="exec-login-btn" class="w-full bg-[#111827] hover:bg-[#D71A21] text-white py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-colors shadow-sm">
+                                    Verify Identity &rarr;
+                                </button>
+                            </div>
+                            <div class="text-center pt-4 border-t border-gray-100 mt-6">
+                                <p class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Don't have an account? <a href="/myportal/signup/" class="text-[#D71A21] hover:text-[#111827]">Create One Here</a></p>
+                            </div>
+                        </form>
                     </div>
                 </div>
+            </div>
 
-                <div id="request-desk" style="display: none;" class="w-full bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+            <div id="request-desk-wrapper" style="display: none;">
+                <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
                     
                     <div class="bg-[#111827] text-white p-8 md:px-12 md:py-8 flex justify-between items-center">
                         <div>
@@ -327,7 +336,7 @@
                                 </div>
                                 <div class="mb-6">
                                     <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Email Address</label>
-                                    <input type="email" id="req-email" class="executive-input" placeholder="johndoe@example.com" required>
+                                    <input type="email" id="req-email" class="executive-input" placeholder="johndoe@example.com" required readonly>
                                 </div>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div>
@@ -485,7 +494,6 @@
         if(loaderHidden) return;
         loaderHidden = true;
         
-        if (typeof progressInterval !== 'undefined') clearInterval(progressInterval);
         const percEl = document.getElementById('loader-perc');
         const fillEl = document.getElementById('loader-fill');
         if(percEl) percEl.innerText = '100';
@@ -504,7 +512,10 @@
     setTimeout(hideLoader, 2500);
 
     const progressInterval = setInterval(() => {
-        if(loaderHidden) return;
+        if(loaderHidden) {
+            clearInterval(progressInterval);
+            return;
+        }
         const el = document.getElementById('loader-perc');
         const fill = document.getElementById('loader-fill');
         if(!el || !fill) return;
@@ -541,19 +552,13 @@
         });
     }
 
-    // --- BULLETPROOF SUPABASE AUTH LOGIC ---
+    // --- BULLETPROOF SUPABASE AUTH & LIVE LOGIN LOGIC ---
     let currentUser = null;
 
     document.addEventListener("DOMContentLoaded", () => {
-      
-      const authLoading = document.getElementById('auth-loading');
-      const authGate = document.getElementById('auth-gate');
-      const requestDesk = document.getElementById('request-desk');
 
       if (!window.supabase) {
           console.error("Supabase CDN failed to load.");
-          if(authLoading) authLoading.style.display = 'none';
-          if(authGate) authGate.style.display = 'flex';
           hideLoader();
           return;
       }
@@ -563,14 +568,16 @@
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
       );
 
-      // Force UI updates via inline styles to break Tailwind constraints
-      function renderUI(session) {
-          if(authLoading) authLoading.style.display = 'none';
-
+      const authGateWrapper = document.getElementById('auth-gate-wrapper');
+      const requestDeskWrapper = document.getElementById('request-desk-wrapper');
+      
+      // Force UI updates via strictly overriding display styles
+      function updateUIForSession(session) {
           if (session) {
               currentUser = session.user;
-              if(authGate) authGate.style.display = 'none';
-              if(requestDesk) requestDesk.style.display = 'block';
+              
+              if(authGateWrapper) authGateWrapper.style.display = 'none';
+              if(requestDeskWrapper) requestDeskWrapper.style.display = 'block';
               
               const emailInput = document.getElementById('req-email');
               if(emailInput && currentUser.email) {
@@ -578,30 +585,58 @@
               }
           } else {
               currentUser = null;
-              if(requestDesk) requestDesk.style.display = 'none';
-              if(authGate) authGate.style.display = 'flex'; 
+              
+              if(authGateWrapper) authGateWrapper.style.display = 'block';
+              if(requestDeskWrapper) requestDeskWrapper.style.display = 'none';
           }
       }
 
-      // Initial Fetch
+      // Check existing session
       supabase.auth.getSession().then(({ data: { session }, error }) => {
-          if (error) {
-              console.error("Session error:", error);
-              renderUI(null);
-          } else {
-              renderUI(session);
-          }
-      }).catch(err => {
-          console.error(err);
-          renderUI(null);
+          if (error) console.error("Session error:", error);
+          updateUIForSession(session);
       });
 
-      // Listen for changes
       supabase.auth.onAuthStateChange((_event, session) => {
-          renderUI(session);
+          updateUIForSession(session);
       });
 
-      // --- FORM SUBMISSION ---
+      // --- LIVE LOGIN FORM LOGIC ---
+      const execLoginForm = document.getElementById('exec-login-form');
+      const execLoginBtn = document.getElementById('exec-login-btn');
+      const execLoginAlert = document.getElementById('exec-login-alert');
+      const execLoginAlertText = document.getElementById('exec-login-alert-text');
+
+      if(execLoginForm) {
+          execLoginForm.addEventListener('submit', async (e) => {
+              e.preventDefault();
+              const email = document.getElementById('exec-login-email').value.trim();
+              const password = document.getElementById('exec-login-password').value;
+
+              execLoginBtn.innerHTML = 'VERIFYING...';
+              execLoginBtn.disabled = true;
+              execLoginAlert.style.display = 'none';
+
+              const { error } = await supabase.auth.signInWithPassword({
+                  email: email,
+                  password: password,
+              });
+
+              if (error) {
+                  execLoginAlert.style.display = 'block';
+                  execLoginAlertText.innerText = "Authentication Failed: " + error.message;
+                  execLoginBtn.innerHTML = 'Verify Identity &rarr;';
+                  execLoginBtn.disabled = false;
+              } else {
+                  // Success! The onAuthStateChange listener will automatically flip the UI.
+                  execLoginForm.reset();
+                  execLoginBtn.innerHTML = 'Verify Identity &rarr;';
+                  execLoginBtn.disabled = false;
+              }
+          });
+      }
+
+      // --- FLIGHT REQUISITION FORM SUBMISSION ---
       const execForm = document.getElementById('executive-form');
       const submitBtn = document.getElementById('req-submit-btn');
       const alertBox = document.getElementById('request-alert');
