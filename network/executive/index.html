@@ -8,6 +8,7 @@
   <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" id="favicon" />
   
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -486,189 +487,161 @@
     </div>
   </footer>
 
-  <script>
-    // --- 1. ABSOLUTE FAILSAFE LOADER ---
-    let loaderHidden = false;
-    
-    function hideLoader() {
-        if(loaderHidden) return;
-        loaderHidden = true;
-        
-        const percEl = document.getElementById('loader-perc');
-        const fillEl = document.getElementById('loader-fill');
-        if(percEl) percEl.innerText = '100';
-        if(fillEl) fillEl.style.width = '100%';
-        
-        setTimeout(() => {
-            const container = document.getElementById('loader-animate-container');
-            if(container) container.classList.add('zoom-through');
-            setTimeout(() => {
-                const loader = document.getElementById('egr-loader');
-                if(loader) loader.style.display = 'none'; 
-            }, 600);
-        }, 300);
-    }
-    setTimeout(hideLoader, 2500);
-    window.addEventListener('load', hideLoader);
+ <script>
+document.addEventListener("DOMContentLoaded", async () => {
 
-    // --- 2. THE MAIN ENGINE (NO INLINE HTML CLASHES) ---
-    document.addEventListener("DOMContentLoaded", () => {
-        
-        // Setup Supabase
-        if (!window.supabase) {
-            console.error("Supabase CDN failed to load.");
-            hideLoader();
+    // ✅ INIT SUPABASE
+    const supabase = window.supabase.createClient(
+        'https://zboyabxzhptnxnmofvcz.supabase.co',
+        'YOUR_PUBLIC_ANON_KEY_HERE'
+    );
+
+    let currentUser = null;
+
+    const loginGateWrapper = document.getElementById('login-gate-wrapper');
+    const requestDeskWrapper = document.getElementById('request-desk-wrapper');
+
+    function setAuthState(session) {
+        if (session) {
+            currentUser = session.user;
+            loginGateWrapper.style.display = 'none';
+            requestDeskWrapper.style.display = 'block';
+
+            document.getElementById('req-email').value = currentUser.email;
+        } else {
+            currentUser = null;
+            requestDeskWrapper.style.display = 'none';
+            loginGateWrapper.style.display = 'block';
+        }
+    }
+
+    // ✅ CHECK SESSION
+    const { data: { session } } = await supabase.auth.getSession();
+    setAuthState(session);
+
+    // ✅ LISTEN FOR LOGIN
+    supabase.auth.onAuthStateChange((_event, session) => {
+        setAuthState(session);
+    });
+
+    // =========================
+    // 🔐 LOGIN SYSTEM
+    // =========================
+    const loginForm = document.getElementById('exec-login-form');
+
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('login-email').value.trim();
+        const password = document.getElementById('login-password').value;
+
+        const btn = document.getElementById('login-btn');
+        const alertBox = document.getElementById('login-alert');
+        const alertText = document.getElementById('login-alert-text');
+
+        if (!email || !password) return;
+
+        btn.innerText = "VERIFYING...";
+        btn.disabled = true;
+        alertBox.style.display = "none";
+
+        const { error } = await supabase.auth.signInWithPassword({
+            email,
+            password
+        });
+
+        if (error) {
+            alertBox.style.display = "block";
+            alertText.innerText = error.message;
+            btn.innerText = "Verify Identity →";
+            btn.disabled = false;
+        } else {
+            loginForm.reset();
+        }
+    });
+
+    // =========================
+    // ✈️ AIRCRAFT PRICING
+    // =========================
+    const aircraftPrices = {
+        'Learjet 45': 85,
+        'Lineage 1000': 160,
+        'BBJ 787': 360,
+        'ACJ350': 760
+    };
+
+    document.getElementById('req-aircraft').addEventListener('change', (e) => {
+        const price = aircraftPrices[e.target.value] || 0;
+        const display = document.getElementById('price-display');
+
+        display.innerText = price ? price + " R$" : "-- R$";
+        display.setAttribute("data-price", price);
+    });
+
+    // =========================
+    // 🧾 FORM SUBMISSION
+    // =========================
+    const execForm = document.getElementById('executive-form');
+
+    execForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (!currentUser) return;
+
+        const btn = document.getElementById('req-submit-btn');
+        const alertBox = document.getElementById('request-alert');
+        const alertText = document.getElementById('request-alert-text');
+
+        const payload = {
+            user_id: currentUser.id,
+            first_name: document.getElementById('req-firstname').value,
+            last_name: document.getElementById('req-lastname').value,
+            email: currentUser.email,
+            discord_username: document.getElementById('req-discord-user').value,
+            discord_id: document.getElementById('req-discord-id').value,
+            departure_airport: document.getElementById('req-departure').value,
+            arrival_airport: document.getElementById('req-arrival').value,
+            time_of_departure: document.getElementById('req-time').value,
+            timezone: document.getElementById('req-timezone').value,
+            number_of_passengers: parseInt(document.getElementById('req-pax').value),
+            aircraft: document.getElementById('req-aircraft').value,
+            estimated_price: parseInt(document.getElementById('price-display').dataset.price || 0),
+            helicopter_transfer: document.getElementById('req-heli').checked,
+            chauffeur_service: document.getElementById('req-chauffeur').checked,
+            dietary_menu: document.getElementById('req-dietary').checked,
+            boardroom_setup: document.getElementById('req-boardroom').checked,
+            pet_onboard: document.getElementById('req-pet').checked,
+            full_beds_prep: document.getElementById('req-beds').checked,
+            special_notes: document.getElementById('req-notes').value
+        };
+
+        if (!payload.aircraft) {
+            alertBox.style.display = "block";
+            alertText.innerText = "Please select an aircraft.";
             return;
         }
 
-        const supabase = window.supabase.createClient(
-            'https://zboyabxzhptnxnmofvcz.supabase.co', 
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
-        );
+        btn.innerText = "TRANSMITTING...";
+        btn.disabled = true;
 
-        let currentUser = null;
-        const loginGateWrapper = document.getElementById('login-gate-wrapper');
-        const requestDeskWrapper = document.getElementById('request-desk-wrapper');
-        
-        // --- Core UI Toggler ---
-        function setAuthState(session) {
-            if (session) {
-                currentUser = session.user;
-                loginGateWrapper.style.display = 'none';
-                requestDeskWrapper.style.display = 'block';
-                
-                const emailInput = document.getElementById('req-email');
-                if(emailInput) emailInput.value = currentUser.email;
-            } else {
-                currentUser = null;
-                requestDeskWrapper.style.display = 'none';
-                loginGateWrapper.style.display = 'block';
-            }
+        const { error } = await supabase
+            .from('egr_executive_flight_requests')
+            .insert([payload]);
+
+        if (error) {
+            alertBox.style.display = "block";
+            alertText.innerText = "Submission failed.";
+        } else {
+            alertBox.style.display = "block";
+            alertText.innerText = "Request submitted successfully.";
+            execForm.reset();
         }
 
-        // --- Initial Session Check ---
-        supabase.auth.getSession().then(({ data: { session }, error }) => {
-            if (error) console.error("Session Error:", error);
-            setAuthState(session);
-        });
-
-        // --- Live Auth Listener ---
-        supabase.auth.onAuthStateChange((_event, session) => {
-            setAuthState(session);
-        });
-
-        // --- Dynamic Aircraft Pricing ---
-        const aircraftSelect = document.getElementById('req-aircraft');
-        const priceDisplay = document.getElementById('price-display');
-        const aircraftPrices = { 'Learjet 45': 85, 'Lineage 1000': 160, 'BBJ 787': 360, 'ACJ350': 760 };
-
-        if(aircraftSelect && priceDisplay) {
-            aircraftSelect.addEventListener('change', (e) => {
-                const price = aircraftPrices[e.target.value];
-                if(price) {
-                    priceDisplay.innerText = price + ' R$';
-                    priceDisplay.setAttribute('data-price', price);
-                } else {
-                    priceDisplay.innerText = '-- R$';
-                    priceDisplay.setAttribute('data-price', '0');
-                }
-            });
-        }
-
-        // --- 100% SECURE LOGIN SUBMISSION ---
-        const loginForm = document.getElementById('exec-login-form');
-        if (loginForm) {
-            loginForm.addEventListener('submit', async (e) => {
-                e.preventDefault(); // STOPS THE PAGE FROM RELOADING OR ADDING A '?'
-
-                const loginBtn = document.getElementById('login-btn');
-                const loginAlert = document.getElementById('login-alert');
-                const loginAlertText = document.getElementById('login-alert-text');
-                
-                const email = document.getElementById('login-email').value.trim();
-                const password = document.getElementById('login-password').value;
-
-                loginBtn.innerHTML = 'VERIFYING...';
-                loginBtn.disabled = true;
-                loginAlert.style.display = 'none';
-
-                const { error } = await supabase.auth.signInWithPassword({ email, password });
-
-                if (error) {
-                    loginAlert.style.display = 'block';
-                    loginAlertText.innerText = "Authentication Failed: " + error.message;
-                    loginBtn.innerHTML = 'Verify Identity &rarr;';
-                    loginBtn.disabled = false;
-                } else {
-                    // Success! The onAuthStateChange listener will instantly hide this gate.
-                    loginForm.reset();
-                    loginBtn.innerHTML = 'Verify Identity &rarr;';
-                    loginBtn.disabled = false;
-                }
-            });
-        }
-
-        // --- 100% SECURE FLIGHT REQUISITION SUBMISSION ---
-        const execForm = document.getElementById('executive-form');
-        if (execForm) {
-            execForm.addEventListener('submit', async (e) => {
-                e.preventDefault(); // STOPS THE PAGE FROM RELOADING
-                if(!currentUser) return;
-
-                const submitBtn = document.getElementById('req-submit-btn');
-                const alertBox = document.getElementById('request-alert');
-                const alertText = document.getElementById('request-alert-text');
-
-                const payload = {
-                    user_id: currentUser.id,
-                    first_name: document.getElementById('req-firstname').value.trim(),
-                    last_name: document.getElementById('req-lastname').value.trim(),
-                    email: document.getElementById('req-email').value.trim(),
-                    discord_username: document.getElementById('req-discord-user').value.trim(),
-                    discord_id: document.getElementById('req-discord-id').value.trim(),
-                    departure_airport: document.getElementById('req-departure').value.trim(),
-                    arrival_airport: document.getElementById('req-arrival').value.trim(),
-                    time_of_departure: document.getElementById('req-time').value.trim(),
-                    timezone: document.getElementById('req-timezone').value.trim(),
-                    number_of_passengers: parseInt(document.getElementById('req-pax').value),
-                    aircraft: document.getElementById('req-aircraft').value,
-                    estimated_price: parseInt(document.getElementById('price-display').getAttribute('data-price') || 0),
-                    helicopter_transfer: document.getElementById('req-heli').checked,
-                    chauffeur_service: document.getElementById('req-chauffeur').checked,
-                    dietary_menu: document.getElementById('req-dietary').checked,
-                    boardroom_setup: document.getElementById('req-boardroom').checked,
-                    pet_onboard: document.getElementById('req-pet').checked,
-                    full_beds_prep: document.getElementById('req-beds').checked,
-                    special_notes: document.getElementById('req-notes').value.trim()
-                };
-
-                submitBtn.innerHTML = 'TRANSMITTING...';
-                submitBtn.disabled = true;
-                alertBox.style.display = 'none';
-
-                const { error } = await supabase.from('egr_executive_flight_requests').insert([payload]);
-
-                if (error) {
-                    console.error(error);
-                    alertBox.style.display = 'block';
-                    alertBox.className = 'mb-8 p-5 rounded-lg text-[11px] font-bold uppercase tracking-widest border bg-red-50 text-red-600 border-red-200';
-                    alertText.innerHTML = "An error occurred during secure transmission. Please try again.";
-                } else {
-                    alertBox.style.display = 'block';
-                    alertBox.className = 'mb-8 p-5 rounded-lg text-[11px] font-bold uppercase tracking-widest border bg-green-50 text-green-700 border-green-200';
-                    alertText.innerHTML = "Requisition securely transmitted to Corporate Dispatch. Status available in MyPortal.";
-                    
-                    execForm.reset();
-                    priceDisplay.innerText = '-- R$';
-                    priceDisplay.setAttribute('data-price', '0');
-                    if(currentUser.email) document.getElementById('req-email').value = currentUser.email;
-                }
-
-                submitBtn.innerHTML = 'Submit Requisition to Dispatch';
-                submitBtn.disabled = false;
-            });
-        }
+        btn.innerText = "Submit Requisition to Dispatch";
+        btn.disabled = false;
     });
-  </script>
+
+});
+</script>
 </body>
 </html>
