@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Emirates Investors | Emirates Group Roblox</title>
+  <title>Emirates Investors | Tyler Nicholas Group</title>
   
   <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" id="favicon" />
   
@@ -48,13 +48,25 @@
     ::-webkit-scrollbar-track { background: #f9fafb; }
     ::-webkit-scrollbar-thumb { background: #111827; border-radius: 4px; }
 
-    /* Luxury Hover Effects */
-    .img-zoom { transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-    .group:hover .img-zoom { transform: scale(1.05); }
+    /* Luxury Floating Image Handling */
+    .floating-chairman-img {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 10;
+        transform: translate(20%, 0);
+        mask-image: linear-gradient(to top, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+    }
 
-    /* Prestige Card */
-    .prestige-card { transition: all 0.4s ease; border-left: 3px solid transparent; }
-    .prestige-card:hover { border-left-color: #D71A21; transform: translateX(5px); background-color: #f9fafb; }
+    @media (max-width: 1024px) {
+        .floating-chairman-img {
+            position: relative;
+            transform: translate(0, 0);
+            max-width: 70%;
+            margin: 0 auto;
+            display: block;
+        }
+    }
   </style>
 </head>
 <body class="flex flex-col min-h-screen relative">
@@ -79,55 +91,64 @@
     </a>
   </nav>
 
-  <header class="relative text-white py-32 md:py-48 px-6 overflow-hidden">
-    <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop');"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-[#111827] via-[#111827]/90 to-[#111827]/40 z-10"></div>
+  <header class="relative bg-black text-white py-48 md:py-64 px-6 overflow-hidden">
+    <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20" style="background-image: url('https://i.ibb.co/0ygv58Sc/Screenshot-2026-02-28-162628.png');"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/80 to-[#111827]/60 z-10"></div>
     
-    <div class="relative z-20 max-w-7xl mx-auto flex flex-col items-start text-left">
-      <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block flex items-center">
-          <div class="w-8 h-px bg-[#D71A21] mr-3"></div> The Inner Circle
+    <div class="relative z-20 max-w-7xl mx-auto flex flex-col items-center text-center">
+      
+      <img src="https://i.ibb.co/0yFVFYmz/E-removebg-preview.png" class="h-24 md:h-32 mb-10 object-contain drop-shadow-2xl" alt="Investors Vanguard Logo">
+      
+      <span class="text-[#D71A21] font-bold tracking-[0.4em] uppercase text-[10px] mb-6 block flex items-center">
+          <div class="w-12 h-px bg-[#D71A21] mr-4"></div> Cadre of Stakeholders
       </span>
       
-      <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight tracking-tight uppercase drop-shadow-lg text-white">
-        The Emirates <br><span class="text-[#D71A21]">Investors.</span>
+      <h1 class="text-5xl md:text-7xl lg:text-9xl font-extrabold mb-8 leading-tight tracking-tight uppercase drop-shadow-lg text-white">
+        Emirates <br><span class="text-[#D71A21]">Investors.</span>
       </h1>
-      <div class="w-12 h-1 bg-[#D71A21] mb-8"></div>
-      <p class="text-gray-300 md:text-xl font-light tracking-wide max-w-2xl leading-relaxed mb-10">You are not just a passenger. You are not just staff. You are a fundamental stakeholder in the ultimate virtual aviation experience.</p>
+      <div class="w-16 h-1.5 bg-[#D71A21] mb-10"></div>
+      <p class="text-gray-300 md:text-2xl font-light tracking-wide max-w-2xl leading-relaxed mb-12">Immersive virtual connection is the next frontier. You are not merely a participant; you are a critical stakeholder in defining the new standard of virtual aviation.</p>
       
-      <div class="inline-flex items-center bg-white/5 border border-white/10 backdrop-blur-md px-6 py-3 rounded-full text-[10px] font-bold text-white uppercase tracking-widest shadow-xl">
-          <i class="fa-solid fa-crown text-[#D71A21] mr-3"></i> Premium Membership Class
+      <div class="inline-flex items-center bg-white/5 border border-white/10 backdrop-blur-sm px-8 py-4 rounded-full text-[10px] font-bold text-white uppercase tracking-widest shadow-xl">
+          Tyler Nicholas Group Vanguard Partner
       </div>
     </div>
   </header>
 
   <main class="flex-grow bg-white relative overflow-hidden">
 
-    <section class="py-32 px-6 md:px-12 bg-white relative border-b border-gray-100 text-center">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl md:text-5xl font-serif font-bold text-[#111827] mb-10 tracking-tight">More than a donor.<br>A stakeholder in our future.</h2>
+    <section class="py-32 lg:py-48 px-6 md:px-12 bg-white relative">
+        <div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 relative z-20">
             
-            <p class="text-gray-500 leading-relaxed text-lg font-medium mb-8">The Emirates Investors Division is a premium membership class reserved for our most dedicated, high-trust financial supporters. By contributing Robux, assets, and partnerships to the growth of the Emirates Group, you transcend the standard user experience.</p>
-            
-            <p class="text-[#111827] leading-relaxed text-xl font-serif italic mb-12">"Investors form the absolute core of our brand, unlocking an unparalleled tier of privileges, influence, and recognition across every corner of our global network."</p>
+            <div class="w-full lg:w-1/2 flex flex-col justify-center">
+                <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block flex items-center">
+                    A Tyler Nicholas Group Company
+                </span>
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-[#111827] mb-12 tracking-tight">An inspiring opportunity to shape the standard.</h2>
+                
+                <div class="space-y-10 text-gray-700 font-medium leading-relaxed text-lg">
+                    <p>Immersive virtual technology is the definitive nexus of future global interaction, connecting cultures and communities in unprecedented ways. Within this frontier, Emirates Group Roblox is not a game; it is the infrastructure benchmark for virtual aviation realism, professionalism, and structural perfection.</p>
+                    
+                    <p class="border-l-4 border-[#D71A21] pl-8 font-serif text-xl italic text-[#111827]">"TNG doesn't just manage standard groups; we partner with visionaries. We are inviting an exclusive cadre of visionaries—Investors, not just standard supporters—into the inner circle."</p>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-[#111827]">
-                <div>
-                    <i class="fa-solid fa-gem text-3xl text-[#D71A21] mb-4"></i>
-                    <h4 class="text-xs font-bold uppercase tracking-widest">VIP Prestige</h4>
+                    <p>By becoming an EGR Investor, you bypass the standard supportive systems. You are not a 'VIP donor'; you are a Vanguard stakeholder. You gain access not only to elevated roleplay across our integrated Airline, Holidays, and Executive systems but also to strategic influence. You suggest, you vote on critical pivots, and you beta-test major features before standard deployment. We require partners, like you, to ensure EGR remains the undisputed standard in PTFS airspace. We invite you into the inner circle to shape that standard with us."</p>
                 </div>
-                <div>
-                    <i class="fa-solid fa-key text-3xl text-[#D71A21] mb-4"></i>
-                    <h4 class="text-xs font-bold uppercase tracking-widest">All-Access</h4>
-                </div>
-                <div>
-                    <i class="fa-solid fa-comments text-3xl text-[#D71A21] mb-4"></i>
-                    <h4 class="text-xs font-bold uppercase tracking-widest">Direct Influence</h4>
-                </div>
-                <div>
-                    <i class="fa-solid fa-plane-up text-3xl text-[#D71A21] mb-4"></i>
-                    <h4 class="text-xs font-bold uppercase tracking-widest">Vanguard Status</h4>
+
+                <div class="pt-16 mt-16 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+                    <div>
+                        <h4 class="text-xl font-bold text-[#111827]">Tyler Nicholas</h4>
+                        <p class="text-sm text-gray-500 uppercase tracking-widest">Chairman of The Board</p>
+                        <p class="text-xs text-gray-400">Tyler Nicholas Group | a Tyler Nicholas Group Company</p>
+                    </div>
+                    <img src="https://i.ibb.co/9H7q2C9R/Tyler-Nicholas-Signature-BL.png" class="h-16 object-contain" alt="Tyler Nicholas Signature">
                 </div>
             </div>
+
+            <div class="w-full lg:w-1/2 relative">
+                <div class="absolute inset-0 z-0 bg-gray-50 rounded-3xl opacity-50"></div>
+                <img src="https://i.ibb.co/1fhVynJQ/image-5.png" alt="Tyler Nicholas, Chairman" class="floating-chairman-img max-h-[700px] lg:max-h-[900px] object-contain object-bottom drop-shadow-2xl">
+            </div>
+
         </div>
     </section>
 
@@ -135,71 +156,55 @@
         <div class="max-w-7xl mx-auto">
             
             <div class="text-center mb-20 max-w-3xl mx-auto">
-                <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">The Master Key</span>
-                <h2 class="text-4xl md:text-5xl font-serif font-bold text-[#111827] mb-6 tracking-tight">Ecosystem Privileges</h2>
-                <p class="text-gray-500 leading-relaxed text-lg font-medium">As an Investor, your benefits are not confined to a single division. Your status grants you elevated privileges across the entire Emirates Group Roblox ecosystem.</p>
+                <span class="text-[#D71A21] font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Ecosystem Privileges</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-[#111827] mb-6 tracking-tight">The Stakes of an Investor</h2>
+                <p class="text-gray-500 leading-relaxed text-lg font-medium">As an Investor, your privileges transcend basic status. You are granted integrated VIP perks across our entire vertical stack, recognized everywhere you engage.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 text-gray-600 font-medium">
                 
-                <div class="prestige-card bg-white p-10 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between h-full">
-                    <div>
-                        <div class="w-14 h-14 bg-[#111827] text-white rounded-xl flex items-center justify-center text-2xl mb-8 shadow-md">
-                            <i class="fa-solid fa-plane-arrival"></i>
-                        </div>
-                        <h3 class="text-2xl font-extrabold text-[#111827] mb-4 uppercase tracking-tight">Vanguard Aviation Access</h3>
-                        <p class="text-gray-500 leading-relaxed font-medium mb-6">Skip the line and experience the future of flight before anyone else. Investors are granted exclusive, early access to newly deployed aircraft, inaugurations of new routes, and beta testing of advanced in-game systems.</p>
-                        <ul class="space-y-3 text-sm text-[#111827] font-bold tracking-wide">
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></span> Investor-only private flights</li>
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></span> Guaranteed slots on high-demand commercial flights</li>
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></span> Absolute priority booking across all services</li>
-                        </ul>
-                    </div>
+                <div class="space-y-6">
+                    <span class="text-3xl md:text-4xl font-extrabold text-[#D71A21]/20">01</span>
+                    <h3 class="text-2xl font-extrabold text-[#111827] mb-4 uppercase tracking-tight">Vanguard Aviation Access</h3>
+                    <p class="leading-relaxed font-medium mb-6">Skip standard onboarding and experience the standard first. Investors are granted exclusive, immediate access to newly deployed aircraft configurations, inaugurations of new routes, and beta testing of advanced immersive systems before generalized release.</p>
+                    <ul class="space-y-3 text-sm text-[#111827] font-bold tracking-wide">
+                        <li class="flex items-center"><div class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></div> Investor-only private flights</li>
+                        <li class="flex items-center"><div class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></div> Guaranteed slots on high-demand flights</li>
+                        <li class="flex items-center"><div class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></div> Priority booking across all Airline, Holidays, and Executive systems</li>
+                    </ul>
                 </div>
 
-                <div class="prestige-card bg-white p-10 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between h-full">
-                    <div>
-                        <div class="w-14 h-14 bg-[#D71A21] text-white rounded-xl flex items-center justify-center text-2xl mb-8 shadow-md">
-                            <i class="fa-solid fa-id-badge"></i>
-                        </div>
-                        <h3 class="text-2xl font-extrabold text-[#111827] mb-4 uppercase tracking-tight">Unrivaled Social Status</h3>
-                        <p class="text-gray-500 leading-relaxed font-medium mb-6">Your backing is publicly and permanently acknowledged. Establish yourself as a highly-respected figure within the global community.</p>
-                        <ul class="space-y-3 text-sm text-[#111827] font-bold tracking-wide">
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></span> Official "Emirates Investor" High-Prestige Discord Role</li>
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></span> Permanent Investor Badge on your Corporate Profile</li>
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></span> Unrestricted access to the Private Investor Lounge</li>
-                        </ul>
-                    </div>
+                <div class="space-y-6">
+                    <span class="text-3xl md:text-4xl font-extrabold text-[#D71A21]/20">02</span>
+                    <h3 class="text-2xl font-extrabold text-[#111827] mb-4 uppercase tracking-tight">Unrivaled Social Status</h3>
+                    <p class="leading-relaxed font-medium mb-6">Your Vanguard status is publicly and permanently acknowledged. Establish yourself as a highly-respected figure within the global TNG community.</p>
+                    <ul class="space-y-3 text-sm text-[#111827] font-bold tracking-wide">
+                        <li class="flex items-center"><div class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></div> Official "Emirates Investor" High-Prestige Discord Role</li>
+                        <li class="flex items-center"><div class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></div> Permanent Investor Badge on EGR Network profile</li>
+                        <li class="flex items-center"><div class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></div> Access to private Investor-only text/voice channels and lounge</li>
+                    </ul>
                 </div>
 
-                <div class="prestige-card bg-white p-10 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between h-full">
-                    <div>
-                        <div class="w-14 h-14 bg-[#111827] text-white rounded-xl flex items-center justify-center text-2xl mb-8 shadow-md">
-                            <i class="fa-solid fa-globe"></i>
-                        </div>
-                        <h3 class="text-2xl font-extrabold text-[#111827] mb-4 uppercase tracking-tight">The Holistic Network</h3>
-                        <p class="text-gray-500 leading-relaxed font-medium mb-6">Your privileges do not stop at the runway. Your VIP status translates instantly to the hospitality and logistics sectors of the network.</p>
-                        <ul class="space-y-3 text-sm text-[#111827] font-bold tracking-wide">
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></span> VIP perks at Emirates Holidays (Hotels & Resorts)</li>
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></span> Partial or Full access to Emirates Executive private charters</li>
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></span> Exclusive limited-time holiday packages</li>
-                        </ul>
-                    </div>
+                <div class="space-y-6">
+                    <span class="text-3xl md:text-4xl font-extrabold text-[#D71A21]/20">03</span>
+                    <h3 class="text-2xl font-extrabold text-[#111827] mb-4 uppercase tracking-tight">Bespoke Experiences</h3>
+                    <p class="leading-relaxed font-medium mb-6">Gain entry to scenarios completely uncontained by standard roleplay. We curate highly specific VIP-only operations strictly for our backers.</p>
+                    <ul class="space-y-3 text-sm text-[#111827] font-bold tracking-wide">
+                        <li class="flex items-center"><div class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></div> Invitations to restricted private events, galas, and inaugurations</li>
+                        <li class="flex items-center"><div class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></div> VIP-only operational scenarios and limited sessions</li>
+                        <li class="flex items-center"><div class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></div> Exclusive limited-time Holiday packages, hotels, and resorts</li>
+                    </ul>
                 </div>
 
-                <div class="prestige-card bg-white p-10 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between h-full">
-                    <div>
-                        <div class="w-14 h-14 bg-[#D71A21] text-white rounded-xl flex items-center justify-center text-2xl mb-8 shadow-md">
-                            <i class="fa-solid fa-martini-glass"></i>
-                        </div>
-                        <h3 class="text-2xl font-extrabold text-[#111827] mb-4 uppercase tracking-tight">Bespoke Experiences</h3>
-                        <p class="text-gray-500 leading-relaxed font-medium mb-6">Gain entry to experiences completely inaccessible to the general public. We curate highly specific roleplay scenarios strictly for our backers.</p>
-                        <ul class="space-y-3 text-sm text-[#111827] font-bold tracking-wide">
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></span> Invites to highly-restricted private events and galas</li>
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></span> VIP-only roleplay sessions away from the public</li>
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></span> Direct-to-consumer exclusive announcements</li>
-                        </ul>
-                    </div>
+                <div class="space-y-6">
+                    <span class="text-3xl md:text-4xl font-extrabold text-[#D71A21]/20">04</span>
+                    <h3 class="text-2xl font-extrabold text-[#111827] mb-4 uppercase tracking-tight">Holistic Network Integration</h3>
+                    <p class="leading-relaxed font-medium mb-6">Your privileges translate instantly to the highest tier of our operations. Your VIP status includes immediate elevation to the private sector.</p>
+                    <ul class="space-y-3 text-sm text-[#111827] font-bold tracking-wide">
+                        <li class="flex items-center"><div class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></div> Partial or Full Access to Emirates Executive perks (charters & concave)</li>
+                        <li class="flex items-center"><div class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></div> Direct coordination with Corporate Dispatch for specialized operations</li>
+                        <li class="flex items-center"><div class="w-1.5 h-1.5 bg-[#D71A21] rounded-full mr-4"></div> Recognised VIP status across Tyler Nicholas Foundation events</li>
+                    </ul>
                 </div>
 
             </div>
@@ -207,45 +212,56 @@
     </section>
 
     <section class="py-32 px-6 md:px-12 bg-[#111827] text-white relative border-t-4 border-[#D71A21]">
-        <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+        <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(#374151 1px, transparent 1px), linear-gradient(90deg, #374151 1px, transparent 1px); background-size: 40px 40px;"></div>
         
-        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10">
+        <div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 relative z-10 text-gray-400">
             
-            <div class="w-full lg:w-1/2">
-                <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block">Direct Boardroom Impact</span>
-                <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-8 leading-tight">Shape the future of the Emirates Group.</h2>
+            <div class="w-full lg:w-1/3">
+                <span class="text-[#D71A21] font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block">Strategic Impact</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-8 leading-tight">Boardroom Access. Direct Influence.</h2>
                 <div class="w-16 h-1 bg-[#D71A21] mb-8"></div>
-                <p class="text-gray-400 leading-relaxed text-lg font-light mb-8">What truly sets an Investor apart is their proximity to the Executive Leadership. You aren't just experiencing the network; you are actively helping us build it.</p>
-                <p class="text-gray-400 leading-relaxed text-lg font-light">Investors are granted a direct line to the Founders and the Chief Operations Officers, ensuring your voice is heard, respected, and implemented into the core roadmap of the organization.</p>
+                <p class="leading-relaxed text-lg font-light mb-8">This is what defines the Cadre: access. You are granted a direct line of communication to the founders and the Chief Operations Officers, ensuring your voice shapes the future of the Emirates standard in PTFS airspace.</p>
+                <p class="leading-relaxed text-lg font-light">Investors are fundamental contributors, not passive supporters. Your insights are required.</p>
             </div>
             
-            <div class="w-full lg:w-1/2 space-y-6">
-                <div class="bg-white/5 border border-white/10 p-8 rounded-xl backdrop-blur-sm">
-                    <h4 class="text-lg font-bold text-white uppercase tracking-widest mb-2"><i class="fa-solid fa-microphone-lines text-[#D71A21] mr-3"></i> Private Feedback Sessions</h4>
-                    <p class="text-sm text-gray-400 leading-relaxed font-light">Bypass the public channels. Sit down in private advisory sessions with the executive board to discuss network operations and community health.</p>
+            <div class="w-full lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-12 font-medium">
+                <div>
+                    <h4 class="text-lg font-bold text-white uppercase tracking-widest mb-3 flex items-center">
+                        <div class="w-4 h-4 bg-[#D71A21] mr-3"></div> Private Feedback Sessions
+                    </h4>
+                    <p class="text-sm leading-relaxed font-light">Sit in strictly confidential advisory sessions with the executive leadership board to discuss organizational pivots, community health, and developmental roadmaps.</p>
                 </div>
-                <div class="bg-white/5 border border-white/10 p-8 rounded-xl backdrop-blur-sm">
-                    <h4 class="text-lg font-bold text-white uppercase tracking-widest mb-2"><i class="fa-solid fa-lightbulb text-[#D71A21] mr-3"></i> Direct Idea Implementation</h4>
-                    <p class="text-sm text-gray-400 leading-relaxed font-light">Have an idea for a new route, a new hotel, or a new system? Investors have the privilege of pitching concepts directly to the development teams.</p>
+                <div>
+                    <h4 class="text-lg font-bold text-white uppercase tracking-widest mb-3 flex items-center">
+                        <div class="w-4 h-4 bg-[#D71A21] mr-3"></div> Early Feature Testing
+                    </h4>
+                    <p class="text-sm leading-relaxed font-light">Investors are the core of our Vanguard Testing Program. Gain access to unstable beta systems, new aircraft models, and unreleased routes before standardized deployment.</p>
                 </div>
-                <div class="bg-[#D71A21]/10 border border-[#D71A21]/30 p-8 rounded-xl backdrop-blur-sm">
-                    <h4 class="text-lg font-bold text-white uppercase tracking-widest mb-2"><i class="fa-solid fa-check-to-slot text-[#D71A21] mr-3"></i> Executive Voting Rights</h4>
-                    <p class="text-sm text-gray-300 leading-relaxed font-medium">When major organizational pivots, massive expansions, or critical future decisions are on the table, Investor votes carry tangible, decisive weight.</p>
+                <div>
+                    <h4 class="text-lg font-bold text-white uppercase tracking-widest mb-3 flex items-center">
+                        <div class="w-4 h-4 bg-[#D71A21] mr-3"></div> Pitch direct ideas
+                    </h4>
+                    <p class="text-sm leading-relaxed font-light">Investors have the unique privilege of pitching concepts for new routes, events, fleet configurations, or subsidiary systems directly to the corporate roadmap team.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-white uppercase tracking-widest mb-3 flex items-center">
+                        <div class="w-4 h-4 bg-[#D71A21] mr-3"></div> executive voting rights
+                    </h4>
+                    <p class="text-sm leading-relaxed font-light border-l-2 border-[#D71A21]/40 pl-4">On major pivots, massive network expansions, or critical organizational future decisions, Investor votes carry tangible, decisive weight.</p>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <section class="py-32 px-6 md:px-12 bg-white text-center">
+    <section class="py-32 md:py-48 px-6 md:px-12 bg-white text-center">
         <div class="max-w-4xl mx-auto">
-            <i class="fa-solid fa-handshake-angle text-5xl text-[#111827] mb-8"></i>
-            <h2 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight uppercase text-[#111827]">Secure Your Stake.</h2>
-            <p class="text-gray-500 leading-relaxed font-medium text-xl mb-12 max-w-2xl mx-auto">Ready to ascend to the Inner Circle? Investor packages are highly bespoke and tailored to your level of commitment.</p>
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-8 tracking-tight uppercase text-[#111827]">Secure Your Stake.</h2>
+            <p class="text-gray-500 leading-relaxed font-medium text-xl mb-12 max-w-2xl mx-auto">Investor onboarding is highly bespoke and tailored to your desired level of commitment and influence. Initiate your acquisition process with our private concierge.</p>
             
-            <div class="bg-gray-50 border border-gray-200 p-8 rounded-2xl mb-12 inline-block shadow-sm">
-                <p class="text-[#D71A21] font-bold uppercase tracking-[0.2em] text-xs mb-2">Acquisition Process</p>
-                <p class="text-gray-600 font-medium text-sm">To initiate the Investor onboarding process and discuss financial support packages (Robux, Assets, or Partnerships), please open a secure ticket with our Corporate Help Center.</p>
+            <div class="bg-gray-50 border border-gray-100 p-8 rounded-2xl mb-12 inline-block shadow-sm">
+                <p class="text-[#D71A21] font-bold uppercase tracking-[0.2em] text-xs mb-2">Prestige Onboarding Process</p>
+                <p class="text-gray-600 font-medium text-sm">To discuss financial support packages (Robux, Assets, or Partnerships), please open a secure, confidential ticket with our Corporate Help Center.</p>
             </div>
             
             <br>
