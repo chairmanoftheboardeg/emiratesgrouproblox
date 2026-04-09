@@ -8,8 +8,9 @@
   <link rel="icon" href="https://i.ibb.co/jPPzN1rz/LOGO-EMIRATES-ROBLOX-compressed.png" id="favicon" />
   
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -159,7 +160,7 @@
                 <div class="flex flex-col lg:flex-row items-center gap-12 group">
                     <div class="w-full lg:w-1/2 h-[350px] lg:h-[450px] rounded-2xl overflow-hidden shadow-lg relative">
                         <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-                        <img src="https://i.ibb.co/gL7VsznC/Screenshot-2026-02-28-194233.png" alt="Fine Dining" class="w-full h-full object-cover img-zoom">
+                        <img src="https://i.ibb.co/TBHXt1zL/Luxurious-Emirates-jet-dining-experience.png" alt="Fine Dining" class="w-full h-full object-cover img-zoom">
                     </div>
                     <div class="w-full lg:w-1/2 lg:pl-8">
                         <div class="w-12 h-12 bg-[#111827] text-white rounded-full flex items-center justify-center text-xl mb-6 shadow-md"><i class="fa-solid fa-utensils"></i></div>
@@ -187,7 +188,7 @@
                 <div class="flex flex-col lg:flex-row items-center gap-12 group">
                     <div class="w-full lg:w-1/2 h-[350px] lg:h-[450px] rounded-2xl overflow-hidden shadow-lg relative">
                         <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-                        <img src="https://i.ibb.co/TxRmY30r/Screenshot-2026-02-28-194535.png" alt="Business Workspace" class="w-full h-full object-cover img-zoom">
+                        <img src="https://i.ibb.co/rG6hBZx6/Executive-workspace-on-a-private-jet.png" alt="Business Workspace" class="w-full h-full object-cover img-zoom">
                     </div>
                     <div class="w-full lg:w-1/2 lg:pl-8">
                         <div class="w-12 h-12 bg-[#111827] text-white rounded-full flex items-center justify-center text-xl mb-6 shadow-md"><i class="fa-solid fa-briefcase"></i></div>
@@ -241,7 +242,7 @@
                 <p class="text-gray-500 font-medium">Secure your private itinerary. Operations are exclusive to PTFS.</p>
             </div>
 
-            <div id="login-gate-wrapper" style="display: block;">
+            <div id="login-gate-wrapper">
                 <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden flex flex-col md:flex-row">
                     
                     <div class="w-full md:w-5/12 bg-[#111827] p-10 md:p-16 flex flex-col justify-center">
@@ -487,161 +488,213 @@
     </div>
   </footer>
 
- <script>
-document.addEventListener("DOMContentLoaded", async () => {
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
 
-    // ✅ INIT SUPABASE
-    const supabase = window.supabase.createClient(
-        'https://zboyabxzhptnxnmofvcz.supabase.co',
-        'YOUR_PUBLIC_ANON_KEY_HERE'
-    );
-
-    let currentUser = null;
-
-    const loginGateWrapper = document.getElementById('login-gate-wrapper');
-    const requestDeskWrapper = document.getElementById('request-desk-wrapper');
-
-    function setAuthState(session) {
-        if (session) {
-            currentUser = session.user;
-            loginGateWrapper.style.display = 'none';
-            requestDeskWrapper.style.display = 'block';
-
-            document.getElementById('req-email').value = currentUser.email;
-        } else {
-            currentUser = null;
-            requestDeskWrapper.style.display = 'none';
-            loginGateWrapper.style.display = 'block';
+        // --- 1. LOADER LOGIC ---
+        let loaderHidden = false;
+        function hideLoader() {
+            if(loaderHidden) return;
+            loaderHidden = true;
+            
+            const percEl = document.getElementById('loader-perc');
+            const fillEl = document.getElementById('loader-fill');
+            if(percEl) percEl.innerText = '100';
+            if(fillEl) fillEl.style.width = '100%';
+            
+            setTimeout(() => {
+                const container = document.getElementById('loader-animate-container');
+                if(container) container.classList.add('zoom-through');
+                setTimeout(() => {
+                    const loader = document.getElementById('egr-loader');
+                    if(loader) loader.style.display = 'none'; 
+                }, 600);
+            }, 300);
         }
-    }
 
-    // ✅ CHECK SESSION
-    const { data: { session } } = await supabase.auth.getSession();
-    setAuthState(session);
+        setTimeout(hideLoader, 2500);
 
-    // ✅ LISTEN FOR LOGIN
-    supabase.auth.onAuthStateChange((_event, session) => {
-        setAuthState(session);
-    });
+        const progressInterval = setInterval(() => {
+            if(loaderHidden) {
+                clearInterval(progressInterval);
+                return;
+            }
+            const el = document.getElementById('loader-perc');
+            const fill = document.getElementById('loader-fill');
+            if(!el || !fill) return;
+            let perc = parseInt(el.innerText) || 0;
+            perc += Math.floor(Math.random() * 15) + 5; 
+            if (perc >= 99) perc = 99; 
+            el.innerText = perc;
+            fill.style.width = perc + '%';
+        }, 80);
 
-    // =========================
-    // 🔐 LOGIN SYSTEM
-    // =========================
-    const loginForm = document.getElementById('exec-login-form');
+        window.addEventListener('load', hideLoader);
 
-    loginForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const email = document.getElementById('login-email').value.trim();
-        const password = document.getElementById('login-password').value;
-
-        const btn = document.getElementById('login-btn');
-        const alertBox = document.getElementById('login-alert');
-        const alertText = document.getElementById('login-alert-text');
-
-        if (!email || !password) return;
-
-        btn.innerText = "VERIFYING...";
-        btn.disabled = true;
-        alertBox.style.display = "none";
-
-        const { error } = await supabase.auth.signInWithPassword({
-            email,
-            password
-        });
-
-        if (error) {
-            alertBox.style.display = "block";
-            alertText.innerText = error.message;
-            btn.innerText = "Verify Identity →";
-            btn.disabled = false;
-        } else {
-            loginForm.reset();
-        }
-    });
-
-    // =========================
-    // ✈️ AIRCRAFT PRICING
-    // =========================
-    const aircraftPrices = {
-        'Learjet 45': 85,
-        'Lineage 1000': 160,
-        'BBJ 787': 360,
-        'ACJ350': 760
-    };
-
-    document.getElementById('req-aircraft').addEventListener('change', (e) => {
-        const price = aircraftPrices[e.target.value] || 0;
-        const display = document.getElementById('price-display');
-
-        display.innerText = price ? price + " R$" : "-- R$";
-        display.setAttribute("data-price", price);
-    });
-
-    // =========================
-    // 🧾 FORM SUBMISSION
-    // =========================
-    const execForm = document.getElementById('executive-form');
-
-    execForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        if (!currentUser) return;
-
-        const btn = document.getElementById('req-submit-btn');
-        const alertBox = document.getElementById('request-alert');
-        const alertText = document.getElementById('request-alert-text');
-
-        const payload = {
-            user_id: currentUser.id,
-            first_name: document.getElementById('req-firstname').value,
-            last_name: document.getElementById('req-lastname').value,
-            email: currentUser.email,
-            discord_username: document.getElementById('req-discord-user').value,
-            discord_id: document.getElementById('req-discord-id').value,
-            departure_airport: document.getElementById('req-departure').value,
-            arrival_airport: document.getElementById('req-arrival').value,
-            time_of_departure: document.getElementById('req-time').value,
-            timezone: document.getElementById('req-timezone').value,
-            number_of_passengers: parseInt(document.getElementById('req-pax').value),
-            aircraft: document.getElementById('req-aircraft').value,
-            estimated_price: parseInt(document.getElementById('price-display').dataset.price || 0),
-            helicopter_transfer: document.getElementById('req-heli').checked,
-            chauffeur_service: document.getElementById('req-chauffeur').checked,
-            dietary_menu: document.getElementById('req-dietary').checked,
-            boardroom_setup: document.getElementById('req-boardroom').checked,
-            pet_onboard: document.getElementById('req-pet').checked,
-            full_beds_prep: document.getElementById('req-beds').checked,
-            special_notes: document.getElementById('req-notes').value
-        };
-
-        if (!payload.aircraft) {
-            alertBox.style.display = "block";
-            alertText.innerText = "Please select an aircraft.";
+        // --- 2. SUPABASE INITIALIZATION ---
+        if (!window.supabase) {
+            console.error("Supabase CDN failed to load.");
             return;
         }
 
-        btn.innerText = "TRANSMITTING...";
-        btn.disabled = true;
+        const supabase = window.supabase.createClient(
+            'https://zboyabxzhptnxnmofvcz.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpib3lhYnh6aHB0bnhubW9mdmN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3NjU3MTgsImV4cCI6MjA4NTM0MTcxOH0.2et1T3bQqr-ZzZgx-VWaq3kR0FJDprcAbbWBby6oRys'
+        );
 
-        const { error } = await supabase
-            .from('egr_executive_flight_requests')
-            .insert([payload]);
+        let currentUser = null;
 
-        if (error) {
-            alertBox.style.display = "block";
-            alertText.innerText = "Submission failed.";
-        } else {
-            alertBox.style.display = "block";
-            alertText.innerText = "Request submitted successfully.";
-            execForm.reset();
+        const loginGateWrapper = document.getElementById('login-gate-wrapper');
+        const requestDeskWrapper = document.getElementById('request-desk-wrapper');
+
+        // --- 3. UI TOGGLE STATE ---
+        function setAuthState(session) {
+            if (session) {
+                currentUser = session.user;
+                if(loginGateWrapper) loginGateWrapper.style.display = 'none';
+                if(requestDeskWrapper) requestDeskWrapper.style.display = 'block';
+
+                const reqEmail = document.getElementById('req-email');
+                if(reqEmail) reqEmail.value = currentUser.email;
+            } else {
+                currentUser = null;
+                if(requestDeskWrapper) requestDeskWrapper.style.display = 'none';
+                if(loginGateWrapper) loginGateWrapper.style.display = 'block';
+            }
         }
 
-        btn.innerText = "Submit Requisition to Dispatch";
-        btn.disabled = false;
-    });
+        // --- 4. CHECK SESSION ON LOAD ---
+        const { data: { session } } = await supabase.auth.getSession();
+        setAuthState(session);
 
-});
-</script>
+        // --- 5. LISTEN FOR LOGIN CHANGES ---
+        supabase.auth.onAuthStateChange((_event, session) => {
+            setAuthState(session);
+        });
+
+        // --- 6. SECURE LOGIN SYSTEM ---
+        const loginForm = document.getElementById('exec-login-form');
+        if (loginForm) {
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault(); // PREVENT RELOAD
+
+                const email = document.getElementById('login-email').value.trim();
+                const password = document.getElementById('login-password').value;
+                const btn = document.getElementById('login-btn');
+                const alertBox = document.getElementById('login-alert');
+                const alertText = document.getElementById('login-alert-text');
+
+                if (!email || !password) return;
+
+                btn.innerText = "VERIFYING...";
+                btn.disabled = true;
+                alertBox.style.display = "none";
+
+                const { error } = await supabase.auth.signInWithPassword({
+                    email,
+                    password
+                });
+
+                if (error) {
+                    alertBox.style.display = "block";
+                    alertText.innerText = error.message;
+                    btn.innerHTML = "Verify Identity &rarr;";
+                    btn.disabled = false;
+                } else {
+                    loginForm.reset();
+                    // UI toggles automatically via onAuthStateChange
+                }
+            });
+        }
+
+        // --- 7. AIRCRAFT PRICING LISTENER ---
+        const aircraftPrices = {
+            'Learjet 45': 85,
+            'Lineage 1000': 160,
+            'BBJ 787': 360,
+            'ACJ350': 760
+        };
+
+        const aircraftSelect = document.getElementById('req-aircraft');
+        if (aircraftSelect) {
+            aircraftSelect.addEventListener('change', (e) => {
+                const price = aircraftPrices[e.target.value] || 0;
+                const display = document.getElementById('price-display');
+
+                display.innerText = price ? price + " R$" : "-- R$";
+                display.setAttribute("data-price", price);
+            });
+        }
+
+        // --- 8. REQUISITION FORM SUBMISSION ---
+        const execForm = document.getElementById('executive-form');
+        if (execForm) {
+            execForm.addEventListener('submit', async (e) => {
+                e.preventDefault(); // PREVENT RELOAD
+
+                if (!currentUser) return;
+
+                const btn = document.getElementById('req-submit-btn');
+                const alertBox = document.getElementById('request-alert');
+                const alertText = document.getElementById('request-alert-text');
+
+                const payload = {
+                    user_id: currentUser.id,
+                    first_name: document.getElementById('req-firstname').value,
+                    last_name: document.getElementById('req-lastname').value,
+                    email: currentUser.email,
+                    discord_username: document.getElementById('req-discord-user').value,
+                    discord_id: document.getElementById('req-discord-id').value,
+                    departure_airport: document.getElementById('req-departure').value,
+                    arrival_airport: document.getElementById('req-arrival').value,
+                    time_of_departure: document.getElementById('req-time').value,
+                    timezone: document.getElementById('req-timezone').value,
+                    number_of_passengers: parseInt(document.getElementById('req-pax').value),
+                    
+                    aircraft: document.getElementById('req-aircraft').value,
+                    estimated_price: parseInt(document.getElementById('price-display').dataset.price || 0),
+                    helicopter_transfer: document.getElementById('req-heli').checked,
+                    chauffeur_service: document.getElementById('req-chauffeur').checked,
+                    dietary_menu: document.getElementById('req-dietary').checked,
+                    boardroom_setup: document.getElementById('req-boardroom').checked,
+                    pet_onboard: document.getElementById('req-pet').checked,
+                    full_beds_prep: document.getElementById('req-beds').checked,
+                    special_notes: document.getElementById('req-notes').value
+                };
+
+                if (!payload.aircraft) {
+                    alertBox.style.display = "block";
+                    alertBox.className = 'mb-8 p-5 rounded-lg text-[11px] font-bold uppercase tracking-widest border bg-red-50 text-red-600 border-red-200';
+                    alertText.innerText = "Please select an aircraft before submitting.";
+                    return;
+                }
+
+                btn.innerText = "TRANSMITTING...";
+                btn.disabled = true;
+                alertBox.style.display = "none";
+
+                const { error } = await supabase.from('egr_executive_flight_requests').insert([payload]);
+
+                if (error) {
+                    alertBox.style.display = "block";
+                    alertBox.className = 'mb-8 p-5 rounded-lg text-[11px] font-bold uppercase tracking-widest border bg-red-50 text-red-600 border-red-200';
+                    alertText.innerText = "Transmission Failed: " + error.message;
+                } else {
+                    alertBox.style.display = "block";
+                    alertBox.className = 'mb-8 p-5 rounded-lg text-[11px] font-bold uppercase tracking-widest border bg-green-50 text-green-700 border-green-200';
+                    alertText.innerText = "Request securely transmitted to Corporate Dispatch.";
+                    
+                    execForm.reset();
+                    document.getElementById('price-display').innerText = '-- R$';
+                    document.getElementById('price-display').setAttribute('data-price', '0');
+                    document.getElementById('req-email').value = currentUser.email;
+                }
+
+                btn.innerText = "Submit Requisition to Dispatch";
+                btn.disabled = false;
+            });
+        }
+    });
+  </script>
 </body>
 </html>
